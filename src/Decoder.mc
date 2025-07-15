@@ -33,16 +33,18 @@ module ProtoBuf {
             for (var i = 0; i < keys.size(); i++) {
                 var sym = keys[i];
                 var fieldInfo = schema[sym];
-                System.println("Debug Decoder: Field " + sym + " has tag " + fieldInfo[:tag]);
-                tagMap[fieldInfo[:tag]] = { :symbol => sym, :schema => fieldInfo };
+                var tag = fieldInfo[:tag].toNumber(); // Ensure it's a Number
+                System.println("Debug Decoder: Field " + sym + " has tag " + tag);
+                tagMap[tag] = { :symbol => sym, :schema => fieldInfo };
             }
             System.println("Debug Decoder: TagMap = " + tagMap);
 
             while (_index < _buffer.size()) {
                 var tagVal = readVarint();
-                var wireType = tagVal & 0x07;
-                var fieldNumber = tagVal >> 3;
+                var wireType = (tagVal & 0x07).toNumber();
+                var fieldNumber = (tagVal >> 3).toNumber(); // Ensure it's a Number
                 System.println("Debug Decoder: Read field " + fieldNumber + " wireType " + wireType);
+                System.println("Debug Decoder: TagMap has key " + fieldNumber + "? " + tagMap.hasKey(fieldNumber));
 
                 if (tagMap.hasKey(fieldNumber)) {
                     var fieldInfo = tagMap[fieldNumber];
