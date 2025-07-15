@@ -1,4 +1,4 @@
 project.manifest = manifest.xml
 
-base.sourcePath = source/FixedSimpleTest.mc;source/ProtoBuf.mc;source/Encoder.mc;source/Decoder.mc
+base.sourcePath = tests/FixedSimpleTest.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
 base.resourcePath = resources

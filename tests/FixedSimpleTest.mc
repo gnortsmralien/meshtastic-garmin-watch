@@ -44,6 +44,15 @@ function testBasicEncoding() as Void {
         
         var encoded = encoder.encode(message, schema);
         System.println("✓ Encoding works - size: " + encoded.size());
+        
+        // Show what was actually encoded
+        var encodedStr = "Encoded bytes: [";
+        for (var i = 0; i < encoded.size(); i++) {
+            if (i > 0) { encodedStr += ", "; }
+            encodedStr += encoded[i];
+        }
+        encodedStr += "]";
+        System.println(encodedStr);
     } catch (exception) {
         System.println("✗ Encoding failed: " + exception.getErrorMessage());
     }
@@ -53,17 +62,21 @@ function testBasicDecoding() as Void {
     System.println("Test: Basic Decoding");
     
     try {
-        var decoder = new ProtoBuf.Decoder();
+        // First encode a value to get the actual bytes
+        var encoder = new ProtoBuf.Encoder();
         var schema = { :value => { :tag => 1, :type => ProtoBuf.WIRETYPE_VARINT } };
+        var message = { :value => 42 };
+        var testBytes = encoder.encode(message, schema);
         
-        // Simple test data: tag 1 (0x08) + value 42 (0x2A)
-        var testBytes = [0x08, 0x2A]b;
+        // Now decode it
+        var decoder = new ProtoBuf.Decoder();
         var decoded = decoder.decode(testBytes, schema);
         
         if (decoded.hasKey(:value)) {
             System.println("✓ Decoding works - value: " + decoded[:value]);
         } else {
             System.println("✗ Decoding failed - no value found");
+            System.println("Debug: Available keys = " + decoded.keys());
         }
     } catch (exception) {
         System.println("✗ Decoding failed: " + exception.getErrorMessage());

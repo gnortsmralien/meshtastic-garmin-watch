@@ -29,16 +29,20 @@ module ProtoBuf {
             // Invert the schema for fast lookup from tag number to symbol
             var tagMap = {};
             var keys = schema.keys();
+            System.println("Debug Decoder: Schema keys = " + keys);
             for (var i = 0; i < keys.size(); i++) {
                 var sym = keys[i];
                 var fieldInfo = schema[sym];
+                System.println("Debug Decoder: Field " + sym + " has tag " + fieldInfo[:tag]);
                 tagMap[fieldInfo[:tag]] = { :symbol => sym, :schema => fieldInfo };
             }
+            System.println("Debug Decoder: TagMap = " + tagMap);
 
             while (_index < _buffer.size()) {
                 var tagVal = readVarint();
                 var wireType = tagVal & 0x07;
                 var fieldNumber = tagVal >> 3;
+                System.println("Debug Decoder: Read field " + fieldNumber + " wireType " + wireType);
 
                 if (tagMap.hasKey(fieldNumber)) {
                     var fieldInfo = tagMap[fieldNumber];
