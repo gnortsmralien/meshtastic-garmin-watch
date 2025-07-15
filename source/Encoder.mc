@@ -19,7 +19,7 @@ module ProtoBuf {
         // @param message The Dictionary containing the message data.
         // @param schema The Dictionary describing the message structure.
         // @return The serialized message as a ByteArray.
-        public function encode(message as Dictionary, schema as Dictionary) as ByteArray {
+        public function encode(message as Lang.Dictionary, schema as Lang.Dictionary) as Lang.ByteArray {
             _buffer = new [0]b;
             var keys = schema.keys();
 
@@ -35,7 +35,7 @@ module ProtoBuf {
         }
 
         // Encodes a single field based on its schema definition.
-        private function encodeField(fieldSchema as Dictionary, value) {
+        private function encodeField(fieldSchema as Lang.Dictionary, value) {
             var type = fieldSchema[:type];
             var tag = fieldSchema[:tag];
 
@@ -88,14 +88,14 @@ module ProtoBuf {
         }
 
         // Writes a tag (field number + wire type) to the buffer.
-        private function writeTag(fieldNumber as Number, wireType as Number) {
+        private function writeTag(fieldNumber as Lang.Number, wireType as Lang.Number) {
             var tag = (fieldNumber << 3) | wireType;
             writeVarint(tag);
         }
 
         // Encodes a number as a Varint and writes it to the buffer.
         // Handles up to 32-bit unsigned integers for Monkey C's Number type.
-        private function writeVarint(value as Number) {
+        private function writeVarint(value as Lang.Number) {
             var val = value.toLong(); // Use Long for bitwise operations
             while (true) {
                 if ((val & ~0x7F) == 0) {
@@ -103,7 +103,7 @@ module ProtoBuf {
                     break;
                 } else {
                     _buffer = _buffer.add(((val & 0x7F) | 0x80).toNumber());
-                    val = val >>> 7;
+                    val = val >> 7;
                 }
             }
         }
@@ -132,7 +132,7 @@ module ProtoBuf {
         }
 
         // Writes a 64-bit fixed-width number (little-endian).
-        private function writeFixed64(value as Long) {
+        private function writeFixed64(value as Lang.Long) {
              var bytes = new [8]b;
              // Similar limitation as writeFixed32 for doubles.
              bytes[0] = (value & 0xFF).toNumber();
@@ -149,7 +149,7 @@ module ProtoBuf {
         // Helper to convert a string to a UTF-8 byte array.
         // Monkey C strings are internally UTF-8, but toByteArray() might not be available
         // on all API levels. A robust implementation would handle this carefully.
-        private function stringToBytes(str as String) as ByteArray {
+        private function stringToBytes(str as Lang.String) as Lang.ByteArray {
             // This is a simplification. Real UTF-8 conversion is more complex if non-ASCII
             // characters are involved and no built-in method is available.
             var bytes = new [str.length()]b;

@@ -1,0 +1,28 @@
+# Build outputs
+bin/
+build/
+*.prg
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Developer keys (keep private)
+developer_key
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Generated files
+*.generated.*

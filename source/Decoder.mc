@@ -21,7 +21,7 @@ module ProtoBuf {
         // @param bytes The ByteArray containing the serialized message.
         // @param schema The Dictionary describing the message structure.
         // @return The deserialized message as a Dictionary.
-        public function decode(bytes as ByteArray, schema as Dictionary) as Dictionary {
+        public function decode(bytes as Lang.ByteArray, schema as Lang.Dictionary) as Lang.Dictionary {
             _buffer = bytes;
             _index = 0;
             var message = {};
@@ -38,7 +38,7 @@ module ProtoBuf {
             while (_index < _buffer.size()) {
                 var tagVal = readVarint();
                 var wireType = tagVal & 0x07;
-                var fieldNumber = tagVal >>> 3;
+                var fieldNumber = tagVal >> 3;
 
                 if (tagMap.hasKey(fieldNumber)) {
                     var fieldInfo = tagMap[fieldNumber];
@@ -71,7 +71,7 @@ module ProtoBuf {
                             break;
                         default:
                             // Unknown wire type, skip it
-                            skipField(wireType);
+                            skipField(wireType.toNumber());
                             break;
                     }
                     if (value != null) {
@@ -80,7 +80,7 @@ module ProtoBuf {
                 } else {
                     // Unknown field, skip it
                     System.println("Skipping unknown field: " + fieldNumber);
-                    skipField(wireType);
+                    skipField(wireType.toNumber());
                 }
             }
 
@@ -88,7 +88,7 @@ module ProtoBuf {
         }
 
         // Skips a field based on its wire type. Essential for forward compatibility.
-        private function skipField(wireType as Number) {
+        private function skipField(wireType as Lang.Number) {
             switch (wireType) {
                 case WIRETYPE_VARINT:
                     readVarint(); // Read and discard
@@ -107,7 +107,7 @@ module ProtoBuf {
         }
 
         // Reads a Varint-encoded number from the buffer.
-        private function readVarint() as Long {
+        private function readVarint() as Lang.Long {
             var result = 0L;
             var shift = 0;
             while (true) {
@@ -128,7 +128,7 @@ module ProtoBuf {
         }
         
         // Reads a 32-bit little-endian number.
-        private function readFixed32() as Number {
+        private function readFixed32() as Lang.Number {
             var b1 = _buffer[_index].toLong();
             var b2 = _buffer[_index+1].toLong();
             var b3 = _buffer[_index+2].toLong();
@@ -140,7 +140,7 @@ module ProtoBuf {
         }
 
         // Reads a 64-bit little-endian number.
-        private function readFixed64() as Long {
+        private function readFixed64() as Lang.Long {
             var val = 0L;
             for (var i = 0; i < 8; i++) {
                 val |= (_buffer[_index + i].toLong() << (i * 8));

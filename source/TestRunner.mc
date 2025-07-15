@@ -51,7 +51,7 @@ module TestRunner {
     }
     
     // Run basic functionality tests
-    private function runBasicTests(logger as Logger) as Boolean {
+    function runBasicTests(logger as Logger) as Boolean {
         logger.debug("\n--- Running Basic Tests ---");
         var allPassed = true;
         
@@ -74,7 +74,7 @@ module TestRunner {
     }
     
     // Run comprehensive edge case and integration tests
-    private function runComprehensiveTests(logger as Logger) as Boolean {
+    function runComprehensiveTests(logger as Logger) as Boolean {
         logger.debug("\n--- Running Comprehensive Tests ---");
         var allPassed = true;
         
@@ -109,7 +109,7 @@ module TestRunner {
     }
     
     // Run canonical compatibility tests
-    private function runCanonicalTests(logger as Logger) as Boolean {
+    function runCanonicalTests(logger as Logger) as Boolean {
         logger.debug("\n--- Running Canonical Compatibility Tests ---");
         var allPassed = true;
         
@@ -127,7 +127,7 @@ module TestRunner {
     }
     
     // Run all test suites
-    private function runAllTests(logger as Logger) as Boolean {
+    function runAllTests(logger as Logger) as Boolean {
         var allPassed = true;
         
         allPassed &= runBasicTests(logger);
@@ -138,7 +138,7 @@ module TestRunner {
     }
     
     // Run a single test function and track results
-    private function runSingleTest(testName as String, testFunction as Method, logger as Logger) as Boolean {
+    function runSingleTest(testName as String, testFunction as Method, logger as Logger) as Boolean {
         totalTests++;
         
         try {
@@ -164,7 +164,7 @@ module TestRunner {
     }
     
     // Reset test statistics
-    private function resetStats() {
+    function resetStats() {
         totalTests = 0;
         passedTests = 0;
         failedTests = 0;
@@ -172,7 +172,7 @@ module TestRunner {
     }
     
     // Print test execution summary
-    private function printSummary(logger as Logger) {
+    function printSummary(logger as Logger) {
         logger.debug("\n=== Test Summary ===");
         logger.debug("Total Tests: " + totalTests);
         logger.debug("Passed: " + passedTests);
@@ -190,7 +190,7 @@ module TestRunner {
     }
     
     // Mock test function for demonstration
-    private function mockTestFunction(logger as Logger) as Boolean {
+    function mockTestFunction(logger as Logger) as Boolean {
         // In real implementation, this would be replaced with actual test functions
         return true;
     }

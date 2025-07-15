@@ -69,7 +69,7 @@ module ProtoBuf {
     // Wraps a protobuf payload with the Meshtastic streaming protocol header.
     // @param protoBytes The serialized protobuf payload.
     // @return A new ByteArray containing the full stream packet.
-    public function wrap(protoBytes as ByteArray) as ByteArray {
+    public function wrap(protoBytes as Lang.ByteArray) as Lang.ByteArray? {
         var len = protoBytes.size();
         if (len > 0xFFFF) {
             System.println("Error: Protobuf payload too large for streaming protocol.");
@@ -90,7 +90,7 @@ module ProtoBuf {
     // A full implementation would scan the buffer for START1/START2.
     // @param streamBytes The raw bytes from the stream.
     // @return The extracted protobuf payload as a ByteArray, or null if invalid.
-    public function unwrap(streamBytes as ByteArray) as ByteArray {
+    public function unwrap(streamBytes as Lang.ByteArray) as Lang.ByteArray? {
         if (streamBytes == null || streamBytes.size() < 4) {
             return null; // Not enough data for a header
         }

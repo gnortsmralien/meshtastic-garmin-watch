@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layout id="MainLayout">
+    <label id="title" x="50%" y="25%" text="ProtoBuf Tests" justification="Graphics.TEXT_JUSTIFY_CENTER" />
+    <label id="instruction" x="50%" y="75%" text="Check Debug Output" justification="Graphics.TEXT_JUSTIFY_CENTER" />
+</layout>

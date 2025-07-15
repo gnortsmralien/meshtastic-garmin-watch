@@ -139,7 +139,7 @@ function testCanonicalZigZagEncoding(logger as Logger) {
     // The raw decoded value should be the ZigZag encoded value (0x63 = 99)
     // To decode ZigZag: (n >>> 1) ^ (-(n & 1))
     var zigzagValue = decoded[:altitude_hae].toNumber();
-    var originalValue = (zigzagValue >>> 1) ^ (-(zigzagValue & 1));
+    var originalValue = (zigzagValue >> 1) ^ (-(zigzagValue & 1));
     Test.assertEqual(originalValue, -50);
     
     logger.debug("Canonical ZigZag encoding test passed");
