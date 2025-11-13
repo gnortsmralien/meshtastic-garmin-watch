@@ -36,13 +36,39 @@ jobs:
         SDK_DIR=$(basename "$SDK" .zip)
         echo "SDK Directory: $SDK_DIR"
 
+        # Debug: List what was extracted
+        echo "Contents of home directory:"
+        ls -la ~/ | grep connectiq || echo "No connectiq directory found"
+
+        # Check if bin directory exists
+        if [ -d "$HOME/$SDK_DIR/bin" ]; then
+          echo "Found bin directory at: $HOME/$SDK_DIR/bin"
+          ls -la "$HOME/$SDK_DIR/bin" | head -20
+        else
+          echo "ERROR: bin directory not found at $HOME/$SDK_DIR/bin"
+          echo "Directory structure:"
+          find ~/ -maxdepth 3 -name "monkeyc" -o -name "bin" 2>/dev/null
+        fi
+
         # Set environment variables
         echo "CONNECTIQ_SDK_HOME=$HOME/$SDK_DIR" >> $GITHUB_ENV
         echo "$HOME/$SDK_DIR/bin" >> $GITHUB_PATH
 
     - name: Verify SDK Installation
       run: |
-        monkeyc --version
+        echo "PATH: $PATH"
+        echo "CONNECTIQ_SDK_HOME: $CONNECTIQ_SDK_HOME"
+        echo "Checking for monkeyc:"
+        which monkeyc || echo "monkeyc not in PATH"
+        ls -la "$CONNECTIQ_SDK_HOME/bin/monkeyc" || echo "monkeyc not found at expected location"
+
+        # Try to run monkeyc with full path
+        if [ -f "$CONNECTIQ_SDK_HOME/bin/monkeyc" ]; then
+          "$CONNECTIQ_SDK_HOME/bin/monkeyc" --version
+        else
+          echo "ERROR: monkeyc binary not found"
+          exit 1
+        fi
 
     - name: Build Main Application
       run: |
