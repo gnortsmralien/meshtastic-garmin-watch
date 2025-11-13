@@ -48,19 +48,26 @@ jobs:
         which monkeyc
         monkeyc --version
 
+    - name: Install SDK Manager CLI and Download Devices
+      run: |
+        echo "Installing connect-iq-sdk-manager-cli..."
+        curl -sL https://raw.githubusercontent.com/lindell/connect-iq-sdk-manager-cli/master/install.sh | sh
+
+        # Add to PATH for this step
+        export PATH="$HOME/.local/bin:$PATH"
+
+        echo "Downloading devices from manifest..."
+        # Download devices specified in manifest.xml
+        connect-iq-sdk-manager device download --manifest=manifest.xml || echo "Device download completed with warnings"
+
     - name: Build Main Application
       run: |
         echo "Building main application..."
         mkdir -p build
-
-        # Note: Using fenix7 for CI compilation testing
-        # The bare SDK zip doesn't include fenix8solar51mm device files
-        # which are installed separately by SDK Manager
-        # Actual device target is specified in manifest.xml
         monkeyc \
           -o build/meshtastic.prg \
           -f monkey.jungle \
-          -d fenix7 \
+          -d fenix8solar51mm \
           -w
 
     - name: Build Comprehensive Tests
@@ -69,7 +76,7 @@ jobs:
         monkeyc \
           -o build/comprehensive-test.prg \
           -f comprehensive-test.jungle \
-          -d fenix7 \
+          -d fenix8solar51mm \
           -w
 
     - name: Run Tests in Simulator
