@@ -16,11 +16,29 @@ jobs:
 
     - name: Setup Connect IQ SDK
       run: |
-        # Download Connect IQ SDK
-        wget -q https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-7.3.1.zip
-        unzip -q connectiq-sdk-lin-7.3.1.zip -d ~/
-        echo "CONNECTIQ_SDK_HOME=$HOME/connectiq-sdk-lin-7.3.1" >> $GITHUB_ENV
-        echo "$HOME/connectiq-sdk-lin-7.3.1/bin" >> $GITHUB_PATH
+        # Install jq for JSON parsing
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq jq
+
+        # Download Connect IQ SDK - fetch latest version from Garmin
+        GMNDL=https://developer.garmin.com/downloads/connect-iq/sdks
+        wget -q $GMNDL/sdks.json
+
+        # Get the latest Linux SDK filename
+        SDK=$(jq -r '.[].linux' sdks.json | grep -v null | sort -V | tail -1)
+        echo "Downloading SDK: $SDK"
+
+        # Download and extract SDK
+        wget -q -O ciq.zip $GMNDL/$SDK
+        unzip -q ciq.zip -d ~/
+
+        # Extract version directory name (remove .zip extension)
+        SDK_DIR=$(basename "$SDK" .zip)
+        echo "SDK Directory: $SDK_DIR"
+
+        # Set environment variables
+        echo "CONNECTIQ_SDK_HOME=$HOME/$SDK_DIR" >> $GITHUB_ENV
+        echo "$HOME/$SDK_DIR/bin" >> $GITHUB_PATH
 
     - name: Verify SDK Installation
       run: |
@@ -29,6 +47,7 @@ jobs:
     - name: Build Main Application
       run: |
         echo "Building main application..."
+        mkdir -p build
         monkeyc \
           -o build/meshtastic.prg \
           -f monkey.jungle \
