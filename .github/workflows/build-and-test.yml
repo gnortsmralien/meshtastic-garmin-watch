@@ -48,25 +48,19 @@ jobs:
         which monkeyc
         monkeyc --version
 
-        # Check SDK structure
-        echo "SDK directory structure:"
-        ls -la ~/ | grep -E "(bin|lib|api|Compiler)" || echo "Checking subdirectories..."
-        find ~ -maxdepth 2 -type f -name "*.xml" | head -20 || echo "No XML files found"
-
     - name: Build Main Application
       run: |
         echo "Building main application..."
         mkdir -p build
 
-        # List available devices in SDK
-        echo "Available device configurations:"
-        ls -la ~/CompilerInfo.xml ~/apidb 2>/dev/null || echo "No apidb found"
-        find ~ -name "devices.xml" -o -name "*.xml" | grep -i device | head -10 || echo "No devices.xml found"
-
+        # Note: Using fenix7 for CI compilation testing
+        # The bare SDK zip doesn't include fenix8solar51mm device files
+        # which are installed separately by SDK Manager
+        # Actual device target is specified in manifest.xml
         monkeyc \
           -o build/meshtastic.prg \
           -f monkey.jungle \
-          -d fenix8solar51mm \
+          -d fenix7 \
           -w
 
     - name: Build Comprehensive Tests
@@ -75,7 +69,7 @@ jobs:
         monkeyc \
           -o build/comprehensive-test.prg \
           -f comprehensive-test.jungle \
-          -d fenix851mm \
+          -d fenix7 \
           -w
 
     - name: Run Tests in Simulator
