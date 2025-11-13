@@ -200,7 +200,7 @@ Phase 1 delivers a **working messaging foundation**. Phase 2 will add:
 ### Run Unit Tests
 ```bash
 # Compile and run tests in simulator
-monkeyc -f comprehensive-test.jungle -d fenix8_51mm -o build/test.prg
+monkeyc -f comprehensive-test.jungle -d fenix8solar51mm -o build/test.prg
 ```
 
 ### Test on Hardware
