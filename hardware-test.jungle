@@ -1,0 +1,4 @@
+project.manifest = test-manifest.xml
+
+base.sourcePath = tests/HardwareTest.mc;src/SimpleBleManager.mc;src/BleCommandQueue.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.resourcePath = resources

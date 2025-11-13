@@ -1,4 +1,7 @@
 project.manifest = manifest.xml
 
-base.sourcePath = tests/FixedSimpleTest.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.sourcePath = src/MeshtasticApp.mc;src/BleManager.mc;src/BleCommandQueue.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
 base.resourcePath = resources
+
+# Test configurations - just keep it simple for now
+# Use different jungle files for testing if needed

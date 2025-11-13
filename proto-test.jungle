@@ -1,0 +1,4 @@
+project.manifest = manifest.xml
+
+base.sourcePath = tests/FixedSimpleTest.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.resourcePath = resources

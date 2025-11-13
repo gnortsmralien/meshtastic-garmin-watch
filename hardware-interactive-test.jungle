@@ -1,0 +1,4 @@
+project.manifest = hardware-test-manifest.xml
+
+base.sourcePath = tests/InteractiveHardwareTest.mc;src/SimpleBleManager.mc;src/MockBleManager.mc;src/BleCommandQueue.mc;src/HardwareConfig.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.resourcePath = resources
