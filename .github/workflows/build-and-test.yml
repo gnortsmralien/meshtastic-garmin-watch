@@ -48,6 +48,18 @@ jobs:
         which monkeyc
         monkeyc --version
 
+    - name: Install SDK Manager CLI and Download Devices
+      run: |
+        echo "Installing connect-iq-sdk-manager-cli..."
+        curl -sL https://raw.githubusercontent.com/lindell/connect-iq-sdk-manager-cli/master/install.sh | sh
+
+        # Add to PATH for this step
+        export PATH="$HOME/.local/bin:$PATH"
+
+        echo "Downloading devices from manifest..."
+        # Download devices specified in manifest.xml
+        connect-iq-sdk-manager device download --manifest=manifest.xml || echo "Device download completed with warnings"
+
     - name: Build Main Application
       run: |
         echo "Building main application..."
