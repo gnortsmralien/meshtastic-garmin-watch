@@ -24,6 +24,22 @@ module ProtoBuf {
     const START1 = 0x94;
     const START2 = 0xc3;
 
+    // PortNum enum - identifies the application/message type
+    enum PortNum {
+        UNKNOWN_APP = 0,
+        TEXT_MESSAGE_APP = 1,
+        REMOTE_HARDWARE_APP = 2,
+        POSITION_APP = 3,
+        NODEINFO_APP = 4,
+        ROUTING_APP = 5,
+        ADMIN_APP = 6,
+        TEXT_MESSAGE_COMPRESSED_APP = 7,
+        WAYPOINT_APP = 8,
+        AUDIO_APP = 9,
+        REPLY_APP = 32,
+        PRIVATE_APP = 256
+    }
+
     // --- Meshtastic Schema Definitions ---
     // These dictionaries define the structure of Meshtastic protobuf messages.
     // They map field symbols to their tag number and type information, which is
@@ -64,6 +80,50 @@ module ProtoBuf {
         :time => { :tag => 4, :type => WIRETYPE_VARINT }, // fixed32 (epoch time)
         :sats_in_view => { :tag => 19, :type => WIRETYPE_VARINT }, // uint32
         // Other position fields can be added here as needed
+    };
+
+    // Schema for meshtastic.User
+    const SCHEMA_USER = {
+        :id => { :tag => 1, :type => WIRETYPE_LEN }, // string
+        :long_name => { :tag => 2, :type => WIRETYPE_LEN }, // string
+        :short_name => { :tag => 3, :type => WIRETYPE_LEN }, // string
+        :macaddr => { :tag => 4, :type => WIRETYPE_LEN }, // bytes
+        :hw_model => { :tag => 5, :type => WIRETYPE_VARINT }, // HardwareModel enum
+    };
+
+    // Schema for meshtastic.NodeInfo
+    const SCHEMA_NODEINFO = {
+        :num => { :tag => 1, :type => WIRETYPE_VARINT }, // uint32
+        :user => { :tag => 2, :type => WIRETYPE_LEN, :schema => SCHEMA_USER }, // User message
+        :position => { :tag => 3, :type => WIRETYPE_LEN, :schema => SCHEMA_POSITION }, // Position
+        :snr => { :tag => 4, :type => WIRETYPE_FIXED32 }, // float
+        :last_heard => { :tag => 5, :type => WIRETYPE_VARINT }, // fixed32
+        :device_metrics => { :tag => 6, :type => WIRETYPE_LEN }, // DeviceMetrics (simplified)
+    };
+
+    // Schema for meshtastic.MyNodeInfo
+    const SCHEMA_MYNODEINFO = {
+        :my_node_num => { :tag => 1, :type => WIRETYPE_VARINT }, // uint32
+        :reboot_count => { :tag => 8, :type => WIRETYPE_VARINT }, // uint32
+        :min_app_version => { :tag => 11, :type => WIRETYPE_VARINT }, // uint32
+    };
+
+    // Schema for meshtastic.ToRadio
+    // This is what we send TO the radio
+    const SCHEMA_TORADIO = {
+        :packet => { :tag => 1, :type => WIRETYPE_LEN }, // MeshPacket (as bytes)
+        :want_config_id => { :tag => 3, :type => WIRETYPE_VARINT }, // uint32 - request for config
+    };
+
+    // Schema for meshtastic.FromRadio
+    // This is what we receive FROM the radio
+    const SCHEMA_FROMRADIO = {
+        :id => { :tag => 1, :type => WIRETYPE_VARINT }, // uint32
+        :packet => { :tag => 2, :type => WIRETYPE_LEN }, // MeshPacket (as bytes)
+        :my_info => { :tag => 3, :type => WIRETYPE_LEN, :schema => SCHEMA_MYNODEINFO }, // MyNodeInfo
+        :node_info => { :tag => 4, :type => WIRETYPE_LEN, :schema => SCHEMA_NODEINFO }, // NodeInfo
+        :config_complete_id => { :tag => 6, :type => WIRETYPE_VARINT }, // uint32 - signals end of config
+        :rebooted => { :tag => 7, :type => WIRETYPE_VARINT }, // bool
     };
 
     // Wraps a protobuf payload with the Meshtastic streaming protocol header.

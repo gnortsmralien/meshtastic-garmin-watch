@@ -36,10 +36,20 @@ class BleManager {
     private var _scanTimer = null;
     private var _connectionCallback = null;
     private var _dataCallback = null;
-    
+    private var _pinCallback = null;
+    private var _defaultPin = "123456"; // Default Meshtastic PIN
+
     function initialize() {
         _delegate = new BleManagerDelegate(self);
         Ble.setDelegate(_delegate);
+    }
+
+    function setDefaultPin(pin) {
+        _defaultPin = pin;
+    }
+
+    function setPinCallback(callback) {
+        _pinCallback = callback;
     }
     
     function registerProfile() {
@@ -136,12 +146,14 @@ class BleManager {
             System.println("Invalid state for connection");
             return false;
         }
-        
+
         stopScan();
         _connectionState = STATE_CONNECTING;
         _connectedDevice = device;
-        
+
         try {
+            // Set pairing type to require passkey
+            Ble.setPairingType(Ble.PAIRING_TYPE_PASSKEY);
             Ble.pairDevice(device);
             System.println("Pairing initiated with device");
             return true;
@@ -150,6 +162,37 @@ class BleManager {
             _connectionState = STATE_DISCONNECTED;
             _connectedDevice = null;
             return false;
+        }
+    }
+
+    // Called by delegate when PIN is requested
+    function onPinRequested(device) {
+        System.println("PIN requested for device");
+
+        if (_pinCallback != null) {
+            // Ask user for PIN
+            _pinCallback.invoke(device, method(:onPinProvided));
+        } else {
+            // Use default PIN
+            System.println("Using default PIN: " + _defaultPin);
+            onPinProvided(_defaultPin);
+        }
+    }
+
+    function onPinProvided(pin) {
+        if (pin != null && _connectedDevice != null) {
+            try {
+                System.println("Providing PIN for pairing");
+                Ble.setPairingPasskey(pin);
+            } catch (exception) {
+                System.println("Error setting PIN: " + exception.getErrorMessage());
+            }
+        } else {
+            System.println("PIN entry cancelled or device not found");
+            disconnect();
+            if (_connectionCallback != null) {
+                _connectionCallback.invoke(false, "PIN entry cancelled");
+            }
         }
     }
     
@@ -379,6 +422,17 @@ class BleManagerDelegate extends Ble.BleDelegate {
             System.println("Descriptor write successful");
         } else {
             System.println("Descriptor write failed with status: " + status);
+        }
+    }
+
+    function onPairingRequest(device, pairingType) {
+        System.println("Pairing request received, type: " + pairingType);
+
+        if (pairingType == Ble.PAIRING_TYPE_PASSKEY) {
+            // Forward to manager to handle PIN entry
+            _manager.onPinRequested(device);
+        } else {
+            System.println("Unexpected pairing type");
         }
     }
 }
