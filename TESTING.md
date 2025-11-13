@@ -32,10 +32,10 @@ This document describes how to test the Meshtastic Garmin Watch application.
 
 ```bash
 # Build main application
-monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8_51mm -w
+monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8solar51mm -w
 
 # Build and run comprehensive tests
-monkeyc -o build/test.prg -f comprehensive-test.jungle -d fenix8_51mm -w
+monkeyc -o build/test.prg -f comprehensive-test.jungle -d fenix8solar51mm -w
 connectiq # Launch simulator
 # Load build/test.prg in simulator
 ```
@@ -43,7 +43,7 @@ connectiq # Launch simulator
 ### VS Code Testing
 
 1. Open project in VS Code
-2. Select build target (fenix8_51mm)
+2. Select build target (fenix8solar51mm)
 3. Press F5 to build and run
 4. Switch jungle files in settings for different test suites
 
@@ -75,7 +75,7 @@ Automated testing runs on every push and PR:
 1. **Deploy to Watch**
    ```bash
    # Build for device
-   monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8_51mm
+   monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8solar51mm
 
    # Deploy via WiFi or USB
    # Use Garmin Express or Connect IQ app
@@ -233,7 +233,7 @@ System.println("Memory: " + monitor.getMemoryStatus());
 ### Pre-Commit
 ```bash
 # Always build before committing
-monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8_51mm -w
+monkeyc -o build/meshtastic.prg -f monkey.jungle -d fenix8solar51mm -w
 ```
 
 ### Pre-Release
