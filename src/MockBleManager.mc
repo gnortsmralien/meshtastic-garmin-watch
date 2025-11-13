@@ -70,9 +70,9 @@ class MockBleManager {
         return true;
     }
     
-    function simulateScanResults() {
+    function simulateScanResults() as Void {
         System.println("[MOCK] Scan results ready - found " + _mockDevices.size() + " devices");
-        
+
         // In a real implementation, this would trigger the delegate callback
         // For now, we'll just log it
         for (var i = 0; i < _mockDevices.size(); i++) {
@@ -116,14 +116,14 @@ class MockBleManager {
         return true;
     }
     
-    function simulateConnectionComplete() {
+    function simulateConnectionComplete() as Void {
         // Simulate successful connection (80% success rate)
         var success = (System.getTimer() % 10) < 8;
-        
+
         if (success) {
             System.println("[MOCK] ✓ Connection established!");
             _connectionState = STATE_CONNECTED;
-            
+
             // Simulate moving to ready state after handshake
             var readyTimer = new Timer.Timer();
             var readyMethod = new Lang.Method(self, :simulateHandshakeComplete);
@@ -134,10 +134,10 @@ class MockBleManager {
         }
     }
     
-    function simulateHandshakeComplete() {
+    function simulateHandshakeComplete() as Void {
         System.println("[MOCK] ✓ Handshake complete - ready for messaging");
         _connectionState = STATE_READY;
-        
+
         // Simulate receiving some data
         if (_dataCallback != null) {
             var mockData = [0x94, 0xC3, 0x00, 0x05, 0x01, 0x02, 0x03, 0x04, 0x05]b;

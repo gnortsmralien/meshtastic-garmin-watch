@@ -100,7 +100,7 @@ class BleCommandQueue {
     }
     
     // Handle command timeout
-    private function onTimeout() {
+    private function onTimeout() as Void {
         System.println("Command timeout!");
         onCommandComplete(false, "Command timeout");
     }

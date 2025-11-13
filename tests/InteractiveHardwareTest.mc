@@ -332,17 +332,17 @@ class HardwareTestMainView extends WatchUi.View {
         WatchUi.requestUpdate();
     }
     
-    function onScanTimeout() {
+    function onScanTimeout() as Void {
         System.println("Scan timeout reached");
         _bleManager.stopScan();
-        
+
         if (_foundDevices.size() > 0) {
             _currentScreen = SCREEN_DEVICE_LIST;
             System.println("✓ Found " + _foundDevices.size() + " device(s)");
         } else {
             showResults(false, "No devices found", "Make sure Meshtastic device is on and nearby");
         }
-        
+
         WatchUi.requestUpdate();
     }
     
@@ -399,9 +399,9 @@ class HardwareTestMainView extends WatchUi.View {
         }
     }
     
-    function checkConnectionState() {
+    function checkConnectionState() as Void {
         var state = _bleManager.getConnectionState();
-        
+
         if (state == MockBleManager.STATE_READY) {
             System.println("✓ Connection successful!");
             _connectionTimer.stop();
@@ -416,10 +416,10 @@ class HardwareTestMainView extends WatchUi.View {
         // Otherwise keep checking
     }
     
-    function onConnectionResult() {
+    function onConnectionResult() as Void {
         // Simulate connection result (for non-mock mode)
         var success = (System.getTimer() % 3) != 0; // 2/3 chance of success
-        
+
         if (success) {
             System.println("✓ Connection successful!");
             _currentScreen = SCREEN_CONNECTED;
@@ -427,7 +427,7 @@ class HardwareTestMainView extends WatchUi.View {
             System.println("✗ Connection failed");
             showResults(false, "Connection failed", "Device may be busy or out of range");
         }
-        
+
         WatchUi.requestUpdate();
     }
     
