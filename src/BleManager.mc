@@ -38,6 +38,8 @@ class BleManager {
     private var _dataCallback = null;
     private var _pinCallback = null;
     private var _defaultPin = "123456"; // Default Meshtastic PIN
+    private var _scanResults = []; // Store scan results before attempting connection
+    private var _autoRetryOnWrongDevice = true; // Auto-retry if connected to non-Meshtastic device
 
     function initialize() {
         _delegate = new BleManagerDelegate(self);
@@ -90,21 +92,23 @@ class BleManager {
             System.println("Cannot scan while not disconnected");
             return false;
         }
-        
+
         _connectionCallback = callback;
         _connectionState = STATE_SCANNING;
-        
+        _scanResults = []; // Clear previous scan results
+
         try {
             Ble.setScanState(Ble.SCAN_STATE_SCANNING);
-            System.println("BLE scan started");
-            
+            System.println("BLE scan started - collecting devices...");
+
             // Set a timeout for scanning
+            // We'll collect devices for a few seconds before attempting connection
             if (_scanTimer != null) {
                 _scanTimer.stop();
             }
             _scanTimer = new Timer.Timer();
-            _scanTimer.start(method(:scanTimeout), 30000, false); // 30 second timeout
-            
+            _scanTimer.start(method(:scanTimeout), 10000, false); // 10 second scan window
+
             return true;
         } catch (exception) {
             System.println("Failed to start scan: " + exception.getErrorMessage());
@@ -132,11 +136,19 @@ class BleManager {
     }
     
     function scanTimeout() as Void {
-        System.println("Scan timeout reached");
+        System.println("Scan window complete - found " + _scanResults.size() + " devices");
         stopScan();
 
-        if (_connectionCallback != null) {
-            _connectionCallback.invoke(false, "Scan timeout - no Meshtastic devices found");
+        if (_scanResults.size() > 0) {
+            // Try connecting to the first device found
+            // After connection, we'll validate it has Meshtastic service
+            System.println("Attempting connection to first discovered device");
+            connectToDevice(_scanResults[0]);
+        } else {
+            System.println("No BLE devices found");
+            if (_connectionCallback != null) {
+                _connectionCallback.invoke(false, "No BLE devices found");
+            }
         }
     }
     
@@ -246,35 +258,51 @@ class BleManager {
     
     // Called by delegate when device is connected
     function onDeviceConnected(device) {
-        System.println("Device connected, initializing service");
+        System.println("Device connected, validating Meshtastic service...");
         _connectionState = STATE_CONNECTED;
         _connectedDevice = device;
-        
-        // Get the Meshtastic service
+
+        // CRITICAL: Validate this is a Meshtastic device
+        // Get the Meshtastic service UUID
         _meshtasticService = device.getService(MESH_SERVICE_UUID);
         if (_meshtasticService == null) {
-            System.println("Meshtastic service not found on device");
+            System.println("ERROR: Not a Meshtastic device - service UUID not found");
             disconnect();
-            if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "Meshtastic service not found");
+
+            // Auto-retry with next device in scan results if available
+            if (_autoRetryOnWrongDevice && _scanResults.size() > 1) {
+                System.println("Trying next device from scan results...");
+                _scanResults = _scanResults.slice(1, _scanResults.size()); // Remove first device
+                connectToDevice(_scanResults[0]);
+            } else {
+                if (_connectionCallback != null) {
+                    _connectionCallback.invoke(false, "Not a Meshtastic device");
+                }
             }
             return;
         }
-        
-        // Get characteristics
+
+        System.println("✓ Meshtastic service found!");
+
+        // Get required characteristics
         _toRadioChar = _meshtasticService.getCharacteristic(TO_RADIO_UUID);
         _fromRadioChar = _meshtasticService.getCharacteristic(FROM_RADIO_UUID);
         _fromNumChar = _meshtasticService.getCharacteristic(FROM_NUM_UUID);
-        
+
         if (_toRadioChar == null || _fromRadioChar == null || _fromNumChar == null) {
-            System.println("Required characteristics not found");
+            System.println("ERROR: Required characteristics not found");
+            System.println("  ToRadio: " + (_toRadioChar != null ? "✓" : "✗"));
+            System.println("  FromRadio: " + (_fromRadioChar != null ? "✓" : "✗"));
+            System.println("  FromNum: " + (_fromNumChar != null ? "✓" : "✗"));
             disconnect();
             if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "Required characteristics not found");
+                _connectionCallback.invoke(false, "Missing required characteristics");
             }
             return;
         }
-        
+
+        System.println("✓ All required characteristics found");
+
         // Enable notifications
         enableNotifications();
     }
@@ -344,18 +372,32 @@ class BleManagerDelegate extends Ble.BleDelegate {
             return;
         }
 
-        // Look for BLE devices
+        // Collect BLE devices during scan window
         // Note: scanResults is an Iterator, not an array
         // Device name and service UUID filtering not available in current SDK
-        // We'll connect to the first available device
+        // We collect all devices and will validate after connection
 
+        var deviceCount = 0;
         for (var result = scanResults.next(); result != null; result = scanResults.next()) {
-            System.println("Found BLE device, attempting to connect...");
-            _manager.connectToDevice(result);
-            return;
+            deviceCount++;
+
+            // Check if we already have this device
+            var isDuplicate = false;
+            for (var i = 0; i < _manager._scanResults.size(); i++) {
+                if (_manager._scanResults[i] == result) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if (!isDuplicate) {
+                _manager._scanResults.add(result);
+                System.println("Discovered BLE device #" + _manager._scanResults.size());
+            }
         }
 
-        System.println("No BLE devices found in scan");
+        // Note: We don't connect immediately anymore - we wait for scan timeout
+        // This allows us to collect multiple devices and try them in sequence
     }
     
     function onConnectedStateChanged(device, state) {

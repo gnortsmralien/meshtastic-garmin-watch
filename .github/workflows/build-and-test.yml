@@ -88,6 +88,16 @@ jobs:
           -y developer_key \
           -w
 
+    - name: Build BLE Connection Tests
+      run: |
+        echo "Building BLE connection validation tests..."
+        monkeyc \
+          -o build/ble-connection-test.prg \
+          -f ble-connection-test.jungle \
+          -d fenix8solar51mm \
+          -y developer_key \
+          -w
+
     - name: Run Tests in Simulator
       run: |
         echo "Running tests..."
@@ -99,7 +109,8 @@ jobs:
       run: |
         echo "=== Build Summary ==="
         echo "✅ Main application compiled successfully"
-        echo "✅ Test suite compiled successfully"
+        echo "✅ Comprehensive test suite compiled successfully"
+        echo "✅ BLE connection test suite compiled successfully"
         ls -lh build/
 
     - name: Upload Build Artifacts

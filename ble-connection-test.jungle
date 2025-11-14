@@ -1,0 +1,4 @@
+project.manifest = ble-connection-test-manifest.xml
+
+base.sourcePath = tests/BleConnectionTest.mc;src/BleManager.mc;src/BleCommandQueue.mc
+base.resourcePath = resources
