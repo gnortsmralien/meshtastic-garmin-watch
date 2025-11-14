@@ -7,6 +7,7 @@ using Toybox.BluetoothLowEnergy as Ble;
 using Toybox.Lang;
 using Toybox.System;
 using Toybox.Timer;
+using Config;
 
 class BleManager {
     // Meshtastic BLE Service and Characteristic UUIDs
@@ -37,7 +38,7 @@ class BleManager {
     private var _connectionCallback = null;
     private var _dataCallback = null;
     private var _pinCallback = null;
-    private var _defaultPin = "123456"; // Default Meshtastic PIN
+    private var _defaultPin = Config.DEFAULT_MESHTASTIC_PIN; // Configured in Config.mc
     private var _scanResults = []; // Store scan results before attempting connection
     private var _autoRetryOnWrongDevice = true; // Auto-retry if connected to non-Meshtastic device
 
