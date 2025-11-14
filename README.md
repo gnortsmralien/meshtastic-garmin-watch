@@ -40,19 +40,44 @@ monkeyc -f comprehensive-test.jungle -d fenix8solar51mm -o build/comprehensive.p
 
 ## Run in Simulator
 
-**⚠️ IMPORTANT: The simulator WILL CRASH on macOS due to a known Garmin SDK bug with BLE.**
+### Simulator Build with Mock BLE (Recommended)
 
-This is not a problem with the app - it's a bug in the Connect IQ SDK that affects all apps using `BluetoothLowEnergy.registerProfile()` on macOS. See [SIMULATOR_CRASH.md](SIMULATOR_CRASH.md) for details.
+We provide a special simulator build that uses mock BLE to avoid crashes:
 
-**The app works correctly on real hardware.** To test the app, deploy it to your Fenix 8 watch.
-
-If you still want to try the simulator (it will crash after a few seconds):
 ```bash
-connectiq
-monkeydo build/meshtastic.prg fenix8solar51mm
+# Build simulator version (includes mock BLE)
+./build.sh
+
+# Or build manually:
+monkeyc -f simulator.jungle -d fenix8solar51mm -o build/meshtastic-sim.prg -y developer_key -w
+
+# Run in simulator
+connectiq build/meshtastic-sim.prg &
 ```
 
-The UI will display briefly before crashing.
+**Mock BLE Features:**
+- ✅ Simulates device discovery (3 mock Meshtastic devices)
+- ✅ Simulates connection flow (scanning → connecting → syncing → ready)
+- ✅ Simulates config sync
+- ✅ No BLE crashes!
+
+**Simulator Limitations:**
+- ⚠️ Message sending may trigger watchdog timeout in simulator (protobuf encoding is slow in simulator)
+- ⚠️ This is a simulator performance limitation - works fine on real hardware
+- ✅ You can still test: UI navigation, connection flow, view layouts
+
+For full testing including message sending, deploy to real hardware.
+
+### Device Build (Real BLE)
+
+The device build uses real BLE for actual Meshtastic hardware:
+
+```bash
+# Build device version (real BLE)
+monkeyc -f monkey.jungle -d fenix8solar51mm -o build/meshtastic.prg -y developer_key -w
+```
+
+**⚠️ WARNING:** The device build WILL CRASH in the simulator on macOS due to a known Garmin SDK bug with BLE. See [SIMULATOR_CRASH.md](SIMULATOR_CRASH.md) for details. **Always use the simulator build for testing in the simulator.**
 
 Run protobuf tests:
 ```bash

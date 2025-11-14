@@ -46,7 +46,7 @@ class ComposeView extends WatchUi.View {
 
         // Title
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, 10, Graphics.FONT_SMALL, "Send Message", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(centerX, 15, Graphics.FONT_SMALL, "Send Message", Graphics.TEXT_JUSTIFY_CENTER);
 
         // Check if ready to send
         if (!_bleManager.isConnected()) {

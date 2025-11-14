@@ -140,16 +140,21 @@ class StatusView extends WatchUi.View {
                 dc.drawText(centerX, 130, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
             }
 
-            // Menu options - compact and readable
+            // Menu options - split into two lines to fit on screen
             System.println(">>> Drawing menu options");
-            y = height - 45;
             dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
 
             System.println(">>> Drawing state-specific menu items");
             if (state == BleManager.STATE_DISCONNECTED) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msgs DN:Nodes SELECT:Connect", Graphics.TEXT_JUSTIFY_CENTER);
+                // Line 1: Navigation
+                dc.drawText(centerX, height - 50, Graphics.FONT_XTINY, "UP:Msgs  DN:Nodes", Graphics.TEXT_JUSTIFY_CENTER);
+                // Line 2: Action
+                dc.drawText(centerX, height - 35, Graphics.FONT_XTINY, "SELECT:Connect", Graphics.TEXT_JUSTIFY_CENTER);
             } else if (state == BleManager.STATE_READY) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msgs DN:Nodes SELECT:Compose", Graphics.TEXT_JUSTIFY_CENTER);
+                // Line 1: Navigation
+                dc.drawText(centerX, height - 50, Graphics.FONT_XTINY, "UP:Msgs  DN:Nodes", Graphics.TEXT_JUSTIFY_CENTER);
+                // Line 2: Action
+                dc.drawText(centerX, height - 35, Graphics.FONT_XTINY, "SELECT:Compose", Graphics.TEXT_JUSTIFY_CENTER);
             }
 
             System.println(">>> StatusView.onUpdate() COMPLETE");
