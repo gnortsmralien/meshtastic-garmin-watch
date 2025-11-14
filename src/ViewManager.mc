@@ -22,15 +22,19 @@ class ViewManager {
     private var _currentDelegate = null;
     private var _bleManager;
     private var _messageHandler;
+    private var _systemMonitor;
+    private var _reconnectManager;
 
-    function initialize(bleManager, messageHandler) {
+    function initialize(bleManager, messageHandler, systemMonitor, reconnectManager) {
         _bleManager = bleManager;
         _messageHandler = messageHandler;
+        _systemMonitor = systemMonitor;
+        _reconnectManager = reconnectManager;
     }
 
     // Show the main status view
     function showStatusView() {
-        var view = new StatusView(_bleManager, _messageHandler, self);
+        var view = new StatusView(_bleManager, _messageHandler, self, _systemMonitor, _reconnectManager);
         var delegate = new StatusViewDelegate(view, self);
         pushView(view, delegate);
     }

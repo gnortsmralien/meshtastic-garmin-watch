@@ -103,8 +103,7 @@ class BleManager {
                 _scanTimer.stop();
             }
             _scanTimer = new Timer.Timer();
-            var scanTimeoutMethod = new Lang.Method(self, :scanTimeout);
-            _scanTimer.start(scanTimeoutMethod, 30000, false); // 30 second timeout
+            _scanTimer.start(method(:scanTimeout), 30000, false); // 30 second timeout
             
             return true;
         } catch (exception) {
@@ -344,41 +343,19 @@ class BleManagerDelegate extends Ble.BleDelegate {
         if (scanResults == null) {
             return;
         }
-        
-        // Look for Meshtastic devices
+
+        // Look for BLE devices
         // Note: scanResults is an Iterator, not an array
-        var foundMeshtastic = false;
-        var candidateDevice = null;
-        
+        // Device name and service UUID filtering not available in current SDK
+        // We'll connect to the first available device
+
         for (var result = scanResults.next(); result != null; result = scanResults.next()) {
-            var deviceName = result.getDeviceName();
-            
-            if (deviceName != null && deviceName.find("Meshtastic") == 0) {
-                System.println("Found Meshtastic device: " + deviceName);
-                candidateDevice = result;
-                
-                // Check if it advertises our service
-                var serviceUuids = result.getServiceUuids();
-                if (serviceUuids != null) {
-                    for (var serviceUuid = serviceUuids.next(); serviceUuid != null; serviceUuid = serviceUuids.next()) {
-                        if (serviceUuid.equals(BleManager.MESH_SERVICE_UUID)) {
-                            System.println("Device advertises Meshtastic service, connecting...");
-                            _manager.connectToDevice(result);
-                            return;
-                        }
-                    }
-                }
-                
-                foundMeshtastic = true;
-                break; // Exit the loop, we found a candidate
-            }
+            System.println("Found BLE device, attempting to connect...");
+            _manager.connectToDevice(result);
+            return;
         }
-        
-        // If we found a Meshtastic device but no service match, try to connect anyway
-        if (foundMeshtastic && candidateDevice != null) {
-            System.println("Attempting connection to Meshtastic device");
-            _manager.connectToDevice(candidateDevice);
-        }
+
+        System.println("No BLE devices found in scan");
     }
     
     function onConnectedStateChanged(device, state) {

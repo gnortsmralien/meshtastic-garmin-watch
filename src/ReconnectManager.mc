@@ -47,8 +47,7 @@ class ReconnectManager {
         }
 
         _reconnectTimer = new Timer.Timer();
-        var reconnectMethod = new Lang.Method(self, :attemptReconnect);
-        _reconnectTimer.start(reconnectMethod, _reconnectDelay, false);
+        _reconnectTimer.start(method(:attemptReconnect), _reconnectDelay, false);
     }
 
     function attemptReconnect() {

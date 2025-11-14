@@ -22,10 +22,10 @@ class MeshtasticApp extends Application.AppBase {
         AppBase.initialize();
         _bleManager = new BleManager();
         _messageHandler = new MessageHandler();
-        _viewManager = new ViewManager(_bleManager, _messageHandler);
-        _notificationManager = new NotificationManager();
         _systemMonitor = new SystemMonitor();
         _reconnectManager = new ReconnectManager(_bleManager, _messageHandler);
+        _viewManager = new ViewManager(_bleManager, _messageHandler, _systemMonitor, _reconnectManager);
+        _notificationManager = new NotificationManager();
     }
 
     function onStart(state as Lang.Dictionary?) as Void {

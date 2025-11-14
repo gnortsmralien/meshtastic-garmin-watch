@@ -224,5 +224,6 @@ class TextPickerDelegate extends WatchUi.TextPickerDelegate {
         if (text != null && text.length() > 0) {
             _view.setMessageText(text);
         }
+        return true;
     }
 }
