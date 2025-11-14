@@ -38,106 +38,131 @@ class StatusView extends WatchUi.View {
 
     function onUpdate(dc as Graphics.Dc) as Void {
         System.println(">>> StatusView.onUpdate() called");
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-        dc.clear();
+        try {
+            System.println(">>> Setting colors and clearing screen");
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+            dc.clear();
 
-        var width = dc.getWidth();
-        var height = dc.getHeight();
-        var centerX = width / 2;
-        var y = 40;
+            System.println(">>> Getting screen dimensions");
+            var width = dc.getWidth();
+            var height = dc.getHeight();
+            var centerX = width / 2;
+            var y = 40;
 
-        // App title and system status
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, 15, Graphics.FONT_SMALL, "Meshtastic", Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Battery and unread count in top corners
-        _systemMonitor.update();
-        var battery = _systemMonitor.getBatteryLevel();
-        var batteryColor = battery < 20 ? Graphics.COLOR_RED : Graphics.COLOR_LT_GRAY;
-        dc.setColor(batteryColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(10, 15, Graphics.FONT_TINY, battery + "%", Graphics.TEXT_JUSTIFY_LEFT);
-
-        var unreadCount = _messageHandler.getUnreadCount();
-        if (unreadCount > 0) {
-            dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(width - 15, 22, 12);
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(width - 15, 15, Graphics.FONT_TINY, unreadCount.toString(), Graphics.TEXT_JUSTIFY_CENTER);
-        }
-
-        // Connection status
-        var state = _bleManager.getConnectionState();
-        var statusText = "";
-        var statusColor = Graphics.COLOR_RED;
-
-        switch (state) {
-            case BleManager.STATE_DISCONNECTED:
-                statusText = "Disconnected";
-                statusColor = Graphics.COLOR_RED;
-                break;
-            case BleManager.STATE_SCANNING:
-                statusText = "Scanning...";
-                statusColor = Graphics.COLOR_YELLOW;
-                break;
-            case BleManager.STATE_CONNECTING:
-                statusText = "Connecting...";
-                statusColor = Graphics.COLOR_YELLOW;
-                break;
-            case BleManager.STATE_CONNECTED:
-                statusText = "Connected";
-                statusColor = Graphics.COLOR_ORANGE;
-                break;
-            case BleManager.STATE_SYNCING:
-                statusText = "Syncing...";
-                statusColor = Graphics.COLOR_ORANGE;
-                break;
-            case BleManager.STATE_READY:
-                statusText = "Ready";
-                statusColor = Graphics.COLOR_GREEN;
-                break;
-        }
-
-        dc.setColor(statusColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, 60, Graphics.FONT_MEDIUM, statusText, Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Node count and reconnect status
-        if (_bleManager.isConnected()) {
-            var nodeCount = _messageHandler.getNodeCount();
-            var messageCount = _messageHandler.getMessages().size();
-
+            // App title and system status
+            System.println(">>> Drawing title");
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, 100, Graphics.FONT_SMALL,
-                       nodeCount + " nodes | " + messageCount + " msgs",
-                       Graphics.TEXT_JUSTIFY_CENTER);
-        } else if (_reconnectManager.getReconnectAttempts() > 0) {
-            // Show reconnect attempts
-            var attempts = _reconnectManager.getReconnectAttempts();
-            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, 100, Graphics.FONT_SMALL,
-                       "Reconnecting (" + attempts + "/5)...",
-                       Graphics.TEXT_JUSTIFY_CENTER);
-        }
+            dc.drawText(centerX, 15, Graphics.FONT_SMALL, "Meshtastic", Graphics.TEXT_JUSTIFY_CENTER);
 
-        // Status message
-        if (_statusMessage.length() > 0) {
-            dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, 130, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
-        }
+            // Battery and unread count in top corners
+            System.println(">>> Updating system monitor");
+            _systemMonitor.update();
+            System.println(">>> Getting battery level");
+            var battery = _systemMonitor.getBatteryLevel();
+            System.println(">>> Battery: " + battery + "%");
+            var batteryColor = battery < 20 ? Graphics.COLOR_RED : Graphics.COLOR_LT_GRAY;
+            dc.setColor(batteryColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(10, 15, Graphics.FONT_TINY, battery + "%", Graphics.TEXT_JUSTIFY_LEFT);
 
-        // Menu options
-        y = height - 110;
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Graphics.FONT_TINY, "UP: Messages | DOWN: Nodes", Graphics.TEXT_JUSTIFY_CENTER);
-        y += 18;
-        dc.drawText(centerX, y, Graphics.FONT_TINY, "SELECT: Compose", Graphics.TEXT_JUSTIFY_CENTER);
-        y += 18;
+            System.println(">>> Getting unread count");
+            var unreadCount = _messageHandler.getUnreadCount();
+            System.println(">>> Unread count: " + unreadCount);
+            if (unreadCount > 0) {
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.fillCircle(width - 15, 22, 12);
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(width - 15, 15, Graphics.FONT_TINY, unreadCount.toString(), Graphics.TEXT_JUSTIFY_CENTER);
+            }
 
-        if (state == BleManager.STATE_DISCONNECTED) {
-            dc.drawText(centerX, y, Graphics.FONT_TINY, "START: Connect", Graphics.TEXT_JUSTIFY_CENTER);
+            // Connection status
+            System.println(">>> Getting connection state");
+            var state = _bleManager.getConnectionState();
+            System.println(">>> Connection state: " + state);
+            var statusText = "";
+            var statusColor = Graphics.COLOR_RED;
+
+            switch (state) {
+                case BleManager.STATE_DISCONNECTED:
+                    statusText = "Disconnected";
+                    statusColor = Graphics.COLOR_RED;
+                    break;
+                case BleManager.STATE_SCANNING:
+                    statusText = "Scanning...";
+                    statusColor = Graphics.COLOR_YELLOW;
+                    break;
+                case BleManager.STATE_CONNECTING:
+                    statusText = "Connecting...";
+                    statusColor = Graphics.COLOR_YELLOW;
+                    break;
+                case BleManager.STATE_CONNECTED:
+                    statusText = "Connected";
+                    statusColor = Graphics.COLOR_ORANGE;
+                    break;
+                case BleManager.STATE_SYNCING:
+                    statusText = "Syncing...";
+                    statusColor = Graphics.COLOR_ORANGE;
+                    break;
+                case BleManager.STATE_READY:
+                    statusText = "Ready";
+                    statusColor = Graphics.COLOR_GREEN;
+                    break;
+            }
+
+            System.println(">>> Drawing status: " + statusText);
+            dc.setColor(statusColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(centerX, 60, Graphics.FONT_MEDIUM, statusText, Graphics.TEXT_JUSTIFY_CENTER);
+
+            // Node count and reconnect status
+            System.println(">>> Checking if connected");
+            if (_bleManager.isConnected()) {
+                System.println(">>> Getting node and message counts");
+                var nodeCount = _messageHandler.getNodeCount();
+                var messageCount = _messageHandler.getMessages().size();
+
+                dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(centerX, 100, Graphics.FONT_SMALL,
+                           nodeCount + " nodes | " + messageCount + " msgs",
+                           Graphics.TEXT_JUSTIFY_CENTER);
+            } else if (_reconnectManager.getReconnectAttempts() > 0) {
+                System.println(">>> Drawing reconnect status");
+                // Show reconnect attempts
+                var attempts = _reconnectManager.getReconnectAttempts();
+                dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(centerX, 100, Graphics.FONT_SMALL,
+                           "Reconnecting (" + attempts + "/5)...",
+                           Graphics.TEXT_JUSTIFY_CENTER);
+            }
+
+            // Status message
+            System.println(">>> Drawing status message if present");
+            if (_statusMessage.length() > 0) {
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(centerX, 130, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
+            }
+
+            // Menu options
+            System.println(">>> Drawing menu options");
+            y = height - 110;
+            dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(centerX, y, Graphics.FONT_TINY, "UP: Messages | DOWN: Nodes", Graphics.TEXT_JUSTIFY_CENTER);
             y += 18;
-            dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Settings", Graphics.TEXT_JUSTIFY_CENTER);
-        } else if (state == BleManager.STATE_READY) {
-            dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(centerX, y, Graphics.FONT_TINY, "SELECT: Compose", Graphics.TEXT_JUSTIFY_CENTER);
+            y += 18;
+
+            System.println(">>> Drawing state-specific menu items");
+            if (state == BleManager.STATE_DISCONNECTED) {
+                dc.drawText(centerX, y, Graphics.FONT_TINY, "START: Connect", Graphics.TEXT_JUSTIFY_CENTER);
+                y += 18;
+                dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Settings", Graphics.TEXT_JUSTIFY_CENTER);
+            } else if (state == BleManager.STATE_READY) {
+                dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
+            }
+
+            System.println(">>> StatusView.onUpdate() COMPLETE");
+        } catch (ex) {
+            System.println("!!! StatusView.onUpdate() CRASHED!");
+            System.println("!!! Exception: " + ex);
+            System.println("!!! Error message: " + ex.getErrorMessage());
         }
     }
 
