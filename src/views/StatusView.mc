@@ -120,15 +120,17 @@ class StatusView extends WatchUi.View {
         }
 
         // Menu options
-        y = height - 100;
+        y = height - 110;
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX, y, Graphics.FONT_TINY, "UP: Messages | DOWN: Nodes", Graphics.TEXT_JUSTIFY_CENTER);
-        y += 20;
+        y += 18;
         dc.drawText(centerX, y, Graphics.FONT_TINY, "SELECT: Compose", Graphics.TEXT_JUSTIFY_CENTER);
-        y += 20;
+        y += 18;
 
         if (state == BleManager.STATE_DISCONNECTED) {
             dc.drawText(centerX, y, Graphics.FONT_TINY, "START: Connect", Graphics.TEXT_JUSTIFY_CENTER);
+            y += 18;
+            dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Settings", Graphics.TEXT_JUSTIFY_CENTER);
         } else if (state == BleManager.STATE_READY) {
             dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
         }
@@ -182,8 +184,13 @@ class StatusViewDelegate extends WatchUi.BehaviorDelegate {
             handleConnect();
             return true;
         } else if (key == WatchUi.KEY_MENU) {
-            // Disconnect
-            handleDisconnect();
+            // Settings when disconnected, Disconnect when connected
+            var bleManager = _view.getBleManager();
+            if (bleManager.isConnected()) {
+                handleDisconnect();
+            } else {
+                _viewManager.showSettingsView();
+            }
             return true;
         }
 

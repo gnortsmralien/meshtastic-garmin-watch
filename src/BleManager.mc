@@ -7,6 +7,7 @@ using Toybox.BluetoothLowEnergy as Ble;
 using Toybox.Lang;
 using Toybox.System;
 using Toybox.Timer;
+using Config;
 
 class BleManager {
     // Meshtastic BLE Service and Characteristic UUIDs
@@ -37,15 +38,22 @@ class BleManager {
     private var _connectionCallback = null;
     private var _dataCallback = null;
     private var _pinCallback = null;
-    private var _defaultPin = "123456"; // Default Meshtastic PIN
+    private var _settingsManager = null;
+    private var _scanResults = []; // Store scan results before attempting connection
+    private var _autoRetryOnWrongDevice = true; // Auto-retry if connected to non-Meshtastic device
 
-    function initialize() {
+    function initialize(settingsManager) {
+        _settingsManager = settingsManager;
         _delegate = new BleManagerDelegate(self);
         Ble.setDelegate(_delegate);
     }
 
-    function setDefaultPin(pin) {
-        _defaultPin = pin;
+    // Get current PIN from settings (or default)
+    private function getCurrentPin() {
+        if (_settingsManager != null) {
+            return _settingsManager.getBlePin();
+        }
+        return Config.DEFAULT_MESHTASTIC_PIN;
     }
 
     function setPinCallback(callback) {
@@ -90,22 +98,23 @@ class BleManager {
             System.println("Cannot scan while not disconnected");
             return false;
         }
-        
+
         _connectionCallback = callback;
         _connectionState = STATE_SCANNING;
-        
+        _scanResults = []; // Clear previous scan results
+
         try {
             Ble.setScanState(Ble.SCAN_STATE_SCANNING);
-            System.println("BLE scan started");
-            
+            System.println("BLE scan started - collecting devices...");
+
             // Set a timeout for scanning
+            // We'll collect devices for a few seconds before attempting connection
             if (_scanTimer != null) {
                 _scanTimer.stop();
             }
             _scanTimer = new Timer.Timer();
-            var scanTimeoutMethod = new Lang.Method(self, :scanTimeout);
-            _scanTimer.start(scanTimeoutMethod, 30000, false); // 30 second timeout
-            
+            _scanTimer.start(method(:scanTimeout), 10000, false); // 10 second scan window
+
             return true;
         } catch (exception) {
             System.println("Failed to start scan: " + exception.getErrorMessage());
@@ -132,12 +141,20 @@ class BleManager {
         }
     }
     
-    function scanTimeout() {
-        System.println("Scan timeout reached");
+    function scanTimeout() as Void {
+        System.println("Scan window complete - found " + _scanResults.size() + " devices");
         stopScan();
-        
-        if (_connectionCallback != null) {
-            _connectionCallback.invoke(false, "Scan timeout - no Meshtastic devices found");
+
+        if (_scanResults.size() > 0) {
+            // Try connecting to the first device found
+            // After connection, we'll validate it has Meshtastic service
+            System.println("Attempting connection to first discovered device");
+            connectToDevice(_scanResults[0]);
+        } else {
+            System.println("No BLE devices found");
+            if (_connectionCallback != null) {
+                _connectionCallback.invoke(false, "No BLE devices found");
+            }
         }
     }
     
@@ -168,13 +185,15 @@ class BleManager {
     function onPinRequested(device) {
         System.println("PIN requested for device");
 
+        var savedPin = getCurrentPin();
+
         if (_pinCallback != null) {
-            // Ask user for PIN
+            // Ask user for PIN (but TextPicker will start with saved PIN)
             _pinCallback.invoke(device, method(:onPinProvided));
         } else {
-            // Use default PIN
-            System.println("Using default PIN: " + _defaultPin);
-            onPinProvided(_defaultPin);
+            // Use saved PIN automatically
+            System.println("Using saved PIN: " + savedPin);
+            onPinProvided(savedPin);
         }
     }
 
@@ -244,38 +263,68 @@ class BleManager {
     function isConnected() {
         return _connectionState == STATE_READY;
     }
-    
+
+    // Called by delegate to add discovered devices
+    function addScanResult(device) {
+        // Check for duplicates
+        for (var i = 0; i < _scanResults.size(); i++) {
+            if (_scanResults[i] == device) {
+                return false; // Already have this device
+            }
+        }
+
+        _scanResults.add(device);
+        System.println("Discovered BLE device #" + _scanResults.size());
+        return true;
+    }
+
     // Called by delegate when device is connected
     function onDeviceConnected(device) {
-        System.println("Device connected, initializing service");
+        System.println("Device connected, validating Meshtastic service...");
         _connectionState = STATE_CONNECTED;
         _connectedDevice = device;
-        
-        // Get the Meshtastic service
+
+        // CRITICAL: Validate this is a Meshtastic device
+        // Get the Meshtastic service UUID
         _meshtasticService = device.getService(MESH_SERVICE_UUID);
         if (_meshtasticService == null) {
-            System.println("Meshtastic service not found on device");
+            System.println("ERROR: Not a Meshtastic device - service UUID not found");
             disconnect();
-            if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "Meshtastic service not found");
+
+            // Auto-retry with next device in scan results if available
+            if (_autoRetryOnWrongDevice && _scanResults.size() > 1) {
+                System.println("Trying next device from scan results...");
+                _scanResults = _scanResults.slice(1, _scanResults.size()); // Remove first device
+                connectToDevice(_scanResults[0]);
+            } else {
+                if (_connectionCallback != null) {
+                    _connectionCallback.invoke(false, "Not a Meshtastic device");
+                }
             }
             return;
         }
-        
-        // Get characteristics
+
+        System.println("✓ Meshtastic service found!");
+
+        // Get required characteristics
         _toRadioChar = _meshtasticService.getCharacteristic(TO_RADIO_UUID);
         _fromRadioChar = _meshtasticService.getCharacteristic(FROM_RADIO_UUID);
         _fromNumChar = _meshtasticService.getCharacteristic(FROM_NUM_UUID);
-        
+
         if (_toRadioChar == null || _fromRadioChar == null || _fromNumChar == null) {
-            System.println("Required characteristics not found");
+            System.println("ERROR: Required characteristics not found");
+            System.println("  ToRadio: " + (_toRadioChar != null ? "✓" : "✗"));
+            System.println("  FromRadio: " + (_fromRadioChar != null ? "✓" : "✗"));
+            System.println("  FromNum: " + (_fromNumChar != null ? "✓" : "✗"));
             disconnect();
             if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "Required characteristics not found");
+                _connectionCallback.invoke(false, "Missing required characteristics");
             }
             return;
         }
-        
+
+        System.println("✓ All required characteristics found");
+
         // Enable notifications
         enableNotifications();
     }
@@ -344,41 +393,18 @@ class BleManagerDelegate extends Ble.BleDelegate {
         if (scanResults == null) {
             return;
         }
-        
-        // Look for Meshtastic devices
+
+        // Collect BLE devices during scan window
         // Note: scanResults is an Iterator, not an array
-        var foundMeshtastic = false;
-        var candidateDevice = null;
-        
+        // Device name and service UUID filtering not available in current SDK
+        // We collect all devices and will validate after connection
+
         for (var result = scanResults.next(); result != null; result = scanResults.next()) {
-            var deviceName = result.getDeviceName();
-            
-            if (deviceName != null && deviceName.find("Meshtastic") == 0) {
-                System.println("Found Meshtastic device: " + deviceName);
-                candidateDevice = result;
-                
-                // Check if it advertises our service
-                var serviceUuids = result.getServiceUuids();
-                if (serviceUuids != null) {
-                    for (var serviceUuid = serviceUuids.next(); serviceUuid != null; serviceUuid = serviceUuids.next()) {
-                        if (serviceUuid.equals(BleManager.MESH_SERVICE_UUID)) {
-                            System.println("Device advertises Meshtastic service, connecting...");
-                            _manager.connectToDevice(result);
-                            return;
-                        }
-                    }
-                }
-                
-                foundMeshtastic = true;
-                break; // Exit the loop, we found a candidate
-            }
+            _manager.addScanResult(result);
         }
-        
-        // If we found a Meshtastic device but no service match, try to connect anyway
-        if (foundMeshtastic && candidateDevice != null) {
-            System.println("Attempting connection to Meshtastic device");
-            _manager.connectToDevice(candidateDevice);
-        }
+
+        // Note: We don't connect immediately anymore - we wait for scan timeout
+        // This allows us to collect multiple devices and try them in sequence
     }
     
     function onConnectedStateChanged(device, state) {
