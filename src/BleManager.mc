@@ -255,7 +255,21 @@ class BleManager {
     function isConnected() {
         return _connectionState == STATE_READY;
     }
-    
+
+    // Called by delegate to add discovered devices
+    function addScanResult(device) {
+        // Check for duplicates
+        for (var i = 0; i < _scanResults.size(); i++) {
+            if (_scanResults[i] == device) {
+                return false; // Already have this device
+            }
+        }
+
+        _scanResults.add(device);
+        System.println("Discovered BLE device #" + _scanResults.size());
+        return true;
+    }
+
     // Called by delegate when device is connected
     function onDeviceConnected(device) {
         System.println("Device connected, validating Meshtastic service...");
@@ -377,23 +391,8 @@ class BleManagerDelegate extends Ble.BleDelegate {
         // Device name and service UUID filtering not available in current SDK
         // We collect all devices and will validate after connection
 
-        var deviceCount = 0;
         for (var result = scanResults.next(); result != null; result = scanResults.next()) {
-            deviceCount++;
-
-            // Check if we already have this device
-            var isDuplicate = false;
-            for (var i = 0; i < _manager._scanResults.size(); i++) {
-                if (_manager._scanResults[i] == result) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-
-            if (!isDuplicate) {
-                _manager._scanResults.add(result);
-                System.println("Discovered BLE device #" + _manager._scanResults.size());
-            }
+            _manager.addScanResult(result);
         }
 
         // Note: We don't connect immediately anymore - we wait for scan timeout
