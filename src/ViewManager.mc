@@ -26,6 +26,9 @@ class ViewManager {
     private var _reconnectManager;
     private var _settingsManager;
 
+    // Persistent view instances to maintain state
+    private var _customMessageView = null;
+
     function initialize(bleManager, messageHandler, systemMonitor, reconnectManager, settingsManager) {
         System.println(">>> ViewManager.initialize() START");
         _bleManager = bleManager;
@@ -64,11 +67,13 @@ class ViewManager {
         pushView(view, delegate);
     }
 
-    // Show custom message view
+    // Show custom message view (reuse instance to preserve text)
     function showCustomMessageView() {
-        var view = new CustomMessageView(_bleManager, _messageHandler, self);
-        var delegate = new CustomMessageViewDelegate(view, self);
-        pushView(view, delegate);
+        if (_customMessageView == null) {
+            _customMessageView = new CustomMessageView(_bleManager, _messageHandler, self);
+        }
+        var delegate = new CustomMessageViewDelegate(_customMessageView, self);
+        pushView(_customMessageView, delegate);
     }
 
     // Show PIN entry view
