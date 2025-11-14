@@ -60,6 +60,12 @@ jobs:
         # Download devices specified in manifest.xml
         connect-iq-sdk-manager device download --manifest=manifest.xml || echo "Device download completed with warnings"
 
+        # Copy bundled device files to SDK location
+        echo "Copying bundled fenix8solar51mm device files to SDK..."
+        mkdir -p $HOME/Devices
+        cp -r .connectiq/Devices/fenix8solar51mm $HOME/Devices/
+        ls -la $HOME/Devices/fenix8solar51mm/
+
     - name: Build Main Application
       run: |
         echo "Building main application..."
@@ -68,7 +74,6 @@ jobs:
           -o build/meshtastic.prg \
           -f monkey.jungle \
           -d fenix8solar51mm \
-          -u .connectiq/Devices \
           -w
 
     - name: Build Comprehensive Tests
@@ -78,7 +83,6 @@ jobs:
           -o build/comprehensive-test.prg \
           -f comprehensive-test.jungle \
           -d fenix8solar51mm \
-          -u .connectiq/Devices \
           -w
 
     - name: Run Tests in Simulator
