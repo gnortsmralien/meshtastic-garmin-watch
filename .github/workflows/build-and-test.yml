@@ -61,8 +61,11 @@ jobs:
     - name: Generate Developer Key
       run: |
         echo "Generating temporary developer key for CI builds..."
-        openssl genrsa -out developer_key 4096 2>/dev/null
-        echo "Developer key generated"
+        # Generate RSA key and convert to PKCS8 DER format (required by Garmin SDK)
+        openssl genrsa -out developer_key.pem 4096 2>/dev/null
+        openssl pkcs8 -topk8 -inform PEM -outform DER -in developer_key.pem -out developer_key -nocrypt
+        rm developer_key.pem
+        echo "Developer key generated in PKCS8 format"
 
     - name: Build Main Application
       run: |
