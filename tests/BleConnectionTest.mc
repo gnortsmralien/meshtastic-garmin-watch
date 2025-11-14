@@ -88,7 +88,7 @@ class BleConnectionTestApp extends Application.AppBase {
         System.println("\n--- Test 1: BLE Manager Initialization ---");
 
         try {
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
             System.println("✓ BLE Manager created successfully");
 
             // Verify initial state
@@ -123,7 +123,7 @@ class BleConnectionTestApp extends Application.AppBase {
         System.println("\n--- Test 2: Scan State Management ---");
 
         try {
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
 
             // Note: We can't actually start scanning in tests without BLE permission
             // But we can test state logic
@@ -153,7 +153,7 @@ class BleConnectionTestApp extends Application.AppBase {
 
         try {
             // Test that scan results array is properly managed
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
 
             // Verify initial scan results are empty
             // Note: Can't access private _scanResults directly,
@@ -202,7 +202,7 @@ class BleConnectionTestApp extends Application.AppBase {
         System.println("\n--- Test 5: Auto-Retry Mechanism ---");
 
         try {
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
 
             // Verify auto-retry is enabled by default
             // Note: Can't test actual retry without real device connection
@@ -229,7 +229,7 @@ class BleConnectionTestApp extends Application.AppBase {
         System.println("\n--- Test 6: Connection State Transitions ---");
 
         try {
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
 
             // Verify all states are defined
             var states = [
@@ -274,7 +274,7 @@ class BleConnectionTestApp extends Application.AppBase {
         System.println("\n--- Test 7: Error Handling ---");
 
         try {
-            var bleManager = new BleManager();
+            var bleManager = new BleManager(null);
 
             // Test: Can't scan while already connected
             // Note: Can't actually trigger this without real connection
