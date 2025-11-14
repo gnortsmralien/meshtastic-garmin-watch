@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Comprehensive test manifest -->
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <iq:application entry="ComprehensiveTestApp" id="baa15afcc2a0446cfeb1c8d504fd65ad" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.1.0" name="@Strings.AppName" type="watch-app" version="1.0.0">
+        <iq:products>
+            <iq:product id="fenix8solar51mm"/>
+        </iq:products>
+        <iq:permissions>
+            <iq:uses-permission id="BluetoothLowEnergy"/>
+        </iq:permissions>
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+        <iq:barrels/>
+    </iq:application>
+</iq:manifest>
