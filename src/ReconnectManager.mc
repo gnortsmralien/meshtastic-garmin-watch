@@ -50,7 +50,7 @@ class ReconnectManager {
         _reconnectTimer.start(method(:attemptReconnect), _reconnectDelay, false);
     }
 
-    function attemptReconnect() {
+    function attemptReconnect() as Void {
         _reconnectAttempts++;
         System.println("Attempting to reconnect (" + _reconnectAttempts + "/" + _maxReconnectAttempts + ")");
 

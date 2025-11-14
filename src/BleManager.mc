@@ -131,10 +131,10 @@ class BleManager {
         }
     }
     
-    function scanTimeout() {
+    function scanTimeout() as Void {
         System.println("Scan timeout reached");
         stopScan();
-        
+
         if (_connectionCallback != null) {
             _connectionCallback.invoke(false, "Scan timeout - no Meshtastic devices found");
         }
