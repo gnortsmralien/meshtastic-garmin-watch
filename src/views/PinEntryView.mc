@@ -122,7 +122,7 @@ class PinEntryViewDelegate extends WatchUi.BehaviorDelegate {
 
     function onSelect() {
         // Show number picker for digit entry
-        var picker = new WatchUi.NumberPicker(WatchUi.NUMBER_PICKER_NUMBER);
+        var picker = new WatchUi.NumberPicker();
         WatchUi.pushView(picker, new NumberPickerDelegate(_view), WatchUi.SLIDE_UP);
         return true;
     }
