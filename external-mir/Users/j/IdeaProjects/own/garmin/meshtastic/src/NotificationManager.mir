@@ -1,0 +1,536 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Lang,5,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [System,6,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Attention,7,13,22]; ]
+using Toybox.Attention;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 9; @symbol_classdef = [NotificationManager,9,6,25]; ]
+class NotificationManager {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 9; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 10; @position = 16; @symbol_vardef = [_vibrateEnabled,10,16,31]; ]
+    private
+    var _vibrateEnabled = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 11; @position = 16; @symbol_vardef = [_toneEnabled,11,16,28]; ]
+    private
+    var _toneEnabled = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 13; @symbol_functiondef = [initialize,13,13,23]; ]
+    function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_13_26_21_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 15 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_8_17_8_if_stmt:
+        symbol [ Attention %tmp.1 15 12 21 ];
+        %tmp.1 = getm $.Toybox.Attention;
+        %tmp.3 = const :vibrate;
+        symbol [ vibrate %tmp.3 15 27 34 const ];
+        %tmp.4 = canhazplz %tmp.1 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_8_17_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_8_17_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_36_17_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 16 12 ]
+        symbol [ System %tmp.5 16 12 18 ];
+        %tmp.5 = getm $.Toybox.System;
+        symbol [ println %tmp.6 16 19 26 ];
+        %tmp.6 = getv function %tmp.5 :println;
+        %tmp.7 = "Device supports vibration";
+        invoke %tmp.5 %tmp.6(%tmp.7);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_36_17_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_8_17_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_15_8_17_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 18 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_8_20_8_if_stmt:
+        symbol [ Attention %tmp.8 18 12 21 ];
+        %tmp.8 = getm $.Toybox.Attention;
+        %tmp.10 = const :playTone;
+        symbol [ playTone %tmp.10 18 27 35 const ];
+        %tmp.11 = canhazplz %tmp.8 %tmp.10;
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_8_20_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_8_20_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_37_20_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 19 12 ]
+        symbol [ System %tmp.12 19 12 18 ];
+        %tmp.12 = getm $.Toybox.System;
+        symbol [ println %tmp.13 19 19 26 ];
+        %tmp.13 = getv function %tmp.12 :println;
+        %tmp.14 = "Device supports tones";
+        invoke %tmp.12 %tmp.13(%tmp.14);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_37_20_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_8_20_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_18_8_20_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_13_26_21_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 24; @symbol_functiondef = [notifyNewMessage,24,13,29]; ]
+    function notifyNewMessage() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_24_32_37_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 25 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_12_25_46_begin:
+        symbol [ _vibrateEnabled %tmp.2 25 12 27 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_31_25_46_true:
+        symbol [ Attention %tmp.3 25 31 40 ];
+        %tmp.3 = getm $.Toybox.Attention;
+        %tmp.5 = const :vibrate;
+        symbol [ vibrate %tmp.5 25 46 53 const ];
+        %tmp.6 = canhazplz %tmp.3 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_31_25_46_end:
+        %tmp.7 = phi [%tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_12_25_46_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_31_25_46_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_31_25_46_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_55_32_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 26 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_55_32_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_55_32_8_stop" ]
+        %vibrateData.1 = local;
+        symbol [ vibrateData %vibrateData.1 26 16 27 ];
+        %tmp.8 = newa 3;
+        symbol [ Attention %tmp.11 27 20 29 ];
+        %tmp.11 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.12 27 30 41 ];
+        %tmp.12 = getv function ? %tmp.11 :VibeProfile;
+        %tmp.13 = 50;
+        %tmp.14 = 200;
+        %tmp.9 = newc %tmp.12 (%tmp.13, %tmp.14);
+        %tmp.15 = dup %tmp.8;
+        %tmp.16 = aputv %tmp.15 0 %tmp.9;
+        symbol [ Attention %tmp.19 28 20 29 ];
+        %tmp.19 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.20 28 30 41 ];
+        %tmp.20 = getv function ? %tmp.19 :VibeProfile;
+        %tmp.21 = 0;
+        %tmp.22 = 100;
+        %tmp.17 = newc %tmp.20 (%tmp.21, %tmp.22);
+        %tmp.23 = dup %tmp.16;
+        %tmp.24 = aputv %tmp.23 1 %tmp.17;
+        symbol [ Attention %tmp.27 29 20 29 ];
+        %tmp.27 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.28 29 30 41 ];
+        %tmp.28 = getv function ? %tmp.27 :VibeProfile;
+        %tmp.29 = 75;
+        %tmp.30 = 200;
+        %tmp.25 = newc %tmp.28 (%tmp.29, %tmp.30);
+        %tmp.31 = dup %tmp.24;
+        %tmp.32 = aputv %tmp.31 2 %tmp.25;
+        lputv %vibrateData.1 %tmp.32;
+        symbol [ vibrateData %vibrateData.1 26 16 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 31 12 ]
+        symbol [ Attention %tmp.33 31 12 21 ];
+        %tmp.33 = getm $.Toybox.Attention;
+        symbol [ vibrate %tmp.34 31 22 29 ];
+        %tmp.34 = getv function %tmp.33 :vibrate;
+        %tmp.35 = lgetv %vibrateData.1;
+        symbol [ vibrateData %tmp.35 31 30 41 ];
+        invoke %tmp.33 %tmp.34(%tmp.35);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_55_32_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_25_8_32_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 34 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_12_34_43_begin:
+        symbol [ _toneEnabled %tmp.37 34 12 24 ];
+        %tmp.37 = getv ? :_toneEnabled;
+        bf %tmp.37 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_28_34_43_true:
+        symbol [ Attention %tmp.38 34 28 37 ];
+        %tmp.38 = getm $.Toybox.Attention;
+        %tmp.40 = const :playTone;
+        symbol [ playTone %tmp.40 34 43 51 const ];
+        %tmp.41 = canhazplz %tmp.38 %tmp.40;
+        push %tmp.41;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_28_34_43_end:
+        %tmp.42 = phi [%tmp.37 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_12_34_43_begin] [%tmp.41 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_28_34_43_true] [%tmp.42 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_28_34_43_end];
+        bf %tmp.42 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_53_36_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 35 12 ]
+        symbol [ Attention %tmp.43 35 12 21 ];
+        %tmp.43 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.44 35 22 30 ];
+        %tmp.44 = getv function %tmp.43 :playTone;
+        symbol [ Attention %tmp.45 35 31 40 ];
+        %tmp.45 = getm $.Toybox.Attention;
+        symbol [ TONE_SUCCESS %tmp.46 35 41 53 ];
+        %tmp.46 = getv %tmp.45 :TONE_SUCCESS;
+        invoke %tmp.43 %tmp.44(%tmp.46);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_53_36_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_34_8_36_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_24_32_37_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 40; @symbol_functiondef = [notifyConnected,40,13,28]; ]
+    function notifyConnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_40_31_51_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 41 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_12_41_46_begin:
+        symbol [ _vibrateEnabled %tmp.2 41 12 27 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_31_41_46_true:
+        symbol [ Attention %tmp.3 41 31 40 ];
+        %tmp.3 = getm $.Toybox.Attention;
+        %tmp.5 = const :vibrate;
+        symbol [ vibrate %tmp.5 41 46 53 const ];
+        %tmp.6 = canhazplz %tmp.3 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_31_41_46_end:
+        %tmp.7 = phi [%tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_12_41_46_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_31_41_46_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_31_41_46_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_55_46_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 42 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_55_46_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_55_46_8_stop" ]
+        %vibrateData.1 = local;
+        symbol [ vibrateData %vibrateData.1 42 16 27 ];
+        %tmp.8 = newa 1;
+        symbol [ Attention %tmp.11 43 20 29 ];
+        %tmp.11 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.12 43 30 41 ];
+        %tmp.12 = getv function ? %tmp.11 :VibeProfile;
+        %tmp.13 = 50;
+        %tmp.14 = 150;
+        %tmp.9 = newc %tmp.12 (%tmp.13, %tmp.14);
+        %tmp.15 = dup %tmp.8;
+        %tmp.16 = aputv %tmp.15 0 %tmp.9;
+        lputv %vibrateData.1 %tmp.16;
+        symbol [ vibrateData %vibrateData.1 42 16 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 45 12 ]
+        symbol [ Attention %tmp.17 45 12 21 ];
+        %tmp.17 = getm $.Toybox.Attention;
+        symbol [ vibrate %tmp.18 45 22 29 ];
+        %tmp.18 = getv function %tmp.17 :vibrate;
+        %tmp.19 = lgetv %vibrateData.1;
+        symbol [ vibrateData %tmp.19 45 30 41 ];
+        invoke %tmp.17 %tmp.18(%tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_55_46_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_41_8_46_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 48 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_12_48_43_begin:
+        symbol [ _toneEnabled %tmp.21 48 12 24 ];
+        %tmp.21 = getv ? :_toneEnabled;
+        bf %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_28_48_43_true:
+        symbol [ Attention %tmp.22 48 28 37 ];
+        %tmp.22 = getm $.Toybox.Attention;
+        %tmp.24 = const :playTone;
+        symbol [ playTone %tmp.24 48 43 51 const ];
+        %tmp.25 = canhazplz %tmp.22 %tmp.24;
+        push %tmp.25;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_28_48_43_end:
+        %tmp.26 = phi [%tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_12_48_43_begin] [%tmp.25 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_28_48_43_true] [%tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_28_48_43_end];
+        bf %tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_53_50_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 49 12 ]
+        symbol [ Attention %tmp.27 49 12 21 ];
+        %tmp.27 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.28 49 22 30 ];
+        %tmp.28 = getv function %tmp.27 :playTone;
+        symbol [ Attention %tmp.29 49 31 40 ];
+        %tmp.29 = getm $.Toybox.Attention;
+        symbol [ TONE_KEY %tmp.30 49 41 49 ];
+        %tmp.30 = getv %tmp.29 :TONE_KEY;
+        invoke %tmp.27 %tmp.28(%tmp.30);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_53_50_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_48_8_50_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_40_31_51_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 54; @symbol_functiondef = [notifyDisconnected,54,13,31]; ]
+    function notifyDisconnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_54_34_65_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 55 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_12_55_46_begin:
+        symbol [ _vibrateEnabled %tmp.2 55 12 27 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_31_55_46_true:
+        symbol [ Attention %tmp.3 55 31 40 ];
+        %tmp.3 = getm $.Toybox.Attention;
+        %tmp.5 = const :vibrate;
+        symbol [ vibrate %tmp.5 55 46 53 const ];
+        %tmp.6 = canhazplz %tmp.3 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_31_55_46_end:
+        %tmp.7 = phi [%tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_12_55_46_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_31_55_46_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_31_55_46_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_55_60_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 56 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_55_60_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_55_60_8_stop" ]
+        %vibrateData.1 = local;
+        symbol [ vibrateData %vibrateData.1 56 16 27 ];
+        %tmp.8 = newa 1;
+        symbol [ Attention %tmp.11 57 20 29 ];
+        %tmp.11 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.12 57 30 41 ];
+        %tmp.12 = getv function ? %tmp.11 :VibeProfile;
+        %tmp.13 = 75;
+        %tmp.14 = 300;
+        %tmp.9 = newc %tmp.12 (%tmp.13, %tmp.14);
+        %tmp.15 = dup %tmp.8;
+        %tmp.16 = aputv %tmp.15 0 %tmp.9;
+        lputv %vibrateData.1 %tmp.16;
+        symbol [ vibrateData %vibrateData.1 56 16 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 59 12 ]
+        symbol [ Attention %tmp.17 59 12 21 ];
+        %tmp.17 = getm $.Toybox.Attention;
+        symbol [ vibrate %tmp.18 59 22 29 ];
+        %tmp.18 = getv function %tmp.17 :vibrate;
+        %tmp.19 = lgetv %vibrateData.1;
+        symbol [ vibrateData %tmp.19 59 30 41 ];
+        invoke %tmp.17 %tmp.18(%tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_55_60_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_55_8_60_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 62 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_12_62_43_begin:
+        symbol [ _toneEnabled %tmp.21 62 12 24 ];
+        %tmp.21 = getv ? :_toneEnabled;
+        bf %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_28_62_43_true:
+        symbol [ Attention %tmp.22 62 28 37 ];
+        %tmp.22 = getm $.Toybox.Attention;
+        %tmp.24 = const :playTone;
+        symbol [ playTone %tmp.24 62 43 51 const ];
+        %tmp.25 = canhazplz %tmp.22 %tmp.24;
+        push %tmp.25;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_28_62_43_end:
+        %tmp.26 = phi [%tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_12_62_43_begin] [%tmp.25 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_28_62_43_true] [%tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_28_62_43_end];
+        bf %tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_53_64_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 63 12 ]
+        symbol [ Attention %tmp.27 63 12 21 ];
+        %tmp.27 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.28 63 22 30 ];
+        %tmp.28 = getv function %tmp.27 :playTone;
+        symbol [ Attention %tmp.29 63 31 40 ];
+        %tmp.29 = getm $.Toybox.Attention;
+        symbol [ TONE_ERROR %tmp.30 63 41 51 ];
+        %tmp.30 = getv %tmp.29 :TONE_ERROR;
+        invoke %tmp.27 %tmp.28(%tmp.30);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_53_64_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_62_8_64_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_54_34_65_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 68; @symbol_functiondef = [notifyError,68,13,24]; ]
+    function notifyError() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_68_27_83_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 69 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_12_69_46_begin:
+        symbol [ _vibrateEnabled %tmp.2 69 12 27 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_31_69_46_true:
+        symbol [ Attention %tmp.3 69 31 40 ];
+        %tmp.3 = getm $.Toybox.Attention;
+        %tmp.5 = const :vibrate;
+        symbol [ vibrate %tmp.5 69 46 53 const ];
+        %tmp.6 = canhazplz %tmp.3 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_31_69_46_end:
+        %tmp.7 = phi [%tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_12_69_46_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_31_69_46_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_31_69_46_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_55_78_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 70 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_55_78_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_55_78_8_stop" ]
+        %vibrateData.1 = local;
+        symbol [ vibrateData %vibrateData.1 70 16 27 ];
+        %tmp.8 = newa 5;
+        symbol [ Attention %tmp.11 71 20 29 ];
+        %tmp.11 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.12 71 30 41 ];
+        %tmp.12 = getv function ? %tmp.11 :VibeProfile;
+        %tmp.13 = 100;
+        %tmp.14 = 100;
+        %tmp.9 = newc %tmp.12 (%tmp.13, %tmp.14);
+        %tmp.15 = dup %tmp.8;
+        %tmp.16 = aputv %tmp.15 0 %tmp.9;
+        symbol [ Attention %tmp.19 72 20 29 ];
+        %tmp.19 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.20 72 30 41 ];
+        %tmp.20 = getv function ? %tmp.19 :VibeProfile;
+        %tmp.21 = 0;
+        %tmp.22 = 50;
+        %tmp.17 = newc %tmp.20 (%tmp.21, %tmp.22);
+        %tmp.23 = dup %tmp.16;
+        %tmp.24 = aputv %tmp.23 1 %tmp.17;
+        symbol [ Attention %tmp.27 73 20 29 ];
+        %tmp.27 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.28 73 30 41 ];
+        %tmp.28 = getv function ? %tmp.27 :VibeProfile;
+        %tmp.29 = 100;
+        %tmp.30 = 100;
+        %tmp.25 = newc %tmp.28 (%tmp.29, %tmp.30);
+        %tmp.31 = dup %tmp.24;
+        %tmp.32 = aputv %tmp.31 2 %tmp.25;
+        symbol [ Attention %tmp.35 74 20 29 ];
+        %tmp.35 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.36 74 30 41 ];
+        %tmp.36 = getv function ? %tmp.35 :VibeProfile;
+        %tmp.37 = 0;
+        %tmp.38 = 50;
+        %tmp.33 = newc %tmp.36 (%tmp.37, %tmp.38);
+        %tmp.39 = dup %tmp.32;
+        %tmp.40 = aputv %tmp.39 3 %tmp.33;
+        symbol [ Attention %tmp.43 75 20 29 ];
+        %tmp.43 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.44 75 30 41 ];
+        %tmp.44 = getv function ? %tmp.43 :VibeProfile;
+        %tmp.45 = 100;
+        %tmp.46 = 100;
+        %tmp.41 = newc %tmp.44 (%tmp.45, %tmp.46);
+        %tmp.47 = dup %tmp.40;
+        %tmp.48 = aputv %tmp.47 4 %tmp.41;
+        lputv %vibrateData.1 %tmp.48;
+        symbol [ vibrateData %vibrateData.1 70 16 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 77 12 ]
+        symbol [ Attention %tmp.49 77 12 21 ];
+        %tmp.49 = getm $.Toybox.Attention;
+        symbol [ vibrate %tmp.50 77 22 29 ];
+        %tmp.50 = getv function %tmp.49 :vibrate;
+        %tmp.51 = lgetv %vibrateData.1;
+        symbol [ vibrateData %tmp.51 77 30 41 ];
+        invoke %tmp.49 %tmp.50(%tmp.51);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_55_78_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_69_8_78_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 80 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_12_80_43_begin:
+        symbol [ _toneEnabled %tmp.53 80 12 24 ];
+        %tmp.53 = getv ? :_toneEnabled;
+        bf %tmp.53 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_28_80_43_true:
+        symbol [ Attention %tmp.54 80 28 37 ];
+        %tmp.54 = getm $.Toybox.Attention;
+        %tmp.56 = const :playTone;
+        symbol [ playTone %tmp.56 80 43 51 const ];
+        %tmp.57 = canhazplz %tmp.54 %tmp.56;
+        push %tmp.57;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_28_80_43_end:
+        %tmp.58 = phi [%tmp.53 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_12_80_43_begin] [%tmp.57 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_28_80_43_true] [%tmp.58 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_28_80_43_end];
+        bf %tmp.58 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_53_82_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 81 12 ]
+        symbol [ Attention %tmp.59 81 12 21 ];
+        %tmp.59 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.60 81 22 30 ];
+        %tmp.60 = getv function %tmp.59 :playTone;
+        symbol [ Attention %tmp.61 81 31 40 ];
+        %tmp.61 = getm $.Toybox.Attention;
+        symbol [ TONE_ALARM %tmp.62 81 41 51 ];
+        %tmp.62 = getv %tmp.61 :TONE_ALARM;
+        invoke %tmp.59 %tmp.60(%tmp.62);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_53_82_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_80_8_82_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_68_27_83_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 86; @symbol_functiondef = [notifyMessageSent,86,13,30]; ]
+    function notifyMessageSent() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_86_33_93_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 87 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_12_87_46_begin:
+        symbol [ _vibrateEnabled %tmp.2 87 12 27 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_31_87_46_true:
+        symbol [ Attention %tmp.3 87 31 40 ];
+        %tmp.3 = getm $.Toybox.Attention;
+        %tmp.5 = const :vibrate;
+        symbol [ vibrate %tmp.5 87 46 53 const ];
+        %tmp.6 = canhazplz %tmp.3 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_31_87_46_end:
+        %tmp.7 = phi [%tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_12_87_46_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_31_87_46_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_31_87_46_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_55_92_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 88 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_55_92_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_55_92_8_stop" ]
+        %vibrateData.1 = local;
+        symbol [ vibrateData %vibrateData.1 88 16 27 ];
+        %tmp.8 = newa 1;
+        symbol [ Attention %tmp.11 89 20 29 ];
+        %tmp.11 = getm $.Toybox.Attention;
+        symbol [ VibeProfile %tmp.12 89 30 41 ];
+        %tmp.12 = getv function ? %tmp.11 :VibeProfile;
+        %tmp.13 = 30;
+        %tmp.14 = 100;
+        %tmp.9 = newc %tmp.12 (%tmp.13, %tmp.14);
+        %tmp.15 = dup %tmp.8;
+        %tmp.16 = aputv %tmp.15 0 %tmp.9;
+        lputv %vibrateData.1 %tmp.16;
+        symbol [ vibrateData %vibrateData.1 88 16 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 91 12 ]
+        symbol [ Attention %tmp.17 91 12 21 ];
+        %tmp.17 = getm $.Toybox.Attention;
+        symbol [ vibrate %tmp.18 91 22 29 ];
+        %tmp.18 = getv function %tmp.17 :vibrate;
+        %tmp.19 = lgetv %vibrateData.1;
+        symbol [ vibrateData %tmp.19 91 30 41 ];
+        invoke %tmp.17 %tmp.18(%tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_55_92_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_87_8_92_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_86_33_93_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 95; @symbol_functiondef = [setVibrateEnabled,95,13,30]; @symbol_param<0> = [enabled,95,31,38]; ]
+    function setVibrateEnabled(enabled) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_95_40_97_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 96 8 ]
+        %tmp.1 = lgetv %enabled;
+        symbol [ enabled %tmp.1 96 26 33 ];
+        symbol [ _vibrateEnabled ? 96 8 23 ];
+        putv self :_vibrateEnabled %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_95_40_97_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 99; @symbol_functiondef = [setToneEnabled,99,13,27]; @symbol_param<0> = [enabled,99,28,35]; ]
+    function setToneEnabled(enabled) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_99_37_101_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 100 8 ]
+        %tmp.1 = lgetv %enabled;
+        symbol [ enabled %tmp.1 100 23 30 ];
+        symbol [ _toneEnabled ? 100 8 20 ];
+        putv self :_toneEnabled %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_99_37_101_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 103; @symbol_functiondef = [isVibrateEnabled,103,13,29]; ]
+    function isVibrateEnabled() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_103_32_105_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 104 8 ]
+        symbol [ _vibrateEnabled %tmp.2 104 15 30 ];
+        %tmp.2 = getv ? :_vibrateEnabled;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_103_32_105_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 107; @symbol_functiondef = [isToneEnabled,107,13,26]; ]
+    function isToneEnabled() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_107_29_109_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc" 108 8 ]
+        symbol [ _toneEnabled %tmp.2 108 15 27 ];
+        %tmp.2 = getv ? :_toneEnabled;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_NotificationManager_mc_107_29_109_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/NotificationManager.mc"; @line = 5; ]
+<init> {
+}

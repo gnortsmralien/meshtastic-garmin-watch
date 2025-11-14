@@ -1,0 +1,665 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [System,7,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [Timer,8,13,18]; ]
+using Toybox.Timer;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 10; @symbol_classdef = [BleCommandQueue,10,6,21]; ]
+class BleCommandQueue {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 10; ]
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 11 16 ]
+        %tmp.1 = newa 0;
+        putv self :_queue %tmp.1;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 10; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 11; @position = 16; @symbol_vardef = [_queue,11,16,22]; ]
+    private
+    var _queue;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 12; @position = 16; @symbol_vardef = [_isProcessing,12,16,29]; ]
+    private
+    var _isProcessing = false;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 13; @position = 16; @symbol_vardef = [_currentCommand,13,16,31]; ]
+    private
+    var _currentCommand = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 14; @position = 16; @symbol_vardef = [_timeoutTimer,14,16,29]; ]
+    private
+    var _timeoutTimer = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 15; @position = 16; @symbol_vardef = [_defaultTimeout,15,16,31]; ]
+    private
+    var _defaultTimeout = 5000;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 17; @symbol_functiondef = [initialize,17,13,23]; ]
+    function initialize() as Void {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 21; @symbol_functiondef = [enqueue,21,13,20]; @symbol_param<0> = [command,21,21,28]; ]
+    function enqueue(command) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_21_30_36_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 22 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_12_22_55_begin:
+        %tmp.1 = lgetv %command;
+        symbol [ command %tmp.1 22 12 19 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bt %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_31_22_55_false:
+        %tmp.4 = lgetv %command;
+        symbol [ command %tmp.4 22 32 39 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        symbol [ hasKey %tmp.6 22 40 46 ];
+        %tmp.6 = getv function %tmp.5 :hasKey;
+        %tmp.8 = const :execute;
+        symbol [ execute %tmp.8 22 48 55 const ];
+        %tmp.9 = invoke %tmp.5 %tmp.6(%tmp.8);
+        %tmp.10 = not %tmp.9;
+        push %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_31_22_55_end:
+        %tmp.11 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_12_22_55_begin] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_31_22_55_false] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_31_22_55_end];
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_58_25_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 23 12 ]
+        symbol [ System %tmp.12 23 12 18 ];
+        %tmp.12 = getm $.Toybox.System;
+        symbol [ println %tmp.13 23 19 26 ];
+        %tmp.13 = getv function %tmp.12 :println;
+        %tmp.14 = "Invalid command - must have execute method";
+        invoke %tmp.12 %tmp.13(%tmp.14);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 24 12 ]
+        %tmp.15 = false;
+        ret %tmp.15;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_58_25_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_22_8_25_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 27 8 ]
+        symbol [ _queue %tmp.17 27 8 14 ];
+        %tmp.17 = getv ? :_queue;
+        symbol [ add %tmp.18 27 15 18 ];
+        %tmp.18 = getv function %tmp.17 :add;
+        %tmp.19 = lgetv %command;
+        symbol [ command %tmp.19 27 19 26 ];
+        invoke %tmp.17 %tmp.18(%tmp.19);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 28 8 ]
+        symbol [ System %tmp.20 28 8 14 ];
+        %tmp.20 = getm $.Toybox.System;
+        symbol [ println %tmp.21 28 15 22 ];
+        %tmp.21 = getv function %tmp.20 :println;
+        %tmp.22 = "Command enqueued, queue size: ";
+        symbol [ _queue %tmp.24 28 58 64 ];
+        %tmp.24 = getv ? :_queue;
+        symbol [ size %tmp.25 28 65 69 ];
+        %tmp.25 = getv function %tmp.24 :size;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = add %tmp.22 %tmp.26;
+        invoke %tmp.20 %tmp.21(%tmp.27);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 31 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_8_33_8_if_stmt:
+        symbol [ _isProcessing %tmp.29 31 13 26 ];
+        %tmp.29 = getv ? :_isProcessing;
+        %tmp.30 = not %tmp.29;
+        bf %tmp.30 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_8_33_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_8_33_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_28_33_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 32 12 ]
+        %tmp.31 = self;
+        symbol [ processNext %tmp.32 32 12 23 ];
+        %tmp.32 = getv function %tmp.31 :processNext;
+        invoke %tmp.31 %tmp.32();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_28_33_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_8_33_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_31_8_33_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 35 8 ]
+        %tmp.33 = true;
+        ret %tmp.33;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_21_30_36_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 39; @symbol_functiondef = [processNext,39,21,32]; ]
+    private
+    function processNext() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_39_35_63_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 40 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_8_44_8_if_stmt:
+        symbol [ _queue %tmp.2 40 12 18 ];
+        %tmp.2 = getv ? :_queue;
+        symbol [ size %tmp.3 40 19 23 ];
+        %tmp.3 = getv function %tmp.2 :size;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.5 = 0;
+        %tmp.6 = eq %tmp.4 %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_8_44_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_8_44_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_32_44_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 41 12 ]
+        %tmp.7 = false;
+        symbol [ _isProcessing ? 41 12 25 ];
+        putv self :_isProcessing %tmp.7;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 42 12 ]
+        %tmp.8 = null;
+        symbol [ _currentCommand ? 42 12 27 ];
+        putv self :_currentCommand %tmp.8;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 43 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_32_44_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_8_44_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_40_8_44_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 46 8 ]
+        %tmp.9 = true;
+        symbol [ _isProcessing ? 46 8 21 ];
+        putv self :_isProcessing %tmp.9;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 47 8 ]
+        symbol [ _queue %tmp.11 47 26 32 ];
+        %tmp.11 = getv ? :_queue;
+        %tmp.12 = 0;
+        %tmp.13 = agetv %tmp.11 %tmp.12;
+        symbol [ _currentCommand ? 47 8 23 ];
+        putv self :_currentCommand %tmp.13;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 48 8 ]
+        symbol [ _queue %tmp.15 48 17 23 ];
+        %tmp.15 = getv ? :_queue;
+        symbol [ slice %tmp.16 48 24 29 ];
+        %tmp.16 = getv function %tmp.15 :slice;
+        %tmp.17 = 1;
+        %tmp.18 = null;
+        %tmp.19 = invoke %tmp.15 %tmp.16(%tmp.17, %tmp.18);
+        symbol [ _queue ? 48 8 14 ];
+        putv self :_queue %tmp.19;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 50 8 ]
+        symbol [ System %tmp.20 50 8 14 ];
+        %tmp.20 = getm $.Toybox.System;
+        symbol [ println %tmp.21 50 15 22 ];
+        %tmp.21 = getv function %tmp.20 :println;
+        %tmp.22 = "Processing command, remaining: ";
+        symbol [ _queue %tmp.24 50 59 65 ];
+        %tmp.24 = getv ? :_queue;
+        symbol [ size %tmp.25 50 66 70 ];
+        %tmp.25 = getv function %tmp.24 :size;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = add %tmp.22 %tmp.26;
+        invoke %tmp.20 %tmp.21(%tmp.27);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 53 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_39_35_63_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_39_35_63_4_stop" ]
+        %timeout.1 = local;
+        symbol [ timeout %timeout.1 53 12 19 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_begin:
+        symbol [ _currentCommand %tmp.29 53 22 37 ];
+        %tmp.29 = getv ? :_currentCommand;
+        symbol [ hasKey %tmp.30 53 38 44 ];
+        %tmp.30 = getv function %tmp.29 :hasKey;
+        %tmp.32 = const :timeout;
+        symbol [ timeout %tmp.32 53 46 53 const ];
+        %tmp.33 = invoke %tmp.29 %tmp.30(%tmp.32);
+        bf %tmp.33 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_true:
+        symbol [ _currentCommand %tmp.35 53 57 72 ];
+        %tmp.35 = getv ? :_currentCommand;
+        %tmp.37 = const :timeout;
+        symbol [ timeout %tmp.37 53 74 81 const ];
+        %tmp.38 = agetv %tmp.35 %tmp.37;
+        push %tmp.38;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_else_false:
+        symbol [ _defaultTimeout %tmp.40 53 85 100 ];
+        %tmp.40 = getv ? :_defaultTimeout;
+        push %tmp.40;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_end:
+        %tmp.41 = phi [%tmp.33 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_begin] [%tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_true] [%tmp.40 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_else_false] [%tmp.41 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_53_22_53_85_end];
+        lputv %timeout.1 %tmp.41;
+        symbol [ timeout %timeout.1 53 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 54 8 ]
+        %tmp.42 = self;
+        symbol [ startTimeout %tmp.43 54 8 20 ];
+        %tmp.43 = getv function %tmp.42 :startTimeout;
+        %tmp.44 = lgetv %timeout.1;
+        symbol [ timeout %tmp.44 54 21 28 ];
+        invoke %tmp.42 %tmp.43(%tmp.44);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 57 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_12_59_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 58 12 ]
+        symbol [ _currentCommand %tmp.46 58 12 27 ];
+        %tmp.46 = getv ? :_currentCommand;
+        %tmp.48 = const :execute;
+        symbol [ execute %tmp.48 58 29 36 const ];
+        %tmp.49 = agetv %tmp.46 %tmp.48;
+        symbol [ invoke %tmp.50 58 38 44 ];
+        %tmp.50 = getv function %tmp.49 :invoke;
+        invoke %tmp.49 %tmp.50();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_12_59_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_catch:
+        %tmp.51 = exception;
+        push %tmp.51;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 59 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_10_62_8_end" ]
+        %exception.2 = local;
+        symbol [ exception %exception.2 59 17 26 ];
+        %tmp.52 = dup %tmp.51;
+        lputv %exception.2 %tmp.52;
+        symbol [ exception %exception.2 59 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_28_62_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 60 12 ]
+        symbol [ System %tmp.53 60 12 18 ];
+        %tmp.53 = getm $.Toybox.System;
+        symbol [ println %tmp.54 60 19 26 ];
+        %tmp.54 = getv function %tmp.53 :println;
+        %tmp.55 = "Command execution failed: ";
+        %tmp.56 = lgetv %exception.2;
+        symbol [ exception %tmp.56 60 58 67 ];
+        symbol [ getErrorMessage %tmp.57 60 68 83 ];
+        %tmp.57 = getv function %tmp.56 :getErrorMessage;
+        %tmp.58 = invoke %tmp.56 %tmp.57();
+        %tmp.59 = add %tmp.55 %tmp.58;
+        invoke %tmp.53 %tmp.54(%tmp.59);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 61 12 ]
+        %tmp.60 = self;
+        symbol [ onCommandComplete %tmp.61 61 12 29 ];
+        %tmp.61 = getv function %tmp.60 :onCommandComplete;
+        %tmp.62 = false;
+        %tmp.63 = lgetv %exception.2;
+        symbol [ exception %tmp.63 61 37 46 ];
+        symbol [ getErrorMessage %tmp.64 61 47 62 ];
+        %tmp.64 = getv function %tmp.63 :getErrorMessage;
+        %tmp.65 = invoke %tmp.63 %tmp.64();
+        invoke %tmp.60 %tmp.61(%tmp.62, %tmp.65);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_28_62_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_10_62_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_10_62_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_59_10_62_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally;
+        throw %tmp.51;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_57_8_62_8_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_39_35_63_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 66; @symbol_functiondef = [onCommandComplete,66,13,30]; @symbol_param<0> = [success,66,31,38]; @symbol_param<1> = [error,66,40,45]; ]
+    function onCommandComplete(success, error) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_66_47_84_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 67 8 ]
+        %tmp.1 = self;
+        symbol [ stopTimeout %tmp.2 67 8 19 ];
+        %tmp.2 = getv function %tmp.1 :stopTimeout;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 69 8 ]
+        symbol [ System %tmp.3 69 8 14 ];
+        %tmp.3 = getm $.Toybox.System;
+        symbol [ println %tmp.4 69 15 22 ];
+        %tmp.4 = getv function %tmp.3 :println;
+        %tmp.5 = "Command complete - success: ";
+        %tmp.6 = lgetv %success;
+        symbol [ success %tmp.6 69 56 63 ];
+        %tmp.7 = add %tmp.5 %tmp.6;
+        invoke %tmp.3 %tmp.4(%tmp.7);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 72 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_12_72_71_begin:
+        symbol [ _currentCommand %tmp.9 72 12 27 ];
+        %tmp.9 = getv ? :_currentCommand;
+        %tmp.10 = null;
+        %tmp.11 = ne %tmp.9 %tmp.10;
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_39_72_71_true:
+        symbol [ _currentCommand %tmp.13 72 39 54 ];
+        %tmp.13 = getv ? :_currentCommand;
+        %tmp.14 = as %tmp.13 { (!Null) };
+        symbol [ hasKey %tmp.15 72 55 61 ];
+        %tmp.15 = getv function %tmp.14 :hasKey;
+        %tmp.17 = const :callback;
+        symbol [ callback %tmp.17 72 63 71 const ];
+        %tmp.18 = invoke %tmp.14 %tmp.15(%tmp.17);
+        push %tmp.18;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_39_72_71_end:
+        %tmp.19 = phi [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_12_72_71_begin] [%tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_39_72_71_true] [%tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_39_72_71_end];
+        bf %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_74_78_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 73 12 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_16_75_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 74 16 ]
+        symbol [ _currentCommand %tmp.21 74 16 31 ];
+        %tmp.21 = getv ? :_currentCommand;
+        %tmp.23 = const :callback;
+        symbol [ callback %tmp.23 74 33 41 const ];
+        %tmp.24 = agetv %tmp.21 %tmp.23;
+        symbol [ invoke %tmp.25 74 43 49 ];
+        %tmp.25 = getv function %tmp.24 :invoke;
+        %tmp.26 = lgetv %success;
+        symbol [ success %tmp.26 74 50 57 ];
+        %tmp.27 = lgetv %error;
+        symbol [ error %tmp.27 74 59 64 ];
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.27);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_16_75_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_catch:
+        %tmp.28 = exception;
+        push %tmp.28;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 75 14 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_14_77_12_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 75 21 30 ];
+        %tmp.29 = dup %tmp.28;
+        lputv %exception.1 %tmp.29;
+        symbol [ exception %exception.1 75 21 30 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_32_77_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 76 16 ]
+        symbol [ System %tmp.30 76 16 22 ];
+        %tmp.30 = getm $.Toybox.System;
+        symbol [ println %tmp.31 76 23 30 ];
+        %tmp.31 = getv function %tmp.30 :println;
+        %tmp.32 = "Command callback failed: ";
+        %tmp.33 = lgetv %exception.1;
+        symbol [ exception %tmp.33 76 61 70 ];
+        symbol [ getErrorMessage %tmp.34 76 71 86 ];
+        %tmp.34 = getv function %tmp.33 :getErrorMessage;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        %tmp.36 = add %tmp.32 %tmp.35;
+        invoke %tmp.30 %tmp.31(%tmp.36);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_32_77_12_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_14_77_12_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_14_77_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_75_14_77_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally;
+        throw %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_73_12_77_12_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_74_78_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_72_8_78_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 80 8 ]
+        %tmp.37 = null;
+        symbol [ _currentCommand ? 80 8 23 ];
+        putv self :_currentCommand %tmp.37;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 83 8 ]
+        %tmp.38 = self;
+        symbol [ processNext %tmp.39 83 8 19 ];
+        %tmp.39 = getv function %tmp.38 :processNext;
+        invoke %tmp.38 %tmp.39();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_66_47_84_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 87; @symbol_functiondef = [startTimeout,87,21,33]; @symbol_param<0> = [duration,87,34,42]; ]
+    private
+    function startTimeout(duration) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_87_44_92_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 88 8 ]
+        %tmp.1 = self;
+        symbol [ stopTimeout %tmp.2 88 8 19 ];
+        %tmp.2 = getv function %tmp.1 :stopTimeout;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 89 8 ]
+        symbol [ Timer %tmp.5 89 28 33 ];
+        %tmp.5 = getm $.Toybox.Timer;
+        symbol [ Timer %tmp.6 89 34 39 ];
+        %tmp.6 = getv function ? %tmp.5 :Timer;
+        %tmp.3 = newc %tmp.6 ();
+        symbol [ _timeoutTimer ? 89 8 21 ];
+        putv self :_timeoutTimer %tmp.3;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 90 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_87_44_92_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_87_44_92_4_stop" ]
+        %timeoutMethod.1 = local;
+        symbol [ timeoutMethod %timeoutMethod.1 90 12 25 ];
+        symbol [ Lang %tmp.9 90 32 36 ];
+        %tmp.9 = getm $.Toybox.Lang;
+        symbol [ Method %tmp.10 90 37 43 ];
+        %tmp.10 = getv function ? %tmp.9 :Method;
+        %tmp.11 = self;
+        symbol [ self %tmp.11 90 44 48 ];
+        %tmp.13 = const :onTimeout;
+        symbol [ onTimeout %tmp.13 90 51 60 const ];
+        %tmp.7 = newc %tmp.10 (%tmp.11, %tmp.13);
+        lputv %timeoutMethod.1 %tmp.7;
+        symbol [ timeoutMethod %timeoutMethod.1 90 12 25 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 91 8 ]
+        symbol [ _timeoutTimer %tmp.15 91 8 21 ];
+        %tmp.15 = getv ? :_timeoutTimer;
+        symbol [ start %tmp.16 91 22 27 ];
+        %tmp.16 = getv function %tmp.15 :start;
+        %tmp.17 = lgetv %timeoutMethod.1;
+        symbol [ timeoutMethod %tmp.17 91 28 41 ];
+        %tmp.18 = lgetv %duration;
+        symbol [ duration %tmp.18 91 43 51 ];
+        %tmp.19 = false;
+        invoke %tmp.15 %tmp.16(%tmp.17, %tmp.18, %tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_87_44_92_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 95; @symbol_functiondef = [stopTimeout,95,21,32]; ]
+    private
+    function stopTimeout() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_95_35_100_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 96 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_8_99_8_if_stmt:
+        symbol [ _timeoutTimer %tmp.2 96 12 25 ];
+        %tmp.2 = getv ? :_timeoutTimer;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_8_99_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_8_99_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_35_99_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 97 12 ]
+        symbol [ _timeoutTimer %tmp.6 97 12 25 ];
+        %tmp.6 = getv ? :_timeoutTimer;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ stop %tmp.8 97 26 30 ];
+        %tmp.8 = getv function %tmp.7 :stop;
+        invoke %tmp.7 %tmp.8();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 98 12 ]
+        %tmp.9 = null;
+        symbol [ _timeoutTimer ? 98 12 25 ];
+        putv self :_timeoutTimer %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_35_99_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_8_99_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_96_8_99_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_95_35_100_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 103; @symbol_functiondef = [onTimeout,103,21,30]; ]
+    private
+    function onTimeout() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_103_41_106_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 104 8 ]
+        symbol [ System %tmp.1 104 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 104 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Command timeout!";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 105 8 ]
+        %tmp.4 = self;
+        symbol [ onCommandComplete %tmp.5 105 8 25 ];
+        %tmp.5 = getv function %tmp.4 :onCommandComplete;
+        %tmp.6 = false;
+        %tmp.7 = "Command timeout";
+        invoke %tmp.4 %tmp.5(%tmp.6, %tmp.7);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_103_41_106_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 109; @symbol_functiondef = [clear,109,13,18]; ]
+    function clear() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_109_21_115_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 110 8 ]
+        %tmp.1 = self;
+        symbol [ stopTimeout %tmp.2 110 8 19 ];
+        %tmp.2 = getv function %tmp.1 :stopTimeout;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 111 8 ]
+        %tmp.3 = newa 0;
+        symbol [ _queue ? 111 8 14 ];
+        putv self :_queue %tmp.3;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 112 8 ]
+        %tmp.4 = false;
+        symbol [ _isProcessing ? 112 8 21 ];
+        putv self :_isProcessing %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 113 8 ]
+        %tmp.5 = null;
+        symbol [ _currentCommand ? 113 8 23 ];
+        putv self :_currentCommand %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 114 8 ]
+        symbol [ System %tmp.6 114 8 14 ];
+        %tmp.6 = getm $.Toybox.System;
+        symbol [ println %tmp.7 114 15 22 ];
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "Command queue cleared";
+        invoke %tmp.6 %tmp.7(%tmp.8);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_109_21_115_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 118; @symbol_functiondef = [getSize,118,13,20]; ]
+    function getSize() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_118_23_120_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 119 8 ]
+        symbol [ _queue %tmp.2 119 15 21 ];
+        %tmp.2 = getv ? :_queue;
+        symbol [ size %tmp.3 119 22 26 ];
+        %tmp.3 = getv function %tmp.2 :size;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_118_23_120_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 123; @symbol_functiondef = [isProcessing,123,13,25]; ]
+    function isProcessing() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_123_28_125_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 124 8 ]
+        symbol [ _isProcessing %tmp.2 124 15 28 ];
+        %tmp.2 = getv ? :_isProcessing;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_123_28_125_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 129; @symbol_classdef = [BleCommand,129,6,16]; ]
+class BleCommand {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 129; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 129; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 130; @symbol_functiondef = [createWriteCommand,130,20,38]; @symbol_param<0> = [characteristic,130,39,53]; @symbol_param<1> = [data,130,55,59]; @symbol_param<2> = [callback,130,61,69]; ]
+    static
+    function createWriteCommand(characteristic, data, callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_130_71_137_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 131 8 ]
+        %tmp.1 = newd 4;
+        %tmp.3 = const :execute;
+        symbol [ execute %tmp.3 132 13 20 const ];
+        symbol [ Lang %tmp.6 132 28 32 ];
+        %tmp.6 = getm $.Toybox.Lang;
+        symbol [ Method %tmp.7 132 33 39 ];
+        %tmp.7 = getv function ? %tmp.6 :Method;
+        %tmp.8 = lgetv %characteristic;
+        symbol [ characteristic %tmp.8 132 40 54 ];
+        %tmp.10 = const :requestWrite;
+        symbol [ requestWrite %tmp.10 132 57 69 const ];
+        %tmp.4 = newc %tmp.7 (%tmp.8, %tmp.10);
+        %tmp.11 = dup %tmp.1;
+        %tmp.12 = aputv %tmp.11 %tmp.3 %tmp.4;
+        %tmp.14 = const :data;
+        symbol [ data %tmp.14 133 13 17 const ];
+        %tmp.15 = lgetv %data;
+        symbol [ data %tmp.15 133 21 25 ];
+        %tmp.16 = dup %tmp.12;
+        %tmp.17 = aputv %tmp.16 %tmp.14 %tmp.15;
+        %tmp.19 = const :callback;
+        symbol [ callback %tmp.19 134 13 21 const ];
+        %tmp.20 = lgetv %callback;
+        symbol [ callback %tmp.20 134 25 33 ];
+        %tmp.21 = dup %tmp.17;
+        %tmp.22 = aputv %tmp.21 %tmp.19 %tmp.20;
+        %tmp.24 = const :timeout;
+        symbol [ timeout %tmp.24 135 13 20 const ];
+        %tmp.25 = 3000;
+        %tmp.26 = dup %tmp.22;
+        %tmp.27 = aputv %tmp.26 %tmp.24 %tmp.25;
+        ret %tmp.27;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_130_71_137_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 139; @symbol_functiondef = [createReadCommand,139,20,37]; @symbol_param<0> = [characteristic,139,38,52]; @symbol_param<1> = [callback,139,54,62]; ]
+    static
+    function createReadCommand(characteristic, callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_139_64_145_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 140 8 ]
+        %tmp.1 = newd 3;
+        %tmp.3 = const :execute;
+        symbol [ execute %tmp.3 141 13 20 const ];
+        symbol [ Lang %tmp.6 141 28 32 ];
+        %tmp.6 = getm $.Toybox.Lang;
+        symbol [ Method %tmp.7 141 33 39 ];
+        %tmp.7 = getv function ? %tmp.6 :Method;
+        %tmp.8 = lgetv %characteristic;
+        symbol [ characteristic %tmp.8 141 40 54 ];
+        %tmp.10 = const :requestRead;
+        symbol [ requestRead %tmp.10 141 57 68 const ];
+        %tmp.4 = newc %tmp.7 (%tmp.8, %tmp.10);
+        %tmp.11 = dup %tmp.1;
+        %tmp.12 = aputv %tmp.11 %tmp.3 %tmp.4;
+        %tmp.14 = const :callback;
+        symbol [ callback %tmp.14 142 13 21 const ];
+        %tmp.15 = lgetv %callback;
+        symbol [ callback %tmp.15 142 25 33 ];
+        %tmp.16 = dup %tmp.12;
+        %tmp.17 = aputv %tmp.16 %tmp.14 %tmp.15;
+        %tmp.19 = const :timeout;
+        symbol [ timeout %tmp.19 143 13 20 const ];
+        %tmp.20 = 3000;
+        %tmp.21 = dup %tmp.17;
+        %tmp.22 = aputv %tmp.21 %tmp.19 %tmp.20;
+        ret %tmp.22;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_139_64_145_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 147; @symbol_functiondef = [createCustomCommand,147,20,39]; @symbol_param<0> = [executeMethod,147,40,53]; @symbol_param<1> = [callback,147,55,63]; @symbol_param<2> = [timeout,147,65,72]; ]
+    static
+    function createCustomCommand(executeMethod, callback, timeout) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_147_74_153_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc" 148 8 ]
+        %tmp.1 = newd 3;
+        %tmp.3 = const :execute;
+        symbol [ execute %tmp.3 149 13 20 const ];
+        %tmp.4 = lgetv %executeMethod;
+        symbol [ executeMethod %tmp.4 149 24 37 ];
+        %tmp.5 = dup %tmp.1;
+        %tmp.6 = aputv %tmp.5 %tmp.3 %tmp.4;
+        %tmp.8 = const :callback;
+        symbol [ callback %tmp.8 150 13 21 const ];
+        %tmp.9 = lgetv %callback;
+        symbol [ callback %tmp.9 150 25 33 ];
+        %tmp.10 = dup %tmp.6;
+        %tmp.11 = aputv %tmp.10 %tmp.8 %tmp.9;
+        %tmp.13 = const :timeout;
+        symbol [ timeout %tmp.13 151 13 20 const ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_begin:
+        %tmp.14 = lgetv %timeout;
+        symbol [ timeout %tmp.14 151 24 31 ];
+        %tmp.15 = null;
+        %tmp.16 = ne %tmp.14 %tmp.15;
+        bf %tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_true:
+        %tmp.17 = lgetv %timeout;
+        symbol [ timeout %tmp.17 151 42 49 ];
+        %tmp.18 = as %tmp.17 { (!Null) };
+        push %tmp.18;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_else_false:
+        %tmp.19 = 5000;
+        push %tmp.19;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_end:
+        %tmp.20 = phi [%tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_begin] [%tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_true] [%tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_else_false] [%tmp.20 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_151_24_151_52_end];
+        %tmp.21 = dup %tmp.11;
+        %tmp.22 = aputv %tmp.21 %tmp.13 %tmp.20;
+        ret %tmp.22;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleCommandQueue_mc_147_74_153_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleCommandQueue.mc"; @line = 6; ]
+<init> {
+}

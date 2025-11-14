@@ -44,11 +44,16 @@ class MeshtasticApp extends Application.AppBase {
         System.println("=== Meshtastic App Starting ===");
 
         // Register BLE profile
+        // Note: BLE crashes in simulator on macOS - this is a known Garmin SDK bug
         System.println(">>> Registering BLE profile...");
-        if (_bleManager.registerProfile()) {
-            System.println("BLE profile registered successfully");
-        } else {
-            System.println("Failed to register BLE profile");
+        try {
+            if (_bleManager.registerProfile()) {
+                System.println("BLE profile registered successfully");
+            } else {
+                System.println("Failed to register BLE profile");
+            }
+        } catch (ex) {
+            System.println("BLE registration failed (expected in simulator): " + ex.getErrorMessage());
         }
 
         // Set up message handler callbacks

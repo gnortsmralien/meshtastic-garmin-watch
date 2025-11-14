@@ -1,0 +1,537 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Lang,5,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [System,6,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Timer,7,13,18]; ]
+using Toybox.Timer;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 9; @symbol_classdef = [ReconnectManager,9,6,22]; ]
+class ReconnectManager {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 9; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 10; @position = 16; @symbol_vardef = [_bleManager,10,16,27]; ]
+    private
+    var _bleManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 11; @position = 16; @symbol_vardef = [_messageHandler,11,16,31]; ]
+    private
+    var _messageHandler;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 12; @position = 16; @symbol_vardef = [_reconnectTimer,12,16,31]; ]
+    private
+    var _reconnectTimer = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 13; @position = 16; @symbol_vardef = [_reconnectAttempts,13,16,34]; ]
+    private
+    var _reconnectAttempts = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 14; @position = 16; @symbol_vardef = [_maxReconnectAttempts,14,16,37]; ]
+    private
+    var _maxReconnectAttempts = 5;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 15; @position = 16; @symbol_vardef = [_reconnectDelay,15,16,31]; ]
+    private
+    var _reconnectDelay = 5000;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 16; @position = 16; @symbol_vardef = [_autoReconnectEnabled,16,16,37]; ]
+    private
+    var _autoReconnectEnabled = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 17; @position = 16; @symbol_vardef = [_lastDisconnectTime,17,16,35]; ]
+    private
+    var _lastDisconnectTime = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 18; @position = 16; @symbol_vardef = [_callback,18,16,25]; ]
+    private
+    var _callback = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 20; @symbol_functiondef = [initialize,20,13,23]; @symbol_param<0> = [bleManager,20,24,34]; @symbol_param<1> = [messageHandler,20,36,50]; ]
+    function initialize(bleManager, messageHandler) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_20_52_23_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 21 8 ]
+        %tmp.1 = lgetv %bleManager;
+        symbol [ bleManager %tmp.1 21 22 32 ];
+        symbol [ _bleManager ? 21 8 19 ];
+        putv self :_bleManager %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 22 8 ]
+        %tmp.2 = lgetv %messageHandler;
+        symbol [ messageHandler %tmp.2 22 26 40 ];
+        symbol [ _messageHandler ? 22 8 23 ];
+        putv self :_messageHandler %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_20_52_23_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 26; @symbol_functiondef = [onDisconnected,26,13,27]; ]
+    function onDisconnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_26_30_51_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 27 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_8_30_8_if_stmt:
+        symbol [ _autoReconnectEnabled %tmp.2 27 13 34 ];
+        %tmp.2 = getv ? :_autoReconnectEnabled;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_8_30_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_8_30_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_36_30_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 28 12 ]
+        symbol [ System %tmp.4 28 12 18 ];
+        %tmp.4 = getm $.Toybox.System;
+        symbol [ println %tmp.5 28 19 26 ];
+        %tmp.5 = getv function %tmp.4 :println;
+        %tmp.6 = "Auto-reconnect disabled";
+        invoke %tmp.4 %tmp.5(%tmp.6);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 29 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_36_30_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_8_30_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_27_8_30_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 32 8 ]
+        symbol [ System %tmp.7 32 30 36 ];
+        %tmp.7 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.8 32 37 45 ];
+        %tmp.8 = getv function %tmp.7 :getTimer;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        symbol [ _lastDisconnectTime ? 32 8 27 ];
+        putv self :_lastDisconnectTime %tmp.9;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 34 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_8_40_8_if_stmt:
+        symbol [ _reconnectAttempts %tmp.11 34 12 30 ];
+        %tmp.11 = getv ? :_reconnectAttempts;
+        symbol [ _maxReconnectAttempts %tmp.13 34 34 55 ];
+        %tmp.13 = getv ? :_maxReconnectAttempts;
+        %tmp.14 = gte %tmp.11 %tmp.13;
+        bf %tmp.14 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_8_40_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_8_40_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_57_40_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 35 12 ]
+        symbol [ System %tmp.15 35 12 18 ];
+        %tmp.15 = getm $.Toybox.System;
+        symbol [ println %tmp.16 35 19 26 ];
+        %tmp.16 = getv function %tmp.15 :println;
+        %tmp.17 = "Max reconnect attempts reached";
+        invoke %tmp.15 %tmp.16(%tmp.17);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 36 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_12_38_12_if_stmt:
+        symbol [ _callback %tmp.19 36 16 25 ];
+        %tmp.19 = getv ? :_callback;
+        %tmp.20 = null;
+        %tmp.21 = ne %tmp.19 %tmp.20;
+        bf %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_12_38_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_12_38_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_35_38_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 37 16 ]
+        symbol [ _callback %tmp.23 37 16 25 ];
+        %tmp.23 = getv ? :_callback;
+        %tmp.24 = as %tmp.23 { (!Null) };
+        symbol [ invoke %tmp.25 37 26 32 ];
+        %tmp.25 = getv function %tmp.24 :invoke;
+        %tmp.26 = false;
+        %tmp.27 = "Max reconnect attempts reached";
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.27);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_35_38_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_12_38_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_36_12_38_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 39 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_57_40_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_8_40_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_34_8_40_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 42 8 ]
+        symbol [ System %tmp.28 42 8 14 ];
+        %tmp.28 = getm $.Toybox.System;
+        symbol [ println %tmp.29 42 15 22 ];
+        %tmp.29 = getv function %tmp.28 :println;
+        %tmp.30 = "Scheduling reconnect attempt ";
+        symbol [ _reconnectAttempts %tmp.32 42 58 76 ];
+        %tmp.32 = getv ? :_reconnectAttempts;
+        %tmp.33 = 1;
+        %tmp.34 = add %tmp.32 %tmp.33;
+        %tmp.35 = add %tmp.30 %tmp.34;
+        %tmp.36 = " of ";
+        %tmp.37 = add %tmp.35 %tmp.36;
+        symbol [ _maxReconnectAttempts %tmp.39 42 93 114 ];
+        %tmp.39 = getv ? :_maxReconnectAttempts;
+        %tmp.40 = add %tmp.37 %tmp.39;
+        invoke %tmp.28 %tmp.29(%tmp.40);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 45 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_8_47_8_if_stmt:
+        symbol [ _reconnectTimer %tmp.42 45 12 27 ];
+        %tmp.42 = getv ? :_reconnectTimer;
+        %tmp.43 = null;
+        %tmp.44 = ne %tmp.42 %tmp.43;
+        bf %tmp.44 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_8_47_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_8_47_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_37_47_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 46 12 ]
+        symbol [ _reconnectTimer %tmp.46 46 12 27 ];
+        %tmp.46 = getv ? :_reconnectTimer;
+        %tmp.47 = as %tmp.46 { (!Null) };
+        symbol [ stop %tmp.48 46 28 32 ];
+        %tmp.48 = getv function %tmp.47 :stop;
+        invoke %tmp.47 %tmp.48();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_37_47_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_8_47_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_45_8_47_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 49 8 ]
+        symbol [ Timer %tmp.51 49 30 35 ];
+        %tmp.51 = getm $.Toybox.Timer;
+        symbol [ Timer %tmp.52 49 36 41 ];
+        %tmp.52 = getv function ? %tmp.51 :Timer;
+        %tmp.49 = newc %tmp.52 ();
+        symbol [ _reconnectTimer ? 49 8 23 ];
+        putv self :_reconnectTimer %tmp.49;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 50 8 ]
+        symbol [ _reconnectTimer %tmp.54 50 8 23 ];
+        %tmp.54 = getv ? :_reconnectTimer;
+        symbol [ start %tmp.55 50 24 29 ];
+        %tmp.55 = getv function %tmp.54 :start;
+        %tmp.56 = self;
+        symbol [ method %tmp.57 50 30 36 ];
+        %tmp.57 = getv function %tmp.56 :method;
+        %tmp.59 = const :attemptReconnect;
+        symbol [ attemptReconnect %tmp.59 50 38 54 const ];
+        %tmp.60 = invoke %tmp.56 %tmp.57(%tmp.59);
+        symbol [ _reconnectDelay %tmp.62 50 57 72 ];
+        %tmp.62 = getv ? :_reconnectDelay;
+        %tmp.63 = false;
+        invoke %tmp.54 %tmp.55(%tmp.60, %tmp.62, %tmp.63);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_26_30_51_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 53; @symbol_functiondef = [attemptReconnect,53,13,29]; ]
+    function attemptReconnect() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_53_40_63_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 54 8 ]
+        symbol [ _reconnectAttempts %tmp.3 54 8 26 ];
+        %tmp.3 = getv ? :_reconnectAttempts;
+        %tmp.4 = add %tmp.3 1;
+        symbol [ _reconnectAttempts ? 54 8 26 ];
+        putv self :_reconnectAttempts dup %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 55 8 ]
+        symbol [ System %tmp.5 55 8 14 ];
+        %tmp.5 = getm $.Toybox.System;
+        symbol [ println %tmp.6 55 15 22 ];
+        %tmp.6 = getv function %tmp.5 :println;
+        %tmp.7 = "Attempting to reconnect (";
+        symbol [ _reconnectAttempts %tmp.9 55 53 71 ];
+        %tmp.9 = getv ? :_reconnectAttempts;
+        %tmp.10 = add %tmp.7 %tmp.9;
+        %tmp.11 = "/";
+        %tmp.12 = add %tmp.10 %tmp.11;
+        symbol [ _maxReconnectAttempts %tmp.14 55 80 101 ];
+        %tmp.14 = getv ? :_maxReconnectAttempts;
+        %tmp.15 = add %tmp.12 %tmp.14;
+        %tmp.16 = ")";
+        %tmp.17 = add %tmp.15 %tmp.16;
+        invoke %tmp.5 %tmp.6(%tmp.17);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 57 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_8_59_8_if_stmt:
+        symbol [ _callback %tmp.19 57 12 21 ];
+        %tmp.19 = getv ? :_callback;
+        %tmp.20 = null;
+        %tmp.21 = ne %tmp.19 %tmp.20;
+        bf %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_8_59_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_8_59_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_31_59_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 58 12 ]
+        symbol [ _callback %tmp.23 58 12 21 ];
+        %tmp.23 = getv ? :_callback;
+        %tmp.24 = as %tmp.23 { (!Null) };
+        symbol [ invoke %tmp.25 58 22 28 ];
+        %tmp.25 = getv function %tmp.24 :invoke;
+        %tmp.26 = true;
+        %tmp.27 = "Reconnecting...";
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.27);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_31_59_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_8_59_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_57_8_59_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 62 8 ]
+        symbol [ _bleManager %tmp.29 62 8 19 ];
+        %tmp.29 = getv ? :_bleManager;
+        symbol [ startScan %tmp.30 62 20 29 ];
+        %tmp.30 = getv function %tmp.29 :startScan;
+        %tmp.31 = self;
+        symbol [ method %tmp.32 62 30 36 ];
+        %tmp.32 = getv function %tmp.31 :method;
+        %tmp.34 = const :onReconnectResult;
+        symbol [ onReconnectResult %tmp.34 62 38 55 const ];
+        %tmp.35 = invoke %tmp.31 %tmp.32(%tmp.34);
+        invoke %tmp.29 %tmp.30(%tmp.35);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_53_40_63_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 65; @symbol_functiondef = [onReconnectResult,65,13,30]; @symbol_param<0> = [success,65,31,38]; @symbol_param<1> = [error,65,40,45]; ]
+    function onReconnectResult(success, error) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_65_47_92_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 66 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_stmt:
+        %tmp.1 = lgetv %success;
+        symbol [ success %tmp.1 66 12 19 ];
+        bf %tmp.1 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_21_79_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 67 12 ]
+        symbol [ System %tmp.2 67 12 18 ];
+        %tmp.2 = getm $.Toybox.System;
+        symbol [ println %tmp.3 67 19 26 ];
+        %tmp.3 = getv function %tmp.2 :println;
+        %tmp.4 = "Reconnection successful!";
+        invoke %tmp.2 %tmp.3(%tmp.4);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 68 12 ]
+        %tmp.5 = 0;
+        symbol [ _reconnectAttempts ? 68 12 30 ];
+        putv self :_reconnectAttempts %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 71 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_21_79_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_21_79_8_stop" ]
+        %configRequest.1 = local;
+        symbol [ configRequest %configRequest.1 71 16 29 ];
+        symbol [ _messageHandler %tmp.7 71 32 47 ];
+        %tmp.7 = getv ? :_messageHandler;
+        symbol [ createWantConfigRequest %tmp.8 71 48 71 ];
+        %tmp.8 = getv function %tmp.7 :createWantConfigRequest;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        lputv %configRequest.1 %tmp.9;
+        symbol [ configRequest %configRequest.1 71 16 29 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 72 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_12_74_12_if_stmt:
+        %tmp.10 = lgetv %configRequest.1;
+        symbol [ configRequest %tmp.10 72 16 29 ];
+        %tmp.11 = null;
+        %tmp.12 = ne %tmp.10 %tmp.11;
+        bf %tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_12_74_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_12_74_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_39_74_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 73 16 ]
+        symbol [ _bleManager %tmp.14 73 16 27 ];
+        %tmp.14 = getv ? :_bleManager;
+        symbol [ sendData %tmp.15 73 28 36 ];
+        %tmp.15 = getv function %tmp.14 :sendData;
+        %tmp.16 = lgetv %configRequest.1;
+        symbol [ configRequest %tmp.16 73 37 50 ];
+        %tmp.17 = as %tmp.16 { (!Null) };
+        %tmp.18 = null;
+        invoke %tmp.14 %tmp.15(%tmp.17, %tmp.18);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_39_74_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_12_74_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_72_12_74_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 76 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_12_78_12_if_stmt:
+        symbol [ _callback %tmp.20 76 16 25 ];
+        %tmp.20 = getv ? :_callback;
+        %tmp.21 = null;
+        %tmp.22 = ne %tmp.20 %tmp.21;
+        bf %tmp.22 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_12_78_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_12_78_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_35_78_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 77 16 ]
+        symbol [ _callback %tmp.24 77 16 25 ];
+        %tmp.24 = getv ? :_callback;
+        %tmp.25 = as %tmp.24 { (!Null) };
+        symbol [ invoke %tmp.26 77 26 32 ];
+        %tmp.26 = getv function %tmp.25 :invoke;
+        %tmp.27 = true;
+        %tmp.28 = "Reconnected!";
+        invoke %tmp.25 %tmp.26(%tmp.27, %tmp.28);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_35_78_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_12_78_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_76_12_78_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_21_79_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_79_15_91_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 80 12 ]
+        symbol [ System %tmp.29 80 12 18 ];
+        %tmp.29 = getm $.Toybox.System;
+        symbol [ println %tmp.30 80 19 26 ];
+        %tmp.30 = getv function %tmp.29 :println;
+        %tmp.31 = "Reconnection failed: ";
+        %tmp.32 = lgetv %error;
+        symbol [ error %tmp.32 80 53 58 ];
+        %tmp.33 = add %tmp.31 %tmp.32;
+        invoke %tmp.29 %tmp.30(%tmp.33);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 82 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_stmt:
+        symbol [ _reconnectAttempts %tmp.35 82 16 34 ];
+        %tmp.35 = getv ? :_reconnectAttempts;
+        symbol [ _maxReconnectAttempts %tmp.37 82 37 58 ];
+        %tmp.37 = getv ? :_maxReconnectAttempts;
+        %tmp.38 = lt %tmp.35 %tmp.37;
+        bf %tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_60_85_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 84 16 ]
+        %tmp.39 = self;
+        symbol [ onDisconnected %tmp.40 84 16 30 ];
+        %tmp.40 = getv function %tmp.39 :onDisconnected;
+        invoke %tmp.39 %tmp.40();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_60_85_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_85_19_90_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 86 16 ]
+        symbol [ System %tmp.41 86 16 22 ];
+        %tmp.41 = getm $.Toybox.System;
+        symbol [ println %tmp.42 86 23 30 ];
+        %tmp.42 = getv function %tmp.41 :println;
+        %tmp.43 = "All reconnect attempts exhausted";
+        invoke %tmp.41 %tmp.42(%tmp.43);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 87 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_16_89_16_if_stmt:
+        symbol [ _callback %tmp.45 87 20 29 ];
+        %tmp.45 = getv ? :_callback;
+        %tmp.46 = null;
+        %tmp.47 = ne %tmp.45 %tmp.46;
+        bf %tmp.47 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_16_89_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_16_89_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_39_89_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 88 20 ]
+        symbol [ _callback %tmp.49 88 20 29 ];
+        %tmp.49 = getv ? :_callback;
+        %tmp.50 = as %tmp.49 { (!Null) };
+        symbol [ invoke %tmp.51 88 30 36 ];
+        %tmp.51 = getv function %tmp.50 :invoke;
+        %tmp.52 = false;
+        %tmp.53 = "Reconnect failed";
+        invoke %tmp.50 %tmp.51(%tmp.52, %tmp.53);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_39_89_16_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_16_89_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_87_16_89_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_85_19_90_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_82_12_90_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_79_15_91_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_66_8_91_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_65_47_92_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 95; @symbol_functiondef = [onConnected,95,13,24]; ]
+    function onConnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_95_27_101_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 96 8 ]
+        %tmp.1 = 0;
+        symbol [ _reconnectAttempts ? 96 8 26 ];
+        putv self :_reconnectAttempts %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 97 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_8_100_8_if_stmt:
+        symbol [ _reconnectTimer %tmp.3 97 12 27 ];
+        %tmp.3 = getv ? :_reconnectTimer;
+        %tmp.4 = null;
+        %tmp.5 = ne %tmp.3 %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_8_100_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_8_100_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_37_100_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 98 12 ]
+        symbol [ _reconnectTimer %tmp.7 98 12 27 ];
+        %tmp.7 = getv ? :_reconnectTimer;
+        %tmp.8 = as %tmp.7 { (!Null) };
+        symbol [ stop %tmp.9 98 28 32 ];
+        %tmp.9 = getv function %tmp.8 :stop;
+        invoke %tmp.8 %tmp.9();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 99 12 ]
+        %tmp.10 = null;
+        symbol [ _reconnectTimer ? 99 12 27 ];
+        putv self :_reconnectTimer %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_37_100_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_8_100_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_97_8_100_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_95_27_101_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 104; @symbol_functiondef = [cancel,104,13,19]; ]
+    function cancel() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_104_22_110_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 105 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_8_108_8_if_stmt:
+        symbol [ _reconnectTimer %tmp.2 105 12 27 ];
+        %tmp.2 = getv ? :_reconnectTimer;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_8_108_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_8_108_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_37_108_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 106 12 ]
+        symbol [ _reconnectTimer %tmp.6 106 12 27 ];
+        %tmp.6 = getv ? :_reconnectTimer;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ stop %tmp.8 106 28 32 ];
+        %tmp.8 = getv function %tmp.7 :stop;
+        invoke %tmp.7 %tmp.8();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 107 12 ]
+        %tmp.9 = null;
+        symbol [ _reconnectTimer ? 107 12 27 ];
+        putv self :_reconnectTimer %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_37_108_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_8_108_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_105_8_108_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 109 8 ]
+        %tmp.10 = 0;
+        symbol [ _reconnectAttempts ? 109 8 26 ];
+        putv self :_reconnectAttempts %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_104_22_110_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 112; @symbol_functiondef = [setAutoReconnectEnabled,112,13,36]; @symbol_param<0> = [enabled,112,37,44]; ]
+    function setAutoReconnectEnabled(enabled) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_112_46_117_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 113 8 ]
+        %tmp.1 = lgetv %enabled;
+        symbol [ enabled %tmp.1 113 32 39 ];
+        symbol [ _autoReconnectEnabled ? 113 8 29 ];
+        putv self :_autoReconnectEnabled %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 114 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_8_116_8_if_stmt:
+        %tmp.2 = lgetv %enabled;
+        symbol [ enabled %tmp.2 114 13 20 ];
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_8_116_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_8_116_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_22_116_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 115 12 ]
+        %tmp.4 = self;
+        symbol [ cancel %tmp.5 115 12 18 ];
+        %tmp.5 = getv function %tmp.4 :cancel;
+        invoke %tmp.4 %tmp.5();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_22_116_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_8_116_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_114_8_116_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_112_46_117_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 119; @symbol_functiondef = [setMaxAttempts,119,13,27]; @symbol_param<0> = [max,119,28,31]; ]
+    function setMaxAttempts(max) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_119_33_121_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 120 8 ]
+        %tmp.1 = lgetv %max;
+        symbol [ max %tmp.1 120 32 35 ];
+        symbol [ _maxReconnectAttempts ? 120 8 29 ];
+        putv self :_maxReconnectAttempts %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_119_33_121_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 123; @symbol_functiondef = [setReconnectDelay,123,13,30]; @symbol_param<0> = [delayMs,123,31,38]; ]
+    function setReconnectDelay(delayMs) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_123_40_125_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 124 8 ]
+        %tmp.1 = lgetv %delayMs;
+        symbol [ delayMs %tmp.1 124 26 33 ];
+        symbol [ _reconnectDelay ? 124 8 23 ];
+        putv self :_reconnectDelay %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_123_40_125_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 127; @symbol_functiondef = [setCallback,127,13,24]; @symbol_param<0> = [callback,127,25,33]; ]
+    function setCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_127_35_129_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 128 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 128 20 28 ];
+        symbol [ _callback ? 128 8 17 ];
+        putv self :_callback %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_127_35_129_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 131; @symbol_functiondef = [getReconnectAttempts,131,13,33]; ]
+    function getReconnectAttempts() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_131_36_133_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 132 8 ]
+        symbol [ _reconnectAttempts %tmp.2 132 15 33 ];
+        %tmp.2 = getv ? :_reconnectAttempts;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_131_36_133_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 135; @symbol_functiondef = [isAutoReconnectEnabled,135,13,35]; ]
+    function isAutoReconnectEnabled() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_135_38_137_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc" 136 8 ]
+        symbol [ _autoReconnectEnabled %tmp.2 136 15 36 ];
+        %tmp.2 = getv ? :_autoReconnectEnabled;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ReconnectManager_mc_135_38_137_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ReconnectManager.mc"; @line = 5; ]
+<init> {
+}

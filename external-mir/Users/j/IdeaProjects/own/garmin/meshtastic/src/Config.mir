@@ -1,0 +1,25 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 5; @symbol_moduledef = [Config,5,7,13]; ]
+module Config {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 11; @position = 10; @symbol_constdef = [SIMULATOR_MODE,11,10,24]; ]
+    const SIMULATOR_MODE = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 14; @position = 10; @symbol_constdef = [DEBUG_ENABLED,14,10,23]; ]
+    const DEBUG_ENABLED = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 33; @position = 10; @symbol_constdef = [DEFAULT_MESHTASTIC_PIN,33,10,32]; ]
+    const DEFAULT_MESHTASTIC_PIN = "123456";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 40; @position = 10; @symbol_constdef = [SCAN_TIMEOUT_MS,40,10,25]; ]
+    const SCAN_TIMEOUT_MS = 10000;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 43; @position = 10; @symbol_constdef = [CONNECTION_TIMEOUT_MS,43,10,31]; ]
+    const CONNECTION_TIMEOUT_MS = 10000;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 50; @position = 10; @symbol_constdef = [MAX_MESSAGES,50,10,22]; ]
+    const MAX_MESSAGES = 50;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 53; @position = 10; @symbol_constdef = [MAX_NODES,53,10,19]; ]
+    const MAX_NODES = 100;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 56; @position = 10; @symbol_constdef = [DEFAULT_HOP_LIMIT,56,10,27]; ]
+    const DEFAULT_HOP_LIMIT = 3;
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Config.mc"; @line = 5; ]
+<init> {
+}

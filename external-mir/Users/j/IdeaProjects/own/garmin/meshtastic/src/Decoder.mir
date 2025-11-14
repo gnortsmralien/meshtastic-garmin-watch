@@ -1,0 +1,955 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [System,7,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 9; @symbol_moduledef = [ProtoBuf,9,7,15]; ]
+module ProtoBuf {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 10; @symbol_classdef = [Decoder,10,10,17]; ]
+    class Decoder {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 10; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 10; ]
+        static
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 11; @position = 20; @symbol_vardef = [_buffer,11,20,27]; ]
+        private
+        var _buffer;
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 12; @position = 20; @symbol_vardef = [_index,12,20,26]; ]
+        private
+        var _index;
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 15; @symbol_functiondef = [initialize,15,24,34]; ]
+        public
+        function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_15_37_18_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 16 12 ]
+            %tmp.1 = null;
+            symbol [ _buffer ? 16 12 19 ];
+            putv self :_buffer %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 17 12 ]
+            %tmp.2 = 0;
+            symbol [ _index ? 17 12 18 ];
+            putv self :_index %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_15_37_18_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 24; @symbol_functiondef = [decode,24,24,30]; @symbol_param<0> = [bytes,24,31,36]; @symbol_param<0>_type<0> = [Lang,24,40,44]; @symbol_param<0>_type<1> = [ByteArray,24,45,54]; @symbol_param<1> = [schema,24,56,62]; @symbol_param<1>_type<0> = [Lang,24,66,70]; @symbol_param<1>_type<1> = [Dictionary,24,71,81]; @symbol_return<0> = [Lang,24,86,90]; @symbol_return<1> = [Dictionary,24,91,101]; ]
+        public
+        function decode(bytes as Lang.ByteArray, schema as Lang.Dictionary) as Lang.Dictionary {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 25 12 ]
+            %tmp.1 = lgetv %bytes;
+            symbol [ bytes %tmp.1 25 22 27 ];
+            symbol [ _buffer ? 25 12 19 ];
+            putv self :_buffer %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 26 12 ]
+            %tmp.2 = 0;
+            symbol [ _index ? 26 12 18 ];
+            putv self :_index %tmp.2;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 27 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_stop" ]
+            %message.1 = local;
+            symbol [ message %message.1 27 16 23 ];
+            %tmp.3 = newd 0;
+            lputv %message.1 %tmp.3;
+            symbol [ message %message.1 27 16 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 30 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_stop" ]
+            %tagMap.2 = local;
+            symbol [ tagMap %tagMap.2 30 16 22 ];
+            %tmp.4 = newd 0;
+            lputv %tagMap.2 %tmp.4;
+            symbol [ tagMap %tagMap.2 30 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 31 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_stop" ]
+            %keys.3 = local;
+            symbol [ keys %keys.3 31 16 20 ];
+            %tmp.5 = lgetv %schema;
+            symbol [ schema %tmp.5 31 23 29 ];
+            symbol [ keys %tmp.6 31 30 34 ];
+            %tmp.6 = getv function %tmp.5 :keys;
+            %tmp.7 = invoke %tmp.5 %tmp.6();
+            lputv %keys.3 %tmp.7;
+            symbol [ keys %keys.3 31 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 32 12 ]
+            symbol [ System %tmp.8 32 12 18 ];
+            %tmp.8 = getm $.Toybox.System;
+            symbol [ println %tmp.9 32 19 26 ];
+            %tmp.9 = getv function %tmp.8 :println;
+            %tmp.10 = "Debug Decoder: Schema keys = ";
+            %tmp.11 = lgetv %keys.3;
+            symbol [ keys %tmp.11 32 61 65 ];
+            %tmp.12 = add %tmp.10 %tmp.11;
+            invoke %tmp.8 %tmp.9(%tmp.12);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 33 12 ]
+            for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_init:
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_end" ]
+            %i.4 = local;
+            symbol [ i %i.4 33 21 22 ];
+            %tmp.13 = 0;
+            lputv %i.4 %tmp.13;
+            symbol [ i %i.4 33 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_test:
+            %tmp.14 = lgetv %i.4;
+            symbol [ i %tmp.14 33 28 29 ];
+            %tmp.15 = lgetv %keys.3;
+            symbol [ keys %tmp.15 33 32 36 ];
+            symbol [ size %tmp.16 33 37 41 ];
+            %tmp.16 = getv function %tmp.15 :size;
+            %tmp.17 = invoke %tmp.15 %tmp.16();
+            %tmp.18 = lt %tmp.14 %tmp.17;
+            bf %tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 34 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_stop" ]
+            %sym.5 = local;
+            symbol [ sym %sym.5 34 20 23 ];
+            %tmp.19 = lgetv %keys.3;
+            symbol [ keys %tmp.19 34 26 30 ];
+            %tmp.20 = lgetv %i.4;
+            symbol [ i %tmp.20 34 31 32 ];
+            %tmp.21 = agetv %tmp.19 %tmp.20;
+            lputv %sym.5 %tmp.21;
+            symbol [ sym %sym.5 34 20 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 35 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_stop" ]
+            %fieldInfo.6 = local;
+            symbol [ fieldInfo %fieldInfo.6 35 20 29 ];
+            %tmp.22 = lgetv %schema;
+            symbol [ schema %tmp.22 35 32 38 ];
+            %tmp.23 = lgetv %sym.5;
+            symbol [ sym %tmp.23 35 39 42 ];
+            %tmp.24 = agetv %tmp.22 %tmp.23;
+            lputv %fieldInfo.6 %tmp.24;
+            symbol [ fieldInfo %fieldInfo.6 35 20 29 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 36 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_stop" ]
+            %tag.7 = local;
+            symbol [ tag %tag.7 36 20 23 ];
+            %tmp.25 = lgetv %fieldInfo.6;
+            symbol [ fieldInfo %tmp.25 36 26 35 ];
+            %tmp.27 = const :tag;
+            symbol [ tag %tmp.27 36 37 40 const ];
+            %tmp.28 = agetv %tmp.25 %tmp.27;
+            symbol [ toNumber %tmp.29 36 42 50 ];
+            %tmp.29 = getv function %tmp.28 :toNumber;
+            %tmp.30 = invoke %tmp.28 %tmp.29();
+            lputv %tag.7 %tmp.30;
+            symbol [ tag %tag.7 36 20 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 37 16 ]
+            symbol [ System %tmp.31 37 16 22 ];
+            %tmp.31 = getm $.Toybox.System;
+            symbol [ println %tmp.32 37 23 30 ];
+            %tmp.32 = getv function %tmp.31 :println;
+            %tmp.33 = "Debug Decoder: Field ";
+            %tmp.34 = lgetv %sym.5;
+            symbol [ sym %tmp.34 37 57 60 ];
+            %tmp.35 = add %tmp.33 %tmp.34;
+            %tmp.36 = " has tag ";
+            %tmp.37 = add %tmp.35 %tmp.36;
+            %tmp.38 = lgetv %tag.7;
+            symbol [ tag %tmp.38 37 77 80 ];
+            %tmp.39 = add %tmp.37 %tmp.38;
+            invoke %tmp.31 %tmp.32(%tmp.39);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 38 16 ]
+            %tmp.40 = lgetv %tagMap.2;
+            symbol [ tagMap %tmp.40 38 16 22 ];
+            %tmp.41 = newd 2;
+            %tmp.43 = const :symbol;
+            symbol [ symbol %tmp.43 38 33 39 const ];
+            %tmp.44 = lgetv %sym.5;
+            symbol [ sym %tmp.44 38 43 46 ];
+            %tmp.45 = dup %tmp.41;
+            %tmp.46 = aputv %tmp.45 %tmp.43 %tmp.44;
+            %tmp.48 = const :schema;
+            symbol [ schema %tmp.48 38 49 55 const ];
+            %tmp.49 = lgetv %fieldInfo.6;
+            symbol [ fieldInfo %tmp.49 38 59 68 ];
+            %tmp.50 = dup %tmp.46;
+            %tmp.51 = aputv %tmp.50 %tmp.48 %tmp.49;
+            %tmp.52 = lgetv %tag.7;
+            symbol [ tag %tmp.52 38 23 26 ];
+            aputv %tmp.40 %tmp.52 %tmp.51;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_50_39_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 33 ]
+            %tmp.55 = lgetv %i.4;
+            symbol [ i %tmp.55 33 45 46 ];
+            %tmp.56 = add %tmp.55 1;
+            lputv %i.4 %tmp.56;
+            symbol [ i %i.4 33 45 46 ];
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_33_12_39_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 40 12 ]
+            symbol [ System %tmp.57 40 12 18 ];
+            %tmp.57 = getm $.Toybox.System;
+            symbol [ println %tmp.58 40 19 26 ];
+            %tmp.58 = getv function %tmp.57 :println;
+            %tmp.59 = "Debug Decoder: TagMap = ";
+            %tmp.60 = lgetv %tagMap.2;
+            symbol [ tagMap %tmp.60 40 56 62 ];
+            %tmp.61 = add %tmp.59 %tmp.60;
+            invoke %tmp.57 %tmp.58(%tmp.61);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 42 12 ]
+            while @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_test:
+            symbol [ _index %tmp.63 42 19 25 ];
+            %tmp.63 = getv ? :_index;
+            symbol [ _buffer %tmp.65 42 28 35 ];
+            %tmp.65 = getv ? :_buffer;
+            symbol [ size %tmp.66 42 36 40 ];
+            %tmp.66 = getv function %tmp.65 :size;
+            %tmp.67 = invoke %tmp.65 %tmp.66();
+            %tmp.68 = lt %tmp.63 %tmp.67;
+            bf %tmp.68 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 43 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_stop" ]
+            %tagVal.8 = local;
+            symbol [ tagVal %tagVal.8 43 20 26 ];
+            %tmp.69 = self;
+            symbol [ readVarint %tmp.70 43 29 39 ];
+            %tmp.70 = getv function %tmp.69 :readVarint;
+            %tmp.71 = invoke %tmp.69 %tmp.70();
+            lputv %tagVal.8 %tmp.71;
+            symbol [ tagVal %tagVal.8 43 20 26 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 44 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_stop" ]
+            %wireType.9 = local;
+            symbol [ wireType %wireType.9 44 20 28 ];
+            %tmp.72 = lgetv %tagVal.8;
+            symbol [ tagVal %tmp.72 44 32 38 ];
+            %tmp.73 = 0x07;
+            %tmp.74 = bitand %tmp.72 %tmp.73;
+            symbol [ toNumber %tmp.75 44 47 55 ];
+            %tmp.75 = getv function %tmp.74 :toNumber;
+            %tmp.76 = invoke %tmp.74 %tmp.75();
+            lputv %wireType.9 %tmp.76;
+            symbol [ wireType %wireType.9 44 20 28 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 45 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_stop" ]
+            %fieldNumber.10 = local;
+            symbol [ fieldNumber %fieldNumber.10 45 20 31 ];
+            %tmp.77 = lgetv %tagVal.8;
+            symbol [ tagVal %tmp.77 45 35 41 ];
+            %tmp.78 = 3;
+            %tmp.79 = shr %tmp.77 %tmp.78;
+            symbol [ toNumber %tmp.80 45 48 56 ];
+            %tmp.80 = getv function %tmp.79 :toNumber;
+            %tmp.81 = invoke %tmp.79 %tmp.80();
+            lputv %fieldNumber.10 %tmp.81;
+            symbol [ fieldNumber %fieldNumber.10 45 20 31 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 46 16 ]
+            symbol [ System %tmp.82 46 16 22 ];
+            %tmp.82 = getm $.Toybox.System;
+            symbol [ println %tmp.83 46 23 30 ];
+            %tmp.83 = getv function %tmp.82 :println;
+            %tmp.84 = "Debug Decoder: Read field ";
+            %tmp.85 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.85 46 62 73 ];
+            %tmp.86 = add %tmp.84 %tmp.85;
+            %tmp.87 = " wireType ";
+            %tmp.88 = add %tmp.86 %tmp.87;
+            %tmp.89 = lgetv %wireType.9;
+            symbol [ wireType %tmp.89 46 91 99 ];
+            %tmp.90 = add %tmp.88 %tmp.89;
+            invoke %tmp.82 %tmp.83(%tmp.90);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 47 16 ]
+            symbol [ System %tmp.91 47 16 22 ];
+            %tmp.91 = getm $.Toybox.System;
+            symbol [ println %tmp.92 47 23 30 ];
+            %tmp.92 = getv function %tmp.91 :println;
+            %tmp.93 = "Debug Decoder: TagMap has key ";
+            %tmp.94 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.94 47 66 77 ];
+            %tmp.95 = add %tmp.93 %tmp.94;
+            %tmp.96 = "? ";
+            %tmp.97 = add %tmp.95 %tmp.96;
+            %tmp.98 = lgetv %tagMap.2;
+            symbol [ tagMap %tmp.98 47 87 93 ];
+            symbol [ hasKey %tmp.99 47 94 100 ];
+            %tmp.99 = getv function %tmp.98 :hasKey;
+            %tmp.100 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.100 47 101 112 ];
+            %tmp.101 = invoke %tmp.98 %tmp.99(%tmp.100);
+            %tmp.102 = add %tmp.97 %tmp.101;
+            invoke %tmp.91 %tmp.92(%tmp.102);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 49 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_stmt:
+            %tmp.103 = lgetv %tagMap.2;
+            symbol [ tagMap %tmp.103 49 20 26 ];
+            symbol [ hasKey %tmp.104 49 27 33 ];
+            %tmp.104 = getv function %tmp.103 :hasKey;
+            %tmp.105 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.105 49 34 45 ];
+            %tmp.106 = invoke %tmp.103 %tmp.104(%tmp.105);
+            bf %tmp.106 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 50 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_stop" ]
+            %fieldInfo.11 = local;
+            symbol [ fieldInfo %fieldInfo.11 50 24 33 ];
+            %tmp.107 = lgetv %tagMap.2;
+            symbol [ tagMap %tmp.107 50 36 42 ];
+            %tmp.108 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.108 50 43 54 ];
+            %tmp.109 = agetv %tmp.107 %tmp.108;
+            lputv %fieldInfo.11 %tmp.109;
+            symbol [ fieldInfo %fieldInfo.11 50 24 33 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 51 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_stop" ]
+            %fieldSymbol.12 = local;
+            symbol [ fieldSymbol %fieldSymbol.12 51 24 35 ];
+            %tmp.110 = lgetv %fieldInfo.11;
+            symbol [ fieldInfo %tmp.110 51 38 47 ];
+            %tmp.112 = const :symbol;
+            symbol [ symbol %tmp.112 51 49 55 const ];
+            %tmp.113 = agetv %tmp.110 %tmp.112;
+            lputv %fieldSymbol.12 %tmp.113;
+            symbol [ fieldSymbol %fieldSymbol.12 51 24 35 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 52 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_stop" ]
+            %fieldSchema.13 = local;
+            symbol [ fieldSchema %fieldSchema.13 52 24 35 ];
+            %tmp.114 = lgetv %fieldInfo.11;
+            symbol [ fieldInfo %tmp.114 52 38 47 ];
+            %tmp.116 = const :schema;
+            symbol [ schema %tmp.116 52 49 55 const ];
+            %tmp.117 = agetv %tmp.114 %tmp.116;
+            lputv %fieldSchema.13 %tmp.117;
+            symbol [ fieldSchema %fieldSchema.13 52 24 35 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 53 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_stop" ]
+            %value.14 = local;
+            symbol [ value %value.14 53 24 29 ];
+            %tmp.118 = null;
+            lputv %value.14 %tmp.118;
+            symbol [ value %value.14 53 24 29 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 55 20 ]
+            %tmp.119 = lgetv %wireType.9;
+            symbol [ wireType %tmp.119 55 28 36 ];
+            push %tmp.119;
+            switch %tmp.119 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 56 24 ]
+            %tmp.120 = dup %tmp.119;
+            symbol [ WIRETYPE_VARINT %tmp.122 56 29 44 ];
+            %tmp.122 = getv ? :WIRETYPE_VARINT;
+            %tmp.123 = getv function %tmp.120 :equals;
+            %tmp.124 = invoke %tmp.120 %tmp.123 (%tmp.122);
+            bt %tmp.124 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_56_24_58_33_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 59 24 ]
+            %tmp.125 = dup %tmp.119;
+            symbol [ WIRETYPE_FIXED32 %tmp.127 59 29 45 ];
+            %tmp.127 = getv ? :WIRETYPE_FIXED32;
+            %tmp.128 = getv function %tmp.125 :equals;
+            %tmp.129 = invoke %tmp.125 %tmp.128 (%tmp.127);
+            bt %tmp.129 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_59_24_61_33_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 62 24 ]
+            %tmp.130 = dup %tmp.119;
+            symbol [ WIRETYPE_FIXED64 %tmp.132 62 29 45 ];
+            %tmp.132 = getv ? :WIRETYPE_FIXED64;
+            %tmp.133 = getv function %tmp.130 :equals;
+            %tmp.134 = invoke %tmp.130 %tmp.133 (%tmp.132);
+            bt %tmp.134 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_62_24_64_33_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 65 24 ]
+            %tmp.135 = dup %tmp.119;
+            symbol [ WIRETYPE_LEN %tmp.137 65 29 41 ];
+            %tmp.137 = getv ? :WIRETYPE_LEN;
+            %tmp.138 = getv function %tmp.135 :equals;
+            %tmp.139 = invoke %tmp.135 %tmp.138 (%tmp.137);
+            bt %tmp.139 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_65_24_77_33_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 78 24 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtDefault:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_defaultCodeBegin;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_56_24_58_33_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 57 28 ]
+            %tmp.140 = self;
+            symbol [ readVarint %tmp.141 57 36 46 ];
+            %tmp.141 = getv function %tmp.140 :readVarint;
+            %tmp.142 = invoke %tmp.140 %tmp.141();
+            lputv %value.14 %tmp.142;
+            symbol [ value %value.14 57 28 33 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 58 28 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_59_24_61_33_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 60 28 ]
+            %tmp.143 = self;
+            symbol [ readFixed32 %tmp.144 60 36 47 ];
+            %tmp.144 = getv function %tmp.143 :readFixed32;
+            %tmp.145 = invoke %tmp.143 %tmp.144();
+            lputv %value.14 %tmp.145;
+            symbol [ value %value.14 60 28 33 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 61 28 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_62_24_64_33_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 63 28 ]
+            %tmp.146 = self;
+            symbol [ readFixed64 %tmp.147 63 36 47 ];
+            %tmp.147 = getv function %tmp.146 :readFixed64;
+            %tmp.148 = invoke %tmp.146 %tmp.147();
+            lputv %value.14 %tmp.148;
+            symbol [ value %value.14 63 28 33 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 64 28 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_65_24_77_33_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 66 28 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtBegin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd" ]
+            %len.15 = local;
+            symbol [ len %len.15 66 32 35 ];
+            %tmp.149 = self;
+            symbol [ readVarint %tmp.150 66 38 48 ];
+            %tmp.150 = getv function %tmp.149 :readVarint;
+            %tmp.151 = invoke %tmp.149 %tmp.150();
+            symbol [ toNumber %tmp.152 66 51 59 ];
+            %tmp.152 = getv function %tmp.151 :toNumber;
+            %tmp.153 = invoke %tmp.151 %tmp.152();
+            lputv %len.15 %tmp.153;
+            symbol [ len %len.15 66 32 35 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 67 28 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtBegin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd" ]
+            %payloadBytes.16 = local;
+            symbol [ payloadBytes %payloadBytes.16 67 32 44 ];
+            symbol [ _buffer %tmp.155 67 47 54 ];
+            %tmp.155 = getv ? :_buffer;
+            symbol [ slice %tmp.156 67 55 60 ];
+            %tmp.156 = getv function %tmp.155 :slice;
+            symbol [ _index %tmp.158 67 61 67 ];
+            %tmp.158 = getv ? :_index;
+            symbol [ _index %tmp.160 67 69 75 ];
+            %tmp.160 = getv ? :_index;
+            %tmp.161 = lgetv %len.15;
+            symbol [ len %tmp.161 67 78 81 ];
+            %tmp.162 = add %tmp.160 %tmp.161;
+            %tmp.163 = invoke %tmp.155 %tmp.156(%tmp.158, %tmp.162);
+            lputv %payloadBytes.16 %tmp.163;
+            symbol [ payloadBytes %payloadBytes.16 67 32 44 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 68 28 ]
+            symbol [ _index %tmp.164 68 28 34 ];
+            %tmp.164 = getv self :_index;
+            %tmp.165 = lgetv %len.15;
+            symbol [ len %tmp.165 68 38 41 ];
+            %tmp.166 = add %tmp.164 %tmp.165;
+            symbol [ _index ? 68 28 34 ];
+            putv self :_index dup %tmp.166;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 70 28 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_stmt:
+            %tmp.167 = lgetv %fieldSchema.13;
+            symbol [ fieldSchema %tmp.167 70 32 43 ];
+            symbol [ hasKey %tmp.168 70 44 50 ];
+            %tmp.168 = getv function %tmp.167 :hasKey;
+            %tmp.170 = const :schema;
+            symbol [ schema %tmp.170 70 52 58 const ];
+            %tmp.171 = invoke %tmp.167 %tmp.168(%tmp.170);
+            bf %tmp.171 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_61_73_28_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 71 32 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_61_73_28_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_61_73_28_stop" ]
+            %subDecoder.17 = local;
+            symbol [ subDecoder %subDecoder.17 71 36 46 ];
+            symbol [ Decoder %tmp.175 71 53 60 ];
+            %tmp.175 = getv ? :Decoder;
+            %tmp.172 = newc %tmp.175 ();
+            lputv %subDecoder.17 %tmp.172;
+            symbol [ subDecoder %subDecoder.17 71 36 46 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 72 32 ]
+            %tmp.176 = lgetv %subDecoder.17;
+            symbol [ subDecoder %tmp.176 72 40 50 ];
+            symbol [ decode %tmp.177 72 51 57 ];
+            %tmp.177 = getv function %tmp.176 :decode;
+            %tmp.178 = lgetv %payloadBytes.16;
+            symbol [ payloadBytes %tmp.178 72 58 70 ];
+            %tmp.179 = lgetv %fieldSchema.13;
+            symbol [ fieldSchema %tmp.179 72 72 83 ];
+            %tmp.181 = const :schema;
+            symbol [ schema %tmp.181 72 85 91 const ];
+            %tmp.182 = agetv %tmp.179 %tmp.181;
+            %tmp.183 = invoke %tmp.176 %tmp.177(%tmp.178, %tmp.182);
+            lputv %value.14 %tmp.183;
+            symbol [ value %value.14 72 32 37 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_61_73_28_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_73_35_76_28_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 75 32 ]
+            %tmp.184 = lgetv %payloadBytes.16;
+            symbol [ payloadBytes %tmp.184 75 40 52 ];
+            lputv %value.14 %tmp.184;
+            symbol [ value %value.14 75 32 37 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_73_35_76_28_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_70_28_76_28_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 77 28 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_78_24_81_33_switchCase:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_defaultCodeBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 80 28 ]
+            %tmp.185 = self;
+            symbol [ skipField %tmp.186 80 28 37 ];
+            %tmp.186 = getv function %tmp.185 :skipField;
+            %tmp.187 = lgetv %wireType.9;
+            symbol [ wireType %tmp.187 80 38 46 ];
+            symbol [ toNumber %tmp.188 80 47 55 ];
+            %tmp.188 = getv function %tmp.187 :toNumber;
+            %tmp.189 = invoke %tmp.187 %tmp.188();
+            invoke %tmp.185 %tmp.186(%tmp.189);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 81 28 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_55_20_82_20_switchStmtEnd:
+            pop;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 83 20 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_20_85_20_if_stmt:
+            %tmp.190 = lgetv %value.14;
+            symbol [ value %tmp.190 83 24 29 ];
+            %tmp.191 = null;
+            %tmp.192 = ne %tmp.190 %tmp.191;
+            bf %tmp.192 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_20_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_20_85_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_39_85_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 84 24 ]
+            %tmp.193 = lgetv %message.1;
+            symbol [ message %tmp.193 84 24 31 ];
+            %tmp.194 = lgetv %value.14;
+            symbol [ value %tmp.194 84 47 52 ];
+            %tmp.195 = as %tmp.194 { (!Null) };
+            %tmp.196 = lgetv %fieldSymbol.12;
+            symbol [ fieldSymbol %tmp.196 84 32 43 ];
+            aputv %tmp.193 %tmp.196 %tmp.195;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_39_85_20_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_20_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_83_20_85_20_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_48_86_16_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_86_23_90_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 88 20 ]
+            symbol [ System %tmp.197 88 20 26 ];
+            %tmp.197 = getm $.Toybox.System;
+            symbol [ println %tmp.198 88 27 34 ];
+            %tmp.198 = getv function %tmp.197 :println;
+            %tmp.199 = "Skipping unknown field: ";
+            %tmp.200 = lgetv %fieldNumber.10;
+            symbol [ fieldNumber %tmp.200 88 64 75 ];
+            %tmp.201 = add %tmp.199 %tmp.200;
+            invoke %tmp.197 %tmp.198(%tmp.201);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 89 20 ]
+            %tmp.202 = self;
+            symbol [ skipField %tmp.203 89 20 29 ];
+            %tmp.203 = getv function %tmp.202 :skipField;
+            %tmp.204 = lgetv %wireType.9;
+            symbol [ wireType %tmp.204 89 30 38 ];
+            symbol [ toNumber %tmp.205 89 39 47 ];
+            %tmp.205 = getv function %tmp.204 :toNumber;
+            %tmp.206 = invoke %tmp.204 %tmp.205();
+            invoke %tmp.202 %tmp.203(%tmp.206);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_86_23_90_16_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_49_16_90_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_44_91_12_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_42_12_91_12_while_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 93 12 ]
+            %tmp.207 = lgetv %message.1;
+            symbol [ message %tmp.207 93 19 26 ];
+            ret %tmp.207;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_24_102_94_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 97; @symbol_functiondef = [skipField,97,25,34]; @symbol_param<0> = [wireType,97,35,43]; @symbol_param<0>_type<0> = [Lang,97,47,51]; @symbol_param<0>_type<1> = [Number,97,52,58]; ]
+        private
+        function skipField(wireType as Lang.Number) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_97_60_113_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 98 12 ]
+            %tmp.1 = lgetv %wireType;
+            symbol [ wireType %tmp.1 98 20 28 ];
+            push %tmp.1;
+            switch %tmp.1 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 99 16 ]
+            %tmp.2 = dup %tmp.1;
+            symbol [ WIRETYPE_VARINT %tmp.4 99 21 36 ];
+            %tmp.4 = getv ? :WIRETYPE_VARINT;
+            %tmp.5 = getv function %tmp.2 :equals;
+            %tmp.6 = invoke %tmp.2 %tmp.5 (%tmp.4);
+            bt %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_99_16_101_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 102 16 ]
+            %tmp.7 = dup %tmp.1;
+            symbol [ WIRETYPE_FIXED64 %tmp.9 102 21 37 ];
+            %tmp.9 = getv ? :WIRETYPE_FIXED64;
+            %tmp.10 = getv function %tmp.7 :equals;
+            %tmp.11 = invoke %tmp.7 %tmp.10 (%tmp.9);
+            bt %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_102_16_104_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 105 16 ]
+            %tmp.12 = dup %tmp.1;
+            symbol [ WIRETYPE_LEN %tmp.14 105 21 33 ];
+            %tmp.14 = getv ? :WIRETYPE_LEN;
+            %tmp.15 = getv function %tmp.12 :equals;
+            %tmp.16 = invoke %tmp.12 %tmp.15 (%tmp.14);
+            bt %tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_105_16_108_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 109 16 ]
+            %tmp.17 = dup %tmp.1;
+            symbol [ WIRETYPE_FIXED32 %tmp.19 109 21 37 ];
+            %tmp.19 = getv ? :WIRETYPE_FIXED32;
+            %tmp.20 = getv function %tmp.17 :equals;
+            %tmp.21 = invoke %tmp.17 %tmp.20 (%tmp.19);
+            bt %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_109_16_111_25_switchCase;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtDefault:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_defaultCodeBegin;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_99_16_101_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 100 20 ]
+            %tmp.22 = self;
+            symbol [ readVarint %tmp.23 100 20 30 ];
+            %tmp.23 = getv function %tmp.22 :readVarint;
+            invoke %tmp.22 %tmp.23();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 101 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_102_16_104_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 103 20 ]
+            symbol [ _index %tmp.24 103 20 26 ];
+            %tmp.24 = getv self :_index;
+            %tmp.25 = 8;
+            %tmp.26 = add %tmp.24 %tmp.25;
+            symbol [ _index ? 103 20 26 ];
+            putv self :_index dup %tmp.26;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 104 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_105_16_108_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 106 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtBegin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd" ]
+            %len.1 = local;
+            symbol [ len %len.1 106 24 27 ];
+            %tmp.27 = self;
+            symbol [ readVarint %tmp.28 106 30 40 ];
+            %tmp.28 = getv function %tmp.27 :readVarint;
+            %tmp.29 = invoke %tmp.27 %tmp.28();
+            symbol [ toNumber %tmp.30 106 43 51 ];
+            %tmp.30 = getv function %tmp.29 :toNumber;
+            %tmp.31 = invoke %tmp.29 %tmp.30();
+            lputv %len.1 %tmp.31;
+            symbol [ len %len.1 106 24 27 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 107 20 ]
+            symbol [ _index %tmp.32 107 20 26 ];
+            %tmp.32 = getv self :_index;
+            %tmp.33 = lgetv %len.1;
+            symbol [ len %tmp.33 107 30 33 ];
+            %tmp.34 = add %tmp.32 %tmp.33;
+            symbol [ _index ? 107 20 26 ];
+            putv self :_index dup %tmp.34;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 108 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_109_16_111_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 110 20 ]
+            symbol [ _index %tmp.35 110 20 26 ];
+            %tmp.35 = getv self :_index;
+            %tmp.36 = 4;
+            %tmp.37 = add %tmp.35 %tmp.36;
+            symbol [ _index ? 110 20 26 ];
+            putv self :_index dup %tmp.37;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 111 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_defaultCodeBegin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_98_12_112_12_switchStmtEnd:
+            pop;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_97_60_113_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 116; @symbol_functiondef = [readVarint,116,25,35]; @symbol_return<0> = [Lang,116,41,45]; @symbol_return<1> = [Long,116,46,50]; ]
+        private
+        function readVarint() as Lang.Long {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 117 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_stop" ]
+            %result.1 = local;
+            symbol [ result %result.1 117 16 22 ];
+            %tmp.1 = 0L;
+            lputv %result.1 %tmp.1;
+            symbol [ result %result.1 117 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 118 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_stop" ]
+            %shift.2 = local;
+            symbol [ shift %shift.2 118 16 21 ];
+            %tmp.2 = 0;
+            lputv %shift.2 %tmp.2;
+            symbol [ shift %shift.2 118 16 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 119 12 ]
+            while @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_test:
+            %tmp.3 = true;
+            bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_25_132_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 120 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_25_132_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_25_132_12_stop" ]
+            %byte.3 = local;
+            symbol [ byte %byte.3 120 20 24 ];
+            symbol [ _buffer %tmp.5 120 27 34 ];
+            %tmp.5 = getv ? :_buffer;
+            symbol [ _index %tmp.7 120 35 41 ];
+            %tmp.7 = getv ? :_index;
+            %tmp.8 = agetv %tmp.5 %tmp.7;
+            lputv %byte.3 %tmp.8;
+            symbol [ byte %byte.3 120 20 24 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 121 16 ]
+            symbol [ _index %tmp.11 121 16 22 ];
+            %tmp.11 = getv ? :_index;
+            %tmp.12 = add %tmp.11 1;
+            symbol [ _index ? 121 16 22 ];
+            putv self :_index dup %tmp.12;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 122 16 ]
+            %tmp.13 = lgetv %result.1;
+            symbol [ result %tmp.13 122 16 22 ];
+            %tmp.14 = lgetv %byte.3;
+            symbol [ byte %tmp.14 122 28 32 ];
+            %tmp.15 = 0x7F;
+            %tmp.16 = bitand %tmp.14 %tmp.15;
+            symbol [ toLong %tmp.17 122 41 47 ];
+            %tmp.17 = getv function %tmp.16 :toLong;
+            %tmp.18 = invoke %tmp.16 %tmp.17();
+            %tmp.19 = lgetv %shift.2;
+            symbol [ shift %tmp.19 122 53 58 ];
+            %tmp.20 = shl %tmp.18 %tmp.19;
+            %tmp.21 = bitor %tmp.13 %tmp.20;
+            lputv %result.1 %tmp.21;
+            symbol [ result %result.1 122 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 123 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_16_125_16_if_stmt:
+            %tmp.22 = lgetv %byte.3;
+            symbol [ byte %tmp.22 123 21 25 ];
+            %tmp.23 = 0x80;
+            %tmp.24 = bitand %tmp.22 %tmp.23;
+            %tmp.25 = 0;
+            %tmp.26 = eq %tmp.24 %tmp.25;
+            bf %tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_16_125_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_16_125_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_40_125_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 124 20 ]
+            %tmp.27 = lgetv %result.1;
+            symbol [ result %tmp.27 124 27 33 ];
+            ret %tmp.27;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_40_125_16_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_16_125_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_123_16_125_16_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 126 16 ]
+            %tmp.28 = lgetv %shift.2;
+            symbol [ shift %tmp.28 126 16 21 ];
+            %tmp.29 = 7;
+            %tmp.30 = add %tmp.28 %tmp.29;
+            lputv %shift.2 %tmp.30;
+            symbol [ shift %shift.2 126 16 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 127 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_16_131_16_if_stmt:
+            %tmp.31 = lgetv %shift.2;
+            symbol [ shift %tmp.31 127 20 25 ];
+            %tmp.32 = 64;
+            %tmp.33 = gte %tmp.31 %tmp.32;
+            bf %tmp.33 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_16_131_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_16_131_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_33_131_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 129 20 ]
+            symbol [ System %tmp.34 129 20 26 ];
+            %tmp.34 = getm $.Toybox.System;
+            symbol [ println %tmp.35 129 27 34 ];
+            %tmp.35 = getv function %tmp.34 :println;
+            %tmp.36 = "Error: Malformed Varint";
+            invoke %tmp.34 %tmp.35(%tmp.36);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 130 20 ]
+            %tmp.37 = -1L;
+            ret %tmp.37;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_33_131_16_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_16_131_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_127_16_131_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_25_132_12_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_119_12_132_12_while_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 133 12 ]
+            %tmp.38 = -1L;
+            ret %tmp.38;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_116_51_134_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 137; @symbol_functiondef = [readFixed32,137,25,36]; @symbol_return<0> = [Lang,137,42,46]; @symbol_return<1> = [Number,137,47,53]; ]
+        private
+        function readFixed32() as Lang.Number {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 138 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop" ]
+            %b1.1 = local;
+            symbol [ b1 %b1.1 138 16 18 ];
+            symbol [ _buffer %tmp.2 138 21 28 ];
+            %tmp.2 = getv ? :_buffer;
+            symbol [ _index %tmp.4 138 29 35 ];
+            %tmp.4 = getv ? :_index;
+            %tmp.5 = agetv %tmp.2 %tmp.4;
+            symbol [ toLong %tmp.6 138 37 43 ];
+            %tmp.6 = getv function %tmp.5 :toLong;
+            %tmp.7 = invoke %tmp.5 %tmp.6();
+            lputv %b1.1 %tmp.7;
+            symbol [ b1 %b1.1 138 16 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 139 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop" ]
+            %b2.2 = local;
+            symbol [ b2 %b2.2 139 16 18 ];
+            symbol [ _buffer %tmp.9 139 21 28 ];
+            %tmp.9 = getv ? :_buffer;
+            symbol [ _index %tmp.11 139 29 35 ];
+            %tmp.11 = getv ? :_index;
+            %tmp.12 = 1;
+            %tmp.13 = add %tmp.11 %tmp.12;
+            %tmp.14 = agetv %tmp.9 %tmp.13;
+            symbol [ toLong %tmp.15 139 39 45 ];
+            %tmp.15 = getv function %tmp.14 :toLong;
+            %tmp.16 = invoke %tmp.14 %tmp.15();
+            lputv %b2.2 %tmp.16;
+            symbol [ b2 %b2.2 139 16 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 140 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop" ]
+            %b3.3 = local;
+            symbol [ b3 %b3.3 140 16 18 ];
+            symbol [ _buffer %tmp.18 140 21 28 ];
+            %tmp.18 = getv ? :_buffer;
+            symbol [ _index %tmp.20 140 29 35 ];
+            %tmp.20 = getv ? :_index;
+            %tmp.21 = 2;
+            %tmp.22 = add %tmp.20 %tmp.21;
+            %tmp.23 = agetv %tmp.18 %tmp.22;
+            symbol [ toLong %tmp.24 140 39 45 ];
+            %tmp.24 = getv function %tmp.23 :toLong;
+            %tmp.25 = invoke %tmp.23 %tmp.24();
+            lputv %b3.3 %tmp.25;
+            symbol [ b3 %b3.3 140 16 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 141 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop" ]
+            %b4.4 = local;
+            symbol [ b4 %b4.4 141 16 18 ];
+            symbol [ _buffer %tmp.27 141 21 28 ];
+            %tmp.27 = getv ? :_buffer;
+            symbol [ _index %tmp.29 141 29 35 ];
+            %tmp.29 = getv ? :_index;
+            %tmp.30 = 3;
+            %tmp.31 = add %tmp.29 %tmp.30;
+            %tmp.32 = agetv %tmp.27 %tmp.31;
+            symbol [ toLong %tmp.33 141 39 45 ];
+            %tmp.33 = getv function %tmp.32 :toLong;
+            %tmp.34 = invoke %tmp.32 %tmp.33();
+            lputv %b4.4 %tmp.34;
+            symbol [ b4 %b4.4 141 16 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 142 12 ]
+            symbol [ _index %tmp.35 142 12 18 ];
+            %tmp.35 = getv self :_index;
+            %tmp.36 = 4;
+            %tmp.37 = add %tmp.35 %tmp.36;
+            symbol [ _index ? 142 12 18 ];
+            putv self :_index dup %tmp.37;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 143 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop" ]
+            %result.5 = local;
+            symbol [ result %result.5 143 16 22 ];
+            %tmp.38 = lgetv %b4.4;
+            symbol [ b4 %tmp.38 143 26 28 ];
+            %tmp.39 = 24;
+            %tmp.40 = shl %tmp.38 %tmp.39;
+            %tmp.41 = lgetv %b3.3;
+            symbol [ b3 %tmp.41 143 39 41 ];
+            %tmp.42 = 16;
+            %tmp.43 = shl %tmp.41 %tmp.42;
+            %tmp.44 = bitor %tmp.40 %tmp.43;
+            %tmp.45 = lgetv %b2.2;
+            symbol [ b2 %tmp.45 143 52 54 ];
+            %tmp.46 = 8;
+            %tmp.47 = shl %tmp.45 %tmp.46;
+            %tmp.48 = bitor %tmp.44 %tmp.47;
+            %tmp.49 = lgetv %b1.1;
+            symbol [ b1 %tmp.49 143 63 65 ];
+            %tmp.50 = bitor %tmp.48 %tmp.49;
+            lputv %result.5 %tmp.50;
+            symbol [ result %result.5 143 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 145 12 ]
+            %tmp.51 = lgetv %result.5;
+            symbol [ result %tmp.51 145 19 25 ];
+            symbol [ toNumber %tmp.52 145 26 34 ];
+            %tmp.52 = getv function %tmp.51 :toNumber;
+            %tmp.53 = invoke %tmp.51 %tmp.52();
+            ret %tmp.53;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_137_54_146_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 149; @symbol_functiondef = [readFixed64,149,25,36]; @symbol_return<0> = [Lang,149,42,46]; @symbol_return<1> = [Long,149,47,51]; ]
+        private
+        function readFixed64() as Lang.Long {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_149_52_156_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 150 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_149_52_156_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_149_52_156_8_stop" ]
+            %val.1 = local;
+            symbol [ val %val.1 150 16 19 ];
+            %tmp.1 = 0L;
+            lputv %val.1 %tmp.1;
+            symbol [ val %val.1 150 16 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 151 12 ]
+            for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_init:
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_end" ]
+            %i.2 = local;
+            symbol [ i %i.2 151 21 22 ];
+            %tmp.2 = 0;
+            lputv %i.2 %tmp.2;
+            symbol [ i %i.2 151 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_test:
+            %tmp.3 = lgetv %i.2;
+            symbol [ i %tmp.3 151 28 29 ];
+            %tmp.4 = 8;
+            %tmp.5 = lt %tmp.3 %tmp.4;
+            bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_40_153_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 152 16 ]
+            %tmp.6 = lgetv %val.1;
+            symbol [ val %tmp.6 152 16 19 ];
+            symbol [ _buffer %tmp.8 152 24 31 ];
+            %tmp.8 = getv ? :_buffer;
+            symbol [ _index %tmp.10 152 32 38 ];
+            %tmp.10 = getv ? :_index;
+            %tmp.11 = lgetv %i.2;
+            symbol [ i %tmp.11 152 41 42 ];
+            %tmp.12 = add %tmp.10 %tmp.11;
+            %tmp.13 = agetv %tmp.8 %tmp.12;
+            symbol [ toLong %tmp.14 152 44 50 ];
+            %tmp.14 = getv function %tmp.13 :toLong;
+            %tmp.15 = invoke %tmp.13 %tmp.14();
+            %tmp.16 = lgetv %i.2;
+            symbol [ i %tmp.16 152 57 58 ];
+            %tmp.17 = 8;
+            %tmp.18 = mul %tmp.16 %tmp.17;
+            %tmp.19 = shl %tmp.15 %tmp.18;
+            %tmp.20 = bitor %tmp.6 %tmp.19;
+            lputv %val.1 %tmp.20;
+            symbol [ val %val.1 152 16 19 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_40_153_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 151 ]
+            %tmp.23 = lgetv %i.2;
+            symbol [ i %tmp.23 151 35 36 ];
+            %tmp.24 = add %tmp.23 1;
+            lputv %i.2 %tmp.24;
+            symbol [ i %i.2 151 35 36 ];
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_151_12_153_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 154 12 ]
+            symbol [ _index %tmp.25 154 12 18 ];
+            %tmp.25 = getv self :_index;
+            %tmp.26 = 8;
+            %tmp.27 = add %tmp.25 %tmp.26;
+            symbol [ _index ? 154 12 18 ];
+            putv self :_index dup %tmp.27;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc" 155 12 ]
+            %tmp.28 = lgetv %val.1;
+            symbol [ val %tmp.28 155 19 22 ];
+            ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Decoder_mc_149_52_156_8_stop:
+        }
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Decoder.mc"; @line = 6; ]
+<init> {
+}

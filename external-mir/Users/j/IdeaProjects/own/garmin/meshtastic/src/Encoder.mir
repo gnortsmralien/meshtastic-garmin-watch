@@ -1,0 +1,925 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [System,7,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 9; @symbol_moduledef = [ProtoBuf,9,7,15]; ]
+module ProtoBuf {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 10; @symbol_classdef = [Encoder,10,10,17]; ]
+    class Encoder {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 10; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 10; ]
+        static
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 11; @position = 20; @symbol_vardef = [_buffer,11,20,27]; ]
+        private
+        var _buffer;
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 14; @symbol_functiondef = [initialize,14,24,34]; ]
+        public
+        function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_14_37_16_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 15 12 ]
+            %tmp.2 = 0;
+            %tmp.1 = newba %tmp.2;
+            symbol [ _buffer ? 15 12 19 ];
+            putv self :_buffer %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_14_37_16_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 22; @symbol_functiondef = [encode,22,24,30]; @symbol_param<0> = [message,22,31,38]; @symbol_param<0>_type<0> = [Lang,22,42,46]; @symbol_param<0>_type<1> = [Dictionary,22,47,57]; @symbol_param<1> = [schema,22,59,65]; @symbol_param<1>_type<0> = [Lang,22,69,73]; @symbol_param<1>_type<1> = [Dictionary,22,74,84]; @symbol_return<0> = [Lang,22,89,93]; @symbol_return<1> = [ByteArray,22,94,103]; ]
+        public
+        function encode(message as Lang.Dictionary, schema as Lang.Dictionary) as Lang.ByteArray {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_22_104_35_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 23 12 ]
+            %tmp.2 = 0;
+            %tmp.1 = newba %tmp.2;
+            symbol [ _buffer ? 23 12 19 ];
+            putv self :_buffer %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 24 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_22_104_35_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_22_104_35_8_stop" ]
+            %keys.1 = local;
+            symbol [ keys %keys.1 24 16 20 ];
+            %tmp.3 = lgetv %schema;
+            symbol [ schema %tmp.3 24 23 29 ];
+            symbol [ keys %tmp.4 24 30 34 ];
+            %tmp.4 = getv function %tmp.3 :keys;
+            %tmp.5 = invoke %tmp.3 %tmp.4();
+            lputv %keys.1 %tmp.5;
+            symbol [ keys %keys.1 24 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 26 12 ]
+            for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_init:
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_end" ]
+            %i.2 = local;
+            symbol [ i %i.2 26 21 22 ];
+            %tmp.6 = 0;
+            lputv %i.2 %tmp.6;
+            symbol [ i %i.2 26 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_test:
+            %tmp.7 = lgetv %i.2;
+            symbol [ i %tmp.7 26 28 29 ];
+            %tmp.8 = lgetv %keys.1;
+            symbol [ keys %tmp.8 26 32 36 ];
+            symbol [ size %tmp.9 26 37 41 ];
+            %tmp.9 = getv function %tmp.8 :size;
+            %tmp.10 = invoke %tmp.8 %tmp.9();
+            %tmp.11 = lt %tmp.7 %tmp.10;
+            bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_50_33_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 27 16 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_50_33_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_50_33_12_stop" ]
+            %fieldSymbol.3 = local;
+            symbol [ fieldSymbol %fieldSymbol.3 27 20 31 ];
+            %tmp.12 = lgetv %keys.1;
+            symbol [ keys %tmp.12 27 34 38 ];
+            %tmp.13 = lgetv %i.2;
+            symbol [ i %tmp.13 27 39 40 ];
+            %tmp.14 = agetv %tmp.12 %tmp.13;
+            lputv %fieldSymbol.3 %tmp.14;
+            symbol [ fieldSymbol %fieldSymbol.3 27 20 31 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 28 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_16_32_16_if_stmt:
+            %tmp.15 = lgetv %message;
+            symbol [ message %tmp.15 28 20 27 ];
+            symbol [ hasKey %tmp.16 28 28 34 ];
+            %tmp.16 = getv function %tmp.15 :hasKey;
+            %tmp.17 = lgetv %fieldSymbol.3;
+            symbol [ fieldSymbol %tmp.17 28 35 46 ];
+            %tmp.18 = invoke %tmp.15 %tmp.16(%tmp.17);
+            bf %tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_16_32_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_16_32_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 29 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_stop" ]
+            %value.4 = local;
+            symbol [ value %value.4 29 24 29 ];
+            %tmp.19 = lgetv %message;
+            symbol [ message %tmp.19 29 32 39 ];
+            %tmp.20 = lgetv %fieldSymbol.3;
+            symbol [ fieldSymbol %tmp.20 29 40 51 ];
+            %tmp.21 = agetv %tmp.19 %tmp.20;
+            lputv %value.4 %tmp.21;
+            symbol [ value %value.4 29 24 29 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 30 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_stop" ]
+            %fieldSchema.5 = local;
+            symbol [ fieldSchema %fieldSchema.5 30 24 35 ];
+            %tmp.22 = lgetv %schema;
+            symbol [ schema %tmp.22 30 38 44 ];
+            %tmp.23 = lgetv %fieldSymbol.3;
+            symbol [ fieldSymbol %tmp.23 30 45 56 ];
+            %tmp.24 = agetv %tmp.22 %tmp.23;
+            lputv %fieldSchema.5 %tmp.24;
+            symbol [ fieldSchema %fieldSchema.5 30 24 35 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 31 20 ]
+            %tmp.25 = self;
+            symbol [ encodeField %tmp.26 31 20 31 ];
+            %tmp.26 = getv function %tmp.25 :encodeField;
+            %tmp.27 = lgetv %fieldSchema.5;
+            symbol [ fieldSchema %tmp.27 31 32 43 ];
+            %tmp.28 = lgetv %value.4;
+            symbol [ value %tmp.28 31 45 50 ];
+            invoke %tmp.25 %tmp.26(%tmp.27, %tmp.28);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_49_32_16_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_16_32_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_28_16_32_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_50_33_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 26 ]
+            %tmp.31 = lgetv %i.2;
+            symbol [ i %tmp.31 26 45 46 ];
+            %tmp.32 = add %tmp.31 1;
+            lputv %i.2 %tmp.32;
+            symbol [ i %i.2 26 45 46 ];
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_26_12_33_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 34 12 ]
+            symbol [ _buffer %tmp.34 34 19 26 ];
+            %tmp.34 = getv ? :_buffer;
+            ret %tmp.34;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_22_104_35_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 38; @symbol_functiondef = [encodeField,38,25,36]; @symbol_param<0> = [fieldSchema,38,37,48]; @symbol_param<0>_type<0> = [Lang,38,52,56]; @symbol_param<0>_type<1> = [Dictionary,38,57,67]; @symbol_param<1> = [value,38,69,74]; ]
+        private
+        function encodeField(fieldSchema as Lang.Dictionary, value) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 39 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_stop" ]
+            %type.1 = local;
+            symbol [ type %type.1 39 16 20 ];
+            %tmp.1 = lgetv %fieldSchema;
+            symbol [ fieldSchema %tmp.1 39 23 34 ];
+            %tmp.3 = const :type;
+            symbol [ type %tmp.3 39 36 40 const ];
+            %tmp.4 = agetv %tmp.1 %tmp.3;
+            lputv %type.1 %tmp.4;
+            symbol [ type %type.1 39 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 40 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_stop" ]
+            %tag.2 = local;
+            symbol [ tag %tag.2 40 16 19 ];
+            %tmp.5 = lgetv %fieldSchema;
+            symbol [ fieldSchema %tmp.5 40 22 33 ];
+            %tmp.7 = const :tag;
+            symbol [ tag %tmp.7 40 35 38 const ];
+            %tmp.8 = agetv %tmp.5 %tmp.7;
+            lputv %tag.2 %tmp.8;
+            symbol [ tag %tag.2 40 16 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 42 12 ]
+            %tmp.9 = lgetv %type.1;
+            symbol [ type %tmp.9 42 20 24 ];
+            push %tmp.9;
+            switch %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 43 16 ]
+            %tmp.10 = dup %tmp.9;
+            symbol [ WIRETYPE_VARINT %tmp.12 43 21 36 ];
+            %tmp.12 = getv ? :WIRETYPE_VARINT;
+            %tmp.13 = getv function %tmp.10 :equals;
+            %tmp.14 = invoke %tmp.10 %tmp.13 (%tmp.12);
+            bt %tmp.14 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_43_16_55_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 57 16 ]
+            %tmp.15 = dup %tmp.9;
+            symbol [ WIRETYPE_FIXED32 %tmp.17 57 21 37 ];
+            %tmp.17 = getv ? :WIRETYPE_FIXED32;
+            %tmp.18 = getv function %tmp.15 :equals;
+            %tmp.19 = invoke %tmp.15 %tmp.18 (%tmp.17);
+            bt %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_57_16_61_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 63 16 ]
+            %tmp.20 = dup %tmp.9;
+            symbol [ WIRETYPE_FIXED64 %tmp.22 63 21 37 ];
+            %tmp.22 = getv ? :WIRETYPE_FIXED64;
+            %tmp.23 = getv function %tmp.20 :equals;
+            %tmp.24 = invoke %tmp.20 %tmp.23 (%tmp.22);
+            bt %tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_63_16_67_25_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 69 16 ]
+            %tmp.25 = dup %tmp.9;
+            symbol [ WIRETYPE_LEN %tmp.27 69 21 33 ];
+            %tmp.27 = getv ? :WIRETYPE_LEN;
+            %tmp.28 = getv function %tmp.25 :equals;
+            %tmp.29 = invoke %tmp.25 %tmp.28 (%tmp.27);
+            bt %tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_69_16_86_25_switchCase;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtDefault:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_defaultCodeBegin;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_43_16_55_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 47 20 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtBegin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd" ]
+            %numValue.3 = local;
+            symbol [ numValue %numValue.3 47 24 32 ];
+            %tmp.30 = 0;
+            lputv %numValue.3 %tmp.30;
+            symbol [ numValue %numValue.3 47 24 32 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 48 20 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_stmt:
+            %tmp.31 = lgetv %value;
+            symbol [ value %tmp.31 48 24 29 ];
+            symbol [ Lang %tmp.32 48 41 45 ];
+            %tmp.32 = getm $.Toybox.Lang;
+            symbol [ Boolean %tmp.33 48 46 53 ];
+            %tmp.33 = getv %tmp.32 :Boolean;
+            %tmp.34 = isa %tmp.31 %tmp.33;
+            bf %tmp.34 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_55_50_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 49 24 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_begin:
+            %tmp.35 = lgetv %value;
+            symbol [ value %tmp.35 49 35 40 ];
+            %tmp.36 = as %tmp.35 { (Lang.Boolean) };
+            bf %tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_true:
+            %tmp.37 = 1;
+            push %tmp.37;
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_else_false:
+            %tmp.38 = 0;
+            push %tmp.38;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_end:
+            %tmp.39 = phi [%tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_begin] [%tmp.37 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_true] [%tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_else_false] [%tmp.39 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_49_35_49_47_end];
+            lputv %numValue.3 %tmp.39;
+            symbol [ numValue %numValue.3 49 24 32 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_55_50_20_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_50_27_52_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 51 24 ]
+            %tmp.40 = lgetv %value;
+            symbol [ value %tmp.40 51 35 40 ];
+            %tmp.41 = as %tmp.40 { (!Lang.Boolean) };
+            %tmp.42 = as %tmp.41 Lang.Number;
+            symbol [ Lang %tmp.42 51 44 48 ];
+            symbol [ Number %tmp.42 51 49 55 ];
+            lputv %numValue.3 %tmp.42;
+            symbol [ numValue %numValue.3 51 24 32 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_50_27_52_20_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_48_20_52_20_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 53 20 ]
+            %tmp.43 = self;
+            symbol [ writeTag %tmp.44 53 20 28 ];
+            %tmp.44 = getv function %tmp.43 :writeTag;
+            %tmp.45 = lgetv %tag.2;
+            symbol [ tag %tmp.45 53 29 32 ];
+            symbol [ WIRETYPE_VARINT %tmp.47 53 34 49 ];
+            %tmp.47 = getv ? :WIRETYPE_VARINT;
+            invoke %tmp.43 %tmp.44(%tmp.45, %tmp.47);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 54 20 ]
+            %tmp.48 = self;
+            symbol [ writeVarint %tmp.49 54 20 31 ];
+            %tmp.49 = getv function %tmp.48 :writeVarint;
+            %tmp.50 = lgetv %numValue.3;
+            symbol [ numValue %tmp.50 54 32 40 ];
+            invoke %tmp.48 %tmp.49(%tmp.50);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 55 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_57_16_61_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 59 20 ]
+            %tmp.51 = self;
+            symbol [ writeTag %tmp.52 59 20 28 ];
+            %tmp.52 = getv function %tmp.51 :writeTag;
+            %tmp.53 = lgetv %tag.2;
+            symbol [ tag %tmp.53 59 29 32 ];
+            symbol [ WIRETYPE_FIXED32 %tmp.55 59 34 50 ];
+            %tmp.55 = getv ? :WIRETYPE_FIXED32;
+            invoke %tmp.51 %tmp.52(%tmp.53, %tmp.55);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 60 20 ]
+            %tmp.56 = self;
+            symbol [ writeFixed32 %tmp.57 60 20 32 ];
+            %tmp.57 = getv function %tmp.56 :writeFixed32;
+            %tmp.58 = lgetv %value;
+            symbol [ value %tmp.58 60 33 38 ];
+            invoke %tmp.56 %tmp.57(%tmp.58);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 61 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_63_16_67_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 65 20 ]
+            %tmp.59 = self;
+            symbol [ writeTag %tmp.60 65 20 28 ];
+            %tmp.60 = getv function %tmp.59 :writeTag;
+            %tmp.61 = lgetv %tag.2;
+            symbol [ tag %tmp.61 65 29 32 ];
+            symbol [ WIRETYPE_FIXED64 %tmp.63 65 34 50 ];
+            %tmp.63 = getv ? :WIRETYPE_FIXED64;
+            invoke %tmp.59 %tmp.60(%tmp.61, %tmp.63);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 66 20 ]
+            %tmp.64 = self;
+            symbol [ writeFixed64 %tmp.65 66 20 32 ];
+            %tmp.65 = getv function %tmp.64 :writeFixed64;
+            %tmp.66 = lgetv %value;
+            symbol [ value %tmp.66 66 33 38 ];
+            invoke %tmp.64 %tmp.65(%tmp.66);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 67 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_69_16_86_25_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 71 20 ]
+            %tmp.67 = self;
+            symbol [ writeTag %tmp.68 71 20 28 ];
+            %tmp.68 = getv function %tmp.67 :writeTag;
+            %tmp.69 = lgetv %tag.2;
+            symbol [ tag %tmp.69 71 29 32 ];
+            symbol [ WIRETYPE_LEN %tmp.71 71 34 46 ];
+            %tmp.71 = getv ? :WIRETYPE_LEN;
+            invoke %tmp.67 %tmp.68(%tmp.69, %tmp.71);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 72 20 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_stmt:
+            %tmp.72 = lgetv %value;
+            symbol [ value %tmp.72 72 24 29 ];
+            symbol [ Lang %tmp.73 72 41 45 ];
+            %tmp.73 = getm $.Toybox.Lang;
+            symbol [ String %tmp.74 72 46 52 ];
+            %tmp.74 = getv %tmp.73 :String;
+            %tmp.75 = isa %tmp.72 %tmp.74;
+            bf %tmp.75 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_54_76_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 73 24 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_54_76_20_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_54_76_20_stop" ]
+            %bytes.4 = local;
+            symbol [ bytes %bytes.4 73 28 33 ];
+            %tmp.76 = self;
+            symbol [ stringToBytes %tmp.77 73 36 49 ];
+            %tmp.77 = getv function %tmp.76 :stringToBytes;
+            %tmp.78 = lgetv %value;
+            symbol [ value %tmp.78 73 50 55 ];
+            %tmp.79 = as %tmp.78 { (Lang.String) };
+            %tmp.80 = invoke %tmp.76 %tmp.77(%tmp.79);
+            lputv %bytes.4 %tmp.80;
+            symbol [ bytes %bytes.4 73 28 33 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 74 24 ]
+            %tmp.81 = self;
+            symbol [ writeVarint %tmp.82 74 24 35 ];
+            %tmp.82 = getv function %tmp.81 :writeVarint;
+            %tmp.83 = lgetv %bytes.4;
+            symbol [ bytes %tmp.83 74 36 41 ];
+            symbol [ size %tmp.84 74 42 46 ];
+            %tmp.84 = getv function %tmp.83 :size;
+            %tmp.85 = invoke %tmp.83 %tmp.84();
+            invoke %tmp.81 %tmp.82(%tmp.85);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 75 24 ]
+            symbol [ _buffer %tmp.87 75 34 41 ];
+            %tmp.87 = getv ? :_buffer;
+            symbol [ addAll %tmp.88 75 42 48 ];
+            %tmp.88 = getv function %tmp.87 :addAll;
+            %tmp.89 = lgetv %bytes.4;
+            symbol [ bytes %tmp.89 75 49 54 ];
+            %tmp.90 = invoke %tmp.87 %tmp.88(%tmp.89);
+            symbol [ _buffer ? 75 24 31 ];
+            putv self :_buffer %tmp.90;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_54_76_20_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 76 27 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_stmt:
+            %tmp.91 = lgetv %value;
+            symbol [ value %tmp.91 76 31 36 ];
+            %tmp.92 = as %tmp.91 { (!Lang.String) };
+            symbol [ Lang %tmp.93 76 48 52 ];
+            %tmp.93 = getm $.Toybox.Lang;
+            symbol [ ByteArray %tmp.94 76 53 62 ];
+            %tmp.94 = getv %tmp.93 :ByteArray;
+            %tmp.95 = isa %tmp.92 %tmp.94;
+            bf %tmp.95 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_64_79_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 77 24 ]
+            %tmp.96 = self;
+            symbol [ writeVarint %tmp.97 77 24 35 ];
+            %tmp.97 = getv function %tmp.96 :writeVarint;
+            %tmp.98 = lgetv %value;
+            symbol [ value %tmp.98 77 36 41 ];
+            %tmp.99 = as %tmp.98 { (Lang.ByteArray) && (!Lang.String) };
+            symbol [ size %tmp.100 77 42 46 ];
+            %tmp.100 = getv function %tmp.99 :size;
+            %tmp.101 = invoke %tmp.99 %tmp.100();
+            invoke %tmp.96 %tmp.97(%tmp.101);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 78 24 ]
+            symbol [ _buffer %tmp.103 78 34 41 ];
+            %tmp.103 = getv ? :_buffer;
+            symbol [ addAll %tmp.104 78 42 48 ];
+            %tmp.104 = getv function %tmp.103 :addAll;
+            %tmp.105 = lgetv %value;
+            symbol [ value %tmp.105 78 49 54 ];
+            %tmp.106 = as %tmp.105 { (Lang.ByteArray) && (!Lang.String) };
+            %tmp.107 = invoke %tmp.103 %tmp.104(%tmp.106);
+            symbol [ _buffer ? 78 24 31 ];
+            putv self :_buffer %tmp.107;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_64_79_20_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 79 27 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_27_85_20_if_stmt:
+            %tmp.108 = lgetv %value;
+            symbol [ value %tmp.108 79 31 36 ];
+            %tmp.109 = as %tmp.108 { (!Lang.String) && (!Lang.ByteArray) };
+            symbol [ Lang %tmp.110 79 48 52 ];
+            %tmp.110 = getm $.Toybox.Lang;
+            symbol [ Dictionary %tmp.111 79 53 63 ];
+            %tmp.111 = getv %tmp.110 :Dictionary;
+            %tmp.112 = isa %tmp.109 %tmp.111;
+            bf %tmp.112 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_27_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_27_85_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 81 24 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_stop" ]
+            %subEncoder.5 = local;
+            symbol [ subEncoder %subEncoder.5 81 28 38 ];
+            symbol [ Encoder %tmp.116 81 45 52 ];
+            %tmp.116 = getv ? :Encoder;
+            %tmp.113 = newc %tmp.116 ();
+            lputv %subEncoder.5 %tmp.113;
+            symbol [ subEncoder %subEncoder.5 81 28 38 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 82 24 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_stop" ]
+            %subBytes.6 = local;
+            symbol [ subBytes %subBytes.6 82 28 36 ];
+            %tmp.117 = lgetv %subEncoder.5;
+            symbol [ subEncoder %tmp.117 82 39 49 ];
+            symbol [ encode %tmp.118 82 50 56 ];
+            %tmp.118 = getv function %tmp.117 :encode;
+            %tmp.119 = lgetv %value;
+            symbol [ value %tmp.119 82 57 62 ];
+            %tmp.120 = as %tmp.119 { (Lang.Dictionary) && (!Lang.String) && (!Lang.ByteArray) };
+            %tmp.121 = lgetv %fieldSchema;
+            symbol [ fieldSchema %tmp.121 82 64 75 ];
+            %tmp.123 = const :schema;
+            symbol [ schema %tmp.123 82 77 83 const ];
+            %tmp.124 = agetv %tmp.121 %tmp.123;
+            %tmp.125 = invoke %tmp.117 %tmp.118(%tmp.120, %tmp.124);
+            lputv %subBytes.6 %tmp.125;
+            symbol [ subBytes %subBytes.6 82 28 36 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 83 24 ]
+            %tmp.126 = self;
+            symbol [ writeVarint %tmp.127 83 24 35 ];
+            %tmp.127 = getv function %tmp.126 :writeVarint;
+            %tmp.128 = lgetv %subBytes.6;
+            symbol [ subBytes %tmp.128 83 36 44 ];
+            symbol [ size %tmp.129 83 45 49 ];
+            %tmp.129 = getv function %tmp.128 :size;
+            %tmp.130 = invoke %tmp.128 %tmp.129();
+            invoke %tmp.126 %tmp.127(%tmp.130);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 84 24 ]
+            symbol [ _buffer %tmp.132 84 34 41 ];
+            %tmp.132 = getv ? :_buffer;
+            symbol [ addAll %tmp.133 84 42 48 ];
+            %tmp.133 = getv function %tmp.132 :addAll;
+            %tmp.134 = lgetv %subBytes.6;
+            symbol [ subBytes %tmp.134 84 49 57 ];
+            %tmp.135 = invoke %tmp.132 %tmp.133(%tmp.134);
+            symbol [ _buffer ? 84 24 31 ];
+            putv self :_buffer %tmp.135;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_65_85_20_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_27_85_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_79_27_85_20_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_76_27_85_20_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_72_20_85_20_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 86 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_defaultCodeBegin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_42_12_87_12_switchStmtEnd:
+            pop;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_38_76_88_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 91; @symbol_functiondef = [writeTag,91,25,33]; @symbol_param<0> = [fieldNumber,91,34,45]; @symbol_param<0>_type<0> = [Lang,91,49,53]; @symbol_param<0>_type<1> = [Number,91,54,60]; @symbol_param<1> = [wireType,91,62,70]; @symbol_param<1>_type<0> = [Lang,91,74,78]; @symbol_param<1>_type<1> = [Number,91,79,85]; ]
+        private
+        function writeTag(fieldNumber as Lang.Number, wireType as Lang.Number) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_91_87_94_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 92 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_91_87_94_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_91_87_94_8_stop" ]
+            %tag.1 = local;
+            symbol [ tag %tag.1 92 16 19 ];
+            %tmp.1 = lgetv %fieldNumber;
+            symbol [ fieldNumber %tmp.1 92 23 34 ];
+            %tmp.2 = 3;
+            %tmp.3 = shl %tmp.1 %tmp.2;
+            %tmp.4 = lgetv %wireType;
+            symbol [ wireType %tmp.4 92 43 51 ];
+            %tmp.5 = bitor %tmp.3 %tmp.4;
+            lputv %tag.1 %tmp.5;
+            symbol [ tag %tag.1 92 16 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 93 12 ]
+            %tmp.6 = self;
+            symbol [ writeVarint %tmp.7 93 12 23 ];
+            %tmp.7 = getv function %tmp.6 :writeVarint;
+            %tmp.8 = lgetv %tag.1;
+            symbol [ tag %tmp.8 93 24 27 ];
+            invoke %tmp.6 %tmp.7(%tmp.8);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_91_87_94_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 98; @symbol_functiondef = [writeVarint,98,25,36]; @symbol_param<0> = [value,98,37,42]; @symbol_param<0>_type<0> = [Lang,98,46,50]; @symbol_param<0>_type<1> = [Number,98,51,57]; ]
+        private
+        function writeVarint(value as Lang.Number) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_98_59_109_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 99 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_98_59_109_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_98_59_109_8_stop" ]
+            %val.1 = local;
+            symbol [ val %val.1 99 16 19 ];
+            %tmp.1 = lgetv %value;
+            symbol [ value %tmp.1 99 22 27 ];
+            symbol [ toLong %tmp.2 99 28 34 ];
+            %tmp.2 = getv function %tmp.1 :toLong;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            lputv %val.1 %tmp.3;
+            symbol [ val %val.1 99 16 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 100 12 ]
+            while @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_test:
+            %tmp.4 = true;
+            bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_25_108_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 101 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_stmt:
+            %tmp.5 = lgetv %val.1;
+            symbol [ val %tmp.5 101 21 24 ];
+            %tmp.6 = 0x7F;
+            %tmp.7 = compl %tmp.6;
+            %tmp.8 = bitand %tmp.5 %tmp.7;
+            %tmp.9 = 0;
+            %tmp.10 = eq %tmp.8 %tmp.9;
+            bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_40_104_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 102 20 ]
+            symbol [ _buffer %tmp.12 102 30 37 ];
+            %tmp.12 = getv ? :_buffer;
+            symbol [ add %tmp.13 102 38 41 ];
+            %tmp.13 = getv function %tmp.12 :add;
+            %tmp.14 = lgetv %val.1;
+            symbol [ val %tmp.14 102 42 45 ];
+            symbol [ toNumber %tmp.15 102 46 54 ];
+            %tmp.15 = getv function %tmp.14 :toNumber;
+            %tmp.16 = invoke %tmp.14 %tmp.15();
+            %tmp.17 = invoke %tmp.12 %tmp.13(%tmp.16);
+            symbol [ _buffer ? 102 20 27 ];
+            putv self :_buffer %tmp.17;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 103 20 ]
+            goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_40_104_16_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_104_23_107_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 105 20 ]
+            symbol [ _buffer %tmp.19 105 30 37 ];
+            %tmp.19 = getv ? :_buffer;
+            symbol [ add %tmp.20 105 38 41 ];
+            %tmp.20 = getv function %tmp.19 :add;
+            %tmp.21 = lgetv %val.1;
+            symbol [ val %tmp.21 105 44 47 ];
+            %tmp.22 = 0x7F;
+            %tmp.23 = bitand %tmp.21 %tmp.22;
+            %tmp.24 = 0x80;
+            %tmp.25 = bitor %tmp.23 %tmp.24;
+            symbol [ toNumber %tmp.26 105 64 72 ];
+            %tmp.26 = getv function %tmp.25 :toNumber;
+            %tmp.27 = invoke %tmp.25 %tmp.26();
+            %tmp.28 = invoke %tmp.19 %tmp.20(%tmp.27);
+            symbol [ _buffer ? 105 20 27 ];
+            putv self :_buffer %tmp.28;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 106 20 ]
+            %tmp.29 = lgetv %val.1;
+            symbol [ val %tmp.29 106 26 29 ];
+            %tmp.30 = 7;
+            %tmp.31 = shr %tmp.29 %tmp.30;
+            lputv %val.1 %tmp.31;
+            symbol [ val %val.1 106 20 23 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_104_23_107_16_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_101_16_107_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_25_108_12_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_100_12_108_12_while_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_98_59_109_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 112; @symbol_functiondef = [writeFixed32,112,25,37]; @symbol_param<0> = [value,112,38,43]; ]
+        private
+        function writeFixed32(value) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 113 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_stop" ]
+            %bytes.1 = local;
+            symbol [ bytes %bytes.1 113 16 21 ];
+            %tmp.2 = 4;
+            %tmp.1 = newba %tmp.2;
+            lputv %bytes.1 %tmp.1;
+            symbol [ bytes %bytes.1 113 16 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 116 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_stop" ]
+            %longVal.2 = local;
+            symbol [ longVal %longVal.2 116 16 23 ];
+            %tmp.3 = 0L;
+            lputv %longVal.2 %tmp.3;
+            symbol [ longVal %longVal.2 116 16 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 117 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_stmt:
+            %tmp.4 = lgetv %value;
+            symbol [ value %tmp.4 117 16 21 ];
+            symbol [ Lang %tmp.5 117 33 37 ];
+            %tmp.5 = getm $.Toybox.Lang;
+            symbol [ Float %tmp.6 117 38 43 ];
+            %tmp.6 = getv %tmp.5 :Float;
+            %tmp.7 = isa %tmp.4 %tmp.6;
+            bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_45_123_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 122 16 ]
+            %tmp.8 = lgetv %value;
+            symbol [ value %tmp.8 122 26 31 ];
+            %tmp.9 = as %tmp.8 { (Lang.Float) };
+            symbol [ toLong %tmp.10 122 32 38 ];
+            %tmp.10 = getv function %tmp.9 :toLong;
+            %tmp.11 = invoke %tmp.9 %tmp.10();
+            lputv %longVal.2 %tmp.11;
+            symbol [ longVal %longVal.2 122 16 23 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_45_123_12_stop:
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_123_19_125_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 124 16 ]
+            %tmp.12 = lgetv %value;
+            symbol [ value %tmp.12 124 26 31 ];
+            %tmp.13 = as %tmp.12 { (!Lang.Float) };
+            symbol [ toLong %tmp.14 124 32 38 ];
+            %tmp.14 = getv function %tmp.13 :toLong;
+            %tmp.15 = invoke %tmp.13 %tmp.14();
+            lputv %longVal.2 %tmp.15;
+            symbol [ longVal %longVal.2 124 16 23 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_123_19_125_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_117_12_125_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 127 12 ]
+            %tmp.16 = lgetv %bytes.1;
+            symbol [ bytes %tmp.16 127 12 17 ];
+            %tmp.17 = lgetv %longVal.2;
+            symbol [ longVal %tmp.17 127 24 31 ];
+            %tmp.18 = 0xFF;
+            %tmp.19 = bitand %tmp.17 %tmp.18;
+            symbol [ toNumber %tmp.20 127 40 48 ];
+            %tmp.20 = getv function %tmp.19 :toNumber;
+            %tmp.21 = invoke %tmp.19 %tmp.20();
+            %tmp.22 = 0;
+            aputv %tmp.16 %tmp.22 %tmp.21;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 128 12 ]
+            %tmp.23 = lgetv %bytes.1;
+            symbol [ bytes %tmp.23 128 12 17 ];
+            %tmp.24 = lgetv %longVal.2;
+            symbol [ longVal %tmp.24 128 25 32 ];
+            %tmp.25 = 8;
+            %tmp.26 = shr %tmp.24 %tmp.25;
+            %tmp.27 = 0xFF;
+            %tmp.28 = bitand %tmp.26 %tmp.27;
+            symbol [ toNumber %tmp.29 128 47 55 ];
+            %tmp.29 = getv function %tmp.28 :toNumber;
+            %tmp.30 = invoke %tmp.28 %tmp.29();
+            %tmp.31 = 1;
+            aputv %tmp.23 %tmp.31 %tmp.30;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 129 12 ]
+            %tmp.32 = lgetv %bytes.1;
+            symbol [ bytes %tmp.32 129 12 17 ];
+            %tmp.33 = lgetv %longVal.2;
+            symbol [ longVal %tmp.33 129 25 32 ];
+            %tmp.34 = 16;
+            %tmp.35 = shr %tmp.33 %tmp.34;
+            %tmp.36 = 0xFF;
+            %tmp.37 = bitand %tmp.35 %tmp.36;
+            symbol [ toNumber %tmp.38 129 48 56 ];
+            %tmp.38 = getv function %tmp.37 :toNumber;
+            %tmp.39 = invoke %tmp.37 %tmp.38();
+            %tmp.40 = 2;
+            aputv %tmp.32 %tmp.40 %tmp.39;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 130 12 ]
+            %tmp.41 = lgetv %bytes.1;
+            symbol [ bytes %tmp.41 130 12 17 ];
+            %tmp.42 = lgetv %longVal.2;
+            symbol [ longVal %tmp.42 130 25 32 ];
+            %tmp.43 = 24;
+            %tmp.44 = shr %tmp.42 %tmp.43;
+            %tmp.45 = 0xFF;
+            %tmp.46 = bitand %tmp.44 %tmp.45;
+            symbol [ toNumber %tmp.47 130 48 56 ];
+            %tmp.47 = getv function %tmp.46 :toNumber;
+            %tmp.48 = invoke %tmp.46 %tmp.47();
+            %tmp.49 = 3;
+            aputv %tmp.41 %tmp.49 %tmp.48;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 131 12 ]
+            symbol [ _buffer %tmp.51 131 22 29 ];
+            %tmp.51 = getv ? :_buffer;
+            symbol [ addAll %tmp.52 131 30 36 ];
+            %tmp.52 = getv function %tmp.51 :addAll;
+            %tmp.53 = lgetv %bytes.1;
+            symbol [ bytes %tmp.53 131 37 42 ];
+            %tmp.54 = invoke %tmp.51 %tmp.52(%tmp.53);
+            symbol [ _buffer ? 131 12 19 ];
+            putv self :_buffer %tmp.54;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_112_45_132_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 135; @symbol_functiondef = [writeFixed64,135,25,37]; @symbol_param<0> = [value,135,38,43]; @symbol_param<0>_type<0> = [Lang,135,47,51]; @symbol_param<0>_type<1> = [Long,135,52,56]; ]
+        private
+        function writeFixed64(value as Lang.Long) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_135_58_147_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 136 13 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_135_58_147_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_135_58_147_8_stop" ]
+            %bytes.1 = local;
+            symbol [ bytes %bytes.1 136 17 22 ];
+            %tmp.2 = 8;
+            %tmp.1 = newba %tmp.2;
+            lputv %bytes.1 %tmp.1;
+            symbol [ bytes %bytes.1 136 17 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 138 13 ]
+            %tmp.3 = lgetv %bytes.1;
+            symbol [ bytes %tmp.3 138 13 18 ];
+            %tmp.4 = lgetv %value;
+            symbol [ value %tmp.4 138 25 30 ];
+            %tmp.5 = 0xFF;
+            %tmp.6 = bitand %tmp.4 %tmp.5;
+            symbol [ toNumber %tmp.7 138 39 47 ];
+            %tmp.7 = getv function %tmp.6 :toNumber;
+            %tmp.8 = invoke %tmp.6 %tmp.7();
+            %tmp.9 = 0;
+            aputv %tmp.3 %tmp.9 %tmp.8;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 139 13 ]
+            %tmp.10 = lgetv %bytes.1;
+            symbol [ bytes %tmp.10 139 13 18 ];
+            %tmp.11 = lgetv %value;
+            symbol [ value %tmp.11 139 26 31 ];
+            %tmp.12 = 8;
+            %tmp.13 = shr %tmp.11 %tmp.12;
+            %tmp.14 = 0xFF;
+            %tmp.15 = bitand %tmp.13 %tmp.14;
+            symbol [ toNumber %tmp.16 139 46 54 ];
+            %tmp.16 = getv function %tmp.15 :toNumber;
+            %tmp.17 = invoke %tmp.15 %tmp.16();
+            %tmp.18 = 1;
+            aputv %tmp.10 %tmp.18 %tmp.17;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 140 13 ]
+            %tmp.19 = lgetv %bytes.1;
+            symbol [ bytes %tmp.19 140 13 18 ];
+            %tmp.20 = lgetv %value;
+            symbol [ value %tmp.20 140 26 31 ];
+            %tmp.21 = 16;
+            %tmp.22 = shr %tmp.20 %tmp.21;
+            %tmp.23 = 0xFF;
+            %tmp.24 = bitand %tmp.22 %tmp.23;
+            symbol [ toNumber %tmp.25 140 47 55 ];
+            %tmp.25 = getv function %tmp.24 :toNumber;
+            %tmp.26 = invoke %tmp.24 %tmp.25();
+            %tmp.27 = 2;
+            aputv %tmp.19 %tmp.27 %tmp.26;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 141 13 ]
+            %tmp.28 = lgetv %bytes.1;
+            symbol [ bytes %tmp.28 141 13 18 ];
+            %tmp.29 = lgetv %value;
+            symbol [ value %tmp.29 141 26 31 ];
+            %tmp.30 = 24;
+            %tmp.31 = shr %tmp.29 %tmp.30;
+            %tmp.32 = 0xFF;
+            %tmp.33 = bitand %tmp.31 %tmp.32;
+            symbol [ toNumber %tmp.34 141 47 55 ];
+            %tmp.34 = getv function %tmp.33 :toNumber;
+            %tmp.35 = invoke %tmp.33 %tmp.34();
+            %tmp.36 = 3;
+            aputv %tmp.28 %tmp.36 %tmp.35;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 142 13 ]
+            %tmp.37 = lgetv %bytes.1;
+            symbol [ bytes %tmp.37 142 13 18 ];
+            %tmp.38 = lgetv %value;
+            symbol [ value %tmp.38 142 26 31 ];
+            %tmp.39 = 32;
+            %tmp.40 = shr %tmp.38 %tmp.39;
+            %tmp.41 = 0xFF;
+            %tmp.42 = bitand %tmp.40 %tmp.41;
+            symbol [ toNumber %tmp.43 142 47 55 ];
+            %tmp.43 = getv function %tmp.42 :toNumber;
+            %tmp.44 = invoke %tmp.42 %tmp.43();
+            %tmp.45 = 4;
+            aputv %tmp.37 %tmp.45 %tmp.44;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 143 13 ]
+            %tmp.46 = lgetv %bytes.1;
+            symbol [ bytes %tmp.46 143 13 18 ];
+            %tmp.47 = lgetv %value;
+            symbol [ value %tmp.47 143 26 31 ];
+            %tmp.48 = 40;
+            %tmp.49 = shr %tmp.47 %tmp.48;
+            %tmp.50 = 0xFF;
+            %tmp.51 = bitand %tmp.49 %tmp.50;
+            symbol [ toNumber %tmp.52 143 47 55 ];
+            %tmp.52 = getv function %tmp.51 :toNumber;
+            %tmp.53 = invoke %tmp.51 %tmp.52();
+            %tmp.54 = 5;
+            aputv %tmp.46 %tmp.54 %tmp.53;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 144 13 ]
+            %tmp.55 = lgetv %bytes.1;
+            symbol [ bytes %tmp.55 144 13 18 ];
+            %tmp.56 = lgetv %value;
+            symbol [ value %tmp.56 144 26 31 ];
+            %tmp.57 = 48;
+            %tmp.58 = shr %tmp.56 %tmp.57;
+            %tmp.59 = 0xFF;
+            %tmp.60 = bitand %tmp.58 %tmp.59;
+            symbol [ toNumber %tmp.61 144 47 55 ];
+            %tmp.61 = getv function %tmp.60 :toNumber;
+            %tmp.62 = invoke %tmp.60 %tmp.61();
+            %tmp.63 = 6;
+            aputv %tmp.55 %tmp.63 %tmp.62;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 145 13 ]
+            %tmp.64 = lgetv %bytes.1;
+            symbol [ bytes %tmp.64 145 13 18 ];
+            %tmp.65 = lgetv %value;
+            symbol [ value %tmp.65 145 26 31 ];
+            %tmp.66 = 56;
+            %tmp.67 = shr %tmp.65 %tmp.66;
+            %tmp.68 = 0xFF;
+            %tmp.69 = bitand %tmp.67 %tmp.68;
+            symbol [ toNumber %tmp.70 145 47 55 ];
+            %tmp.70 = getv function %tmp.69 :toNumber;
+            %tmp.71 = invoke %tmp.69 %tmp.70();
+            %tmp.72 = 7;
+            aputv %tmp.64 %tmp.72 %tmp.71;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 146 13 ]
+            symbol [ _buffer %tmp.74 146 23 30 ];
+            %tmp.74 = getv ? :_buffer;
+            symbol [ addAll %tmp.75 146 31 37 ];
+            %tmp.75 = getv function %tmp.74 :addAll;
+            %tmp.76 = lgetv %bytes.1;
+            symbol [ bytes %tmp.76 146 38 43 ];
+            %tmp.77 = invoke %tmp.74 %tmp.75(%tmp.76);
+            symbol [ _buffer ? 146 13 20 ];
+            putv self :_buffer %tmp.77;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_135_58_147_8_stop:
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 152; @symbol_functiondef = [stringToBytes,152,25,38]; @symbol_param<0> = [str,152,39,42]; @symbol_param<0>_type<0> = [Lang,152,46,50]; @symbol_param<0>_type<1> = [String,152,51,57]; @symbol_return<0> = [Lang,152,62,66]; @symbol_return<1> = [ByteArray,152,67,76]; ]
+        private
+        function stringToBytes(str as Lang.String) as Lang.ByteArray {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_152_77_160_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 155 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_152_77_160_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_152_77_160_8_stop" ]
+            %bytes.1 = local;
+            symbol [ bytes %bytes.1 155 16 21 ];
+            %tmp.2 = lgetv %str;
+            symbol [ str %tmp.2 155 29 32 ];
+            symbol [ length %tmp.3 155 33 39 ];
+            %tmp.3 = getv function %tmp.2 :length;
+            %tmp.4 = invoke %tmp.2 %tmp.3();
+            %tmp.1 = newba %tmp.4;
+            lputv %bytes.1 %tmp.1;
+            symbol [ bytes %bytes.1 155 16 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 156 12 ]
+            for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_init:
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_end" ]
+            %i.2 = local;
+            symbol [ i %i.2 156 21 22 ];
+            %tmp.5 = 0;
+            lputv %i.2 %tmp.5;
+            symbol [ i %i.2 156 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_test:
+            %tmp.6 = lgetv %i.2;
+            symbol [ i %tmp.6 156 28 29 ];
+            %tmp.7 = lgetv %str;
+            symbol [ str %tmp.7 156 32 35 ];
+            symbol [ length %tmp.8 156 36 42 ];
+            %tmp.8 = getv function %tmp.7 :length;
+            %tmp.9 = invoke %tmp.7 %tmp.8();
+            %tmp.10 = lt %tmp.6 %tmp.9;
+            bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_51_158_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 157 16 ]
+            %tmp.11 = lgetv %bytes.1;
+            symbol [ bytes %tmp.11 157 16 21 ];
+            %tmp.12 = lgetv %str;
+            symbol [ str %tmp.12 157 27 30 ];
+            symbol [ toCharArray %tmp.13 157 31 42 ];
+            %tmp.13 = getv function %tmp.12 :toCharArray;
+            %tmp.14 = invoke %tmp.12 %tmp.13();
+            %tmp.15 = lgetv %i.2;
+            symbol [ i %tmp.15 157 45 46 ];
+            %tmp.16 = agetv %tmp.14 %tmp.15;
+            symbol [ toNumber %tmp.17 157 48 56 ];
+            %tmp.17 = getv function %tmp.16 :toNumber;
+            %tmp.18 = invoke %tmp.16 %tmp.17();
+            %tmp.19 = lgetv %i.2;
+            symbol [ i %tmp.19 157 22 23 ];
+            aputv %tmp.11 %tmp.19 %tmp.18;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_51_158_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 156 ]
+            %tmp.22 = lgetv %i.2;
+            symbol [ i %tmp.22 156 46 47 ];
+            %tmp.23 = add %tmp.22 1;
+            lputv %i.2 %tmp.23;
+            symbol [ i %i.2 156 46 47 ];
+            goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_156_12_158_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc" 159 12 ]
+            %tmp.24 = lgetv %bytes.1;
+            symbol [ bytes %tmp.24 159 19 24 ];
+            ret %tmp.24;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_Encoder_mc_152_77_160_8_stop:
+        }
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/Encoder.mc"; @line = 6; ]
+<init> {
+}

@@ -1,0 +1,2056 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [System,7,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [Time,8,13,17]; ]
+using Toybox.Time;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 9; @symbol_usingdef<0> = [ProtoBuf,9,6,14]; ]
+using ProtoBuf;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 11; @symbol_classdef = [MessageHandler,11,6,20]; ]
+class MessageHandler {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 11; ]
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 16 16 ]
+        %tmp.1 = newa 0;
+        putv self :_messages %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 17 16 ]
+        %tmp.2 = newd 0;
+        putv self :_nodes %tmp.2;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 11; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 12; @position = 16; @symbol_vardef = [_encoder,12,16,24]; ]
+    private
+    var _encoder;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 13; @position = 16; @symbol_vardef = [_decoder,13,16,24]; ]
+    private
+    var _decoder;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 14; @position = 16; @symbol_vardef = [_myNodeNum,14,16,26]; ]
+    private
+    var _myNodeNum = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 15; @position = 16; @symbol_vardef = [_messageIdCounter,15,16,33]; ]
+    private
+    var _messageIdCounter;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 16; @position = 16; @symbol_vardef = [_messages,16,16,25]; ]
+    private
+    var _messages;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 17; @position = 16; @symbol_vardef = [_nodes,17,16,22]; ]
+    private
+    var _nodes;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 18; @position = 16; @symbol_vardef = [_configComplete,18,16,31]; ]
+    private
+    var _configComplete = false;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 19; @position = 16; @symbol_vardef = [_unreadCount,19,16,28]; ]
+    private
+    var _unreadCount = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 22; @position = 16; @symbol_vardef = [_onMessageReceived,22,16,34]; ]
+    private
+    var _onMessageReceived = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 23; @position = 16; @symbol_vardef = [_onNodeUpdate,23,16,29]; ]
+    private
+    var _onNodeUpdate = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 24; @position = 16; @symbol_vardef = [_onConfigComplete,24,16,33]; ]
+    private
+    var _onConfigComplete = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 26; @symbol_functiondef = [initialize,26,13,23]; ]
+    function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_26_26_30_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 27 8 ]
+        symbol [ ProtoBuf %tmp.3 27 23 31 ];
+        %tmp.3 = getm $.ProtoBuf;
+        symbol [ Encoder %tmp.4 27 32 39 ];
+        %tmp.4 = getv function ? %tmp.3 :Encoder;
+        %tmp.1 = newc %tmp.4 ();
+        symbol [ _encoder ? 27 8 16 ];
+        putv self :_encoder %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 28 8 ]
+        symbol [ ProtoBuf %tmp.7 28 23 31 ];
+        %tmp.7 = getm $.ProtoBuf;
+        symbol [ Decoder %tmp.8 28 32 39 ];
+        %tmp.8 = getv function ? %tmp.7 :Decoder;
+        %tmp.5 = newc %tmp.8 ();
+        symbol [ _decoder ? 28 8 16 ];
+        putv self :_decoder %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 29 8 ]
+        symbol [ System %tmp.9 29 28 34 ];
+        %tmp.9 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.10 29 35 43 ];
+        %tmp.10 = getv function %tmp.9 :getTimer;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        symbol [ _messageIdCounter ? 29 8 25 ];
+        putv self :_messageIdCounter %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_26_26_30_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 33; @symbol_functiondef = [setMessageCallback,33,13,31]; @symbol_param<0> = [callback,33,32,40]; ]
+    function setMessageCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_33_42_35_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 34 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 34 29 37 ];
+        symbol [ _onMessageReceived ? 34 8 26 ];
+        putv self :_onMessageReceived %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_33_42_35_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 38; @symbol_functiondef = [setNodeUpdateCallback,38,13,34]; @symbol_param<0> = [callback,38,35,43]; ]
+    function setNodeUpdateCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_38_45_40_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 39 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 39 24 32 ];
+        symbol [ _onNodeUpdate ? 39 8 21 ];
+        putv self :_onNodeUpdate %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_38_45_40_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 43; @symbol_functiondef = [setConfigCompleteCallback,43,13,38]; @symbol_param<0> = [callback,43,39,47]; ]
+    function setConfigCompleteCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_43_49_45_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 44 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 44 28 36 ];
+        symbol [ _onConfigComplete ? 44 8 25 ];
+        putv self :_onConfigComplete %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_43_49_45_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 48; @symbol_functiondef = [generateMessageId,48,13,30]; ]
+    function generateMessageId() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_48_33_51_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 49 8 ]
+        symbol [ _messageIdCounter %tmp.2 49 29 46 ];
+        %tmp.2 = getv ? :_messageIdCounter;
+        %tmp.3 = 1;
+        %tmp.4 = add %tmp.2 %tmp.3;
+        %tmp.5 = 0xFFFFFFFF;
+        %tmp.6 = bitand %tmp.4 %tmp.5;
+        symbol [ _messageIdCounter ? 49 8 25 ];
+        putv self :_messageIdCounter %tmp.6;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 50 8 ]
+        symbol [ _messageIdCounter %tmp.8 50 15 32 ];
+        %tmp.8 = getv ? :_messageIdCounter;
+        ret %tmp.8;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_48_33_51_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 58; @symbol_functiondef = [createWantConfigRequest,58,13,36]; ]
+    function createWantConfigRequest() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 59 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_stop" ]
+        %configId.1 = local;
+        symbol [ configId %configId.1 59 12 20 ];
+        symbol [ System %tmp.1 59 23 29 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.2 59 30 38 ];
+        %tmp.2 = getv function %tmp.1 :getTimer;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = 0xFFFFFFFF;
+        %tmp.5 = bitand %tmp.3 %tmp.4;
+        lputv %configId.1 %tmp.5;
+        symbol [ configId %configId.1 59 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 61 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_stop" ]
+        %toRadio.2 = local;
+        symbol [ toRadio %toRadio.2 61 12 19 ];
+        %tmp.6 = newd 1;
+        %tmp.8 = const :want_config_id;
+        symbol [ want_config_id %tmp.8 62 13 27 const ];
+        %tmp.9 = lgetv %configId.1;
+        symbol [ configId %tmp.9 62 31 39 ];
+        %tmp.10 = dup %tmp.6;
+        %tmp.11 = aputv %tmp.10 %tmp.8 %tmp.9;
+        lputv %toRadio.2 %tmp.11;
+        symbol [ toRadio %toRadio.2 61 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 65 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_stop" ]
+        %encoded.3 = local;
+        symbol [ encoded %encoded.3 65 12 19 ];
+        symbol [ _encoder %tmp.13 65 22 30 ];
+        %tmp.13 = getv ? :_encoder;
+        symbol [ encode %tmp.14 65 31 37 ];
+        %tmp.14 = getv function %tmp.13 :encode;
+        %tmp.15 = lgetv %toRadio.2;
+        symbol [ toRadio %tmp.15 65 38 45 ];
+        symbol [ ProtoBuf %tmp.16 65 47 55 ];
+        %tmp.16 = getm $.ProtoBuf;
+        symbol [ SCHEMA_TORADIO %tmp.17 65 56 70 ];
+        %tmp.17 = getv %tmp.16 :SCHEMA_TORADIO;
+        %tmp.18 = invoke %tmp.13 %tmp.14(%tmp.15, %tmp.17);
+        lputv %encoded.3 %tmp.18;
+        symbol [ encoded %encoded.3 65 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 66 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_stop" ]
+        %wrapped.4 = local;
+        symbol [ wrapped %wrapped.4 66 12 19 ];
+        symbol [ ProtoBuf %tmp.19 66 22 30 ];
+        %tmp.19 = getm $.ProtoBuf;
+        symbol [ wrap %tmp.20 66 31 35 ];
+        %tmp.20 = getv function %tmp.19 :wrap;
+        %tmp.21 = lgetv %encoded.3;
+        symbol [ encoded %tmp.21 66 36 43 ];
+        %tmp.22 = invoke %tmp.19 %tmp.20(%tmp.21);
+        lputv %wrapped.4 %tmp.22;
+        symbol [ wrapped %wrapped.4 66 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 68 8 ]
+        symbol [ System %tmp.23 68 8 14 ];
+        %tmp.23 = getm $.Toybox.System;
+        symbol [ println %tmp.24 68 15 22 ];
+        %tmp.24 = getv function %tmp.23 :println;
+        %tmp.25 = "Created want_config_id request: ";
+        %tmp.26 = lgetv %configId.1;
+        symbol [ configId %tmp.26 68 60 68 ];
+        %tmp.27 = add %tmp.25 %tmp.26;
+        invoke %tmp.23 %tmp.24(%tmp.27);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 69 8 ]
+        %tmp.28 = lgetv %wrapped.4;
+        symbol [ wrapped %tmp.28 69 15 22 ];
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_58_39_70_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 76; @symbol_functiondef = [createTextMessage,76,13,30]; @symbol_param<0> = [text,76,31,35]; @symbol_param<1> = [destination,76,37,48]; @symbol_param<2> = [wantAck,76,50,57]; ]
+    function createTextMessage(text, destination, wantAck) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 77 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_12_77_45_begin:
+        %tmp.1 = lgetv %text;
+        symbol [ text %tmp.1 77 12 16 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bt %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_28_77_45_false:
+        %tmp.4 = lgetv %text;
+        symbol [ text %tmp.4 77 28 32 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        symbol [ length %tmp.6 77 33 39 ];
+        %tmp.6 = getv function %tmp.5 :length;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = 0;
+        %tmp.9 = eq %tmp.7 %tmp.8;
+        push %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_28_77_45_end:
+        %tmp.10 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_12_77_45_begin] [%tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_28_77_45_false] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_28_77_45_end];
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_48_79_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 78 12 ]
+        %tmp.11 = null;
+        ret %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_48_79_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_77_8_79_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 82 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %dataMessage.1 = local;
+        symbol [ dataMessage %dataMessage.1 82 12 23 ];
+        %tmp.12 = newd 2;
+        %tmp.14 = const :portnum;
+        symbol [ portnum %tmp.14 83 13 20 const ];
+        symbol [ ProtoBuf %tmp.15 83 24 32 ];
+        %tmp.15 = getm $.ProtoBuf;
+        symbol [ TEXT_MESSAGE_APP %tmp.16 83 33 49 ];
+        %tmp.16 = getv %tmp.15 :TEXT_MESSAGE_APP;
+        %tmp.17 = dup %tmp.12;
+        %tmp.18 = aputv %tmp.17 %tmp.14 %tmp.16;
+        %tmp.20 = const :payload;
+        symbol [ payload %tmp.20 84 13 20 const ];
+        %tmp.21 = lgetv %text;
+        symbol [ text %tmp.21 84 24 28 ];
+        symbol [ toUtf8Array %tmp.22 84 29 40 ];
+        %tmp.22 = getv function %tmp.21 :toUtf8Array;
+        %tmp.23 = invoke %tmp.21 %tmp.22();
+        %tmp.24 = dup %tmp.18;
+        %tmp.25 = aputv %tmp.24 %tmp.20 %tmp.23;
+        lputv %dataMessage.1 %tmp.25;
+        symbol [ dataMessage %dataMessage.1 82 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 87 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %dataEncoded.2 = local;
+        symbol [ dataEncoded %dataEncoded.2 87 12 23 ];
+        symbol [ _encoder %tmp.27 87 26 34 ];
+        %tmp.27 = getv ? :_encoder;
+        symbol [ encode %tmp.28 87 35 41 ];
+        %tmp.28 = getv function %tmp.27 :encode;
+        %tmp.29 = lgetv %dataMessage.1;
+        symbol [ dataMessage %tmp.29 87 42 53 ];
+        symbol [ ProtoBuf %tmp.30 87 55 63 ];
+        %tmp.30 = getm $.ProtoBuf;
+        symbol [ SCHEMA_DATA %tmp.31 87 64 75 ];
+        %tmp.31 = getv %tmp.30 :SCHEMA_DATA;
+        %tmp.32 = invoke %tmp.27 %tmp.28(%tmp.29, %tmp.31);
+        lputv %dataEncoded.2 %tmp.32;
+        symbol [ dataEncoded %dataEncoded.2 87 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 90 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %meshPacket.3 = local;
+        symbol [ meshPacket %meshPacket.3 90 12 22 ];
+        %tmp.33 = newd 6;
+        %tmp.35 = const :to;
+        symbol [ to %tmp.35 91 13 15 const ];
+        %tmp.36 = lgetv %destination;
+        symbol [ destination %tmp.36 91 19 30 ];
+        %tmp.37 = dup %tmp.33;
+        %tmp.38 = aputv %tmp.37 %tmp.35 %tmp.36;
+        %tmp.40 = const :decoded;
+        symbol [ decoded %tmp.40 92 13 20 const ];
+        %tmp.41 = lgetv %dataEncoded.2;
+        symbol [ dataEncoded %tmp.41 92 24 35 ];
+        %tmp.42 = dup %tmp.38;
+        %tmp.43 = aputv %tmp.42 %tmp.40 %tmp.41;
+        %tmp.45 = const :id;
+        symbol [ id %tmp.45 93 13 15 const ];
+        %tmp.46 = self;
+        symbol [ generateMessageId %tmp.47 93 19 36 ];
+        %tmp.47 = getv function %tmp.46 :generateMessageId;
+        %tmp.48 = invoke %tmp.46 %tmp.47();
+        %tmp.49 = dup %tmp.43;
+        %tmp.50 = aputv %tmp.49 %tmp.45 %tmp.48;
+        %tmp.52 = const :want_ack;
+        symbol [ want_ack %tmp.52 94 13 21 const ];
+        %tmp.53 = lgetv %wantAck;
+        symbol [ wantAck %tmp.53 94 25 32 ];
+        %tmp.54 = dup %tmp.50;
+        %tmp.55 = aputv %tmp.54 %tmp.52 %tmp.53;
+        %tmp.57 = const :channel;
+        symbol [ channel %tmp.57 95 13 20 const ];
+        %tmp.58 = 0;
+        %tmp.59 = dup %tmp.55;
+        %tmp.60 = aputv %tmp.59 %tmp.57 %tmp.58;
+        %tmp.62 = const :hop_limit;
+        symbol [ hop_limit %tmp.62 96 13 22 const ];
+        %tmp.63 = 3;
+        %tmp.64 = dup %tmp.60;
+        %tmp.65 = aputv %tmp.64 %tmp.62 %tmp.63;
+        lputv %meshPacket.3 %tmp.65;
+        symbol [ meshPacket %meshPacket.3 90 12 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 100 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_8_102_8_if_stmt:
+        symbol [ _myNodeNum %tmp.67 100 12 22 ];
+        %tmp.67 = getv ? :_myNodeNum;
+        %tmp.68 = null;
+        %tmp.69 = ne %tmp.67 %tmp.68;
+        bf %tmp.69 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_8_102_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_8_102_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_32_102_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 101 12 ]
+        %tmp.70 = lgetv %meshPacket.3;
+        symbol [ meshPacket %tmp.70 101 12 22 ];
+        symbol [ _myNodeNum %tmp.72 101 32 42 ];
+        %tmp.72 = getv ? :_myNodeNum;
+        %tmp.73 = as %tmp.72 { (!Null) };
+        %tmp.75 = const :from;
+        symbol [ from %tmp.75 101 24 28 const ];
+        aputv %tmp.70 %tmp.75 %tmp.73;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_32_102_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_8_102_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_100_8_102_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 104 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %meshEncoded.4 = local;
+        symbol [ meshEncoded %meshEncoded.4 104 12 23 ];
+        symbol [ _encoder %tmp.77 104 26 34 ];
+        %tmp.77 = getv ? :_encoder;
+        symbol [ encode %tmp.78 104 35 41 ];
+        %tmp.78 = getv function %tmp.77 :encode;
+        %tmp.79 = lgetv %meshPacket.3;
+        symbol [ meshPacket %tmp.79 104 42 52 ];
+        symbol [ ProtoBuf %tmp.80 104 54 62 ];
+        %tmp.80 = getm $.ProtoBuf;
+        symbol [ SCHEMA_MESHPACKET %tmp.81 104 63 80 ];
+        %tmp.81 = getv %tmp.80 :SCHEMA_MESHPACKET;
+        %tmp.82 = invoke %tmp.77 %tmp.78(%tmp.79, %tmp.81);
+        lputv %meshEncoded.4 %tmp.82;
+        symbol [ meshEncoded %meshEncoded.4 104 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 107 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %toRadio.5 = local;
+        symbol [ toRadio %toRadio.5 107 12 19 ];
+        %tmp.83 = newd 1;
+        %tmp.85 = const :packet;
+        symbol [ packet %tmp.85 108 13 19 const ];
+        %tmp.86 = lgetv %meshEncoded.4;
+        symbol [ meshEncoded %tmp.86 108 23 34 ];
+        %tmp.87 = dup %tmp.83;
+        %tmp.88 = aputv %tmp.87 %tmp.85 %tmp.86;
+        lputv %toRadio.5 %tmp.88;
+        symbol [ toRadio %toRadio.5 107 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 111 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %toRadioEncoded.6 = local;
+        symbol [ toRadioEncoded %toRadioEncoded.6 111 12 26 ];
+        symbol [ _encoder %tmp.90 111 29 37 ];
+        %tmp.90 = getv ? :_encoder;
+        symbol [ encode %tmp.91 111 38 44 ];
+        %tmp.91 = getv function %tmp.90 :encode;
+        %tmp.92 = lgetv %toRadio.5;
+        symbol [ toRadio %tmp.92 111 45 52 ];
+        symbol [ ProtoBuf %tmp.93 111 54 62 ];
+        %tmp.93 = getm $.ProtoBuf;
+        symbol [ SCHEMA_TORADIO %tmp.94 111 63 77 ];
+        %tmp.94 = getv %tmp.93 :SCHEMA_TORADIO;
+        %tmp.95 = invoke %tmp.90 %tmp.91(%tmp.92, %tmp.94);
+        lputv %toRadioEncoded.6 %tmp.95;
+        symbol [ toRadioEncoded %toRadioEncoded.6 111 12 26 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 112 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop" ]
+        %wrapped.7 = local;
+        symbol [ wrapped %wrapped.7 112 12 19 ];
+        symbol [ ProtoBuf %tmp.96 112 22 30 ];
+        %tmp.96 = getm $.ProtoBuf;
+        symbol [ wrap %tmp.97 112 31 35 ];
+        %tmp.97 = getv function %tmp.96 :wrap;
+        %tmp.98 = lgetv %toRadioEncoded.6;
+        symbol [ toRadioEncoded %tmp.98 112 36 50 ];
+        %tmp.99 = invoke %tmp.96 %tmp.97(%tmp.98);
+        lputv %wrapped.7 %tmp.99;
+        symbol [ wrapped %wrapped.7 112 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 114 8 ]
+        symbol [ System %tmp.100 114 8 14 ];
+        %tmp.100 = getm $.Toybox.System;
+        symbol [ println %tmp.101 114 15 22 ];
+        %tmp.101 = getv function %tmp.100 :println;
+        %tmp.102 = "Created text message: \"";
+        %tmp.103 = lgetv %text;
+        symbol [ text %tmp.103 114 52 56 ];
+        %tmp.104 = add %tmp.102 %tmp.103;
+        %tmp.105 = "\" to: ";
+        %tmp.106 = add %tmp.104 %tmp.105;
+        %tmp.107 = lgetv %destination;
+        symbol [ destination %tmp.107 114 71 82 ];
+        symbol [ format %tmp.108 114 83 89 ];
+        %tmp.108 = getv function %tmp.107 :format;
+        %tmp.109 = "%08X";
+        %tmp.110 = invoke %tmp.107 %tmp.108(%tmp.109);
+        %tmp.111 = add %tmp.106 %tmp.110;
+        invoke %tmp.100 %tmp.101(%tmp.111);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 115 8 ]
+        %tmp.112 = lgetv %wrapped.7;
+        symbol [ wrapped %tmp.112 115 15 22 ];
+        ret %tmp.112;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_76_59_116_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 124; @symbol_functiondef = [processReceivedData,124,13,32]; @symbol_param<0> = [data,124,33,37]; ]
+    function processReceivedData(data) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 125 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_12_125_43_begin:
+        %tmp.1 = lgetv %data;
+        symbol [ data %tmp.1 125 12 16 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bt %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_28_125_43_false:
+        %tmp.4 = lgetv %data;
+        symbol [ data %tmp.4 125 28 32 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        symbol [ size %tmp.6 125 33 37 ];
+        %tmp.6 = getv function %tmp.5 :size;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = 0;
+        %tmp.9 = eq %tmp.7 %tmp.8;
+        push %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_28_125_43_end:
+        %tmp.10 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_12_125_43_begin] [%tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_28_125_43_false] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_28_125_43_end];
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_46_127_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 126 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_46_127_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_125_8_127_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 129 8 ]
+        symbol [ System %tmp.11 129 8 14 ];
+        %tmp.11 = getm $.Toybox.System;
+        symbol [ println %tmp.12 129 15 22 ];
+        %tmp.12 = getv function %tmp.11 :println;
+        %tmp.13 = "Processing received data: ";
+        %tmp.14 = lgetv %data;
+        symbol [ data %tmp.14 129 54 58 ];
+        symbol [ size %tmp.15 129 59 63 ];
+        %tmp.15 = getv function %tmp.14 :size;
+        %tmp.16 = invoke %tmp.14 %tmp.15();
+        %tmp.17 = add %tmp.13 %tmp.16;
+        %tmp.18 = " bytes";
+        %tmp.19 = add %tmp.17 %tmp.18;
+        invoke %tmp.11 %tmp.12(%tmp.19);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 132 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_stop" ]
+        %unwrapped.1 = local;
+        symbol [ unwrapped %unwrapped.1 132 12 21 ];
+        symbol [ ProtoBuf %tmp.20 132 24 32 ];
+        %tmp.20 = getm $.ProtoBuf;
+        symbol [ unwrap %tmp.21 132 33 39 ];
+        %tmp.21 = getv function %tmp.20 :unwrap;
+        %tmp.22 = lgetv %data;
+        symbol [ data %tmp.22 132 40 44 ];
+        %tmp.23 = invoke %tmp.20 %tmp.21(%tmp.22);
+        lputv %unwrapped.1 %tmp.23;
+        symbol [ unwrapped %unwrapped.1 132 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 133 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_8_136_8_if_stmt:
+        %tmp.24 = lgetv %unwrapped.1;
+        symbol [ unwrapped %tmp.24 133 12 21 ];
+        %tmp.25 = null;
+        %tmp.26 = eq %tmp.24 %tmp.25;
+        bf %tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_8_136_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_8_136_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_31_136_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 134 12 ]
+        symbol [ System %tmp.27 134 12 18 ];
+        %tmp.27 = getm $.Toybox.System;
+        symbol [ println %tmp.28 134 19 26 ];
+        %tmp.28 = getv function %tmp.27 :println;
+        %tmp.29 = "Failed to unwrap data";
+        invoke %tmp.27 %tmp.28(%tmp.29);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 135 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_31_136_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_8_136_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_133_8_136_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 139 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_stop" ]
+        %fromRadio.2 = local;
+        symbol [ fromRadio %fromRadio.2 139 12 21 ];
+        symbol [ _decoder %tmp.31 139 24 32 ];
+        %tmp.31 = getv ? :_decoder;
+        symbol [ decode %tmp.32 139 33 39 ];
+        %tmp.32 = getv function %tmp.31 :decode;
+        %tmp.33 = lgetv %unwrapped.1;
+        symbol [ unwrapped %tmp.33 139 40 49 ];
+        symbol [ ProtoBuf %tmp.34 139 51 59 ];
+        %tmp.34 = getm $.ProtoBuf;
+        symbol [ SCHEMA_FROMRADIO %tmp.35 139 60 76 ];
+        %tmp.35 = getv %tmp.34 :SCHEMA_FROMRADIO;
+        %tmp.36 = invoke %tmp.31 %tmp.32(%tmp.33, %tmp.35);
+        lputv %fromRadio.2 %tmp.36;
+        symbol [ fromRadio %fromRadio.2 139 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 140 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_8_143_8_if_stmt:
+        %tmp.37 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.37 140 12 21 ];
+        %tmp.38 = null;
+        %tmp.39 = eq %tmp.37 %tmp.38;
+        bf %tmp.39 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_8_143_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_8_143_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_31_143_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 141 12 ]
+        symbol [ System %tmp.40 141 12 18 ];
+        %tmp.40 = getm $.Toybox.System;
+        symbol [ println %tmp.41 141 19 26 ];
+        %tmp.41 = getv function %tmp.40 :println;
+        %tmp.42 = "Failed to decode FromRadio";
+        invoke %tmp.40 %tmp.41(%tmp.42);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 142 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_31_143_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_8_143_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_140_8_143_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 146 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_8_148_8_if_stmt:
+        %tmp.43 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.43 146 12 21 ];
+        symbol [ hasKey %tmp.44 146 22 28 ];
+        %tmp.44 = getv function %tmp.43 :hasKey;
+        %tmp.46 = const :my_info;
+        symbol [ my_info %tmp.46 146 30 37 const ];
+        %tmp.47 = invoke %tmp.43 %tmp.44(%tmp.46);
+        bf %tmp.47 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_8_148_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_8_148_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_40_148_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 147 12 ]
+        %tmp.48 = self;
+        symbol [ handleMyNodeInfo %tmp.49 147 12 28 ];
+        %tmp.49 = getv function %tmp.48 :handleMyNodeInfo;
+        %tmp.50 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.50 147 29 38 ];
+        %tmp.52 = const :my_info;
+        symbol [ my_info %tmp.52 147 40 47 const ];
+        %tmp.53 = agetv %tmp.50 %tmp.52;
+        invoke %tmp.48 %tmp.49(%tmp.53);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_40_148_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_8_148_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_146_8_148_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 150 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_8_152_8_if_stmt:
+        %tmp.54 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.54 150 12 21 ];
+        symbol [ hasKey %tmp.55 150 22 28 ];
+        %tmp.55 = getv function %tmp.54 :hasKey;
+        %tmp.57 = const :node_info;
+        symbol [ node_info %tmp.57 150 30 39 const ];
+        %tmp.58 = invoke %tmp.54 %tmp.55(%tmp.57);
+        bf %tmp.58 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_8_152_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_8_152_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_42_152_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 151 12 ]
+        %tmp.59 = self;
+        symbol [ handleNodeInfo %tmp.60 151 12 26 ];
+        %tmp.60 = getv function %tmp.59 :handleNodeInfo;
+        %tmp.61 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.61 151 27 36 ];
+        %tmp.63 = const :node_info;
+        symbol [ node_info %tmp.63 151 38 47 const ];
+        %tmp.64 = agetv %tmp.61 %tmp.63;
+        invoke %tmp.59 %tmp.60(%tmp.64);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_42_152_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_8_152_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_150_8_152_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 154 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_8_156_8_if_stmt:
+        %tmp.65 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.65 154 12 21 ];
+        symbol [ hasKey %tmp.66 154 22 28 ];
+        %tmp.66 = getv function %tmp.65 :hasKey;
+        %tmp.68 = const :packet;
+        symbol [ packet %tmp.68 154 30 36 const ];
+        %tmp.69 = invoke %tmp.65 %tmp.66(%tmp.68);
+        bf %tmp.69 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_8_156_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_8_156_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_39_156_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 155 12 ]
+        %tmp.70 = self;
+        symbol [ handleMeshPacket %tmp.71 155 12 28 ];
+        %tmp.71 = getv function %tmp.70 :handleMeshPacket;
+        %tmp.72 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.72 155 29 38 ];
+        %tmp.74 = const :packet;
+        symbol [ packet %tmp.74 155 40 46 const ];
+        %tmp.75 = agetv %tmp.72 %tmp.74;
+        invoke %tmp.70 %tmp.71(%tmp.75);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_39_156_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_8_156_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_154_8_156_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 158 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_8_160_8_if_stmt:
+        %tmp.76 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.76 158 12 21 ];
+        symbol [ hasKey %tmp.77 158 22 28 ];
+        %tmp.77 = getv function %tmp.76 :hasKey;
+        %tmp.79 = const :config_complete_id;
+        symbol [ config_complete_id %tmp.79 158 30 48 const ];
+        %tmp.80 = invoke %tmp.76 %tmp.77(%tmp.79);
+        bf %tmp.80 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_8_160_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_8_160_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_51_160_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 159 12 ]
+        %tmp.81 = self;
+        symbol [ handleConfigComplete %tmp.82 159 12 32 ];
+        %tmp.82 = getv function %tmp.81 :handleConfigComplete;
+        %tmp.83 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.83 159 33 42 ];
+        %tmp.85 = const :config_complete_id;
+        symbol [ config_complete_id %tmp.85 159 44 62 const ];
+        %tmp.86 = agetv %tmp.83 %tmp.85;
+        invoke %tmp.81 %tmp.82(%tmp.86);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_51_160_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_8_160_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_158_8_160_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 162 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_8_164_8_if_stmt:
+        %tmp.87 = lgetv %fromRadio.2;
+        symbol [ fromRadio %tmp.87 162 12 21 ];
+        symbol [ hasKey %tmp.88 162 22 28 ];
+        %tmp.88 = getv function %tmp.87 :hasKey;
+        %tmp.90 = const :rebooted;
+        symbol [ rebooted %tmp.90 162 30 38 const ];
+        %tmp.91 = invoke %tmp.87 %tmp.88(%tmp.90);
+        bf %tmp.91 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_8_164_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_8_164_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_41_164_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 163 12 ]
+        symbol [ System %tmp.92 163 12 18 ];
+        %tmp.92 = getm $.Toybox.System;
+        symbol [ println %tmp.93 163 19 26 ];
+        %tmp.93 = getv function %tmp.92 :println;
+        %tmp.94 = "Node has rebooted";
+        invoke %tmp.92 %tmp.93(%tmp.94);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_41_164_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_8_164_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_162_8_164_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_124_39_165_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 168; @symbol_functiondef = [handleMyNodeInfo,168,21,37]; @symbol_param<0> = [myInfoBytes,168,38,49]; ]
+    private
+    function handleMyNodeInfo(myInfoBytes) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_168_51_184_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 169 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_8_177_8_if_stmt:
+        %tmp.1 = lgetv %myInfoBytes;
+        symbol [ myInfoBytes %tmp.1 169 14 25 ];
+        symbol [ Lang %tmp.2 169 37 41 ];
+        %tmp.2 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.3 169 42 51 ];
+        %tmp.3 = getv %tmp.2 :ByteArray;
+        %tmp.4 = isa %tmp.1 %tmp.3;
+        %tmp.5 = not %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_8_177_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_8_177_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_54_177_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 171 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_54_177_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_54_177_8_stop" ]
+        %myInfo.1 = local;
+        symbol [ myInfo %myInfo.1 171 16 22 ];
+        %tmp.6 = lgetv %myInfoBytes;
+        symbol [ myInfoBytes %tmp.6 171 25 36 ];
+        %tmp.7 = as %tmp.6 { (!Lang.ByteArray) };
+        lputv %myInfo.1 %tmp.7;
+        symbol [ myInfo %myInfo.1 171 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 172 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_12_175_12_if_stmt:
+        %tmp.8 = lgetv %myInfo.1;
+        symbol [ myInfo %tmp.8 172 16 22 ];
+        symbol [ hasKey %tmp.9 172 23 29 ];
+        %tmp.9 = getv function %tmp.8 :hasKey;
+        %tmp.11 = const :my_node_num;
+        symbol [ my_node_num %tmp.11 172 31 42 const ];
+        %tmp.12 = invoke %tmp.8 %tmp.9(%tmp.11);
+        bf %tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_12_175_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_12_175_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_45_175_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 173 16 ]
+        %tmp.13 = lgetv %myInfo.1;
+        symbol [ myInfo %tmp.13 173 29 35 ];
+        %tmp.15 = const :my_node_num;
+        symbol [ my_node_num %tmp.15 173 37 48 const ];
+        %tmp.16 = agetv %tmp.13 %tmp.15;
+        symbol [ _myNodeNum ? 173 16 26 ];
+        putv self :_myNodeNum %tmp.16;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 174 16 ]
+        symbol [ System %tmp.17 174 16 22 ];
+        %tmp.17 = getm $.Toybox.System;
+        symbol [ println %tmp.18 174 23 30 ];
+        %tmp.18 = getv function %tmp.17 :println;
+        %tmp.19 = "My node number: ";
+        symbol [ _myNodeNum %tmp.21 174 52 62 ];
+        %tmp.21 = getv ? :_myNodeNum;
+        symbol [ format %tmp.22 174 63 69 ];
+        %tmp.22 = getv function %tmp.21 :format;
+        %tmp.23 = "%08X";
+        %tmp.24 = invoke %tmp.21 %tmp.22(%tmp.23);
+        %tmp.25 = add %tmp.19 %tmp.24;
+        invoke %tmp.17 %tmp.18(%tmp.25);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_45_175_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_12_175_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_172_12_175_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 176 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_54_177_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_8_177_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_169_8_177_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 179 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_168_51_184_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_168_51_184_4_stop" ]
+        %myInfo.2 = local;
+        symbol [ myInfo %myInfo.2 179 12 18 ];
+        symbol [ _decoder %tmp.27 179 21 29 ];
+        %tmp.27 = getv ? :_decoder;
+        symbol [ decode %tmp.28 179 30 36 ];
+        %tmp.28 = getv function %tmp.27 :decode;
+        %tmp.29 = lgetv %myInfoBytes;
+        symbol [ myInfoBytes %tmp.29 179 37 48 ];
+        symbol [ ProtoBuf %tmp.30 179 50 58 ];
+        %tmp.30 = getm $.ProtoBuf;
+        symbol [ SCHEMA_MYNODEINFO %tmp.31 179 59 76 ];
+        %tmp.31 = getv %tmp.30 :SCHEMA_MYNODEINFO;
+        %tmp.32 = invoke %tmp.27 %tmp.28(%tmp.29, %tmp.31);
+        lputv %myInfo.2 %tmp.32;
+        symbol [ myInfo %myInfo.2 179 12 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 180 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_12_180_56_begin:
+        %tmp.33 = lgetv %myInfo.2;
+        symbol [ myInfo %tmp.33 180 12 18 ];
+        %tmp.34 = null;
+        %tmp.35 = ne %tmp.33 %tmp.34;
+        bf %tmp.35 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_30_180_56_true:
+        %tmp.36 = lgetv %myInfo.2;
+        symbol [ myInfo %tmp.36 180 30 36 ];
+        %tmp.37 = as %tmp.36 { (!Null) };
+        symbol [ hasKey %tmp.38 180 37 43 ];
+        %tmp.38 = getv function %tmp.37 :hasKey;
+        %tmp.40 = const :my_node_num;
+        symbol [ my_node_num %tmp.40 180 45 56 const ];
+        %tmp.41 = invoke %tmp.37 %tmp.38(%tmp.40);
+        push %tmp.41;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_30_180_56_end:
+        %tmp.42 = phi [%tmp.35 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_12_180_56_begin] [%tmp.41 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_30_180_56_true] [%tmp.42 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_30_180_56_end];
+        bf %tmp.42 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_59_183_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 181 12 ]
+        %tmp.43 = lgetv %myInfo.2;
+        symbol [ myInfo %tmp.43 181 25 31 ];
+        %tmp.44 = as %tmp.43 { (!Null) };
+        %tmp.46 = const :my_node_num;
+        symbol [ my_node_num %tmp.46 181 33 44 const ];
+        %tmp.47 = agetv %tmp.44 %tmp.46;
+        symbol [ _myNodeNum ? 181 12 22 ];
+        putv self :_myNodeNum %tmp.47;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 182 12 ]
+        symbol [ System %tmp.48 182 12 18 ];
+        %tmp.48 = getm $.Toybox.System;
+        symbol [ println %tmp.49 182 19 26 ];
+        %tmp.49 = getv function %tmp.48 :println;
+        %tmp.50 = "My node number: ";
+        symbol [ _myNodeNum %tmp.52 182 48 58 ];
+        %tmp.52 = getv ? :_myNodeNum;
+        symbol [ format %tmp.53 182 59 65 ];
+        %tmp.53 = getv function %tmp.52 :format;
+        %tmp.54 = "%08X";
+        %tmp.55 = invoke %tmp.52 %tmp.53(%tmp.54);
+        %tmp.56 = add %tmp.50 %tmp.55;
+        invoke %tmp.48 %tmp.49(%tmp.56);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_59_183_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_180_8_183_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_168_51_184_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 187; @symbol_functiondef = [handleNodeInfo,187,21,35]; @symbol_param<0> = [nodeInfoBytes,187,36,49]; ]
+    private
+    function handleNodeInfo(nodeInfoBytes) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_187_51_201_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 188 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_8_195_8_if_stmt:
+        %tmp.1 = lgetv %nodeInfoBytes;
+        symbol [ nodeInfoBytes %tmp.1 188 14 27 ];
+        symbol [ Lang %tmp.2 188 39 43 ];
+        %tmp.2 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.3 188 44 53 ];
+        %tmp.3 = getv %tmp.2 :ByteArray;
+        %tmp.4 = isa %tmp.1 %tmp.3;
+        %tmp.5 = not %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_8_195_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_8_195_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_56_195_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 190 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_56_195_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_56_195_8_stop" ]
+        %nodeInfo.1 = local;
+        symbol [ nodeInfo %nodeInfo.1 190 16 24 ];
+        %tmp.6 = lgetv %nodeInfoBytes;
+        symbol [ nodeInfoBytes %tmp.6 190 27 40 ];
+        %tmp.7 = as %tmp.6 { (!Lang.ByteArray) };
+        lputv %nodeInfo.1 %tmp.7;
+        symbol [ nodeInfo %nodeInfo.1 190 16 24 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 191 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_12_193_12_if_stmt:
+        %tmp.8 = lgetv %nodeInfo.1;
+        symbol [ nodeInfo %tmp.8 191 16 24 ];
+        symbol [ hasKey %tmp.9 191 25 31 ];
+        %tmp.9 = getv function %tmp.8 :hasKey;
+        %tmp.11 = const :num;
+        symbol [ num %tmp.11 191 33 36 const ];
+        %tmp.12 = invoke %tmp.8 %tmp.9(%tmp.11);
+        bf %tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_12_193_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_12_193_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_39_193_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 192 16 ]
+        %tmp.13 = self;
+        symbol [ storeNodeInfo %tmp.14 192 16 29 ];
+        %tmp.14 = getv function %tmp.13 :storeNodeInfo;
+        %tmp.15 = lgetv %nodeInfo.1;
+        symbol [ nodeInfo %tmp.15 192 30 38 ];
+        invoke %tmp.13 %tmp.14(%tmp.15);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_39_193_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_12_193_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_191_12_193_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 194 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_56_195_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_8_195_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_188_8_195_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 197 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_187_51_201_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_187_51_201_4_stop" ]
+        %nodeInfo.2 = local;
+        symbol [ nodeInfo %nodeInfo.2 197 12 20 ];
+        symbol [ _decoder %tmp.17 197 23 31 ];
+        %tmp.17 = getv ? :_decoder;
+        symbol [ decode %tmp.18 197 32 38 ];
+        %tmp.18 = getv function %tmp.17 :decode;
+        %tmp.19 = lgetv %nodeInfoBytes;
+        symbol [ nodeInfoBytes %tmp.19 197 39 52 ];
+        symbol [ ProtoBuf %tmp.20 197 54 62 ];
+        %tmp.20 = getm $.ProtoBuf;
+        symbol [ SCHEMA_NODEINFO %tmp.21 197 63 78 ];
+        %tmp.21 = getv %tmp.20 :SCHEMA_NODEINFO;
+        %tmp.22 = invoke %tmp.17 %tmp.18(%tmp.19, %tmp.21);
+        lputv %nodeInfo.2 %tmp.22;
+        symbol [ nodeInfo %nodeInfo.2 197 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 198 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_12_198_52_begin:
+        %tmp.23 = lgetv %nodeInfo.2;
+        symbol [ nodeInfo %tmp.23 198 12 20 ];
+        %tmp.24 = null;
+        %tmp.25 = ne %tmp.23 %tmp.24;
+        bf %tmp.25 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_32_198_52_true:
+        %tmp.26 = lgetv %nodeInfo.2;
+        symbol [ nodeInfo %tmp.26 198 32 40 ];
+        %tmp.27 = as %tmp.26 { (!Null) };
+        symbol [ hasKey %tmp.28 198 41 47 ];
+        %tmp.28 = getv function %tmp.27 :hasKey;
+        %tmp.30 = const :num;
+        symbol [ num %tmp.30 198 49 52 const ];
+        %tmp.31 = invoke %tmp.27 %tmp.28(%tmp.30);
+        push %tmp.31;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_32_198_52_end:
+        %tmp.32 = phi [%tmp.25 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_12_198_52_begin] [%tmp.31 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_32_198_52_true] [%tmp.32 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_32_198_52_end];
+        bf %tmp.32 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_55_200_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 199 12 ]
+        %tmp.33 = self;
+        symbol [ storeNodeInfo %tmp.34 199 12 25 ];
+        %tmp.34 = getv function %tmp.33 :storeNodeInfo;
+        %tmp.35 = lgetv %nodeInfo.2;
+        symbol [ nodeInfo %tmp.35 199 26 34 ];
+        %tmp.36 = as %tmp.35 { (!Null) };
+        invoke %tmp.33 %tmp.34(%tmp.36);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_55_200_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_198_8_200_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_187_51_201_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 204; @symbol_functiondef = [storeNodeInfo,204,21,34]; @symbol_param<0> = [nodeInfo,204,35,43]; ]
+    private
+    function storeNodeInfo(nodeInfo) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 205 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_stop" ]
+        %nodeNum.1 = local;
+        symbol [ nodeNum %nodeNum.1 205 12 19 ];
+        %tmp.1 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.1 205 22 30 ];
+        %tmp.3 = const :num;
+        symbol [ num %tmp.3 205 32 35 const ];
+        %tmp.4 = agetv %tmp.1 %tmp.3;
+        lputv %nodeNum.1 %tmp.4;
+        symbol [ nodeNum %nodeNum.1 205 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 206 8 ]
+        symbol [ _nodes %tmp.5 206 8 14 ];
+        %tmp.5 = getv self :_nodes;
+        %tmp.6 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.6 206 26 34 ];
+        %tmp.7 = lgetv %nodeNum.1;
+        symbol [ nodeNum %tmp.7 206 15 22 ];
+        aputv %tmp.5 %tmp.7 %tmp.6;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 208 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_stop" ]
+        %nodeName.2 = local;
+        symbol [ nodeName %nodeName.2 208 12 20 ];
+        %tmp.8 = "Unknown";
+        lputv %nodeName.2 %tmp.8;
+        symbol [ nodeName %nodeName.2 208 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 209 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_8_221_8_if_stmt:
+        %tmp.9 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.9 209 12 20 ];
+        symbol [ hasKey %tmp.10 209 21 27 ];
+        %tmp.10 = getv function %tmp.9 :hasKey;
+        %tmp.12 = const :user;
+        symbol [ user %tmp.12 209 29 33 const ];
+        %tmp.13 = invoke %tmp.9 %tmp.10(%tmp.12);
+        bf %tmp.13 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_8_221_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_8_221_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_36_221_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 210 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_36_221_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_36_221_8_stop" ]
+        %user.3 = local;
+        symbol [ user %user.3 210 16 20 ];
+        %tmp.14 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.14 210 23 31 ];
+        %tmp.16 = const :user;
+        symbol [ user %tmp.16 210 33 37 const ];
+        %tmp.17 = agetv %tmp.14 %tmp.16;
+        lputv %user.3 %tmp.17;
+        symbol [ user %user.3 210 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 211 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_stmt:
+        %tmp.18 = lgetv %user.3;
+        symbol [ user %tmp.18 211 18 22 ];
+        symbol [ Lang %tmp.19 211 34 38 ];
+        %tmp.19 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.20 211 39 48 ];
+        %tmp.20 = getv %tmp.19 :ByteArray;
+        %tmp.21 = isa %tmp.18 %tmp.20;
+        %tmp.22 = not %tmp.21;
+        bf %tmp.22 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_51_215_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 212 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_16_214_16_if_stmt:
+        %tmp.23 = lgetv %user.3;
+        symbol [ user %tmp.23 212 20 24 ];
+        %tmp.24 = as %tmp.23 { (!Lang.ByteArray) };
+        symbol [ hasKey %tmp.25 212 25 31 ];
+        %tmp.25 = getv function %tmp.24 :hasKey;
+        %tmp.27 = const :long_name;
+        symbol [ long_name %tmp.27 212 33 42 const ];
+        %tmp.28 = invoke %tmp.24 %tmp.25(%tmp.27);
+        bf %tmp.28 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_16_214_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_16_214_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_45_214_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 213 20 ]
+        %tmp.29 = self;
+        symbol [ bytesToString %tmp.30 213 31 44 ];
+        %tmp.30 = getv function %tmp.29 :bytesToString;
+        %tmp.31 = lgetv %user.3;
+        symbol [ user %tmp.31 213 45 49 ];
+        %tmp.32 = as %tmp.31 { (!Lang.ByteArray) };
+        %tmp.34 = const :long_name;
+        symbol [ long_name %tmp.34 213 51 60 const ];
+        %tmp.35 = agetv %tmp.32 %tmp.34;
+        %tmp.36 = invoke %tmp.29 %tmp.30(%tmp.35);
+        lputv %nodeName.2 %tmp.36;
+        symbol [ nodeName %nodeName.2 213 20 28 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_45_214_16_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_16_214_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_212_16_214_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_51_215_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_215_19_220_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 216 16 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_215_19_220_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_215_19_220_12_stop" ]
+        %userDecoded.4 = local;
+        symbol [ userDecoded %userDecoded.4 216 20 31 ];
+        symbol [ _decoder %tmp.38 216 34 42 ];
+        %tmp.38 = getv ? :_decoder;
+        symbol [ decode %tmp.39 216 43 49 ];
+        %tmp.39 = getv function %tmp.38 :decode;
+        %tmp.40 = lgetv %user.3;
+        symbol [ user %tmp.40 216 50 54 ];
+        %tmp.41 = as %tmp.40 { (Lang.ByteArray) };
+        symbol [ ProtoBuf %tmp.42 216 56 64 ];
+        %tmp.42 = getm $.ProtoBuf;
+        symbol [ SCHEMA_USER %tmp.43 216 65 76 ];
+        %tmp.43 = getv %tmp.42 :SCHEMA_USER;
+        %tmp.44 = invoke %tmp.38 %tmp.39(%tmp.41, %tmp.43);
+        lputv %userDecoded.4 %tmp.44;
+        symbol [ userDecoded %userDecoded.4 216 20 31 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 217 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_16_219_16_if_stmt:
+        %tmp.45 = lgetv %userDecoded.4;
+        symbol [ userDecoded %tmp.45 217 20 31 ];
+        symbol [ hasKey %tmp.46 217 32 38 ];
+        %tmp.46 = getv function %tmp.45 :hasKey;
+        %tmp.48 = const :long_name;
+        symbol [ long_name %tmp.48 217 40 49 const ];
+        %tmp.49 = invoke %tmp.45 %tmp.46(%tmp.48);
+        bf %tmp.49 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_16_219_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_16_219_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_52_219_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 218 20 ]
+        %tmp.50 = self;
+        symbol [ bytesToString %tmp.51 218 31 44 ];
+        %tmp.51 = getv function %tmp.50 :bytesToString;
+        %tmp.52 = lgetv %userDecoded.4;
+        symbol [ userDecoded %tmp.52 218 45 56 ];
+        %tmp.54 = const :long_name;
+        symbol [ long_name %tmp.54 218 58 67 const ];
+        %tmp.55 = agetv %tmp.52 %tmp.54;
+        %tmp.56 = invoke %tmp.50 %tmp.51(%tmp.55);
+        lputv %nodeName.2 %tmp.56;
+        symbol [ nodeName %nodeName.2 218 20 28 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_52_219_16_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_16_219_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_217_16_219_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_215_19_220_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_211_12_220_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_36_221_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_8_221_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_209_8_221_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 223 8 ]
+        symbol [ System %tmp.57 223 8 14 ];
+        %tmp.57 = getm $.Toybox.System;
+        symbol [ println %tmp.58 223 15 22 ];
+        %tmp.58 = getv function %tmp.57 :println;
+        %tmp.59 = "Node info: ";
+        %tmp.60 = lgetv %nodeNum.1;
+        symbol [ nodeNum %tmp.60 223 39 46 ];
+        symbol [ format %tmp.61 223 47 53 ];
+        %tmp.61 = getv function %tmp.60 :format;
+        %tmp.62 = "%08X";
+        %tmp.63 = invoke %tmp.60 %tmp.61(%tmp.62);
+        %tmp.64 = add %tmp.59 %tmp.63;
+        %tmp.65 = " - ";
+        %tmp.66 = add %tmp.64 %tmp.65;
+        %tmp.67 = lgetv %nodeName.2;
+        symbol [ nodeName %tmp.67 223 72 80 ];
+        %tmp.68 = add %tmp.66 %tmp.67;
+        invoke %tmp.57 %tmp.58(%tmp.68);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 225 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_8_227_8_if_stmt:
+        symbol [ _onNodeUpdate %tmp.70 225 12 25 ];
+        %tmp.70 = getv ? :_onNodeUpdate;
+        %tmp.71 = null;
+        %tmp.72 = ne %tmp.70 %tmp.71;
+        bf %tmp.72 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_8_227_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_8_227_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_35_227_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 226 12 ]
+        symbol [ _onNodeUpdate %tmp.74 226 12 25 ];
+        %tmp.74 = getv ? :_onNodeUpdate;
+        %tmp.75 = as %tmp.74 { (!Null) };
+        symbol [ invoke %tmp.76 226 26 32 ];
+        %tmp.76 = getv function %tmp.75 :invoke;
+        %tmp.77 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.77 226 33 41 ];
+        invoke %tmp.75 %tmp.76(%tmp.77);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_35_227_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_8_227_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_225_8_227_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_204_45_228_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 231; @symbol_functiondef = [handleMeshPacket,231,21,37]; @symbol_param<0> = [packetBytes,231,38,49]; ]
+    private
+    function handleMeshPacket(packetBytes) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_231_51_250_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 232 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_8_235_8_if_stmt:
+        %tmp.1 = lgetv %packetBytes;
+        symbol [ packetBytes %tmp.1 232 14 25 ];
+        symbol [ Lang %tmp.2 232 37 41 ];
+        %tmp.2 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.3 232 42 51 ];
+        %tmp.3 = getv %tmp.2 :ByteArray;
+        %tmp.4 = isa %tmp.1 %tmp.3;
+        %tmp.5 = not %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_8_235_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_8_235_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_54_235_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 233 12 ]
+        symbol [ System %tmp.6 233 12 18 ];
+        %tmp.6 = getm $.Toybox.System;
+        symbol [ println %tmp.7 233 19 26 ];
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "Packet is not ByteArray";
+        invoke %tmp.6 %tmp.7(%tmp.8);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 234 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_54_235_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_8_235_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_232_8_235_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 237 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_231_51_250_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_231_51_250_4_stop" ]
+        %meshPacket.1 = local;
+        symbol [ meshPacket %meshPacket.1 237 12 22 ];
+        symbol [ _decoder %tmp.10 237 25 33 ];
+        %tmp.10 = getv ? :_decoder;
+        symbol [ decode %tmp.11 237 34 40 ];
+        %tmp.11 = getv function %tmp.10 :decode;
+        %tmp.12 = lgetv %packetBytes;
+        symbol [ packetBytes %tmp.12 237 41 52 ];
+        symbol [ ProtoBuf %tmp.13 237 54 62 ];
+        %tmp.13 = getm $.ProtoBuf;
+        symbol [ SCHEMA_MESHPACKET %tmp.14 237 63 80 ];
+        %tmp.14 = getv %tmp.13 :SCHEMA_MESHPACKET;
+        %tmp.15 = invoke %tmp.10 %tmp.11(%tmp.12, %tmp.14);
+        lputv %meshPacket.1 %tmp.15;
+        symbol [ meshPacket %meshPacket.1 237 12 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 238 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_8_241_8_if_stmt:
+        %tmp.16 = lgetv %meshPacket.1;
+        symbol [ meshPacket %tmp.16 238 12 22 ];
+        %tmp.17 = null;
+        %tmp.18 = eq %tmp.16 %tmp.17;
+        bf %tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_8_241_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_8_241_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_32_241_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 239 12 ]
+        symbol [ System %tmp.19 239 12 18 ];
+        %tmp.19 = getm $.Toybox.System;
+        symbol [ println %tmp.20 239 19 26 ];
+        %tmp.20 = getv function %tmp.19 :println;
+        %tmp.21 = "Failed to decode MeshPacket";
+        invoke %tmp.19 %tmp.20(%tmp.21);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 240 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_32_241_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_8_241_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_238_8_241_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 243 8 ]
+        symbol [ System %tmp.22 243 8 14 ];
+        %tmp.22 = getm $.Toybox.System;
+        symbol [ println %tmp.23 243 15 22 ];
+        %tmp.23 = getv function %tmp.22 :println;
+        %tmp.24 = "Received packet from: ";
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_begin:
+        %tmp.25 = lgetv %meshPacket.1;
+        symbol [ meshPacket %tmp.25 244 23 33 ];
+        symbol [ hasKey %tmp.26 244 34 40 ];
+        %tmp.26 = getv function %tmp.25 :hasKey;
+        %tmp.28 = const :from;
+        symbol [ from %tmp.28 244 42 46 const ];
+        %tmp.29 = invoke %tmp.25 %tmp.26(%tmp.28);
+        bf %tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_true:
+        %tmp.30 = lgetv %meshPacket.1;
+        symbol [ meshPacket %tmp.30 244 50 60 ];
+        %tmp.32 = const :from;
+        symbol [ from %tmp.32 244 62 66 const ];
+        %tmp.33 = agetv %tmp.30 %tmp.32;
+        symbol [ format %tmp.34 244 68 74 ];
+        %tmp.34 = getv function %tmp.33 :format;
+        %tmp.35 = "%08X";
+        %tmp.36 = invoke %tmp.33 %tmp.34(%tmp.35);
+        push %tmp.36;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_else_false:
+        %tmp.37 = "unknown";
+        push %tmp.37;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_end:
+        %tmp.38 = phi [%tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_begin] [%tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_true] [%tmp.37 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_else_false] [%tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_244_23_244_85_end];
+        %tmp.39 = add %tmp.24 %tmp.38;
+        invoke %tmp.22 %tmp.23(%tmp.39);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 247 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_8_249_8_if_stmt:
+        %tmp.40 = lgetv %meshPacket.1;
+        symbol [ meshPacket %tmp.40 247 12 22 ];
+        symbol [ hasKey %tmp.41 247 23 29 ];
+        %tmp.41 = getv function %tmp.40 :hasKey;
+        %tmp.43 = const :decoded;
+        symbol [ decoded %tmp.43 247 31 38 const ];
+        %tmp.44 = invoke %tmp.40 %tmp.41(%tmp.43);
+        bf %tmp.44 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_8_249_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_8_249_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_41_249_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 248 12 ]
+        %tmp.45 = self;
+        symbol [ handleDataMessage %tmp.46 248 12 29 ];
+        %tmp.46 = getv function %tmp.45 :handleDataMessage;
+        %tmp.47 = lgetv %meshPacket.1;
+        symbol [ meshPacket %tmp.47 248 30 40 ];
+        invoke %tmp.45 %tmp.46(%tmp.47);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_41_249_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_8_249_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_247_8_249_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_231_51_250_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 253; @symbol_functiondef = [handleDataMessage,253,21,38]; @symbol_param<0> = [meshPacket,253,39,49]; ]
+    private
+    function handleDataMessage(meshPacket) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 254 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_stop" ]
+        %dataBytes.1 = local;
+        symbol [ dataBytes %dataBytes.1 254 12 21 ];
+        %tmp.1 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.1 254 24 34 ];
+        %tmp.3 = const :decoded;
+        symbol [ decoded %tmp.3 254 36 43 const ];
+        %tmp.4 = agetv %tmp.1 %tmp.3;
+        lputv %dataBytes.1 %tmp.4;
+        symbol [ dataBytes %dataBytes.1 254 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 255 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_8_257_8_if_stmt:
+        %tmp.5 = lgetv %dataBytes.1;
+        symbol [ dataBytes %tmp.5 255 14 23 ];
+        symbol [ Lang %tmp.6 255 35 39 ];
+        %tmp.6 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.7 255 40 49 ];
+        %tmp.7 = getv %tmp.6 :ByteArray;
+        %tmp.8 = isa %tmp.5 %tmp.7;
+        %tmp.9 = not %tmp.8;
+        bf %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_8_257_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_8_257_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_52_257_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 256 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_52_257_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_8_257_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_255_8_257_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 259 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_stop" ]
+        %dataMessage.2 = local;
+        symbol [ dataMessage %dataMessage.2 259 12 23 ];
+        symbol [ _decoder %tmp.11 259 26 34 ];
+        %tmp.11 = getv ? :_decoder;
+        symbol [ decode %tmp.12 259 35 41 ];
+        %tmp.12 = getv function %tmp.11 :decode;
+        %tmp.13 = lgetv %dataBytes.1;
+        symbol [ dataBytes %tmp.13 259 42 51 ];
+        symbol [ ProtoBuf %tmp.14 259 53 61 ];
+        %tmp.14 = getm $.ProtoBuf;
+        symbol [ SCHEMA_DATA %tmp.15 259 62 73 ];
+        %tmp.15 = getv %tmp.14 :SCHEMA_DATA;
+        %tmp.16 = invoke %tmp.11 %tmp.12(%tmp.13, %tmp.15);
+        lputv %dataMessage.2 %tmp.16;
+        symbol [ dataMessage %dataMessage.2 259 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 260 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_8_263_8_if_stmt:
+        %tmp.17 = lgetv %dataMessage.2;
+        symbol [ dataMessage %tmp.17 260 12 23 ];
+        %tmp.18 = null;
+        %tmp.19 = eq %tmp.17 %tmp.18;
+        bf %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_8_263_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_8_263_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_33_263_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 261 12 ]
+        symbol [ System %tmp.20 261 12 18 ];
+        %tmp.20 = getm $.Toybox.System;
+        symbol [ println %tmp.21 261 19 26 ];
+        %tmp.21 = getv function %tmp.20 :println;
+        %tmp.22 = "Failed to decode Data message";
+        invoke %tmp.20 %tmp.21(%tmp.22);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 262 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_33_263_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_8_263_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_260_8_263_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 265 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_stop" ]
+        %portnum.3 = local;
+        symbol [ portnum %portnum.3 265 12 19 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_begin:
+        %tmp.23 = lgetv %dataMessage.2;
+        symbol [ dataMessage %tmp.23 265 22 33 ];
+        symbol [ hasKey %tmp.24 265 34 40 ];
+        %tmp.24 = getv function %tmp.23 :hasKey;
+        %tmp.26 = const :portnum;
+        symbol [ portnum %tmp.26 265 42 49 const ];
+        %tmp.27 = invoke %tmp.23 %tmp.24(%tmp.26);
+        bf %tmp.27 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_true:
+        %tmp.28 = lgetv %dataMessage.2;
+        symbol [ dataMessage %tmp.28 265 53 64 ];
+        %tmp.30 = const :portnum;
+        symbol [ portnum %tmp.30 265 66 73 const ];
+        %tmp.31 = agetv %tmp.28 %tmp.30;
+        push %tmp.31;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_else_false:
+        %tmp.32 = 0;
+        push %tmp.32;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_end:
+        %tmp.33 = phi [%tmp.27 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_begin] [%tmp.31 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_true] [%tmp.32 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_else_false] [%tmp.33 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_265_22_265_77_end];
+        lputv %portnum.3 %tmp.33;
+        symbol [ portnum %portnum.3 265 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 268 8 ]
+        %tmp.34 = lgetv %portnum.3;
+        symbol [ portnum %tmp.34 268 16 23 ];
+        push %tmp.34;
+        switch %tmp.34 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 269 12 ]
+        %tmp.35 = dup %tmp.34;
+        symbol [ ProtoBuf %tmp.36 269 17 25 ];
+        %tmp.36 = getm $.ProtoBuf;
+        symbol [ TEXT_MESSAGE_APP %tmp.37 269 26 42 ];
+        %tmp.37 = getv %tmp.36 :TEXT_MESSAGE_APP;
+        %tmp.38 = getv function %tmp.35 :equals;
+        %tmp.39 = invoke %tmp.35 %tmp.38 (%tmp.37);
+        bt %tmp.39 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_269_12_271_21_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 272 12 ]
+        %tmp.40 = dup %tmp.34;
+        symbol [ ProtoBuf %tmp.41 272 17 25 ];
+        %tmp.41 = getm $.ProtoBuf;
+        symbol [ POSITION_APP %tmp.42 272 26 38 ];
+        %tmp.42 = getv %tmp.41 :POSITION_APP;
+        %tmp.43 = getv function %tmp.40 :equals;
+        %tmp.44 = invoke %tmp.40 %tmp.43 (%tmp.42);
+        bt %tmp.44 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_272_12_274_21_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 275 12 ]
+        %tmp.45 = dup %tmp.34;
+        symbol [ ProtoBuf %tmp.46 275 17 25 ];
+        %tmp.46 = getm $.ProtoBuf;
+        symbol [ NODEINFO_APP %tmp.47 275 26 38 ];
+        %tmp.47 = getv %tmp.46 :NODEINFO_APP;
+        %tmp.48 = getv function %tmp.45 :equals;
+        %tmp.49 = invoke %tmp.45 %tmp.48 (%tmp.47);
+        bt %tmp.49 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_275_12_277_21_switchCase;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 278 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtDefault:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_defaultCodeBegin;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_269_12_271_21_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 270 16 ]
+        %tmp.50 = self;
+        symbol [ handleTextMessage %tmp.51 270 16 33 ];
+        %tmp.51 = getv function %tmp.50 :handleTextMessage;
+        %tmp.52 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.52 270 34 44 ];
+        %tmp.53 = lgetv %dataMessage.2;
+        symbol [ dataMessage %tmp.53 270 46 57 ];
+        invoke %tmp.50 %tmp.51(%tmp.52, %tmp.53);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 271 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_272_12_274_21_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 273 16 ]
+        %tmp.54 = self;
+        symbol [ handlePositionMessage %tmp.55 273 16 37 ];
+        %tmp.55 = getv function %tmp.54 :handlePositionMessage;
+        %tmp.56 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.56 273 38 48 ];
+        %tmp.57 = lgetv %dataMessage.2;
+        symbol [ dataMessage %tmp.57 273 50 61 ];
+        invoke %tmp.54 %tmp.55(%tmp.56, %tmp.57);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 274 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_275_12_277_21_switchCase:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 276 16 ]
+        symbol [ System %tmp.58 276 16 22 ];
+        %tmp.58 = getm $.Toybox.System;
+        symbol [ println %tmp.59 276 23 30 ];
+        %tmp.59 = getv function %tmp.58 :println;
+        %tmp.60 = "Received NodeInfo app message";
+        invoke %tmp.58 %tmp.59(%tmp.60);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 277 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_278_12_280_21_switchCase:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_defaultCodeBegin:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 279 16 ]
+        symbol [ System %tmp.61 279 16 22 ];
+        %tmp.61 = getm $.Toybox.System;
+        symbol [ println %tmp.62 279 23 30 ];
+        %tmp.62 = getv function %tmp.61 :println;
+        %tmp.63 = "Unhandled portnum: ";
+        %tmp.64 = lgetv %portnum.3;
+        symbol [ portnum %tmp.64 279 55 62 ];
+        %tmp.65 = add %tmp.63 %tmp.64;
+        invoke %tmp.61 %tmp.62(%tmp.65);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 280 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_268_8_281_8_switchStmtEnd:
+        pop;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_253_51_282_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 285; @symbol_functiondef = [handleTextMessage,285,21,38]; @symbol_param<0> = [meshPacket,285,39,49]; @symbol_param<1> = [dataMessage,285,51,62]; ]
+    private
+    function handleTextMessage(meshPacket, dataMessage) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 286 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_8_288_8_if_stmt:
+        %tmp.1 = lgetv %dataMessage;
+        symbol [ dataMessage %tmp.1 286 13 24 ];
+        symbol [ hasKey %tmp.2 286 25 31 ];
+        %tmp.2 = getv function %tmp.1 :hasKey;
+        %tmp.4 = const :payload;
+        symbol [ payload %tmp.4 286 33 40 const ];
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        %tmp.6 = not %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_8_288_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_8_288_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_43_288_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 287 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_43_288_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_8_288_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_286_8_288_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 290 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop" ]
+        %textBytes.1 = local;
+        symbol [ textBytes %textBytes.1 290 12 21 ];
+        %tmp.7 = lgetv %dataMessage;
+        symbol [ dataMessage %tmp.7 290 24 35 ];
+        %tmp.9 = const :payload;
+        symbol [ payload %tmp.9 290 37 44 const ];
+        %tmp.10 = agetv %tmp.7 %tmp.9;
+        lputv %textBytes.1 %tmp.10;
+        symbol [ textBytes %textBytes.1 290 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 291 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop" ]
+        %text.2 = local;
+        symbol [ text %text.2 291 12 16 ];
+        %tmp.11 = self;
+        symbol [ bytesToString %tmp.12 291 19 32 ];
+        %tmp.12 = getv function %tmp.11 :bytesToString;
+        %tmp.13 = lgetv %textBytes.1;
+        symbol [ textBytes %tmp.13 291 33 42 ];
+        %tmp.14 = invoke %tmp.11 %tmp.12(%tmp.13);
+        lputv %text.2 %tmp.14;
+        symbol [ text %text.2 291 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 292 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop" ]
+        %from.3 = local;
+        symbol [ from %from.3 292 12 16 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_begin:
+        %tmp.15 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.15 292 19 29 ];
+        symbol [ hasKey %tmp.16 292 30 36 ];
+        %tmp.16 = getv function %tmp.15 :hasKey;
+        %tmp.18 = const :from;
+        symbol [ from %tmp.18 292 38 42 const ];
+        %tmp.19 = invoke %tmp.15 %tmp.16(%tmp.18);
+        bf %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_true:
+        %tmp.20 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.20 292 46 56 ];
+        %tmp.22 = const :from;
+        symbol [ from %tmp.22 292 58 62 const ];
+        %tmp.23 = agetv %tmp.20 %tmp.22;
+        push %tmp.23;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_else_false:
+        %tmp.24 = 0;
+        push %tmp.24;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_end:
+        %tmp.25 = phi [%tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_begin] [%tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_true] [%tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_else_false] [%tmp.25 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_292_19_292_66_end];
+        lputv %from.3 %tmp.25;
+        symbol [ from %from.3 292 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 293 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop" ]
+        %messageId.4 = local;
+        symbol [ messageId %messageId.4 293 12 21 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_begin:
+        %tmp.26 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.26 293 24 34 ];
+        symbol [ hasKey %tmp.27 293 35 41 ];
+        %tmp.27 = getv function %tmp.26 :hasKey;
+        %tmp.29 = const :id;
+        symbol [ id %tmp.29 293 43 45 const ];
+        %tmp.30 = invoke %tmp.26 %tmp.27(%tmp.29);
+        bf %tmp.30 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_true:
+        %tmp.31 = lgetv %meshPacket;
+        symbol [ meshPacket %tmp.31 293 49 59 ];
+        %tmp.33 = const :id;
+        symbol [ id %tmp.33 293 61 63 const ];
+        %tmp.34 = agetv %tmp.31 %tmp.33;
+        push %tmp.34;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_else_false:
+        %tmp.35 = 0;
+        push %tmp.35;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_end:
+        %tmp.36 = phi [%tmp.30 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_begin] [%tmp.34 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_true] [%tmp.35 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_else_false] [%tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_293_24_293_67_end];
+        lputv %messageId.4 %tmp.36;
+        symbol [ messageId %messageId.4 293 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 296 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop" ]
+        %message.5 = local;
+        symbol [ message %message.5 296 12 19 ];
+        %tmp.37 = newd 6;
+        %tmp.39 = const :id;
+        symbol [ id %tmp.39 297 13 15 const ];
+        %tmp.40 = lgetv %messageId.4;
+        symbol [ messageId %tmp.40 297 19 28 ];
+        %tmp.41 = dup %tmp.37;
+        %tmp.42 = aputv %tmp.41 %tmp.39 %tmp.40;
+        %tmp.44 = const :from;
+        symbol [ from %tmp.44 298 13 17 const ];
+        %tmp.45 = lgetv %from.3;
+        symbol [ from %tmp.45 298 21 25 ];
+        %tmp.46 = dup %tmp.42;
+        %tmp.47 = aputv %tmp.46 %tmp.44 %tmp.45;
+        %tmp.49 = const :text;
+        symbol [ text %tmp.49 299 13 17 const ];
+        %tmp.50 = lgetv %text.2;
+        symbol [ text %tmp.50 299 21 25 ];
+        %tmp.51 = dup %tmp.47;
+        %tmp.52 = aputv %tmp.51 %tmp.49 %tmp.50;
+        %tmp.54 = const :timestamp;
+        symbol [ timestamp %tmp.54 300 13 22 const ];
+        symbol [ Time %tmp.55 300 26 30 ];
+        %tmp.55 = getm $.Toybox.Time;
+        symbol [ now %tmp.56 300 31 34 ];
+        %tmp.56 = getv function %tmp.55 :now;
+        %tmp.57 = invoke %tmp.55 %tmp.56();
+        symbol [ value %tmp.58 300 37 42 ];
+        %tmp.58 = getv function %tmp.57 :value;
+        %tmp.59 = invoke %tmp.57 %tmp.58();
+        %tmp.60 = dup %tmp.52;
+        %tmp.61 = aputv %tmp.60 %tmp.54 %tmp.59;
+        %tmp.63 = const :portnum;
+        symbol [ portnum %tmp.63 301 13 20 const ];
+        symbol [ ProtoBuf %tmp.64 301 24 32 ];
+        %tmp.64 = getm $.ProtoBuf;
+        symbol [ TEXT_MESSAGE_APP %tmp.65 301 33 49 ];
+        %tmp.65 = getv %tmp.64 :TEXT_MESSAGE_APP;
+        %tmp.66 = dup %tmp.61;
+        %tmp.67 = aputv %tmp.66 %tmp.63 %tmp.65;
+        %tmp.69 = const :read;
+        symbol [ read %tmp.69 302 13 17 const ];
+        %tmp.70 = false;
+        %tmp.71 = dup %tmp.67;
+        %tmp.72 = aputv %tmp.71 %tmp.69 %tmp.70;
+        lputv %message.5 %tmp.72;
+        symbol [ message %message.5 296 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 306 8 ]
+        symbol [ _messages %tmp.74 306 8 17 ];
+        %tmp.74 = getv ? :_messages;
+        symbol [ add %tmp.75 306 18 21 ];
+        %tmp.75 = getv function %tmp.74 :add;
+        %tmp.76 = lgetv %message.5;
+        symbol [ message %tmp.76 306 22 29 ];
+        invoke %tmp.74 %tmp.75(%tmp.76);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 307 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_8_310_8_if_stmt:
+        symbol [ _messages %tmp.78 307 12 21 ];
+        %tmp.78 = getv ? :_messages;
+        symbol [ size %tmp.79 307 22 26 ];
+        %tmp.79 = getv function %tmp.78 :size;
+        %tmp.80 = invoke %tmp.78 %tmp.79();
+        %tmp.81 = 50;
+        %tmp.82 = gt %tmp.80 %tmp.81;
+        bf %tmp.82 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_8_310_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_8_310_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_35_310_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 309 12 ]
+        symbol [ _messages %tmp.84 309 24 33 ];
+        %tmp.84 = getv ? :_messages;
+        symbol [ slice %tmp.85 309 34 39 ];
+        %tmp.85 = getv function %tmp.84 :slice;
+        %tmp.86 = -50;
+        %tmp.87 = null;
+        %tmp.88 = invoke %tmp.84 %tmp.85(%tmp.86, %tmp.87);
+        symbol [ _messages ? 309 12 21 ];
+        putv self :_messages %tmp.88;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_35_310_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_8_310_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_307_8_310_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 313 8 ]
+        symbol [ _unreadCount %tmp.91 313 8 20 ];
+        %tmp.91 = getv ? :_unreadCount;
+        %tmp.92 = add %tmp.91 1;
+        symbol [ _unreadCount ? 313 8 20 ];
+        putv self :_unreadCount dup %tmp.92;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 315 8 ]
+        symbol [ System %tmp.93 315 8 14 ];
+        %tmp.93 = getm $.Toybox.System;
+        symbol [ println %tmp.94 315 15 22 ];
+        %tmp.94 = getv function %tmp.93 :println;
+        %tmp.95 = "Text message from ";
+        %tmp.96 = lgetv %from.3;
+        symbol [ from %tmp.96 315 46 50 ];
+        symbol [ format %tmp.97 315 51 57 ];
+        %tmp.97 = getv function %tmp.96 :format;
+        %tmp.98 = "%08X";
+        %tmp.99 = invoke %tmp.96 %tmp.97(%tmp.98);
+        %tmp.100 = add %tmp.95 %tmp.99;
+        %tmp.101 = ": ";
+        %tmp.102 = add %tmp.100 %tmp.101;
+        %tmp.103 = lgetv %text.2;
+        symbol [ text %tmp.103 315 75 79 ];
+        %tmp.104 = add %tmp.102 %tmp.103;
+        invoke %tmp.93 %tmp.94(%tmp.104);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 317 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_8_319_8_if_stmt:
+        symbol [ _onMessageReceived %tmp.106 317 12 30 ];
+        %tmp.106 = getv ? :_onMessageReceived;
+        %tmp.107 = null;
+        %tmp.108 = ne %tmp.106 %tmp.107;
+        bf %tmp.108 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_8_319_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_8_319_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_40_319_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 318 12 ]
+        symbol [ _onMessageReceived %tmp.110 318 12 30 ];
+        %tmp.110 = getv ? :_onMessageReceived;
+        %tmp.111 = as %tmp.110 { (!Null) };
+        symbol [ invoke %tmp.112 318 31 37 ];
+        %tmp.112 = getv function %tmp.111 :invoke;
+        %tmp.113 = lgetv %message.5;
+        symbol [ message %tmp.113 318 38 45 ];
+        invoke %tmp.111 %tmp.112(%tmp.113);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_40_319_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_8_319_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_317_8_319_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_285_64_320_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 323; @symbol_functiondef = [handlePositionMessage,323,21,42]; @symbol_param<0> = [meshPacket,323,43,53]; @symbol_param<1> = [dataMessage,323,55,66]; ]
+    private
+    function handlePositionMessage(meshPacket, dataMessage) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_323_68_326_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 324 8 ]
+        symbol [ System %tmp.1 324 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 324 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Received position update";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_323_68_326_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 329; @symbol_functiondef = [handleConfigComplete,329,21,41]; @symbol_param<0> = [configId,329,42,50]; ]
+    private
+    function handleConfigComplete(configId) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_329_52_336_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 330 8 ]
+        %tmp.1 = true;
+        symbol [ _configComplete ? 330 8 23 ];
+        putv self :_configComplete %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 331 8 ]
+        symbol [ System %tmp.2 331 8 14 ];
+        %tmp.2 = getm $.Toybox.System;
+        symbol [ println %tmp.3 331 15 22 ];
+        %tmp.3 = getv function %tmp.2 :println;
+        %tmp.4 = "Config sync complete: ";
+        %tmp.5 = lgetv %configId;
+        symbol [ configId %tmp.5 331 50 58 ];
+        %tmp.6 = add %tmp.4 %tmp.5;
+        invoke %tmp.2 %tmp.3(%tmp.6);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 333 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_8_335_8_if_stmt:
+        symbol [ _onConfigComplete %tmp.8 333 12 29 ];
+        %tmp.8 = getv ? :_onConfigComplete;
+        %tmp.9 = null;
+        %tmp.10 = ne %tmp.8 %tmp.9;
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_8_335_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_8_335_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_39_335_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 334 12 ]
+        symbol [ _onConfigComplete %tmp.12 334 12 29 ];
+        %tmp.12 = getv ? :_onConfigComplete;
+        %tmp.13 = as %tmp.12 { (!Null) };
+        symbol [ invoke %tmp.14 334 30 36 ];
+        %tmp.14 = getv function %tmp.13 :invoke;
+        invoke %tmp.13 %tmp.14();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_39_335_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_8_335_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_333_8_335_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_329_52_336_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 342; @symbol_functiondef = [getMessages,342,13,24]; ]
+    function getMessages() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_342_27_344_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 343 8 ]
+        symbol [ _messages %tmp.2 343 15 24 ];
+        %tmp.2 = getv ? :_messages;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_342_27_344_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 346; @symbol_functiondef = [getNodes,346,13,21]; ]
+    function getNodes() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_346_24_348_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 347 8 ]
+        symbol [ _nodes %tmp.2 347 15 21 ];
+        %tmp.2 = getv ? :_nodes;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_346_24_348_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 350; @symbol_functiondef = [getNodeCount,350,13,25]; ]
+    function getNodeCount() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_350_28_352_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 351 8 ]
+        symbol [ _nodes %tmp.2 351 15 21 ];
+        %tmp.2 = getv ? :_nodes;
+        symbol [ size %tmp.3 351 22 26 ];
+        %tmp.3 = getv function %tmp.2 :size;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_350_28_352_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 354; @symbol_functiondef = [getMyNodeNum,354,13,25]; ]
+    function getMyNodeNum() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_354_28_356_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 355 8 ]
+        symbol [ _myNodeNum %tmp.2 355 15 25 ];
+        %tmp.2 = getv ? :_myNodeNum;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_354_28_356_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 358; @symbol_functiondef = [isConfigComplete,358,13,29]; ]
+    function isConfigComplete() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_358_32_360_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 359 8 ]
+        symbol [ _configComplete %tmp.2 359 15 30 ];
+        %tmp.2 = getv ? :_configComplete;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_358_32_360_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 362; @symbol_functiondef = [getUnreadCount,362,13,27]; ]
+    function getUnreadCount() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_362_30_364_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 363 8 ]
+        symbol [ _unreadCount %tmp.2 363 15 27 ];
+        %tmp.2 = getv ? :_unreadCount;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_362_30_364_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 367; @symbol_functiondef = [markAllAsRead,367,13,26]; ]
+    function markAllAsRead() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_367_29_372_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 368 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_end" ]
+        %i.1 = local;
+        symbol [ i %i.1 368 17 18 ];
+        %tmp.1 = 0;
+        lputv %i.1 %tmp.1;
+        symbol [ i %i.1 368 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_test:
+        %tmp.2 = lgetv %i.1;
+        symbol [ i %tmp.2 368 24 25 ];
+        symbol [ _messages %tmp.4 368 28 37 ];
+        %tmp.4 = getv ? :_messages;
+        symbol [ size %tmp.5 368 38 42 ];
+        %tmp.5 = getv function %tmp.4 :size;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        %tmp.7 = lt %tmp.2 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_51_370_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 369 12 ]
+        symbol [ _messages %tmp.8 369 12 21 ];
+        %tmp.8 = getv self :_messages;
+        %tmp.9 = lgetv %i.1;
+        symbol [ i %tmp.9 369 22 23 ];
+        %tmp.10 = agetv %tmp.8 %tmp.9;
+        %tmp.11 = true;
+        %tmp.13 = const :read;
+        symbol [ read %tmp.13 369 26 30 const ];
+        aputv %tmp.10 %tmp.13 %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_51_370_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 368 ]
+        %tmp.16 = lgetv %i.1;
+        symbol [ i %tmp.16 368 46 47 ];
+        %tmp.17 = add %tmp.16 1;
+        lputv %i.1 %tmp.17;
+        symbol [ i %i.1 368 46 47 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_368_8_370_8_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 371 8 ]
+        %tmp.18 = 0;
+        symbol [ _unreadCount ? 371 8 20 ];
+        putv self :_unreadCount %tmp.18;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_367_29_372_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 375; @symbol_functiondef = [markMessageAsRead,375,13,30]; @symbol_param<0> = [messageId,375,31,40]; ]
+    function markMessageAsRead(messageId) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_375_42_388_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 376 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_end" ]
+        %i.1 = local;
+        symbol [ i %i.1 376 17 18 ];
+        %tmp.1 = 0;
+        lputv %i.1 %tmp.1;
+        symbol [ i %i.1 376 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_test:
+        %tmp.2 = lgetv %i.1;
+        symbol [ i %tmp.2 376 24 25 ];
+        symbol [ _messages %tmp.4 376 28 37 ];
+        %tmp.4 = getv ? :_messages;
+        symbol [ size %tmp.5 376 38 42 ];
+        %tmp.5 = getv function %tmp.4 :size;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        %tmp.7 = lt %tmp.2 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_51_387_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 377 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_12_386_12_if_stmt:
+        symbol [ _messages %tmp.9 377 16 25 ];
+        %tmp.9 = getv ? :_messages;
+        %tmp.10 = lgetv %i.1;
+        symbol [ i %tmp.10 377 26 27 ];
+        %tmp.11 = agetv %tmp.9 %tmp.10;
+        %tmp.13 = const :id;
+        symbol [ id %tmp.13 377 30 32 const ];
+        %tmp.14 = agetv %tmp.11 %tmp.13;
+        %tmp.15 = lgetv %messageId;
+        symbol [ messageId %tmp.15 377 37 46 ];
+        %tmp.16 = eq %tmp.14 %tmp.15;
+        bf %tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_12_386_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_12_386_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_48_386_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 378 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_16_384_16_if_stmt:
+        symbol [ _messages %tmp.18 378 21 30 ];
+        %tmp.18 = getv ? :_messages;
+        %tmp.19 = lgetv %i.1;
+        symbol [ i %tmp.19 378 31 32 ];
+        %tmp.20 = agetv %tmp.18 %tmp.19;
+        %tmp.22 = const :read;
+        symbol [ read %tmp.22 378 35 39 const ];
+        %tmp.23 = agetv %tmp.20 %tmp.22;
+        %tmp.24 = not %tmp.23;
+        bf %tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_16_384_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_16_384_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_42_384_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 379 20 ]
+        symbol [ _messages %tmp.25 379 20 29 ];
+        %tmp.25 = getv self :_messages;
+        %tmp.26 = lgetv %i.1;
+        symbol [ i %tmp.26 379 30 31 ];
+        %tmp.27 = agetv %tmp.25 %tmp.26;
+        %tmp.28 = true;
+        %tmp.30 = const :read;
+        symbol [ read %tmp.30 379 34 38 const ];
+        aputv %tmp.27 %tmp.30 %tmp.28;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 380 20 ]
+        symbol [ _unreadCount %tmp.33 380 20 32 ];
+        %tmp.33 = getv ? :_unreadCount;
+        %tmp.34 = sub %tmp.33 1;
+        symbol [ _unreadCount ? 380 20 32 ];
+        putv self :_unreadCount dup %tmp.34;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 381 20 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_20_383_20_if_stmt:
+        symbol [ _unreadCount %tmp.36 381 24 36 ];
+        %tmp.36 = getv ? :_unreadCount;
+        %tmp.37 = 0;
+        %tmp.38 = lt %tmp.36 %tmp.37;
+        bf %tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_20_383_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_20_383_20_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_42_383_20_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 382 24 ]
+        %tmp.39 = 0;
+        symbol [ _unreadCount ? 382 24 36 ];
+        putv self :_unreadCount %tmp.39;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_42_383_20_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_20_383_20_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_381_20_383_20_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_42_384_16_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_16_384_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_378_16_384_16_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 385 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_48_386_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_12_386_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_377_12_386_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_51_387_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 376 ]
+        %tmp.42 = lgetv %i.1;
+        symbol [ i %tmp.42 376 46 47 ];
+        %tmp.43 = add %tmp.42 1;
+        lputv %i.1 %tmp.43;
+        symbol [ i %i.1 376 46 47 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_376_8_387_8_for_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_375_42_388_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 395; @symbol_functiondef = [bytesToString,395,21,34]; @symbol_param<0> = [bytes,395,35,40]; ]
+    private
+    function bytesToString(bytes) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_395_42_417_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 396 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_8_398_8_if_stmt:
+        %tmp.1 = lgetv %bytes;
+        symbol [ bytes %tmp.1 396 12 17 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_8_398_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_8_398_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_27_398_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 397 12 ]
+        %tmp.4 = "";
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_27_398_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_8_398_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_396_8_398_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 400 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_8_402_8_if_stmt:
+        %tmp.5 = lgetv %bytes;
+        symbol [ bytes %tmp.5 400 12 17 ];
+        symbol [ Lang %tmp.6 400 29 33 ];
+        %tmp.6 = getm $.Toybox.Lang;
+        symbol [ String %tmp.7 400 34 40 ];
+        %tmp.7 = getv %tmp.6 :String;
+        %tmp.8 = isa %tmp.5 %tmp.7;
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_8_402_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_8_402_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_42_402_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 401 12 ]
+        %tmp.9 = lgetv %bytes;
+        symbol [ bytes %tmp.9 401 19 24 ];
+        %tmp.10 = as %tmp.9 { (Lang.String) };
+        ret %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_42_402_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_8_402_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_400_8_402_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 404 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_8_406_8_if_stmt:
+        %tmp.11 = lgetv %bytes;
+        symbol [ bytes %tmp.11 404 14 19 ];
+        symbol [ Lang %tmp.12 404 31 35 ];
+        %tmp.12 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.13 404 36 45 ];
+        %tmp.13 = getv %tmp.12 :ByteArray;
+        %tmp.14 = isa %tmp.11 %tmp.13;
+        %tmp.15 = not %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_8_406_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_8_406_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_48_406_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 405 12 ]
+        %tmp.16 = "";
+        ret %tmp.16;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_48_406_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_8_406_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_404_8_406_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 408 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_395_42_417_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_395_42_417_4_stop" ]
+        %str.1 = local;
+        symbol [ str %str.1 408 12 15 ];
+        %tmp.17 = "";
+        lputv %str.1 %tmp.17;
+        symbol [ str %str.1 408 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 409 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_end" ]
+        %i.2 = local;
+        symbol [ i %i.2 409 17 18 ];
+        %tmp.18 = 0;
+        lputv %i.2 %tmp.18;
+        symbol [ i %i.2 409 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_test:
+        %tmp.19 = lgetv %i.2;
+        symbol [ i %tmp.19 409 24 25 ];
+        %tmp.20 = lgetv %bytes;
+        symbol [ bytes %tmp.20 409 28 33 ];
+        symbol [ size %tmp.21 409 34 38 ];
+        %tmp.21 = getv function %tmp.20 :size;
+        %tmp.22 = invoke %tmp.20 %tmp.21();
+        %tmp.23 = lt %tmp.19 %tmp.22;
+        bf %tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_47_415_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 410 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_47_415_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_47_415_8_stop" ]
+        %byte.3 = local;
+        symbol [ byte %byte.3 410 16 20 ];
+        %tmp.24 = lgetv %bytes;
+        symbol [ bytes %tmp.24 410 23 28 ];
+        %tmp.25 = lgetv %i.2;
+        symbol [ i %tmp.25 410 29 30 ];
+        %tmp.26 = agetv %tmp.24 %tmp.25;
+        lputv %byte.3 %tmp.26;
+        symbol [ byte %byte.3 410 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 411 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_12_413_12_if_stmt:
+        %tmp.27 = lgetv %byte.3;
+        symbol [ byte %tmp.27 411 16 20 ];
+        %tmp.28 = 0;
+        %tmp.29 = eq %tmp.27 %tmp.28;
+        bf %tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_12_413_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_12_413_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_27_413_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 412 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_27_413_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_12_413_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_411_12_413_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 414 12 ]
+        %tmp.30 = lgetv %str.1;
+        symbol [ str %tmp.30 414 12 15 ];
+        %tmp.31 = lgetv %byte.3;
+        symbol [ byte %tmp.31 414 19 23 ];
+        symbol [ toChar %tmp.32 414 24 30 ];
+        %tmp.32 = getv function %tmp.31 :toChar;
+        %tmp.33 = invoke %tmp.31 %tmp.32();
+        %tmp.34 = add %tmp.30 %tmp.33;
+        lputv %str.1 %tmp.34;
+        symbol [ str %str.1 414 12 15 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_47_415_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 409 ]
+        %tmp.37 = lgetv %i.2;
+        symbol [ i %tmp.37 409 42 43 ];
+        %tmp.38 = add %tmp.37 1;
+        lputv %i.2 %tmp.38;
+        symbol [ i %i.2 409 42 43 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_409_8_415_8_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc" 416 8 ]
+        %tmp.39 = lgetv %str.1;
+        symbol [ str %tmp.39 416 15 18 ];
+        ret %tmp.39;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MessageHandler_mc_395_42_417_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MessageHandler.mc"; @line = 6; ]
+<init> {
+}

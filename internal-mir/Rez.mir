@@ -1,0 +1,1677 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [WatchUi,2,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 3; @symbol_usingdef<0> = [Toybox,3,6,12]; @symbol_usingdef<1> = [WatchUi,3,13,20]; @symbol_usingAlias = [Ui,3,24,26]; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 4; @symbol_usingdef<0> = [Toybox,4,6,12]; @symbol_usingdef<1> = [Graphics,4,13,21]; ]
+using Toybox.Graphics;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Graphics,5,13,21]; @symbol_usingAlias = [Gfx,5,25,28]; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 7; @symbol_moduledef = [Rez,7,7,10]; ]
+module Rez {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 8; @symbol_moduledef = [Drawables,8,11,20]; ]
+    module Drawables {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 8; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 9; @position = 27; initialized = true; @symbol_vardef = [LauncherIcon,9,27,39]; @symbol_type<0> = [ResourceId,9,43,53]; ]
+        var LauncherIcon as ResourceId;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 12; @symbol_moduledef = [Layouts,12,11,18]; ]
+    module Layouts {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 12; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 13; @symbol_functiondef = [MainLayout,13,17,27]; @symbol_param<0> = [dc,13,28,30]; @symbol_param<0>_type<0> = [Graphics,13,34,42]; @symbol_param<0>_type<1> = [Dc,13,43,45]; @symbol_return<0> = [Array,13,50,55]; @symbol_return<1> = [WatchUi,13,56,63]; @symbol_return<2> = [Drawable,13,64,72]; ]
+        function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
+_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 14 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_stop" ]
+            %rez_cmp_local_var_dc_getHeight.1 = local;
+            symbol [ rez_cmp_local_var_dc_getHeight %rez_cmp_local_var_dc_getHeight.1 14 16 46 ];
+            %tmp.1 = lgetv %dc;
+            symbol [ dc %tmp.1 14 49 51 ];
+            symbol [ getHeight %tmp.2 14 52 61 ];
+            %tmp.2 = getv function %tmp.1 :getHeight;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            lputv %rez_cmp_local_var_dc_getHeight.1 %tmp.3;
+            symbol [ rez_cmp_local_var_dc_getHeight %rez_cmp_local_var_dc_getHeight.1 14 16 46 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 16 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_stop" ]
+            %rez_cmp_local_var_dc_getWidth.2 = local;
+            symbol [ rez_cmp_local_var_dc_getWidth %rez_cmp_local_var_dc_getWidth.2 16 16 45 ];
+            %tmp.4 = lgetv %dc;
+            symbol [ dc %tmp.4 16 48 50 ];
+            symbol [ getWidth %tmp.5 16 51 59 ];
+            %tmp.5 = getv function %tmp.4 :getWidth;
+            %tmp.6 = invoke %tmp.4 %tmp.5();
+            lputv %rez_cmp_local_var_dc_getWidth.2 %tmp.6;
+            symbol [ rez_cmp_local_var_dc_getWidth %rez_cmp_local_var_dc_getWidth.2 16 16 45 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 18 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_stop" ]
+            %rez_cmp_local_text_title.3 = local;
+            symbol [ rez_cmp_local_text_title %rez_cmp_local_text_title.3 18 16 40 ];
+            symbol [ WatchUi %tmp.9 18 47 54 ];
+            %tmp.9 = getm $.Toybox.WatchUi;
+            symbol [ Text %tmp.10 18 55 59 ];
+            %tmp.10 = getv function ? %tmp.9 :Text;
+            %tmp.11 = newd 6;
+            %tmp.13 = const :identifier;
+            symbol [ identifier %tmp.13 18 62 72 const ];
+            %tmp.14 = "title";
+            %tmp.15 = dup %tmp.11;
+            %tmp.16 = aputv %tmp.15 %tmp.13 %tmp.14;
+            %tmp.18 = const :locX;
+            symbol [ locX %tmp.18 18 84 88 const ];
+            %tmp.19 = lgetv %rez_cmp_local_var_dc_getWidth.2;
+            symbol [ rez_cmp_local_var_dc_getWidth %tmp.19 18 91 120 ];
+            %tmp.20 = 50;
+            %tmp.21 = 100.0;
+            %tmp.22 = div %tmp.20 %tmp.21;
+            %tmp.23 = mul %tmp.19 %tmp.22;
+            %tmp.24 = dup %tmp.16;
+            %tmp.25 = aputv %tmp.24 %tmp.18 %tmp.23;
+            %tmp.27 = const :locY;
+            symbol [ locY %tmp.27 18 139 143 const ];
+            %tmp.28 = lgetv %rez_cmp_local_var_dc_getHeight.1;
+            symbol [ rez_cmp_local_var_dc_getHeight %tmp.28 18 146 176 ];
+            %tmp.29 = 25;
+            %tmp.30 = 100.0;
+            %tmp.31 = div %tmp.29 %tmp.30;
+            %tmp.32 = mul %tmp.28 %tmp.31;
+            %tmp.33 = dup %tmp.25;
+            %tmp.34 = aputv %tmp.33 %tmp.27 %tmp.32;
+            %tmp.36 = const :text;
+            symbol [ text %tmp.36 18 195 199 const ];
+            %tmp.37 = "ProtoBuf Tests";
+            %tmp.38 = dup %tmp.34;
+            %tmp.39 = aputv %tmp.38 %tmp.36 %tmp.37;
+            %tmp.41 = const :justification;
+            symbol [ justification %tmp.41 18 220 233 const ];
+            symbol [ Graphics %tmp.42 18 235 243 ];
+            %tmp.42 = getm $.Toybox.Graphics;
+            symbol [ TEXT_JUSTIFY_CENTER %tmp.43 18 244 263 ];
+            %tmp.43 = getv %tmp.42 :TEXT_JUSTIFY_CENTER;
+            %tmp.44 = dup %tmp.39;
+            %tmp.45 = aputv %tmp.44 %tmp.41 %tmp.43;
+            %tmp.47 = const :font;
+            symbol [ font %tmp.47 18 266 270 const ];
+            symbol [ Graphics %tmp.48 18 272 280 ];
+            %tmp.48 = getm $.Toybox.Graphics;
+            symbol [ FONT_MEDIUM %tmp.49 18 281 292 ];
+            %tmp.49 = getv %tmp.48 :FONT_MEDIUM;
+            %tmp.50 = dup %tmp.45;
+            %tmp.51 = aputv %tmp.50 %tmp.47 %tmp.49;
+            %tmp.7 = newc %tmp.10 (%tmp.51);
+            lputv %rez_cmp_local_text_title.3 %tmp.7;
+            symbol [ rez_cmp_local_text_title %rez_cmp_local_text_title.3 18 16 40 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 20 12 ]
+            [ "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_stop" ]
+            %rez_cmp_local_text_instruction.4 = local;
+            symbol [ rez_cmp_local_text_instruction %rez_cmp_local_text_instruction.4 20 16 46 ];
+            symbol [ WatchUi %tmp.54 20 53 60 ];
+            %tmp.54 = getm $.Toybox.WatchUi;
+            symbol [ Text %tmp.55 20 61 65 ];
+            %tmp.55 = getv function ? %tmp.54 :Text;
+            %tmp.56 = newd 6;
+            %tmp.58 = const :identifier;
+            symbol [ identifier %tmp.58 20 68 78 const ];
+            %tmp.59 = "instruction";
+            %tmp.60 = dup %tmp.56;
+            %tmp.61 = aputv %tmp.60 %tmp.58 %tmp.59;
+            %tmp.63 = const :locX;
+            symbol [ locX %tmp.63 20 96 100 const ];
+            %tmp.64 = lgetv %rez_cmp_local_var_dc_getWidth.2;
+            symbol [ rez_cmp_local_var_dc_getWidth %tmp.64 20 103 132 ];
+            %tmp.65 = 50;
+            %tmp.66 = 100.0;
+            %tmp.67 = div %tmp.65 %tmp.66;
+            %tmp.68 = mul %tmp.64 %tmp.67;
+            %tmp.69 = dup %tmp.61;
+            %tmp.70 = aputv %tmp.69 %tmp.63 %tmp.68;
+            %tmp.72 = const :locY;
+            symbol [ locY %tmp.72 20 151 155 const ];
+            %tmp.73 = lgetv %rez_cmp_local_var_dc_getHeight.1;
+            symbol [ rez_cmp_local_var_dc_getHeight %tmp.73 20 158 188 ];
+            %tmp.74 = 75;
+            %tmp.75 = 100.0;
+            %tmp.76 = div %tmp.74 %tmp.75;
+            %tmp.77 = mul %tmp.73 %tmp.76;
+            %tmp.78 = dup %tmp.70;
+            %tmp.79 = aputv %tmp.78 %tmp.72 %tmp.77;
+            %tmp.81 = const :text;
+            symbol [ text %tmp.81 20 207 211 const ];
+            %tmp.82 = "Check Debug Output";
+            %tmp.83 = dup %tmp.79;
+            %tmp.84 = aputv %tmp.83 %tmp.81 %tmp.82;
+            %tmp.86 = const :justification;
+            symbol [ justification %tmp.86 20 236 249 const ];
+            symbol [ Graphics %tmp.87 20 251 259 ];
+            %tmp.87 = getm $.Toybox.Graphics;
+            symbol [ TEXT_JUSTIFY_CENTER %tmp.88 20 260 279 ];
+            %tmp.88 = getv %tmp.87 :TEXT_JUSTIFY_CENTER;
+            %tmp.89 = dup %tmp.84;
+            %tmp.90 = aputv %tmp.89 %tmp.86 %tmp.88;
+            %tmp.92 = const :font;
+            symbol [ font %tmp.92 20 282 286 const ];
+            symbol [ Graphics %tmp.93 20 288 296 ];
+            %tmp.93 = getm $.Toybox.Graphics;
+            symbol [ FONT_MEDIUM %tmp.94 20 297 308 ];
+            %tmp.94 = getv %tmp.93 :FONT_MEDIUM;
+            %tmp.95 = dup %tmp.90;
+            %tmp.96 = aputv %tmp.95 %tmp.92 %tmp.94;
+            %tmp.52 = newc %tmp.55 (%tmp.96);
+            lputv %rez_cmp_local_text_instruction.4 %tmp.52;
+            symbol [ rez_cmp_local_text_instruction %rez_cmp_local_text_instruction.4 20 16 46 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 22 12 ]
+            %tmp.97 = newa 2 Array<WatchUi.Drawable>;
+            symbol [ Array %tmp.97 22 81 86 ];
+            symbol [ WatchUi %tmp.97 22 87 94 ];
+            symbol [ Drawable %tmp.97 22 95 103 ];
+            %tmp.98 = lgetv %rez_cmp_local_text_title.3;
+            symbol [ rez_cmp_local_text_title %tmp.98 22 20 44 ];
+            %tmp.99 = dup %tmp.97;
+            %tmp.100 = aputv %tmp.99 0 %tmp.98;
+            %tmp.101 = lgetv %rez_cmp_local_text_instruction.4;
+            symbol [ rez_cmp_local_text_instruction %tmp.101 22 46 76 ];
+            %tmp.102 = dup %tmp.100;
+            %tmp.103 = aputv %tmp.102 1 %tmp.101;
+            ret %tmp.103;
+_Users_j_IdeaProjects_own_garmin_meshtastic_gen_006_B4533_00_source_Rez_mcgen_13_74_23_8_stop:
+        }
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 26; @symbol_moduledef = [Strings,26,11,18]; ]
+    module Strings {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 26; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 27; @position = 27; initialized = true; @symbol_vardef = [AppName,27,27,34]; @symbol_type<0> = [ResourceId,27,38,48]; ]
+        var AppName as ResourceId;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 30; @symbol_moduledef = [Styles,30,11,17]; ]
+    module Styles {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 30; ]
+        <init> {
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 31; @symbol_moduledef = [prompt_font_enhanced_readability__body_with_title,31,15,64]; ]
+        module prompt_font_enhanced_readability__body_with_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 31; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 32 18 ]
+                symbol [ Graphics %tmp.104 32 34 42 ];
+                %tmp.104 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.105 32 43 62 ];
+                %tmp.105 = getv %tmp.104 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.106 32 63 71 ];
+                %tmp.106 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.107 32 72 92 ];
+                %tmp.107 = getv %tmp.106 :TEXT_JUSTIFY_VCENTER;
+                %tmp.108 = bitor %tmp.105 %tmp.107;
+                putv self :justification %tmp.108;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 33 18 ]
+                symbol [ Graphics %tmp.109 33 25 33 ];
+                %tmp.109 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.110 33 34 43 ];
+                %tmp.110 = getv %tmp.109 :FONT_TINY;
+                putv self :font %tmp.110;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 32; @position = 18; @symbol_constdef = [justification,32,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 33; @position = 18; @symbol_constdef = [font,33,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 36; @symbol_moduledef = [system_size__menu_header,36,15,39]; ]
+        module system_size__menu_header {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 36; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 37; @position = 18; @symbol_constdef = [width,37,18,23]; @symbol_type<0> = [Number,37,27,33]; ]
+            const width as Number = 280;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 38; @position = 18; @symbol_constdef = [height,38,18,24]; @symbol_type<0> = [Number,38,28,34]; ]
+            const height as Number = 95;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 41; @symbol_moduledef = [system_loc__hint_button_left_bottom,41,15,50]; ]
+        module system_loc__hint_button_left_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 41; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 42; @position = 18; @symbol_constdef = [x,42,18,19]; @symbol_type<0> = [Number,42,23,29]; ]
+            const x as Number = 7;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 43; @position = 18; @symbol_constdef = [y,43,18,19]; @symbol_type<0> = [Number,43,23,29]; ]
+            const y as Number = 179;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 46; @symbol_moduledef = [prompt_font_enhanced_readability__body_no_title,46,15,62]; ]
+        module prompt_font_enhanced_readability__body_no_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 46; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 47 18 ]
+                symbol [ Graphics %tmp.111 47 34 42 ];
+                %tmp.111 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.112 47 43 62 ];
+                %tmp.112 = getv %tmp.111 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.113 47 63 71 ];
+                %tmp.113 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.114 47 72 92 ];
+                %tmp.114 = getv %tmp.113 :TEXT_JUSTIFY_VCENTER;
+                %tmp.115 = bitor %tmp.112 %tmp.114;
+                putv self :justification %tmp.115;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 48 18 ]
+                symbol [ Graphics %tmp.116 48 25 33 ];
+                %tmp.116 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.117 48 34 43 ];
+                %tmp.117 = getv %tmp.116 :FONT_TINY;
+                putv self :font %tmp.117;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 47; @position = 18; @symbol_constdef = [justification,47,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 48; @position = 18; @symbol_constdef = [font,48,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 51; @symbol_moduledef = [prompt_loc__body_no_title,51,15,40]; ]
+        module prompt_loc__body_no_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 51; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 52; @position = 18; @symbol_constdef = [x,52,18,19]; @symbol_type<0> = [Number,52,23,29]; ]
+            const x as Number = 28;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 53; @position = 18; @symbol_constdef = [y,53,18,19]; @symbol_type<0> = [Number,53,23,29]; ]
+            const y as Number = 28;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 56; @symbol_moduledef = [system_icon_dark__about,56,15,38]; ]
+        module system_icon_dark__about {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 56; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 57; @position = 18; @symbol_constdef = [filename,57,18,26]; @symbol_type<0> = [String,57,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__about.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 58; @position = 18; @symbol_constdef = [compress,58,18,26]; @symbol_type<0> = [String,58,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 59; @position = 18; @symbol_constdef = [dithering,59,18,27]; @symbol_type<0> = [String,59,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 60; @position = 18; @symbol_constdef = [automaticPalette,60,18,34]; @symbol_type<0> = [String,60,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 63; @symbol_moduledef = [system_icon_light__question,63,15,42]; ]
+        module system_icon_light__question {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 63; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 64; @position = 18; @symbol_constdef = [filename,64,18,26]; @symbol_type<0> = [String,64,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__question.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 65; @position = 18; @symbol_constdef = [dithering,65,18,27]; @symbol_type<0> = [String,65,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 68; @symbol_moduledef = [system_loc__hint_button_left_top,68,15,47]; ]
+        module system_loc__hint_button_left_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 68; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 69; @position = 18; @symbol_constdef = [exclude,69,18,25]; @symbol_type<0> = [Boolean,69,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 72; @symbol_moduledef = [prompt_font__title,72,15,33]; ]
+        module prompt_font__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 72; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 73 18 ]
+                symbol [ Graphics %tmp.118 73 34 42 ];
+                %tmp.118 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.119 73 43 62 ];
+                %tmp.119 = getv %tmp.118 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.120 73 63 71 ];
+                %tmp.120 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.121 73 72 92 ];
+                %tmp.121 = getv %tmp.120 :TEXT_JUSTIFY_VCENTER;
+                %tmp.122 = bitor %tmp.119 %tmp.121;
+                putv self :justification %tmp.122;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 74 18 ]
+                symbol [ Graphics %tmp.123 74 25 33 ];
+                %tmp.123 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.124 74 34 43 ];
+                %tmp.124 = getv %tmp.123 :FONT_TINY;
+                putv self :font %tmp.124;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 73; @position = 18; @symbol_constdef = [justification,73,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 74; @position = 18; @symbol_constdef = [font,74,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 77; @symbol_moduledef = [system_icon_dark__discard,77,15,40]; ]
+        module system_icon_dark__discard {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 77; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 78; @position = 18; @symbol_constdef = [filename,78,18,26]; @symbol_type<0> = [String,78,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__discard.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 79; @position = 18; @symbol_constdef = [compress,79,18,26]; @symbol_type<0> = [String,79,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 80; @position = 18; @symbol_constdef = [dithering,80,18,27]; @symbol_type<0> = [String,80,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 81; @position = 18; @symbol_constdef = [automaticPalette,81,18,34]; @symbol_type<0> = [String,81,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 84; @symbol_moduledef = [system_size__menu_item,84,15,37]; ]
+        module system_size__menu_item {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 84; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 85; @position = 18; @symbol_constdef = [width,85,18,23]; @symbol_type<0> = [Number,85,27,33]; ]
+            const width as Number = 280;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 86; @position = 18; @symbol_constdef = [height,86,18,24]; @symbol_type<0> = [Number,86,28,34]; ]
+            const height as Number = 89;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 89; @symbol_moduledef = [system_color_dark__text,89,15,38]; ]
+        module system_color_dark__text {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 89; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 91 18 ]
+                symbol [ Graphics %tmp.125 91 31 39 ];
+                %tmp.125 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.126 91 40 57 ];
+                %tmp.126 = getv %tmp.125 :COLOR_TRANSPARENT;
+                putv self :background %tmp.126;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 90; @position = 18; @symbol_constdef = [color,90,18,23]; @symbol_type<0> = [Number,90,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 91; @position = 18; @symbol_constdef = [background,91,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 94; @symbol_moduledef = [system_icon_destructive__discard,94,15,47]; ]
+        module system_icon_destructive__discard {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 94; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 95; @position = 18; @symbol_constdef = [filename,95,18,26]; @symbol_type<0> = [String,95,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__discard.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 96; @position = 18; @symbol_constdef = [dithering,96,18,27]; @symbol_type<0> = [String,96,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 99; @symbol_moduledef = [system_icon_dark__hint_action_menu,99,15,49]; ]
+        module system_icon_dark__hint_action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 99; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 100; @position = 18; @symbol_constdef = [filename,100,18,26]; @symbol_type<0> = [String,100,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 101; @position = 18; @symbol_constdef = [dithering,101,18,27]; @symbol_type<0> = [String,101,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 104; @symbol_moduledef = [prompt_size__title,104,15,33]; ]
+        module prompt_size__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 104; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 105; @position = 18; @symbol_constdef = [width,105,18,23]; @symbol_type<0> = [Number,105,27,33]; ]
+            const width as Number = 224;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 106; @position = 18; @symbol_constdef = [height,106,18,24]; @symbol_type<0> = [Number,106,28,34]; ]
+            const height as Number = 42;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 109; @symbol_moduledef = [confirmation_font__body,109,15,38]; ]
+        module confirmation_font__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 109; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 110 18 ]
+                symbol [ Graphics %tmp.127 110 34 42 ];
+                %tmp.127 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.128 110 43 62 ];
+                %tmp.128 = getv %tmp.127 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.129 110 63 71 ];
+                %tmp.129 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.130 110 72 92 ];
+                %tmp.130 = getv %tmp.129 :TEXT_JUSTIFY_VCENTER;
+                %tmp.131 = bitor %tmp.128 %tmp.130;
+                putv self :justification %tmp.131;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 111 18 ]
+                symbol [ Graphics %tmp.132 111 25 33 ];
+                %tmp.132 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.133 111 34 43 ];
+                %tmp.133 = getv %tmp.132 :FONT_TINY;
+                putv self :font %tmp.133;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 110; @position = 18; @symbol_constdef = [justification,110,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 111; @position = 18; @symbol_constdef = [font,111,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 114; @symbol_moduledef = [system_color_dark__background,114,15,44]; ]
+        module system_color_dark__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 114; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 115; @position = 18; @symbol_constdef = [color,115,18,23]; @symbol_type<0> = [Number,115,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 116; @position = 18; @symbol_constdef = [background,116,18,28]; @symbol_type<0> = [Number,116,32,38]; ]
+            const background as Number = 0x000000;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 119; @symbol_moduledef = [system_icon_destructive__hint_button_left_top,119,15,60]; ]
+        module system_icon_destructive__hint_button_left_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 119; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 120; @position = 18; @symbol_constdef = [filename,120,18,26]; @symbol_type<0> = [String,120,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_left_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 121; @position = 18; @symbol_constdef = [dithering,121,18,27]; @symbol_type<0> = [String,121,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 124; @symbol_moduledef = [system_size__launch_icon,124,15,39]; ]
+        module system_size__launch_icon {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 124; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 125; @position = 18; @symbol_constdef = [scaleX,125,18,24]; @symbol_type<0> = [Number,125,28,34]; ]
+            const scaleX as Number = 40;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 126; @position = 18; @symbol_constdef = [scaleY,126,18,24]; @symbol_type<0> = [Number,126,28,34]; ]
+            const scaleY as Number = 40;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 127; @position = 18; @symbol_constdef = [scaleRelativeTo,127,18,33]; @symbol_type<0> = [String,127,37,43]; ]
+            const scaleRelativeTo as String = "screen";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 130; @symbol_moduledef = [confirmation_input__confirm,130,15,42]; ]
+        module confirmation_input__confirm {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 130; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 131 18 ]
+                symbol [ WatchUi %tmp.134 131 27 34 ];
+                %tmp.134 = getm $.Toybox.WatchUi;
+                symbol [ KEY_ENTER %tmp.135 131 35 44 ];
+                %tmp.135 = getv %tmp.134 :KEY_ENTER;
+                putv self :button %tmp.135;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 131; @position = 18; @symbol_constdef = [button,131,18,24]; ]
+            const button;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 134; @symbol_moduledef = [prompt_font__body_with_title,134,15,43]; ]
+        module prompt_font__body_with_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 134; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 135 18 ]
+                symbol [ Graphics %tmp.136 135 34 42 ];
+                %tmp.136 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.137 135 43 62 ];
+                %tmp.137 = getv %tmp.136 :TEXT_JUSTIFY_CENTER;
+                putv self :justification %tmp.137;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 136 18 ]
+                symbol [ Graphics %tmp.138 136 25 33 ];
+                %tmp.138 = getm $.Toybox.Graphics;
+                symbol [ FONT_GLANCE %tmp.139 136 34 45 ];
+                %tmp.139 = getv %tmp.138 :FONT_GLANCE;
+                putv self :font %tmp.139;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 135; @position = 18; @symbol_constdef = [justification,135,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 136; @position = 18; @symbol_constdef = [font,136,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 139; @symbol_moduledef = [confirmation_loc__body,139,15,37]; ]
+        module confirmation_loc__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 139; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 140; @position = 18; @symbol_constdef = [x,140,18,19]; @symbol_type<0> = [Number,140,23,29]; ]
+            const x as Number = 56;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 141; @position = 18; @symbol_constdef = [y,141,18,19]; @symbol_type<0> = [Number,141,23,29]; ]
+            const y as Number = 56;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 144; @symbol_moduledef = [system_icon_destructive__hint_button_left_bottom,144,15,63]; ]
+        module system_icon_destructive__hint_button_left_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 144; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 145; @position = 18; @symbol_constdef = [filename,145,18,26]; @symbol_type<0> = [String,145,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_left_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 146; @position = 18; @symbol_constdef = [dithering,146,18,27]; @symbol_type<0> = [String,146,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 149; @symbol_moduledef = [prompt_color_dark__background,149,15,44]; ]
+        module prompt_color_dark__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 149; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 150; @position = 18; @symbol_constdef = [color,150,18,23]; @symbol_type<0> = [Number,150,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 151; @position = 18; @symbol_constdef = [background,151,18,28]; @symbol_type<0> = [Number,151,32,38]; ]
+            const background as Number = 0x000000;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 154; @symbol_moduledef = [system_icon_destructive__hint_action_menu,154,15,56]; ]
+        module system_icon_destructive__hint_action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 154; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 155; @position = 18; @symbol_constdef = [filename,155,18,26]; @symbol_type<0> = [String,155,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 156; @position = 18; @symbol_constdef = [dithering,156,18,27]; @symbol_type<0> = [String,156,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 159; @symbol_moduledef = [system_loc__hint_action_menu,159,15,43]; ]
+        module system_loc__hint_action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 159; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 160; @position = 18; @symbol_constdef = [x,160,18,19]; @symbol_type<0> = [Number,160,23,29]; ]
+            const x as Number = 222;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 161; @position = 18; @symbol_constdef = [y,161,18,19]; @symbol_type<0> = [Number,161,23,29]; ]
+            const y as Number = 44;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 164; @symbol_moduledef = [confirmation_icon__hint_confirm,164,15,46]; ]
+        module confirmation_icon__hint_confirm {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 164; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 165; @position = 18; @symbol_constdef = [filename,165,18,26]; @symbol_type<0> = [String,165,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_completion.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 166; @position = 18; @symbol_constdef = [dithering,166,18,27]; @symbol_type<0> = [String,166,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 169; @symbol_moduledef = [system_loc__hint_button_left_middle,169,15,50]; ]
+        module system_loc__hint_button_left_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 169; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 170; @position = 18; @symbol_constdef = [x,170,18,19]; @symbol_type<0> = [Number,170,23,29]; ]
+            const x as Number = 0;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 171; @position = 18; @symbol_constdef = [y,171,18,19]; @symbol_type<0> = [Number,171,23,29]; ]
+            const y as Number = 110;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 174; @symbol_moduledef = [prompt_size__body_no_title,174,15,41]; ]
+        module prompt_size__body_no_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 174; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 175; @position = 18; @symbol_constdef = [width,175,18,23]; @symbol_type<0> = [Number,175,27,33]; ]
+            const width as Number = 224;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 176; @position = 18; @symbol_constdef = [height,176,18,24]; @symbol_type<0> = [Number,176,28,34]; ]
+            const height as Number = 224;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 179; @symbol_moduledef = [system_icon_light__hint_button_left_top,179,15,54]; ]
+        module system_icon_light__hint_button_left_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 179; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 180; @position = 18; @symbol_constdef = [filename,180,18,26]; @symbol_type<0> = [String,180,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_left_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 181; @position = 18; @symbol_constdef = [dithering,181,18,27]; @symbol_type<0> = [String,181,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 184; @symbol_moduledef = [prompt_color_light__background,184,15,45]; ]
+        module prompt_color_light__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 184; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 185; @position = 18; @symbol_constdef = [color,185,18,23]; @symbol_type<0> = [Number,185,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 186; @position = 18; @symbol_constdef = [background,186,18,28]; @symbol_type<0> = [Number,186,32,38]; ]
+            const background as Number = 0xFFFFFF;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 189; @symbol_moduledef = [confirmation_input__delete,189,15,41]; ]
+        module confirmation_input__delete {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 189; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 190 18 ]
+                symbol [ WatchUi %tmp.140 190 27 34 ];
+                %tmp.140 = getm $.Toybox.WatchUi;
+                symbol [ KEY_ENTER %tmp.141 190 35 44 ];
+                %tmp.141 = getv %tmp.140 :KEY_ENTER;
+                putv self :button %tmp.141;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 190; @position = 18; @symbol_constdef = [button,190,18,24]; ]
+            const button;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 193; @symbol_moduledef = [system_icon_dark__hint_button_left_top,193,15,53]; ]
+        module system_icon_dark__hint_button_left_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 193; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 194; @position = 18; @symbol_constdef = [filename,194,18,26]; @symbol_type<0> = [String,194,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_left_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 195; @position = 18; @symbol_constdef = [dithering,195,18,27]; @symbol_type<0> = [String,195,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 198; @symbol_moduledef = [system_input__action_menu,198,15,40]; ]
+        module system_input__action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 198; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 199 18 ]
+                symbol [ WatchUi %tmp.142 199 27 34 ];
+                %tmp.142 = getm $.Toybox.WatchUi;
+                symbol [ KEY_ENTER %tmp.143 199 35 44 ];
+                %tmp.143 = getv %tmp.142 :KEY_ENTER;
+                putv self :button %tmp.143;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 199; @position = 18; @symbol_constdef = [button,199,18,24]; ]
+            const button;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 202; @symbol_moduledef = [system_icon_light__save,202,15,38]; ]
+        module system_icon_light__save {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 202; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 203; @position = 18; @symbol_constdef = [filename,203,18,26]; @symbol_type<0> = [String,203,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__save.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 204; @position = 18; @symbol_constdef = [dithering,204,18,27]; @symbol_type<0> = [String,204,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 207; @symbol_moduledef = [prompt_color_light__body,207,15,39]; ]
+        module prompt_color_light__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 207; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 209 18 ]
+                symbol [ Graphics %tmp.144 209 31 39 ];
+                %tmp.144 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.145 209 40 57 ];
+                %tmp.145 = getv %tmp.144 :COLOR_TRANSPARENT;
+                putv self :background %tmp.145;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 208; @position = 18; @symbol_constdef = [color,208,18,23]; @symbol_type<0> = [Number,208,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 209; @position = 18; @symbol_constdef = [background,209,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 212; @symbol_moduledef = [system_loc__subwindow,212,15,36]; ]
+        module system_loc__subwindow {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 212; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 213; @position = 18; @symbol_constdef = [exclude,213,18,25]; @symbol_type<0> = [Boolean,213,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 216; @symbol_moduledef = [system_icon_light__warning,216,15,41]; ]
+        module system_icon_light__warning {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 216; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 217; @position = 18; @symbol_constdef = [filename,217,18,26]; @symbol_type<0> = [String,217,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__warning.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 218; @position = 18; @symbol_constdef = [dithering,218,18,27]; @symbol_type<0> = [String,218,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 221; @symbol_moduledef = [confirmation_color_light__body,221,15,45]; ]
+        module confirmation_color_light__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 221; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 223 18 ]
+                symbol [ Graphics %tmp.146 223 31 39 ];
+                %tmp.146 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.147 223 40 57 ];
+                %tmp.147 = getv %tmp.146 :COLOR_TRANSPARENT;
+                putv self :background %tmp.147;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 222; @position = 18; @symbol_constdef = [color,222,18,23]; @symbol_type<0> = [Number,222,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 223; @position = 18; @symbol_constdef = [background,223,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 226; @symbol_moduledef = [confirmation_icon_light__hint_keep,226,15,49]; ]
+        module confirmation_icon_light__hint_keep {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 226; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 227; @position = 18; @symbol_constdef = [filename,227,18,26]; @symbol_type<0> = [String,227,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_keep.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 228; @position = 18; @symbol_constdef = [dithering,228,18,27]; @symbol_type<0> = [String,228,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 231; @symbol_moduledef = [activity_color_light__background,231,15,47]; ]
+        module activity_color_light__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 231; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 232; @position = 18; @symbol_constdef = [color,232,18,23]; @symbol_type<0> = [Number,232,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 233; @position = 18; @symbol_constdef = [background,233,18,28]; @symbol_type<0> = [Number,233,32,38]; ]
+            const background as Number = 0xFFFFFF;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 236; @symbol_moduledef = [system_icon_positive__hint_button_right_top,236,15,58]; ]
+        module system_icon_positive__hint_button_right_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 236; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 237; @position = 18; @symbol_constdef = [filename,237,18,26]; @symbol_type<0> = [String,237,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 238; @position = 18; @symbol_constdef = [dithering,238,18,27]; @symbol_type<0> = [String,238,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 241; @symbol_moduledef = [system_size__screen,241,15,34]; ]
+        module system_size__screen {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 241; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 242; @position = 18; @symbol_constdef = [width,242,18,23]; @symbol_type<0> = [Number,242,27,33]; ]
+            const width as Number = 280;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 243; @position = 18; @symbol_constdef = [height,243,18,24]; @symbol_type<0> = [Number,243,28,34]; ]
+            const height as Number = 280;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 246; @symbol_moduledef = [system_icon_destructive__hint_button_right_bottom,246,15,64]; ]
+        module system_icon_destructive__hint_button_right_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 246; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 247; @position = 18; @symbol_constdef = [filename,247,18,26]; @symbol_type<0> = [String,247,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_right_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 248; @position = 18; @symbol_constdef = [dithering,248,18,27]; @symbol_type<0> = [String,248,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 251; @symbol_moduledef = [system_color_light__background,251,15,45]; ]
+        module system_color_light__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 251; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 252; @position = 18; @symbol_constdef = [color,252,18,23]; @symbol_type<0> = [Number,252,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 253; @position = 18; @symbol_constdef = [background,253,18,28]; @symbol_type<0> = [Number,253,32,38]; ]
+            const background as Number = 0xFFFFFF;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 256; @symbol_moduledef = [system_icon_destructive__hint_button_right_top,256,15,61]; ]
+        module system_icon_destructive__hint_button_right_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 256; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 257; @position = 18; @symbol_constdef = [filename,257,18,26]; @symbol_type<0> = [String,257,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 258; @position = 18; @symbol_constdef = [dithering,258,18,27]; @symbol_type<0> = [String,258,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 261; @symbol_moduledef = [confirmation_loc__hint_confirm,261,15,45]; ]
+        module confirmation_loc__hint_confirm {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 261; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 262; @position = 18; @symbol_constdef = [x,262,18,19]; @symbol_type<0> = [Number,262,23,29]; ]
+            const x as Number = 222;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 263; @position = 18; @symbol_constdef = [y,263,18,19]; @symbol_type<0> = [Number,263,23,29]; ]
+            const y as Number = 44;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 266; @symbol_moduledef = [activity_color_dark__text,266,15,40]; ]
+        module activity_color_dark__text {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 266; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 268 18 ]
+                symbol [ Graphics %tmp.148 268 31 39 ];
+                %tmp.148 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.149 268 40 57 ];
+                %tmp.149 = getv %tmp.148 :COLOR_TRANSPARENT;
+                putv self :background %tmp.149;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 267; @position = 18; @symbol_constdef = [color,267,18,23]; @symbol_type<0> = [Number,267,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 268; @position = 18; @symbol_constdef = [background,268,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 271; @symbol_moduledef = [confirmation_input__keep,271,15,39]; ]
+        module confirmation_input__keep {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 271; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 272 18 ]
+                symbol [ WatchUi %tmp.150 272 27 34 ];
+                %tmp.150 = getm $.Toybox.WatchUi;
+                symbol [ KEY_DOWN %tmp.151 272 35 43 ];
+                %tmp.151 = getv %tmp.150 :KEY_DOWN;
+                putv self :button %tmp.151;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 272; @position = 18; @symbol_constdef = [button,272,18,24]; ]
+            const button;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 275; @symbol_moduledef = [prompt_loc__body_with_title,275,15,42]; ]
+        module prompt_loc__body_with_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 275; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 276; @position = 18; @symbol_constdef = [x,276,18,19]; @symbol_type<0> = [Number,276,23,29]; ]
+            const x as Number = 28;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 277; @position = 18; @symbol_constdef = [y,277,18,19]; @symbol_type<0> = [Number,277,23,29]; ]
+            const y as Number = 84;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 280; @symbol_moduledef = [system_icon_dark__search,280,15,39]; ]
+        module system_icon_dark__search {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 280; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 281; @position = 18; @symbol_constdef = [filename,281,18,26]; @symbol_type<0> = [String,281,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__search.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 282; @position = 18; @symbol_constdef = [compress,282,18,26]; @symbol_type<0> = [String,282,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 283; @position = 18; @symbol_constdef = [dithering,283,18,27]; @symbol_type<0> = [String,283,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 284; @position = 18; @symbol_constdef = [automaticPalette,284,18,34]; @symbol_type<0> = [String,284,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 287; @symbol_moduledef = [activity_color_light__text,287,15,41]; ]
+        module activity_color_light__text {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 287; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 289 18 ]
+                symbol [ Graphics %tmp.152 289 31 39 ];
+                %tmp.152 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.153 289 40 57 ];
+                %tmp.153 = getv %tmp.152 :COLOR_TRANSPARENT;
+                putv self :background %tmp.153;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 288; @position = 18; @symbol_constdef = [color,288,18,23]; @symbol_type<0> = [Number,288,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 289; @position = 18; @symbol_constdef = [background,289,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 292; @symbol_moduledef = [confirmation_icon__hint_keep,292,15,43]; ]
+        module confirmation_icon__hint_keep {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 292; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 293; @position = 18; @symbol_constdef = [filename,293,18,26]; @symbol_type<0> = [String,293,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_keep.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 294; @position = 18; @symbol_constdef = [dithering,294,18,27]; @symbol_type<0> = [String,294,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 297; @symbol_moduledef = [system_icon_dark__save,297,15,37]; ]
+        module system_icon_dark__save {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 297; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 298; @position = 18; @symbol_constdef = [filename,298,18,26]; @symbol_type<0> = [String,298,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__save.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 299; @position = 18; @symbol_constdef = [compress,299,18,26]; @symbol_type<0> = [String,299,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 300; @position = 18; @symbol_constdef = [dithering,300,18,27]; @symbol_type<0> = [String,300,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 301; @position = 18; @symbol_constdef = [automaticPalette,301,18,34]; @symbol_type<0> = [String,301,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 304; @symbol_moduledef = [system_icon_destructive__hint_button_left_middle,304,15,63]; ]
+        module system_icon_destructive__hint_button_left_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 304; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 305; @position = 18; @symbol_constdef = [filename,305,18,26]; @symbol_type<0> = [String,305,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__hint_button_left_middle.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 306; @position = 18; @symbol_constdef = [dithering,306,18,27]; @symbol_type<0> = [String,306,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 309; @symbol_moduledef = [system_icon_light__search,309,15,40]; ]
+        module system_icon_light__search {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 309; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 310; @position = 18; @symbol_constdef = [filename,310,18,26]; @symbol_type<0> = [String,310,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__search.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 311; @position = 18; @symbol_constdef = [dithering,311,18,27]; @symbol_type<0> = [String,311,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 314; @symbol_moduledef = [system_icon_dark__hint_button_left_bottom,314,15,56]; ]
+        module system_icon_dark__hint_button_left_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 314; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 315; @position = 18; @symbol_constdef = [filename,315,18,26]; @symbol_type<0> = [String,315,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_left_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 316; @position = 18; @symbol_constdef = [dithering,316,18,27]; @symbol_type<0> = [String,316,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 319; @symbol_moduledef = [system_icon_positive__hint_button_left_top,319,15,57]; ]
+        module system_icon_positive__hint_button_left_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 319; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 320; @position = 18; @symbol_constdef = [filename,320,18,26]; @symbol_type<0> = [String,320,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_left_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 321; @position = 18; @symbol_constdef = [dithering,321,18,27]; @symbol_type<0> = [String,321,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 324; @symbol_moduledef = [system_loc__hint_button_right_bottom,324,15,51]; ]
+        module system_loc__hint_button_right_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 324; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 325; @position = 18; @symbol_constdef = [x,325,18,19]; @symbol_type<0> = [Number,325,23,29]; ]
+            const x as Number = 222;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 326; @position = 18; @symbol_constdef = [y,326,18,19]; @symbol_type<0> = [Number,326,23,29]; ]
+            const y as Number = 178;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 329; @symbol_moduledef = [confirmation_icon_dark__hint_reject,329,15,50]; ]
+        module confirmation_icon_dark__hint_reject {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 329; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 330; @position = 18; @symbol_constdef = [filename,330,18,26]; @symbol_type<0> = [String,330,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_reject.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 331; @position = 18; @symbol_constdef = [dithering,331,18,27]; @symbol_type<0> = [String,331,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 334; @symbol_moduledef = [confirmation_color_dark__body,334,15,44]; ]
+        module confirmation_color_dark__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 334; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 336 18 ]
+                symbol [ Graphics %tmp.154 336 31 39 ];
+                %tmp.154 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.155 336 40 57 ];
+                %tmp.155 = getv %tmp.154 :COLOR_TRANSPARENT;
+                putv self :background %tmp.155;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 335; @position = 18; @symbol_constdef = [color,335,18,23]; @symbol_type<0> = [Number,335,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 336; @position = 18; @symbol_constdef = [background,336,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 339; @symbol_moduledef = [confirmation_icon_light__hint_confirm,339,15,52]; ]
+        module confirmation_icon_light__hint_confirm {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 339; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 340; @position = 18; @symbol_constdef = [filename,340,18,26]; @symbol_type<0> = [String,340,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_completion.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 341; @position = 18; @symbol_constdef = [dithering,341,18,27]; @symbol_type<0> = [String,341,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 344; @symbol_moduledef = [prompt_color_dark__title,344,15,39]; ]
+        module prompt_color_dark__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 344; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 346 18 ]
+                symbol [ Graphics %tmp.156 346 31 39 ];
+                %tmp.156 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.157 346 40 57 ];
+                %tmp.157 = getv %tmp.156 :COLOR_TRANSPARENT;
+                putv self :background %tmp.157;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 345; @position = 18; @symbol_constdef = [color,345,18,23]; @symbol_type<0> = [Number,345,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 346; @position = 18; @symbol_constdef = [background,346,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 349; @symbol_moduledef = [system_icon_destructive__cancel,349,15,46]; ]
+        module system_icon_destructive__cancel {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 349; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 350; @position = 18; @symbol_constdef = [filename,350,18,26]; @symbol_type<0> = [String,350,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__cancel.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 351; @position = 18; @symbol_constdef = [dithering,351,18,27]; @symbol_type<0> = [String,351,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 354; @symbol_moduledef = [system_icon_light__hint_button_right_bottom,354,15,58]; ]
+        module system_icon_light__hint_button_right_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 354; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 355; @position = 18; @symbol_constdef = [filename,355,18,26]; @symbol_type<0> = [String,355,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_right_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 356; @position = 18; @symbol_constdef = [dithering,356,18,27]; @symbol_type<0> = [String,356,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 359; @symbol_moduledef = [prompt_loc__title,359,15,32]; ]
+        module prompt_loc__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 359; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 360; @position = 18; @symbol_constdef = [x,360,18,19]; @symbol_type<0> = [Number,360,23,29]; ]
+            const x as Number = 28;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 361; @position = 18; @symbol_constdef = [y,361,18,19]; @symbol_type<0> = [Number,361,23,29]; ]
+            const y as Number = 21;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 364; @symbol_moduledef = [confirmation_font_enhanced_readability__body,364,15,59]; ]
+        module confirmation_font_enhanced_readability__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 364; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 365 18 ]
+                symbol [ Graphics %tmp.158 365 34 42 ];
+                %tmp.158 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.159 365 43 62 ];
+                %tmp.159 = getv %tmp.158 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.160 365 63 71 ];
+                %tmp.160 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.161 365 72 92 ];
+                %tmp.161 = getv %tmp.160 :TEXT_JUSTIFY_VCENTER;
+                %tmp.162 = bitor %tmp.159 %tmp.161;
+                putv self :justification %tmp.162;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 366 18 ]
+                symbol [ Graphics %tmp.163 366 25 33 ];
+                %tmp.163 = getm $.Toybox.Graphics;
+                symbol [ FONT_SMALL %tmp.164 366 34 44 ];
+                %tmp.164 = getv %tmp.163 :FONT_SMALL;
+                putv self :font %tmp.164;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 365; @position = 18; @symbol_constdef = [justification,365,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 366; @position = 18; @symbol_constdef = [font,366,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 369; @symbol_moduledef = [prompt_color_light__title,369,15,40]; ]
+        module prompt_color_light__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 369; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 371 18 ]
+                symbol [ Graphics %tmp.165 371 31 39 ];
+                %tmp.165 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.166 371 40 57 ];
+                %tmp.166 = getv %tmp.165 :COLOR_TRANSPARENT;
+                putv self :background %tmp.166;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 370; @position = 18; @symbol_constdef = [color,370,18,23]; @symbol_type<0> = [Number,370,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 371; @position = 18; @symbol_constdef = [background,371,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 374; @symbol_moduledef = [system_icon_dark__hint_button_right_top,374,15,54]; ]
+        module system_icon_dark__hint_button_right_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 374; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 375; @position = 18; @symbol_constdef = [filename,375,18,26]; @symbol_type<0> = [String,375,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 376; @position = 18; @symbol_constdef = [dithering,376,18,27]; @symbol_type<0> = [String,376,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 379; @symbol_moduledef = [system_icon_dark__hint_button_left_middle,379,15,56]; ]
+        module system_icon_dark__hint_button_left_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 379; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 380; @position = 18; @symbol_constdef = [filename,380,18,26]; @symbol_type<0> = [String,380,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_left_middle.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 381; @position = 18; @symbol_constdef = [dithering,381,18,27]; @symbol_type<0> = [String,381,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 384; @symbol_moduledef = [confirmation_icon_dark__hint_keep,384,15,48]; ]
+        module confirmation_icon_dark__hint_keep {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 384; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 385; @position = 18; @symbol_constdef = [filename,385,18,26]; @symbol_type<0> = [String,385,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_keep.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 386; @position = 18; @symbol_constdef = [dithering,386,18,27]; @symbol_type<0> = [String,386,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 389; @symbol_moduledef = [system_icon_light__cancel,389,15,40]; ]
+        module system_icon_light__cancel {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 389; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 390; @position = 18; @symbol_constdef = [filename,390,18,26]; @symbol_type<0> = [String,390,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__cancel.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 391; @position = 18; @symbol_constdef = [dithering,391,18,27]; @symbol_type<0> = [String,391,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 394; @symbol_moduledef = [confirmation_icon_light__hint_reject,394,15,51]; ]
+        module confirmation_icon_light__hint_reject {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 394; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 395; @position = 18; @symbol_constdef = [filename,395,18,26]; @symbol_type<0> = [String,395,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_reject.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 396; @position = 18; @symbol_constdef = [dithering,396,18,27]; @symbol_type<0> = [String,396,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 399; @symbol_moduledef = [system_icon_light__about,399,15,39]; ]
+        module system_icon_light__about {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 399; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 400; @position = 18; @symbol_constdef = [filename,400,18,26]; @symbol_type<0> = [String,400,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__about.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 401; @position = 18; @symbol_constdef = [dithering,401,18,27]; @symbol_type<0> = [String,401,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 404; @symbol_moduledef = [system_size__toast_icon,404,15,38]; ]
+        module system_size__toast_icon {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 404; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 405; @position = 18; @symbol_constdef = [scaleX,405,18,24]; @symbol_type<0> = [Number,405,28,34]; ]
+            const scaleX as Number = 40;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 406; @position = 18; @symbol_constdef = [scaleY,406,18,24]; @symbol_type<0> = [Number,406,28,34]; ]
+            const scaleY as Number = 40;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 407; @position = 18; @symbol_constdef = [scaleRelativeTo,407,18,33]; @symbol_type<0> = [String,407,37,43]; ]
+            const scaleRelativeTo as String = "screen";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 410; @symbol_moduledef = [system_icon_dark__hint_button_right_middle,410,15,57]; ]
+        module system_icon_dark__hint_button_right_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 410; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 411; @position = 18; @symbol_constdef = [exclude,411,18,25]; @symbol_type<0> = [Boolean,411,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 414; @symbol_moduledef = [confirmation_icon__hint_reject,414,15,45]; ]
+        module confirmation_icon__hint_reject {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 414; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 415; @position = 18; @symbol_constdef = [filename,415,18,26]; @symbol_type<0> = [String,415,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_reject.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 416; @position = 18; @symbol_constdef = [dithering,416,18,27]; @symbol_type<0> = [String,416,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 419; @symbol_moduledef = [system_icon_light__hint_action_menu,419,15,50]; ]
+        module system_icon_light__hint_action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 419; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 420; @position = 18; @symbol_constdef = [filename,420,18,26]; @symbol_type<0> = [String,420,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 421; @position = 18; @symbol_constdef = [dithering,421,18,27]; @symbol_type<0> = [String,421,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 424; @symbol_moduledef = [system_icon_light__hint_button_right_middle,424,15,58]; ]
+        module system_icon_light__hint_button_right_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 424; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 425; @position = 18; @symbol_constdef = [exclude,425,18,25]; @symbol_type<0> = [Boolean,425,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 428; @symbol_moduledef = [system_icon_destructive__hint_button_right_middle,428,15,64]; ]
+        module system_icon_destructive__hint_button_right_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 428; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 429; @position = 18; @symbol_constdef = [exclude,429,18,25]; @symbol_type<0> = [Boolean,429,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 432; @symbol_moduledef = [confirmation_loc__hint_reject,432,15,44]; ]
+        module confirmation_loc__hint_reject {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 432; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 433; @position = 18; @symbol_constdef = [x,433,18,19]; @symbol_type<0> = [Number,433,23,29]; ]
+            const x as Number = 7;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 434; @position = 18; @symbol_constdef = [y,434,18,19]; @symbol_type<0> = [Number,434,23,29]; ]
+            const y as Number = 179;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 435; @position = 18; @symbol_constdef = [horizontalJustification,435,18,41]; @symbol_type<0> = [String,435,45,51]; ]
+            const horizontalJustification as String = "left";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 438; @symbol_moduledef = [confirmation_icon_dark__hint_delete,438,15,50]; ]
+        module confirmation_icon_dark__hint_delete {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 438; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 439; @position = 18; @symbol_constdef = [filename,439,18,26]; @symbol_type<0> = [String,439,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_delete.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 440; @position = 18; @symbol_constdef = [dithering,440,18,27]; @symbol_type<0> = [String,440,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 443; @symbol_moduledef = [activity_color_dark__background,443,15,46]; ]
+        module activity_color_dark__background {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 443; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 444; @position = 18; @symbol_constdef = [color,444,18,23]; @symbol_type<0> = [Number,444,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 445; @position = 18; @symbol_constdef = [background,445,18,28]; @symbol_type<0> = [Number,445,32,38]; ]
+            const background as Number = 0x000000;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 448; @symbol_moduledef = [system_icon_light__hint_button_left_bottom,448,15,57]; ]
+        module system_icon_light__hint_button_left_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 448; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 449; @position = 18; @symbol_constdef = [filename,449,18,26]; @symbol_type<0> = [String,449,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_left_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 450; @position = 18; @symbol_constdef = [dithering,450,18,27]; @symbol_type<0> = [String,450,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 453; @symbol_moduledef = [system_icon_positive__hint_button_left_middle,453,15,60]; ]
+        module system_icon_positive__hint_button_left_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 453; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 454; @position = 18; @symbol_constdef = [filename,454,18,26]; @symbol_type<0> = [String,454,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_left_middle.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 455; @position = 18; @symbol_constdef = [dithering,455,18,27]; @symbol_type<0> = [String,455,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 458; @symbol_moduledef = [system_size__menu_icon,458,15,37]; ]
+        module system_size__menu_icon {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 458; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 459; @position = 18; @symbol_constdef = [scaleX,459,18,24]; @symbol_type<0> = [Number,459,28,34]; ]
+            const scaleX as Number = 45;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 460; @position = 18; @symbol_constdef = [scaleY,460,18,24]; @symbol_type<0> = [Number,460,28,34]; ]
+            const scaleY as Number = 76;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 461; @position = 18; @symbol_constdef = [scaleRelativeTo,461,18,33]; @symbol_type<0> = [String,461,37,43]; ]
+            const scaleRelativeTo as String = "screen";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 464; @symbol_moduledef = [system_icon_destructive__warning,464,15,47]; ]
+        module system_icon_destructive__warning {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 464; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 465; @position = 18; @symbol_constdef = [filename,465,18,26]; @symbol_type<0> = [String,465,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_destructive__warning.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 466; @position = 18; @symbol_constdef = [dithering,466,18,27]; @symbol_type<0> = [String,466,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 469; @symbol_moduledef = [system_loc__hint_button_right_middle,469,15,51]; ]
+        module system_loc__hint_button_right_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 469; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 470; @position = 18; @symbol_constdef = [exclude,470,18,25]; @symbol_type<0> = [Boolean,470,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 473; @symbol_moduledef = [system_icon_dark__cancel,473,15,39]; ]
+        module system_icon_dark__cancel {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 473; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 474; @position = 18; @symbol_constdef = [filename,474,18,26]; @symbol_type<0> = [String,474,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__cancel.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 475; @position = 18; @symbol_constdef = [compress,475,18,26]; @symbol_type<0> = [String,475,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 476; @position = 18; @symbol_constdef = [dithering,476,18,27]; @symbol_type<0> = [String,476,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 477; @position = 18; @symbol_constdef = [automaticPalette,477,18,34]; @symbol_type<0> = [String,477,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 480; @symbol_moduledef = [prompt_size__body_with_title,480,15,43]; ]
+        module prompt_size__body_with_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 480; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 481; @position = 18; @symbol_constdef = [width,481,18,23]; @symbol_type<0> = [Number,481,27,33]; ]
+            const width as Number = 224;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 482; @position = 18; @symbol_constdef = [height,482,18,24]; @symbol_type<0> = [Number,482,28,34]; ]
+            const height as Number = 168;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 485; @symbol_moduledef = [system_loc__hint_button_right_top,485,15,48]; ]
+        module system_loc__hint_button_right_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 485; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 486; @position = 18; @symbol_constdef = [x,486,18,19]; @symbol_type<0> = [Number,486,23,29]; ]
+            const x as Number = 222;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 487; @position = 18; @symbol_constdef = [y,487,18,19]; @symbol_type<0> = [Number,487,23,29]; ]
+            const y as Number = 44;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 490; @symbol_moduledef = [system_color_light__text,490,15,39]; ]
+        module system_color_light__text {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 490; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 492 18 ]
+                symbol [ Graphics %tmp.167 492 31 39 ];
+                %tmp.167 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.168 492 40 57 ];
+                %tmp.168 = getv %tmp.167 :COLOR_TRANSPARENT;
+                putv self :background %tmp.168;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 491; @position = 18; @symbol_constdef = [color,491,18,23]; @symbol_type<0> = [Number,491,27,33]; ]
+            const color as Number = 0x000000;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 492; @position = 18; @symbol_constdef = [background,492,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 495; @symbol_moduledef = [system_icon_light__check,495,15,39]; ]
+        module system_icon_light__check {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 495; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 496; @position = 18; @symbol_constdef = [filename,496,18,26]; @symbol_type<0> = [String,496,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__check.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 497; @position = 18; @symbol_constdef = [dithering,497,18,27]; @symbol_type<0> = [String,497,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 500; @symbol_moduledef = [confirmation_input__reject,500,15,41]; ]
+        module confirmation_input__reject {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 500; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 501 18 ]
+                symbol [ WatchUi %tmp.169 501 27 34 ];
+                %tmp.169 = getm $.Toybox.WatchUi;
+                symbol [ KEY_DOWN %tmp.170 501 35 43 ];
+                %tmp.170 = getv %tmp.169 :KEY_DOWN;
+                putv self :button %tmp.170;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 501; @position = 18; @symbol_constdef = [button,501,18,24]; ]
+            const button;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 504; @symbol_moduledef = [system_icon_light__revert,504,15,40]; ]
+        module system_icon_light__revert {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 504; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 505; @position = 18; @symbol_constdef = [filename,505,18,26]; @symbol_type<0> = [String,505,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__revert.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 506; @position = 18; @symbol_constdef = [dithering,506,18,27]; @symbol_type<0> = [String,506,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 509; @symbol_moduledef = [system_size__subwindow,509,15,37]; ]
+        module system_size__subwindow {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 509; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 510; @position = 18; @symbol_constdef = [exclude,510,18,25]; @symbol_type<0> = [Boolean,510,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 513; @symbol_moduledef = [system_icon_positive__hint_button_left_bottom,513,15,60]; ]
+        module system_icon_positive__hint_button_left_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 513; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 514; @position = 18; @symbol_constdef = [filename,514,18,26]; @symbol_type<0> = [String,514,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_left_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 515; @position = 18; @symbol_constdef = [dithering,515,18,27]; @symbol_type<0> = [String,515,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 518; @symbol_moduledef = [system_icon_dark__check,518,15,38]; ]
+        module system_icon_dark__check {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 518; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 519; @position = 18; @symbol_constdef = [filename,519,18,26]; @symbol_type<0> = [String,519,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__check.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 520; @position = 18; @symbol_constdef = [compress,520,18,26]; @symbol_type<0> = [String,520,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 521; @position = 18; @symbol_constdef = [dithering,521,18,27]; @symbol_type<0> = [String,521,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 522; @position = 18; @symbol_constdef = [automaticPalette,522,18,34]; @symbol_type<0> = [String,522,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 525; @symbol_moduledef = [confirmation_loc__hint_keep,525,15,42]; ]
+        module confirmation_loc__hint_keep {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 525; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 526; @position = 18; @symbol_constdef = [x,526,18,19]; @symbol_type<0> = [Number,526,23,29]; ]
+            const x as Number = 7;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 527; @position = 18; @symbol_constdef = [y,527,18,19]; @symbol_type<0> = [Number,527,23,29]; ]
+            const y as Number = 179;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 528; @position = 18; @symbol_constdef = [horizontalJustification,528,18,41]; @symbol_type<0> = [String,528,45,51]; ]
+            const horizontalJustification as String = "left";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 531; @symbol_moduledef = [confirmation_loc__hint_delete,531,15,44]; ]
+        module confirmation_loc__hint_delete {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 531; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 532; @position = 18; @symbol_constdef = [x,532,18,19]; @symbol_type<0> = [Number,532,23,29]; ]
+            const x as Number = 222;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 533; @position = 18; @symbol_constdef = [y,533,18,19]; @symbol_type<0> = [Number,533,23,29]; ]
+            const y as Number = 44;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 536; @symbol_moduledef = [system_icon_positive__hint_action_menu,536,15,53]; ]
+        module system_icon_positive__hint_action_menu {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 536; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 537; @position = 18; @symbol_constdef = [filename,537,18,26]; @symbol_type<0> = [String,537,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 538; @position = 18; @symbol_constdef = [dithering,538,18,27]; @symbol_type<0> = [String,538,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 541; @symbol_moduledef = [system_icon_positive__hint_button_right_middle,541,15,61]; ]
+        module system_icon_positive__hint_button_right_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 541; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 542; @position = 18; @symbol_constdef = [exclude,542,18,25]; @symbol_type<0> = [Boolean,542,29,36]; ]
+            const exclude as Boolean = true;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 545; @symbol_moduledef = [system_icon_light__hint_button_left_middle,545,15,57]; ]
+        module system_icon_light__hint_button_left_middle {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 545; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 546; @position = 18; @symbol_constdef = [filename,546,18,26]; @symbol_type<0> = [String,546,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_left_middle.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 547; @position = 18; @symbol_constdef = [dithering,547,18,27]; @symbol_type<0> = [String,547,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 550; @symbol_moduledef = [system_icon_dark__hint_button_right_bottom,550,15,57]; ]
+        module system_icon_dark__hint_button_right_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 550; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 551; @position = 18; @symbol_constdef = [filename,551,18,26]; @symbol_type<0> = [String,551,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__hint_button_right_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 552; @position = 18; @symbol_constdef = [dithering,552,18,27]; @symbol_type<0> = [String,552,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 555; @symbol_moduledef = [system_icon_positive__hint_button_right_bottom,555,15,61]; ]
+        module system_icon_positive__hint_button_right_bottom {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 555; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 556; @position = 18; @symbol_constdef = [filename,556,18,26]; @symbol_type<0> = [String,556,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__hint_button_right_bottom.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 557; @position = 18; @symbol_constdef = [dithering,557,18,27]; @symbol_type<0> = [String,557,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 560; @symbol_moduledef = [system_icon_dark__revert,560,15,39]; ]
+        module system_icon_dark__revert {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 560; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 561; @position = 18; @symbol_constdef = [filename,561,18,26]; @symbol_type<0> = [String,561,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__revert.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 562; @position = 18; @symbol_constdef = [compress,562,18,26]; @symbol_type<0> = [String,562,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 563; @position = 18; @symbol_constdef = [dithering,563,18,27]; @symbol_type<0> = [String,563,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 564; @position = 18; @symbol_constdef = [automaticPalette,564,18,34]; @symbol_type<0> = [String,564,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 567; @symbol_moduledef = [confirmation_icon_light__hint_delete,567,15,51]; ]
+        module confirmation_icon_light__hint_delete {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 567; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 568; @position = 18; @symbol_constdef = [filename,568,18,26]; @symbol_type<0> = [String,568,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_delete.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 569; @position = 18; @symbol_constdef = [dithering,569,18,27]; @symbol_type<0> = [String,569,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 572; @symbol_moduledef = [system_icon_dark__question,572,15,41]; ]
+        module system_icon_dark__question {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 572; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 573; @position = 18; @symbol_constdef = [filename,573,18,26]; @symbol_type<0> = [String,573,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__question.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 574; @position = 18; @symbol_constdef = [compress,574,18,26]; @symbol_type<0> = [String,574,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 575; @position = 18; @symbol_constdef = [dithering,575,18,27]; @symbol_type<0> = [String,575,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 576; @position = 18; @symbol_constdef = [automaticPalette,576,18,34]; @symbol_type<0> = [String,576,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 579; @symbol_moduledef = [system_icon_light__discard,579,15,41]; ]
+        module system_icon_light__discard {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 579; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 580; @position = 18; @symbol_constdef = [filename,580,18,26]; @symbol_type<0> = [String,580,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__discard.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 581; @position = 18; @symbol_constdef = [dithering,581,18,27]; @symbol_type<0> = [String,581,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 584; @symbol_moduledef = [device_info,584,15,26]; ]
+        module device_info {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 584; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 586 18 ]
+                symbol [ Toybox %tmp.172 586 32 38 ];
+                %tmp.172 = getv ? :Toybox;
+                symbol [ System %tmp.173 586 39 45 ];
+                %tmp.173 = getv %tmp.172 :System;
+                symbol [ SCREEN_SHAPE_ROUND %tmp.174 586 46 64 ];
+                %tmp.174 = getv %tmp.173 :SCREEN_SHAPE_ROUND;
+                putv self :screenShape %tmp.174;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 585; @position = 18; @symbol_constdef = [screenWidth,585,18,29]; @symbol_type<0> = [Number,585,33,39]; ]
+            const screenWidth as Number = 280;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 586; @position = 18; @symbol_constdef = [screenShape,586,18,29]; ]
+            const screenShape;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 587; @position = 18; @symbol_constdef = [hasNightMode,587,18,30]; @symbol_type<0> = [Boolean,587,34,41]; ]
+            const hasNightMode as Boolean = false;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 588; @position = 18; @symbol_constdef = [hasGpu,588,18,24]; @symbol_type<0> = [Boolean,588,28,35]; ]
+            const hasGpu as Boolean = true;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 589; @position = 18; @symbol_constdef = [screenHeight,589,18,30]; @symbol_type<0> = [Number,589,34,40]; ]
+            const screenHeight as Number = 280;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 590; @position = 18; @symbol_constdef = [hasTouchScreen,590,18,32]; @symbol_type<0> = [Boolean,590,36,43]; ]
+            const hasTouchScreen as Boolean = true;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 591; @position = 18; @symbol_constdef = [hasEnhancedReadabilityMode,591,18,44]; @symbol_type<0> = [Boolean,591,48,55]; ]
+            const hasEnhancedReadabilityMode as Boolean = false;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 594; @symbol_moduledef = [confirmation_icon_dark__hint_confirm,594,15,51]; ]
+        module confirmation_icon_dark__hint_confirm {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 594; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 595; @position = 18; @symbol_constdef = [filename,595,18,26]; @symbol_type<0> = [String,595,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_completion.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 596; @position = 18; @symbol_constdef = [dithering,596,18,27]; @symbol_type<0> = [String,596,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 599; @symbol_moduledef = [prompt_font__body_no_title,599,15,41]; ]
+        module prompt_font__body_no_title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 599; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 600 18 ]
+                symbol [ Graphics %tmp.175 600 34 42 ];
+                %tmp.175 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.176 600 43 62 ];
+                %tmp.176 = getv %tmp.175 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.177 600 63 71 ];
+                %tmp.177 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.178 600 72 92 ];
+                %tmp.178 = getv %tmp.177 :TEXT_JUSTIFY_VCENTER;
+                %tmp.179 = bitor %tmp.176 %tmp.178;
+                putv self :justification %tmp.179;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 601 18 ]
+                symbol [ Graphics %tmp.180 601 25 33 ];
+                %tmp.180 = getm $.Toybox.Graphics;
+                symbol [ FONT_GLANCE %tmp.181 601 34 45 ];
+                %tmp.181 = getv %tmp.180 :FONT_GLANCE;
+                putv self :font %tmp.181;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 600; @position = 18; @symbol_constdef = [justification,600,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 601; @position = 18; @symbol_constdef = [font,601,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 604; @symbol_moduledef = [prompt_size__title_icon,604,15,38]; ]
+        module prompt_size__title_icon {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 604; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 605; @position = 18; @symbol_constdef = [scaleX,605,18,24]; @symbol_type<0> = [Float,605,28,33]; ]
+            const scaleX as Float = 0.15;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 606; @position = 18; @symbol_constdef = [scaleRelativeTo,606,18,33]; @symbol_type<0> = [String,606,37,43]; ]
+            const scaleRelativeTo as String = "screen";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 609; @symbol_moduledef = [system_icon_dark__warning,609,15,40]; ]
+        module system_icon_dark__warning {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 609; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 610; @position = 18; @symbol_constdef = [filename,610,18,26]; @symbol_type<0> = [String,610,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_dark__warning.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 611; @position = 18; @symbol_constdef = [compress,611,18,26]; @symbol_type<0> = [String,611,30,36]; ]
+            const compress as String = "true";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 612; @position = 18; @symbol_constdef = [dithering,612,18,27]; @symbol_type<0> = [String,612,31,37]; ]
+            const dithering as String = "none";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 613; @position = 18; @symbol_constdef = [automaticPalette,613,18,34]; @symbol_type<0> = [String,613,38,44]; ]
+            const automaticPalette as String = "true";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 616; @symbol_moduledef = [prompt_loc__title_icon,616,15,37]; ]
+        module prompt_loc__title_icon {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 616; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 617; @position = 18; @symbol_constdef = [x,617,18,19]; @symbol_type<0> = [Number,617,23,29]; ]
+            const x as Number = 140;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 618; @position = 18; @symbol_constdef = [y,618,18,19]; @symbol_type<0> = [Number,618,23,29]; ]
+            const y as Number = 42;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 619; @position = 18; @symbol_constdef = [horizontalJustification,619,18,41]; @symbol_type<0> = [String,619,45,51]; ]
+            const horizontalJustification as String = "center";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 620; @position = 18; @symbol_constdef = [verticalJustification,620,18,39]; @symbol_type<0> = [String,620,43,49]; ]
+            const verticalJustification as String = "center";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 623; @symbol_moduledef = [prompt_font_enhanced_readability__title,623,15,54]; ]
+        module prompt_font_enhanced_readability__title {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 623; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 624 18 ]
+                symbol [ Graphics %tmp.182 624 34 42 ];
+                %tmp.182 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.183 624 43 62 ];
+                %tmp.183 = getv %tmp.182 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.184 624 63 71 ];
+                %tmp.184 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.185 624 72 92 ];
+                %tmp.185 = getv %tmp.184 :TEXT_JUSTIFY_VCENTER;
+                %tmp.186 = bitor %tmp.183 %tmp.185;
+                putv self :justification %tmp.186;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 625 18 ]
+                symbol [ Graphics %tmp.187 625 25 33 ];
+                %tmp.187 = getm $.Toybox.Graphics;
+                symbol [ FONT_SMALL %tmp.188 625 34 44 ];
+                %tmp.188 = getv %tmp.187 :FONT_SMALL;
+                putv self :font %tmp.188;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 624; @position = 18; @symbol_constdef = [justification,624,18,31]; ]
+            const justification;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 625; @position = 18; @symbol_constdef = [font,625,18,22]; ]
+            const font;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 628; @symbol_moduledef = [prompt_color_dark__body,628,15,38]; ]
+        module prompt_color_dark__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 628; ]
+            <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen" 630 18 ]
+                symbol [ Graphics %tmp.189 630 31 39 ];
+                %tmp.189 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.190 630 40 57 ];
+                %tmp.190 = getv %tmp.189 :COLOR_TRANSPARENT;
+                putv self :background %tmp.190;
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 629; @position = 18; @symbol_constdef = [color,629,18,23]; @symbol_type<0> = [Number,629,27,33]; ]
+            const color as Number = 0xFFFFFF;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 630; @position = 18; @symbol_constdef = [background,630,18,28]; ]
+            const background;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 633; @symbol_moduledef = [confirmation_icon__hint_delete,633,15,45]; ]
+        module confirmation_icon__hint_delete {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 633; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 634; @position = 18; @symbol_constdef = [filename,634,18,26]; @symbol_type<0> = [String,634,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/confirmation_icon__hint_delete.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 635; @position = 18; @symbol_constdef = [dithering,635,18,27]; @symbol_type<0> = [String,635,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 638; @symbol_moduledef = [system_icon_light__hint_button_right_top,638,15,55]; ]
+        module system_icon_light__hint_button_right_top {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 638; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 639; @position = 18; @symbol_constdef = [filename,639,18,26]; @symbol_type<0> = [String,639,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_light__hint_button_right_top.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 640; @position = 18; @symbol_constdef = [dithering,640,18,27]; @symbol_type<0> = [String,640,31,37]; ]
+            const dithering as String = "none";
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 643; @symbol_moduledef = [confirmation_size__body,643,15,38]; ]
+        module confirmation_size__body {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 643; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 644; @position = 18; @symbol_constdef = [width,644,18,23]; @symbol_type<0> = [Number,644,27,33]; ]
+            const width as Number = 168;
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 645; @position = 18; @symbol_constdef = [height,645,18,24]; @symbol_type<0> = [Number,645,28,34]; ]
+            const height as Number = 168;
+        }
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 648; @symbol_moduledef = [system_icon_positive__check,648,15,42]; ]
+        module system_icon_positive__check {
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 648; ]
+            <init> {
+            }
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 649; @position = 18; @symbol_constdef = [filename,649,18,26]; @symbol_type<0> = [String,649,30,36]; ]
+            const filename as String = "/Users/j/Library/Application Support/Garmin/ConnectIQ/Devices/fenix8solar51mm/system_icon_positive__check.svg";
+            [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 650; @position = 18; @symbol_constdef = [dithering,650,18,27]; @symbol_type<0> = [String,650,31,37]; ]
+            const dithering as String = "none";
+        }
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/gen/006-B4533-00/source/Rez.mcgen"; @line = 1; ]
+<init> {
+}

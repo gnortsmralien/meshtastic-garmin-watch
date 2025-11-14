@@ -40,17 +40,19 @@ monkeyc -f comprehensive-test.jungle -d fenix8solar51mm -o build/comprehensive.p
 
 ## Run in Simulator
 
-**Note:** The simulator has a known crash issue with BLE on macOS. See [SIMULATOR_CRASH.md](SIMULATOR_CRASH.md) for details.
+**⚠️ IMPORTANT: The simulator WILL CRASH on macOS due to a known Garmin SDK bug with BLE.**
 
-Start the simulator:
+This is not a problem with the app - it's a bug in the Connect IQ SDK that affects all apps using `BluetoothLowEnergy.registerProfile()` on macOS. See [SIMULATOR_CRASH.md](SIMULATOR_CRASH.md) for details.
+
+**The app works correctly on real hardware.** To test the app, deploy it to your Fenix 8 watch.
+
+If you still want to try the simulator (it will crash after a few seconds):
 ```bash
 connectiq
-```
-
-Then load the app:
-```bash
 monkeydo build/meshtastic.prg fenix8solar51mm
 ```
+
+The UI will display briefly before crashing.
 
 Run protobuf tests:
 ```bash

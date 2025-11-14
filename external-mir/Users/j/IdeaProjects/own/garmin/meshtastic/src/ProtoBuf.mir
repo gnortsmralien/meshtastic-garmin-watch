@@ -1,0 +1,1060 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Lang,7,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [System,8,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 10; @symbol_moduledef = [ProtoBuf,10,7,15]; ]
+module ProtoBuf {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 10; ]
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 50 10 ]
+        %tmp.1 = newd 7;
+        %tmp.3 = const :portnum;
+        symbol [ portnum %tmp.3 51 9 16 const ];
+        %tmp.4 = newd 2;
+        %tmp.6 = const :tag;
+        symbol [ tag %tmp.6 51 23 26 const ];
+        %tmp.7 = 1;
+        %tmp.8 = dup %tmp.4;
+        %tmp.9 = aputv %tmp.8 %tmp.6 %tmp.7;
+        %tmp.11 = const :type;
+        symbol [ type %tmp.11 51 34 38 const ];
+        symbol [ WIRETYPE_VARINT %tmp.13 51 42 57 ];
+        %tmp.13 = getv ? :WIRETYPE_VARINT;
+        %tmp.14 = dup %tmp.9;
+        %tmp.15 = aputv %tmp.14 %tmp.11 %tmp.13;
+        %tmp.16 = dup %tmp.1;
+        %tmp.17 = aputv %tmp.16 %tmp.3 %tmp.15;
+        %tmp.19 = const :payload;
+        symbol [ payload %tmp.19 52 9 16 const ];
+        %tmp.20 = newd 2;
+        %tmp.22 = const :tag;
+        symbol [ tag %tmp.22 52 23 26 const ];
+        %tmp.23 = 2;
+        %tmp.24 = dup %tmp.20;
+        %tmp.25 = aputv %tmp.24 %tmp.22 %tmp.23;
+        %tmp.27 = const :type;
+        symbol [ type %tmp.27 52 34 38 const ];
+        symbol [ WIRETYPE_LEN %tmp.29 52 42 54 ];
+        %tmp.29 = getv ? :WIRETYPE_LEN;
+        %tmp.30 = dup %tmp.25;
+        %tmp.31 = aputv %tmp.30 %tmp.27 %tmp.29;
+        %tmp.32 = dup %tmp.17;
+        %tmp.33 = aputv %tmp.32 %tmp.19 %tmp.31;
+        %tmp.35 = const :want_response;
+        symbol [ want_response %tmp.35 53 9 22 const ];
+        %tmp.36 = newd 2;
+        %tmp.38 = const :tag;
+        symbol [ tag %tmp.38 53 29 32 const ];
+        %tmp.39 = 3;
+        %tmp.40 = dup %tmp.36;
+        %tmp.41 = aputv %tmp.40 %tmp.38 %tmp.39;
+        %tmp.43 = const :type;
+        symbol [ type %tmp.43 53 40 44 const ];
+        symbol [ WIRETYPE_VARINT %tmp.45 53 48 63 ];
+        %tmp.45 = getv ? :WIRETYPE_VARINT;
+        %tmp.46 = dup %tmp.41;
+        %tmp.47 = aputv %tmp.46 %tmp.43 %tmp.45;
+        %tmp.48 = dup %tmp.33;
+        %tmp.49 = aputv %tmp.48 %tmp.35 %tmp.47;
+        %tmp.51 = const :dest;
+        symbol [ dest %tmp.51 54 9 13 const ];
+        %tmp.52 = newd 2;
+        %tmp.54 = const :tag;
+        symbol [ tag %tmp.54 54 20 23 const ];
+        %tmp.55 = 4;
+        %tmp.56 = dup %tmp.52;
+        %tmp.57 = aputv %tmp.56 %tmp.54 %tmp.55;
+        %tmp.59 = const :type;
+        symbol [ type %tmp.59 54 31 35 const ];
+        symbol [ WIRETYPE_VARINT %tmp.61 54 39 54 ];
+        %tmp.61 = getv ? :WIRETYPE_VARINT;
+        %tmp.62 = dup %tmp.57;
+        %tmp.63 = aputv %tmp.62 %tmp.59 %tmp.61;
+        %tmp.64 = dup %tmp.49;
+        %tmp.65 = aputv %tmp.64 %tmp.51 %tmp.63;
+        %tmp.67 = const :source;
+        symbol [ source %tmp.67 55 9 15 const ];
+        %tmp.68 = newd 2;
+        %tmp.70 = const :tag;
+        symbol [ tag %tmp.70 55 22 25 const ];
+        %tmp.71 = 5;
+        %tmp.72 = dup %tmp.68;
+        %tmp.73 = aputv %tmp.72 %tmp.70 %tmp.71;
+        %tmp.75 = const :type;
+        symbol [ type %tmp.75 55 33 37 const ];
+        symbol [ WIRETYPE_VARINT %tmp.77 55 41 56 ];
+        %tmp.77 = getv ? :WIRETYPE_VARINT;
+        %tmp.78 = dup %tmp.73;
+        %tmp.79 = aputv %tmp.78 %tmp.75 %tmp.77;
+        %tmp.80 = dup %tmp.65;
+        %tmp.81 = aputv %tmp.80 %tmp.67 %tmp.79;
+        %tmp.83 = const :request_id;
+        symbol [ request_id %tmp.83 56 9 19 const ];
+        %tmp.84 = newd 2;
+        %tmp.86 = const :tag;
+        symbol [ tag %tmp.86 56 26 29 const ];
+        %tmp.87 = 6;
+        %tmp.88 = dup %tmp.84;
+        %tmp.89 = aputv %tmp.88 %tmp.86 %tmp.87;
+        %tmp.91 = const :type;
+        symbol [ type %tmp.91 56 37 41 const ];
+        symbol [ WIRETYPE_VARINT %tmp.93 56 45 60 ];
+        %tmp.93 = getv ? :WIRETYPE_VARINT;
+        %tmp.94 = dup %tmp.89;
+        %tmp.95 = aputv %tmp.94 %tmp.91 %tmp.93;
+        %tmp.96 = dup %tmp.81;
+        %tmp.97 = aputv %tmp.96 %tmp.83 %tmp.95;
+        %tmp.99 = const :reply_id;
+        symbol [ reply_id %tmp.99 57 9 17 const ];
+        %tmp.100 = newd 2;
+        %tmp.102 = const :tag;
+        symbol [ tag %tmp.102 57 24 27 const ];
+        %tmp.103 = 7;
+        %tmp.104 = dup %tmp.100;
+        %tmp.105 = aputv %tmp.104 %tmp.102 %tmp.103;
+        %tmp.107 = const :type;
+        symbol [ type %tmp.107 57 35 39 const ];
+        symbol [ WIRETYPE_VARINT %tmp.109 57 43 58 ];
+        %tmp.109 = getv ? :WIRETYPE_VARINT;
+        %tmp.110 = dup %tmp.105;
+        %tmp.111 = aputv %tmp.110 %tmp.107 %tmp.109;
+        %tmp.112 = dup %tmp.97;
+        %tmp.113 = aputv %tmp.112 %tmp.99 %tmp.111;
+        putv self :SCHEMA_DATA %tmp.113;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 62 10 ]
+        %tmp.114 = newd 10;
+        %tmp.116 = const :from;
+        symbol [ from %tmp.116 63 9 13 const ];
+        %tmp.117 = newd 2;
+        %tmp.119 = const :tag;
+        symbol [ tag %tmp.119 63 20 23 const ];
+        %tmp.120 = 1;
+        %tmp.121 = dup %tmp.117;
+        %tmp.122 = aputv %tmp.121 %tmp.119 %tmp.120;
+        %tmp.124 = const :type;
+        symbol [ type %tmp.124 63 31 35 const ];
+        symbol [ WIRETYPE_VARINT %tmp.126 63 39 54 ];
+        %tmp.126 = getv ? :WIRETYPE_VARINT;
+        %tmp.127 = dup %tmp.122;
+        %tmp.128 = aputv %tmp.127 %tmp.124 %tmp.126;
+        %tmp.129 = dup %tmp.114;
+        %tmp.130 = aputv %tmp.129 %tmp.116 %tmp.128;
+        %tmp.132 = const :to;
+        symbol [ to %tmp.132 64 9 11 const ];
+        %tmp.133 = newd 2;
+        %tmp.135 = const :tag;
+        symbol [ tag %tmp.135 64 18 21 const ];
+        %tmp.136 = 2;
+        %tmp.137 = dup %tmp.133;
+        %tmp.138 = aputv %tmp.137 %tmp.135 %tmp.136;
+        %tmp.140 = const :type;
+        symbol [ type %tmp.140 64 29 33 const ];
+        symbol [ WIRETYPE_VARINT %tmp.142 64 37 52 ];
+        %tmp.142 = getv ? :WIRETYPE_VARINT;
+        %tmp.143 = dup %tmp.138;
+        %tmp.144 = aputv %tmp.143 %tmp.140 %tmp.142;
+        %tmp.145 = dup %tmp.130;
+        %tmp.146 = aputv %tmp.145 %tmp.132 %tmp.144;
+        %tmp.148 = const :channel;
+        symbol [ channel %tmp.148 65 9 16 const ];
+        %tmp.149 = newd 2;
+        %tmp.151 = const :tag;
+        symbol [ tag %tmp.151 65 23 26 const ];
+        %tmp.152 = 3;
+        %tmp.153 = dup %tmp.149;
+        %tmp.154 = aputv %tmp.153 %tmp.151 %tmp.152;
+        %tmp.156 = const :type;
+        symbol [ type %tmp.156 65 34 38 const ];
+        symbol [ WIRETYPE_VARINT %tmp.158 65 42 57 ];
+        %tmp.158 = getv ? :WIRETYPE_VARINT;
+        %tmp.159 = dup %tmp.154;
+        %tmp.160 = aputv %tmp.159 %tmp.156 %tmp.158;
+        %tmp.161 = dup %tmp.146;
+        %tmp.162 = aputv %tmp.161 %tmp.148 %tmp.160;
+        %tmp.164 = const :decoded;
+        symbol [ decoded %tmp.164 66 9 16 const ];
+        %tmp.165 = newd 3;
+        %tmp.167 = const :tag;
+        symbol [ tag %tmp.167 66 23 26 const ];
+        %tmp.168 = 4;
+        %tmp.169 = dup %tmp.165;
+        %tmp.170 = aputv %tmp.169 %tmp.167 %tmp.168;
+        %tmp.172 = const :type;
+        symbol [ type %tmp.172 66 34 38 const ];
+        symbol [ WIRETYPE_LEN %tmp.174 66 42 54 ];
+        %tmp.174 = getv ? :WIRETYPE_LEN;
+        %tmp.175 = dup %tmp.170;
+        %tmp.176 = aputv %tmp.175 %tmp.172 %tmp.174;
+        %tmp.178 = const :schema;
+        symbol [ schema %tmp.178 66 57 63 const ];
+        symbol [ SCHEMA_DATA %tmp.180 66 67 78 ];
+        %tmp.180 = getv ? :SCHEMA_DATA;
+        %tmp.181 = dup %tmp.176;
+        %tmp.182 = aputv %tmp.181 %tmp.178 %tmp.180;
+        %tmp.183 = dup %tmp.162;
+        %tmp.184 = aputv %tmp.183 %tmp.164 %tmp.182;
+        %tmp.186 = const :id;
+        symbol [ id %tmp.186 67 9 11 const ];
+        %tmp.187 = newd 2;
+        %tmp.189 = const :tag;
+        symbol [ tag %tmp.189 67 18 21 const ];
+        %tmp.190 = 5;
+        %tmp.191 = dup %tmp.187;
+        %tmp.192 = aputv %tmp.191 %tmp.189 %tmp.190;
+        %tmp.194 = const :type;
+        symbol [ type %tmp.194 67 29 33 const ];
+        symbol [ WIRETYPE_VARINT %tmp.196 67 37 52 ];
+        %tmp.196 = getv ? :WIRETYPE_VARINT;
+        %tmp.197 = dup %tmp.192;
+        %tmp.198 = aputv %tmp.197 %tmp.194 %tmp.196;
+        %tmp.199 = dup %tmp.184;
+        %tmp.200 = aputv %tmp.199 %tmp.186 %tmp.198;
+        %tmp.202 = const :rx_time;
+        symbol [ rx_time %tmp.202 68 9 16 const ];
+        %tmp.203 = newd 2;
+        %tmp.205 = const :tag;
+        symbol [ tag %tmp.205 68 23 26 const ];
+        %tmp.206 = 6;
+        %tmp.207 = dup %tmp.203;
+        %tmp.208 = aputv %tmp.207 %tmp.205 %tmp.206;
+        %tmp.210 = const :type;
+        symbol [ type %tmp.210 68 34 38 const ];
+        symbol [ WIRETYPE_VARINT %tmp.212 68 42 57 ];
+        %tmp.212 = getv ? :WIRETYPE_VARINT;
+        %tmp.213 = dup %tmp.208;
+        %tmp.214 = aputv %tmp.213 %tmp.210 %tmp.212;
+        %tmp.215 = dup %tmp.200;
+        %tmp.216 = aputv %tmp.215 %tmp.202 %tmp.214;
+        %tmp.218 = const :rx_snr;
+        symbol [ rx_snr %tmp.218 69 9 15 const ];
+        %tmp.219 = newd 2;
+        %tmp.221 = const :tag;
+        symbol [ tag %tmp.221 69 22 25 const ];
+        %tmp.222 = 7;
+        %tmp.223 = dup %tmp.219;
+        %tmp.224 = aputv %tmp.223 %tmp.221 %tmp.222;
+        %tmp.226 = const :type;
+        symbol [ type %tmp.226 69 33 37 const ];
+        symbol [ WIRETYPE_FIXED32 %tmp.228 69 41 57 ];
+        %tmp.228 = getv ? :WIRETYPE_FIXED32;
+        %tmp.229 = dup %tmp.224;
+        %tmp.230 = aputv %tmp.229 %tmp.226 %tmp.228;
+        %tmp.231 = dup %tmp.216;
+        %tmp.232 = aputv %tmp.231 %tmp.218 %tmp.230;
+        %tmp.234 = const :hop_limit;
+        symbol [ hop_limit %tmp.234 70 9 18 const ];
+        %tmp.235 = newd 2;
+        %tmp.237 = const :tag;
+        symbol [ tag %tmp.237 70 25 28 const ];
+        %tmp.238 = 8;
+        %tmp.239 = dup %tmp.235;
+        %tmp.240 = aputv %tmp.239 %tmp.237 %tmp.238;
+        %tmp.242 = const :type;
+        symbol [ type %tmp.242 70 36 40 const ];
+        symbol [ WIRETYPE_VARINT %tmp.244 70 44 59 ];
+        %tmp.244 = getv ? :WIRETYPE_VARINT;
+        %tmp.245 = dup %tmp.240;
+        %tmp.246 = aputv %tmp.245 %tmp.242 %tmp.244;
+        %tmp.247 = dup %tmp.232;
+        %tmp.248 = aputv %tmp.247 %tmp.234 %tmp.246;
+        %tmp.250 = const :want_ack;
+        symbol [ want_ack %tmp.250 71 9 17 const ];
+        %tmp.251 = newd 2;
+        %tmp.253 = const :tag;
+        symbol [ tag %tmp.253 71 24 27 const ];
+        %tmp.254 = 9;
+        %tmp.255 = dup %tmp.251;
+        %tmp.256 = aputv %tmp.255 %tmp.253 %tmp.254;
+        %tmp.258 = const :type;
+        symbol [ type %tmp.258 71 35 39 const ];
+        symbol [ WIRETYPE_VARINT %tmp.260 71 43 58 ];
+        %tmp.260 = getv ? :WIRETYPE_VARINT;
+        %tmp.261 = dup %tmp.256;
+        %tmp.262 = aputv %tmp.261 %tmp.258 %tmp.260;
+        %tmp.263 = dup %tmp.248;
+        %tmp.264 = aputv %tmp.263 %tmp.250 %tmp.262;
+        %tmp.266 = const :priority;
+        symbol [ priority %tmp.266 72 9 17 const ];
+        %tmp.267 = newd 2;
+        %tmp.269 = const :tag;
+        symbol [ tag %tmp.269 72 24 27 const ];
+        %tmp.270 = 10;
+        %tmp.271 = dup %tmp.267;
+        %tmp.272 = aputv %tmp.271 %tmp.269 %tmp.270;
+        %tmp.274 = const :type;
+        symbol [ type %tmp.274 72 36 40 const ];
+        symbol [ WIRETYPE_VARINT %tmp.276 72 44 59 ];
+        %tmp.276 = getv ? :WIRETYPE_VARINT;
+        %tmp.277 = dup %tmp.272;
+        %tmp.278 = aputv %tmp.277 %tmp.274 %tmp.276;
+        %tmp.279 = dup %tmp.264;
+        %tmp.280 = aputv %tmp.279 %tmp.266 %tmp.278;
+        putv self :SCHEMA_MESHPACKET %tmp.280;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 76 10 ]
+        %tmp.281 = newd 5;
+        %tmp.283 = const :latitude_i;
+        symbol [ latitude_i %tmp.283 77 9 19 const ];
+        %tmp.284 = newd 2;
+        %tmp.286 = const :tag;
+        symbol [ tag %tmp.286 77 26 29 const ];
+        %tmp.287 = 1;
+        %tmp.288 = dup %tmp.284;
+        %tmp.289 = aputv %tmp.288 %tmp.286 %tmp.287;
+        %tmp.291 = const :type;
+        symbol [ type %tmp.291 77 37 41 const ];
+        symbol [ WIRETYPE_FIXED32 %tmp.293 77 45 61 ];
+        %tmp.293 = getv ? :WIRETYPE_FIXED32;
+        %tmp.294 = dup %tmp.289;
+        %tmp.295 = aputv %tmp.294 %tmp.291 %tmp.293;
+        %tmp.296 = dup %tmp.281;
+        %tmp.297 = aputv %tmp.296 %tmp.283 %tmp.295;
+        %tmp.299 = const :longitude_i;
+        symbol [ longitude_i %tmp.299 78 9 20 const ];
+        %tmp.300 = newd 2;
+        %tmp.302 = const :tag;
+        symbol [ tag %tmp.302 78 27 30 const ];
+        %tmp.303 = 2;
+        %tmp.304 = dup %tmp.300;
+        %tmp.305 = aputv %tmp.304 %tmp.302 %tmp.303;
+        %tmp.307 = const :type;
+        symbol [ type %tmp.307 78 38 42 const ];
+        symbol [ WIRETYPE_FIXED32 %tmp.309 78 46 62 ];
+        %tmp.309 = getv ? :WIRETYPE_FIXED32;
+        %tmp.310 = dup %tmp.305;
+        %tmp.311 = aputv %tmp.310 %tmp.307 %tmp.309;
+        %tmp.312 = dup %tmp.297;
+        %tmp.313 = aputv %tmp.312 %tmp.299 %tmp.311;
+        %tmp.315 = const :altitude;
+        symbol [ altitude %tmp.315 79 9 17 const ];
+        %tmp.316 = newd 2;
+        %tmp.318 = const :tag;
+        symbol [ tag %tmp.318 79 24 27 const ];
+        %tmp.319 = 3;
+        %tmp.320 = dup %tmp.316;
+        %tmp.321 = aputv %tmp.320 %tmp.318 %tmp.319;
+        %tmp.323 = const :type;
+        symbol [ type %tmp.323 79 35 39 const ];
+        symbol [ WIRETYPE_VARINT %tmp.325 79 43 58 ];
+        %tmp.325 = getv ? :WIRETYPE_VARINT;
+        %tmp.326 = dup %tmp.321;
+        %tmp.327 = aputv %tmp.326 %tmp.323 %tmp.325;
+        %tmp.328 = dup %tmp.313;
+        %tmp.329 = aputv %tmp.328 %tmp.315 %tmp.327;
+        %tmp.331 = const :time;
+        symbol [ time %tmp.331 80 9 13 const ];
+        %tmp.332 = newd 2;
+        %tmp.334 = const :tag;
+        symbol [ tag %tmp.334 80 20 23 const ];
+        %tmp.335 = 4;
+        %tmp.336 = dup %tmp.332;
+        %tmp.337 = aputv %tmp.336 %tmp.334 %tmp.335;
+        %tmp.339 = const :type;
+        symbol [ type %tmp.339 80 31 35 const ];
+        symbol [ WIRETYPE_VARINT %tmp.341 80 39 54 ];
+        %tmp.341 = getv ? :WIRETYPE_VARINT;
+        %tmp.342 = dup %tmp.337;
+        %tmp.343 = aputv %tmp.342 %tmp.339 %tmp.341;
+        %tmp.344 = dup %tmp.329;
+        %tmp.345 = aputv %tmp.344 %tmp.331 %tmp.343;
+        %tmp.347 = const :sats_in_view;
+        symbol [ sats_in_view %tmp.347 81 9 21 const ];
+        %tmp.348 = newd 2;
+        %tmp.350 = const :tag;
+        symbol [ tag %tmp.350 81 28 31 const ];
+        %tmp.351 = 19;
+        %tmp.352 = dup %tmp.348;
+        %tmp.353 = aputv %tmp.352 %tmp.350 %tmp.351;
+        %tmp.355 = const :type;
+        symbol [ type %tmp.355 81 40 44 const ];
+        symbol [ WIRETYPE_VARINT %tmp.357 81 48 63 ];
+        %tmp.357 = getv ? :WIRETYPE_VARINT;
+        %tmp.358 = dup %tmp.353;
+        %tmp.359 = aputv %tmp.358 %tmp.355 %tmp.357;
+        %tmp.360 = dup %tmp.345;
+        %tmp.361 = aputv %tmp.360 %tmp.347 %tmp.359;
+        putv self :SCHEMA_POSITION %tmp.361;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 86 10 ]
+        %tmp.362 = newd 5;
+        %tmp.364 = const :id;
+        symbol [ id %tmp.364 87 9 11 const ];
+        %tmp.365 = newd 2;
+        %tmp.367 = const :tag;
+        symbol [ tag %tmp.367 87 18 21 const ];
+        %tmp.368 = 1;
+        %tmp.369 = dup %tmp.365;
+        %tmp.370 = aputv %tmp.369 %tmp.367 %tmp.368;
+        %tmp.372 = const :type;
+        symbol [ type %tmp.372 87 29 33 const ];
+        symbol [ WIRETYPE_LEN %tmp.374 87 37 49 ];
+        %tmp.374 = getv ? :WIRETYPE_LEN;
+        %tmp.375 = dup %tmp.370;
+        %tmp.376 = aputv %tmp.375 %tmp.372 %tmp.374;
+        %tmp.377 = dup %tmp.362;
+        %tmp.378 = aputv %tmp.377 %tmp.364 %tmp.376;
+        %tmp.380 = const :long_name;
+        symbol [ long_name %tmp.380 88 9 18 const ];
+        %tmp.381 = newd 2;
+        %tmp.383 = const :tag;
+        symbol [ tag %tmp.383 88 25 28 const ];
+        %tmp.384 = 2;
+        %tmp.385 = dup %tmp.381;
+        %tmp.386 = aputv %tmp.385 %tmp.383 %tmp.384;
+        %tmp.388 = const :type;
+        symbol [ type %tmp.388 88 36 40 const ];
+        symbol [ WIRETYPE_LEN %tmp.390 88 44 56 ];
+        %tmp.390 = getv ? :WIRETYPE_LEN;
+        %tmp.391 = dup %tmp.386;
+        %tmp.392 = aputv %tmp.391 %tmp.388 %tmp.390;
+        %tmp.393 = dup %tmp.378;
+        %tmp.394 = aputv %tmp.393 %tmp.380 %tmp.392;
+        %tmp.396 = const :short_name;
+        symbol [ short_name %tmp.396 89 9 19 const ];
+        %tmp.397 = newd 2;
+        %tmp.399 = const :tag;
+        symbol [ tag %tmp.399 89 26 29 const ];
+        %tmp.400 = 3;
+        %tmp.401 = dup %tmp.397;
+        %tmp.402 = aputv %tmp.401 %tmp.399 %tmp.400;
+        %tmp.404 = const :type;
+        symbol [ type %tmp.404 89 37 41 const ];
+        symbol [ WIRETYPE_LEN %tmp.406 89 45 57 ];
+        %tmp.406 = getv ? :WIRETYPE_LEN;
+        %tmp.407 = dup %tmp.402;
+        %tmp.408 = aputv %tmp.407 %tmp.404 %tmp.406;
+        %tmp.409 = dup %tmp.394;
+        %tmp.410 = aputv %tmp.409 %tmp.396 %tmp.408;
+        %tmp.412 = const :macaddr;
+        symbol [ macaddr %tmp.412 90 9 16 const ];
+        %tmp.413 = newd 2;
+        %tmp.415 = const :tag;
+        symbol [ tag %tmp.415 90 23 26 const ];
+        %tmp.416 = 4;
+        %tmp.417 = dup %tmp.413;
+        %tmp.418 = aputv %tmp.417 %tmp.415 %tmp.416;
+        %tmp.420 = const :type;
+        symbol [ type %tmp.420 90 34 38 const ];
+        symbol [ WIRETYPE_LEN %tmp.422 90 42 54 ];
+        %tmp.422 = getv ? :WIRETYPE_LEN;
+        %tmp.423 = dup %tmp.418;
+        %tmp.424 = aputv %tmp.423 %tmp.420 %tmp.422;
+        %tmp.425 = dup %tmp.410;
+        %tmp.426 = aputv %tmp.425 %tmp.412 %tmp.424;
+        %tmp.428 = const :hw_model;
+        symbol [ hw_model %tmp.428 91 9 17 const ];
+        %tmp.429 = newd 2;
+        %tmp.431 = const :tag;
+        symbol [ tag %tmp.431 91 24 27 const ];
+        %tmp.432 = 5;
+        %tmp.433 = dup %tmp.429;
+        %tmp.434 = aputv %tmp.433 %tmp.431 %tmp.432;
+        %tmp.436 = const :type;
+        symbol [ type %tmp.436 91 35 39 const ];
+        symbol [ WIRETYPE_VARINT %tmp.438 91 43 58 ];
+        %tmp.438 = getv ? :WIRETYPE_VARINT;
+        %tmp.439 = dup %tmp.434;
+        %tmp.440 = aputv %tmp.439 %tmp.436 %tmp.438;
+        %tmp.441 = dup %tmp.426;
+        %tmp.442 = aputv %tmp.441 %tmp.428 %tmp.440;
+        putv self :SCHEMA_USER %tmp.442;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 95 10 ]
+        %tmp.443 = newd 6;
+        %tmp.445 = const :num;
+        symbol [ num %tmp.445 96 9 12 const ];
+        %tmp.446 = newd 2;
+        %tmp.448 = const :tag;
+        symbol [ tag %tmp.448 96 19 22 const ];
+        %tmp.449 = 1;
+        %tmp.450 = dup %tmp.446;
+        %tmp.451 = aputv %tmp.450 %tmp.448 %tmp.449;
+        %tmp.453 = const :type;
+        symbol [ type %tmp.453 96 30 34 const ];
+        symbol [ WIRETYPE_VARINT %tmp.455 96 38 53 ];
+        %tmp.455 = getv ? :WIRETYPE_VARINT;
+        %tmp.456 = dup %tmp.451;
+        %tmp.457 = aputv %tmp.456 %tmp.453 %tmp.455;
+        %tmp.458 = dup %tmp.443;
+        %tmp.459 = aputv %tmp.458 %tmp.445 %tmp.457;
+        %tmp.461 = const :user;
+        symbol [ user %tmp.461 97 9 13 const ];
+        %tmp.462 = newd 3;
+        %tmp.464 = const :tag;
+        symbol [ tag %tmp.464 97 20 23 const ];
+        %tmp.465 = 2;
+        %tmp.466 = dup %tmp.462;
+        %tmp.467 = aputv %tmp.466 %tmp.464 %tmp.465;
+        %tmp.469 = const :type;
+        symbol [ type %tmp.469 97 31 35 const ];
+        symbol [ WIRETYPE_LEN %tmp.471 97 39 51 ];
+        %tmp.471 = getv ? :WIRETYPE_LEN;
+        %tmp.472 = dup %tmp.467;
+        %tmp.473 = aputv %tmp.472 %tmp.469 %tmp.471;
+        %tmp.475 = const :schema;
+        symbol [ schema %tmp.475 97 54 60 const ];
+        symbol [ SCHEMA_USER %tmp.477 97 64 75 ];
+        %tmp.477 = getv ? :SCHEMA_USER;
+        %tmp.478 = dup %tmp.473;
+        %tmp.479 = aputv %tmp.478 %tmp.475 %tmp.477;
+        %tmp.480 = dup %tmp.459;
+        %tmp.481 = aputv %tmp.480 %tmp.461 %tmp.479;
+        %tmp.483 = const :position;
+        symbol [ position %tmp.483 98 9 17 const ];
+        %tmp.484 = newd 3;
+        %tmp.486 = const :tag;
+        symbol [ tag %tmp.486 98 24 27 const ];
+        %tmp.487 = 3;
+        %tmp.488 = dup %tmp.484;
+        %tmp.489 = aputv %tmp.488 %tmp.486 %tmp.487;
+        %tmp.491 = const :type;
+        symbol [ type %tmp.491 98 35 39 const ];
+        symbol [ WIRETYPE_LEN %tmp.493 98 43 55 ];
+        %tmp.493 = getv ? :WIRETYPE_LEN;
+        %tmp.494 = dup %tmp.489;
+        %tmp.495 = aputv %tmp.494 %tmp.491 %tmp.493;
+        %tmp.497 = const :schema;
+        symbol [ schema %tmp.497 98 58 64 const ];
+        symbol [ SCHEMA_POSITION %tmp.499 98 68 83 ];
+        %tmp.499 = getv ? :SCHEMA_POSITION;
+        %tmp.500 = dup %tmp.495;
+        %tmp.501 = aputv %tmp.500 %tmp.497 %tmp.499;
+        %tmp.502 = dup %tmp.481;
+        %tmp.503 = aputv %tmp.502 %tmp.483 %tmp.501;
+        %tmp.505 = const :snr;
+        symbol [ snr %tmp.505 99 9 12 const ];
+        %tmp.506 = newd 2;
+        %tmp.508 = const :tag;
+        symbol [ tag %tmp.508 99 19 22 const ];
+        %tmp.509 = 4;
+        %tmp.510 = dup %tmp.506;
+        %tmp.511 = aputv %tmp.510 %tmp.508 %tmp.509;
+        %tmp.513 = const :type;
+        symbol [ type %tmp.513 99 30 34 const ];
+        symbol [ WIRETYPE_FIXED32 %tmp.515 99 38 54 ];
+        %tmp.515 = getv ? :WIRETYPE_FIXED32;
+        %tmp.516 = dup %tmp.511;
+        %tmp.517 = aputv %tmp.516 %tmp.513 %tmp.515;
+        %tmp.518 = dup %tmp.503;
+        %tmp.519 = aputv %tmp.518 %tmp.505 %tmp.517;
+        %tmp.521 = const :last_heard;
+        symbol [ last_heard %tmp.521 100 9 19 const ];
+        %tmp.522 = newd 2;
+        %tmp.524 = const :tag;
+        symbol [ tag %tmp.524 100 26 29 const ];
+        %tmp.525 = 5;
+        %tmp.526 = dup %tmp.522;
+        %tmp.527 = aputv %tmp.526 %tmp.524 %tmp.525;
+        %tmp.529 = const :type;
+        symbol [ type %tmp.529 100 37 41 const ];
+        symbol [ WIRETYPE_VARINT %tmp.531 100 45 60 ];
+        %tmp.531 = getv ? :WIRETYPE_VARINT;
+        %tmp.532 = dup %tmp.527;
+        %tmp.533 = aputv %tmp.532 %tmp.529 %tmp.531;
+        %tmp.534 = dup %tmp.519;
+        %tmp.535 = aputv %tmp.534 %tmp.521 %tmp.533;
+        %tmp.537 = const :device_metrics;
+        symbol [ device_metrics %tmp.537 101 9 23 const ];
+        %tmp.538 = newd 2;
+        %tmp.540 = const :tag;
+        symbol [ tag %tmp.540 101 30 33 const ];
+        %tmp.541 = 6;
+        %tmp.542 = dup %tmp.538;
+        %tmp.543 = aputv %tmp.542 %tmp.540 %tmp.541;
+        %tmp.545 = const :type;
+        symbol [ type %tmp.545 101 41 45 const ];
+        symbol [ WIRETYPE_LEN %tmp.547 101 49 61 ];
+        %tmp.547 = getv ? :WIRETYPE_LEN;
+        %tmp.548 = dup %tmp.543;
+        %tmp.549 = aputv %tmp.548 %tmp.545 %tmp.547;
+        %tmp.550 = dup %tmp.535;
+        %tmp.551 = aputv %tmp.550 %tmp.537 %tmp.549;
+        putv self :SCHEMA_NODEINFO %tmp.551;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 105 10 ]
+        %tmp.552 = newd 3;
+        %tmp.554 = const :my_node_num;
+        symbol [ my_node_num %tmp.554 106 9 20 const ];
+        %tmp.555 = newd 2;
+        %tmp.557 = const :tag;
+        symbol [ tag %tmp.557 106 27 30 const ];
+        %tmp.558 = 1;
+        %tmp.559 = dup %tmp.555;
+        %tmp.560 = aputv %tmp.559 %tmp.557 %tmp.558;
+        %tmp.562 = const :type;
+        symbol [ type %tmp.562 106 38 42 const ];
+        symbol [ WIRETYPE_VARINT %tmp.564 106 46 61 ];
+        %tmp.564 = getv ? :WIRETYPE_VARINT;
+        %tmp.565 = dup %tmp.560;
+        %tmp.566 = aputv %tmp.565 %tmp.562 %tmp.564;
+        %tmp.567 = dup %tmp.552;
+        %tmp.568 = aputv %tmp.567 %tmp.554 %tmp.566;
+        %tmp.570 = const :reboot_count;
+        symbol [ reboot_count %tmp.570 107 9 21 const ];
+        %tmp.571 = newd 2;
+        %tmp.573 = const :tag;
+        symbol [ tag %tmp.573 107 28 31 const ];
+        %tmp.574 = 8;
+        %tmp.575 = dup %tmp.571;
+        %tmp.576 = aputv %tmp.575 %tmp.573 %tmp.574;
+        %tmp.578 = const :type;
+        symbol [ type %tmp.578 107 39 43 const ];
+        symbol [ WIRETYPE_VARINT %tmp.580 107 47 62 ];
+        %tmp.580 = getv ? :WIRETYPE_VARINT;
+        %tmp.581 = dup %tmp.576;
+        %tmp.582 = aputv %tmp.581 %tmp.578 %tmp.580;
+        %tmp.583 = dup %tmp.568;
+        %tmp.584 = aputv %tmp.583 %tmp.570 %tmp.582;
+        %tmp.586 = const :min_app_version;
+        symbol [ min_app_version %tmp.586 108 9 24 const ];
+        %tmp.587 = newd 2;
+        %tmp.589 = const :tag;
+        symbol [ tag %tmp.589 108 31 34 const ];
+        %tmp.590 = 11;
+        %tmp.591 = dup %tmp.587;
+        %tmp.592 = aputv %tmp.591 %tmp.589 %tmp.590;
+        %tmp.594 = const :type;
+        symbol [ type %tmp.594 108 43 47 const ];
+        symbol [ WIRETYPE_VARINT %tmp.596 108 51 66 ];
+        %tmp.596 = getv ? :WIRETYPE_VARINT;
+        %tmp.597 = dup %tmp.592;
+        %tmp.598 = aputv %tmp.597 %tmp.594 %tmp.596;
+        %tmp.599 = dup %tmp.584;
+        %tmp.600 = aputv %tmp.599 %tmp.586 %tmp.598;
+        putv self :SCHEMA_MYNODEINFO %tmp.600;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 113 10 ]
+        %tmp.601 = newd 2;
+        %tmp.603 = const :packet;
+        symbol [ packet %tmp.603 114 9 15 const ];
+        %tmp.604 = newd 2;
+        %tmp.606 = const :tag;
+        symbol [ tag %tmp.606 114 22 25 const ];
+        %tmp.607 = 1;
+        %tmp.608 = dup %tmp.604;
+        %tmp.609 = aputv %tmp.608 %tmp.606 %tmp.607;
+        %tmp.611 = const :type;
+        symbol [ type %tmp.611 114 33 37 const ];
+        symbol [ WIRETYPE_LEN %tmp.613 114 41 53 ];
+        %tmp.613 = getv ? :WIRETYPE_LEN;
+        %tmp.614 = dup %tmp.609;
+        %tmp.615 = aputv %tmp.614 %tmp.611 %tmp.613;
+        %tmp.616 = dup %tmp.601;
+        %tmp.617 = aputv %tmp.616 %tmp.603 %tmp.615;
+        %tmp.619 = const :want_config_id;
+        symbol [ want_config_id %tmp.619 115 9 23 const ];
+        %tmp.620 = newd 2;
+        %tmp.622 = const :tag;
+        symbol [ tag %tmp.622 115 30 33 const ];
+        %tmp.623 = 3;
+        %tmp.624 = dup %tmp.620;
+        %tmp.625 = aputv %tmp.624 %tmp.622 %tmp.623;
+        %tmp.627 = const :type;
+        symbol [ type %tmp.627 115 41 45 const ];
+        symbol [ WIRETYPE_VARINT %tmp.629 115 49 64 ];
+        %tmp.629 = getv ? :WIRETYPE_VARINT;
+        %tmp.630 = dup %tmp.625;
+        %tmp.631 = aputv %tmp.630 %tmp.627 %tmp.629;
+        %tmp.632 = dup %tmp.617;
+        %tmp.633 = aputv %tmp.632 %tmp.619 %tmp.631;
+        putv self :SCHEMA_TORADIO %tmp.633;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 120 10 ]
+        %tmp.634 = newd 6;
+        %tmp.636 = const :id;
+        symbol [ id %tmp.636 121 9 11 const ];
+        %tmp.637 = newd 2;
+        %tmp.639 = const :tag;
+        symbol [ tag %tmp.639 121 18 21 const ];
+        %tmp.640 = 1;
+        %tmp.641 = dup %tmp.637;
+        %tmp.642 = aputv %tmp.641 %tmp.639 %tmp.640;
+        %tmp.644 = const :type;
+        symbol [ type %tmp.644 121 29 33 const ];
+        symbol [ WIRETYPE_VARINT %tmp.646 121 37 52 ];
+        %tmp.646 = getv ? :WIRETYPE_VARINT;
+        %tmp.647 = dup %tmp.642;
+        %tmp.648 = aputv %tmp.647 %tmp.644 %tmp.646;
+        %tmp.649 = dup %tmp.634;
+        %tmp.650 = aputv %tmp.649 %tmp.636 %tmp.648;
+        %tmp.652 = const :packet;
+        symbol [ packet %tmp.652 122 9 15 const ];
+        %tmp.653 = newd 2;
+        %tmp.655 = const :tag;
+        symbol [ tag %tmp.655 122 22 25 const ];
+        %tmp.656 = 2;
+        %tmp.657 = dup %tmp.653;
+        %tmp.658 = aputv %tmp.657 %tmp.655 %tmp.656;
+        %tmp.660 = const :type;
+        symbol [ type %tmp.660 122 33 37 const ];
+        symbol [ WIRETYPE_LEN %tmp.662 122 41 53 ];
+        %tmp.662 = getv ? :WIRETYPE_LEN;
+        %tmp.663 = dup %tmp.658;
+        %tmp.664 = aputv %tmp.663 %tmp.660 %tmp.662;
+        %tmp.665 = dup %tmp.650;
+        %tmp.666 = aputv %tmp.665 %tmp.652 %tmp.664;
+        %tmp.668 = const :my_info;
+        symbol [ my_info %tmp.668 123 9 16 const ];
+        %tmp.669 = newd 3;
+        %tmp.671 = const :tag;
+        symbol [ tag %tmp.671 123 23 26 const ];
+        %tmp.672 = 3;
+        %tmp.673 = dup %tmp.669;
+        %tmp.674 = aputv %tmp.673 %tmp.671 %tmp.672;
+        %tmp.676 = const :type;
+        symbol [ type %tmp.676 123 34 38 const ];
+        symbol [ WIRETYPE_LEN %tmp.678 123 42 54 ];
+        %tmp.678 = getv ? :WIRETYPE_LEN;
+        %tmp.679 = dup %tmp.674;
+        %tmp.680 = aputv %tmp.679 %tmp.676 %tmp.678;
+        %tmp.682 = const :schema;
+        symbol [ schema %tmp.682 123 57 63 const ];
+        symbol [ SCHEMA_MYNODEINFO %tmp.684 123 67 84 ];
+        %tmp.684 = getv ? :SCHEMA_MYNODEINFO;
+        %tmp.685 = dup %tmp.680;
+        %tmp.686 = aputv %tmp.685 %tmp.682 %tmp.684;
+        %tmp.687 = dup %tmp.666;
+        %tmp.688 = aputv %tmp.687 %tmp.668 %tmp.686;
+        %tmp.690 = const :node_info;
+        symbol [ node_info %tmp.690 124 9 18 const ];
+        %tmp.691 = newd 3;
+        %tmp.693 = const :tag;
+        symbol [ tag %tmp.693 124 25 28 const ];
+        %tmp.694 = 4;
+        %tmp.695 = dup %tmp.691;
+        %tmp.696 = aputv %tmp.695 %tmp.693 %tmp.694;
+        %tmp.698 = const :type;
+        symbol [ type %tmp.698 124 36 40 const ];
+        symbol [ WIRETYPE_LEN %tmp.700 124 44 56 ];
+        %tmp.700 = getv ? :WIRETYPE_LEN;
+        %tmp.701 = dup %tmp.696;
+        %tmp.702 = aputv %tmp.701 %tmp.698 %tmp.700;
+        %tmp.704 = const :schema;
+        symbol [ schema %tmp.704 124 59 65 const ];
+        symbol [ SCHEMA_NODEINFO %tmp.706 124 69 84 ];
+        %tmp.706 = getv ? :SCHEMA_NODEINFO;
+        %tmp.707 = dup %tmp.702;
+        %tmp.708 = aputv %tmp.707 %tmp.704 %tmp.706;
+        %tmp.709 = dup %tmp.688;
+        %tmp.710 = aputv %tmp.709 %tmp.690 %tmp.708;
+        %tmp.712 = const :config_complete_id;
+        symbol [ config_complete_id %tmp.712 125 9 27 const ];
+        %tmp.713 = newd 2;
+        %tmp.715 = const :tag;
+        symbol [ tag %tmp.715 125 34 37 const ];
+        %tmp.716 = 6;
+        %tmp.717 = dup %tmp.713;
+        %tmp.718 = aputv %tmp.717 %tmp.715 %tmp.716;
+        %tmp.720 = const :type;
+        symbol [ type %tmp.720 125 45 49 const ];
+        symbol [ WIRETYPE_VARINT %tmp.722 125 53 68 ];
+        %tmp.722 = getv ? :WIRETYPE_VARINT;
+        %tmp.723 = dup %tmp.718;
+        %tmp.724 = aputv %tmp.723 %tmp.720 %tmp.722;
+        %tmp.725 = dup %tmp.710;
+        %tmp.726 = aputv %tmp.725 %tmp.712 %tmp.724;
+        %tmp.728 = const :rebooted;
+        symbol [ rebooted %tmp.728 126 9 17 const ];
+        %tmp.729 = newd 2;
+        %tmp.731 = const :tag;
+        symbol [ tag %tmp.731 126 24 27 const ];
+        %tmp.732 = 7;
+        %tmp.733 = dup %tmp.729;
+        %tmp.734 = aputv %tmp.733 %tmp.731 %tmp.732;
+        %tmp.736 = const :type;
+        symbol [ type %tmp.736 126 35 39 const ];
+        symbol [ WIRETYPE_VARINT %tmp.738 126 43 58 ];
+        %tmp.738 = getv ? :WIRETYPE_VARINT;
+        %tmp.739 = dup %tmp.734;
+        %tmp.740 = aputv %tmp.739 %tmp.736 %tmp.738;
+        %tmp.741 = dup %tmp.726;
+        %tmp.742 = aputv %tmp.741 %tmp.728 %tmp.740;
+        putv self :SCHEMA_FROMRADIO %tmp.742;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 14; ]
+    enum {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 15; @position = 8; @symbol_enumdec = [WIRETYPE_VARINT,15,8,23]; ]
+        WIRETYPE_VARINT = 0,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 16; @position = 8; @symbol_enumdec = [WIRETYPE_FIXED64,16,8,24]; ]
+        WIRETYPE_FIXED64 = 1,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 17; @position = 8; @symbol_enumdec = [WIRETYPE_LEN,17,8,20]; ]
+        WIRETYPE_LEN = 2,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 20; @position = 8; @symbol_enumdec = [WIRETYPE_FIXED32,20,8,24]; ]
+        WIRETYPE_FIXED32 = 5
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 24; @position = 10; @symbol_constdef = [START1,24,10,16]; ]
+    const START1 = 0x94;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 25; @position = 10; @symbol_constdef = [START2,25,10,16]; ]
+    const START2 = 0xc3;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 28; @symbol_enumdef = [PortNum,28,9,16]; ]
+    enum PortNum {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 29; @position = 8; @symbol_enumdec = [UNKNOWN_APP,29,8,19]; ]
+        UNKNOWN_APP = 0,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 30; @position = 8; @symbol_enumdec = [TEXT_MESSAGE_APP,30,8,24]; ]
+        TEXT_MESSAGE_APP = 1,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 31; @position = 8; @symbol_enumdec = [REMOTE_HARDWARE_APP,31,8,27]; ]
+        REMOTE_HARDWARE_APP = 2,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 32; @position = 8; @symbol_enumdec = [POSITION_APP,32,8,20]; ]
+        POSITION_APP = 3,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 33; @position = 8; @symbol_enumdec = [NODEINFO_APP,33,8,20]; ]
+        NODEINFO_APP = 4,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 34; @position = 8; @symbol_enumdec = [ROUTING_APP,34,8,19]; ]
+        ROUTING_APP = 5,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 35; @position = 8; @symbol_enumdec = [ADMIN_APP,35,8,17]; ]
+        ADMIN_APP = 6,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 36; @position = 8; @symbol_enumdec = [TEXT_MESSAGE_COMPRESSED_APP,36,8,35]; ]
+        TEXT_MESSAGE_COMPRESSED_APP = 7,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 37; @position = 8; @symbol_enumdec = [WAYPOINT_APP,37,8,20]; ]
+        WAYPOINT_APP = 8,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 38; @position = 8; @symbol_enumdec = [AUDIO_APP,38,8,17]; ]
+        AUDIO_APP = 9,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 39; @position = 8; @symbol_enumdec = [REPLY_APP,39,8,17]; ]
+        REPLY_APP = 32,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 40; @position = 8; @symbol_enumdec = [PRIVATE_APP,40,8,19]; ]
+        PRIVATE_APP = 256
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 50; @position = 10; @symbol_constdef = [SCHEMA_DATA,50,10,21]; ]
+    const SCHEMA_DATA;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 62; @position = 10; @symbol_constdef = [SCHEMA_MESHPACKET,62,10,27]; ]
+    const SCHEMA_MESHPACKET;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 76; @position = 10; @symbol_constdef = [SCHEMA_POSITION,76,10,25]; ]
+    const SCHEMA_POSITION;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 86; @position = 10; @symbol_constdef = [SCHEMA_USER,86,10,21]; ]
+    const SCHEMA_USER;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 95; @position = 10; @symbol_constdef = [SCHEMA_NODEINFO,95,10,25]; ]
+    const SCHEMA_NODEINFO;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 105; @position = 10; @symbol_constdef = [SCHEMA_MYNODEINFO,105,10,27]; ]
+    const SCHEMA_MYNODEINFO;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 113; @position = 10; @symbol_constdef = [SCHEMA_TORADIO,113,10,24]; ]
+    const SCHEMA_TORADIO;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 120; @position = 10; @symbol_constdef = [SCHEMA_FROMRADIO,120,10,26]; ]
+    const SCHEMA_FROMRADIO;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 132; @symbol_functiondef = [wrap,132,20,24]; @symbol_param<0> = [protoBytes,132,25,35]; @symbol_param<0>_type<0> = [Lang,132,39,43]; @symbol_param<0>_type<1> = [ByteArray,132,44,53]; @symbol_return<0> = [Lang,132,58,62]; @symbol_return<1> = [ByteArray,132,63,72]; ]
+    function wrap(protoBytes as Lang.ByteArray) as Lang.ByteArray or Null {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 133 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_stop" ]
+        %len.1 = local;
+        symbol [ len %len.1 133 12 15 ];
+        %tmp.1 = lgetv %protoBytes;
+        symbol [ protoBytes %tmp.1 133 18 28 ];
+        symbol [ size %tmp.2 133 29 33 ];
+        %tmp.2 = getv function %tmp.1 :size;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %len.1 %tmp.3;
+        symbol [ len %len.1 133 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 134 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_8_137_8_if_stmt:
+        %tmp.4 = lgetv %len.1;
+        symbol [ len %tmp.4 134 12 15 ];
+        %tmp.5 = 0xFFFF;
+        %tmp.6 = gt %tmp.4 %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_8_137_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_8_137_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_26_137_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 135 12 ]
+        symbol [ System %tmp.7 135 12 18 ];
+        %tmp.7 = getm $.Toybox.System;
+        symbol [ println %tmp.8 135 19 26 ];
+        %tmp.8 = getv function %tmp.7 :println;
+        %tmp.9 = "Error: Protobuf payload too large for streaming protocol.";
+        invoke %tmp.7 %tmp.8(%tmp.9);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 136 12 ]
+        %tmp.10 = null;
+        ret %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_26_137_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_8_137_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_134_8_137_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 139 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_stop" ]
+        %header.2 = local;
+        symbol [ header %header.2 139 12 18 ];
+        %tmp.12 = 4;
+        %tmp.11 = newba %tmp.12;
+        lputv %header.2 %tmp.11;
+        symbol [ header %header.2 139 12 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 140 8 ]
+        %tmp.13 = lgetv %header.2;
+        symbol [ header %tmp.13 140 8 14 ];
+        symbol [ START1 %tmp.15 140 20 26 ];
+        %tmp.15 = getv ? :START1;
+        %tmp.16 = 0;
+        aputv %tmp.13 %tmp.16 %tmp.15;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 141 8 ]
+        %tmp.17 = lgetv %header.2;
+        symbol [ header %tmp.17 141 8 14 ];
+        symbol [ START2 %tmp.19 141 20 26 ];
+        %tmp.19 = getv ? :START2;
+        %tmp.20 = 1;
+        aputv %tmp.17 %tmp.20 %tmp.19;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 142 8 ]
+        %tmp.21 = lgetv %header.2;
+        symbol [ header %tmp.21 142 8 14 ];
+        %tmp.22 = lgetv %len.1;
+        symbol [ len %tmp.22 142 21 24 ];
+        %tmp.23 = 8;
+        %tmp.24 = shr %tmp.22 %tmp.23;
+        %tmp.25 = 0xFF;
+        %tmp.26 = bitand %tmp.24 %tmp.25;
+        %tmp.27 = 2;
+        aputv %tmp.21 %tmp.27 %tmp.26;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 143 8 ]
+        %tmp.28 = lgetv %header.2;
+        symbol [ header %tmp.28 143 8 14 ];
+        %tmp.29 = lgetv %len.1;
+        symbol [ len %tmp.29 143 20 23 ];
+        %tmp.30 = 0xFF;
+        %tmp.31 = bitand %tmp.29 %tmp.30;
+        %tmp.32 = 3;
+        aputv %tmp.28 %tmp.32 %tmp.31;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 145 8 ]
+        %tmp.33 = lgetv %header.2;
+        symbol [ header %tmp.33 145 15 21 ];
+        symbol [ addAll %tmp.34 145 22 28 ];
+        %tmp.34 = getv function %tmp.33 :addAll;
+        %tmp.35 = lgetv %protoBytes;
+        symbol [ protoBytes %tmp.35 145 29 39 ];
+        %tmp.36 = invoke %tmp.33 %tmp.34(%tmp.35);
+        ret %tmp.36;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_132_74_146_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 153; @symbol_functiondef = [unwrap,153,20,26]; @symbol_param<0> = [streamBytes,153,27,38]; @symbol_param<0>_type<0> = [Lang,153,42,46]; @symbol_param<0>_type<1> = [ByteArray,153,47,56]; @symbol_return<0> = [Lang,153,61,65]; @symbol_return<1> = [ByteArray,153,66,75]; ]
+    function unwrap(streamBytes as Lang.ByteArray) as Lang.ByteArray or Null {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_153_77_170_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 154 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_12_154_56_begin:
+        %tmp.1 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.1 154 12 23 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bt %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_35_154_56_false:
+        %tmp.4 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.4 154 35 46 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        symbol [ size %tmp.6 154 47 51 ];
+        %tmp.6 = getv function %tmp.5 :size;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = 4;
+        %tmp.9 = lt %tmp.7 %tmp.8;
+        push %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_35_154_56_end:
+        %tmp.10 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_12_154_56_begin] [%tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_35_154_56_false] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_35_154_56_end];
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_59_156_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 155 12 ]
+        %tmp.11 = null;
+        ret %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_59_156_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_154_8_156_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 158 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_12_158_58_begin:
+        %tmp.12 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.12 158 12 23 ];
+        %tmp.13 = 0;
+        %tmp.14 = agetv %tmp.12 %tmp.13;
+        symbol [ START1 %tmp.16 158 30 36 ];
+        %tmp.16 = getv ? :START1;
+        %tmp.17 = ne %tmp.14 %tmp.16;
+        bt %tmp.17 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_40_158_58_false:
+        %tmp.18 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.18 158 40 51 ];
+        %tmp.19 = 1;
+        %tmp.20 = agetv %tmp.18 %tmp.19;
+        symbol [ START2 %tmp.22 158 58 64 ];
+        %tmp.22 = getv ? :START2;
+        %tmp.23 = ne %tmp.20 %tmp.22;
+        push %tmp.23;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_40_158_58_end:
+        %tmp.24 = phi [%tmp.17 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_12_158_58_begin] [%tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_40_158_58_false] [%tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_40_158_58_end];
+        bf %tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_66_161_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 159 12 ]
+        symbol [ System %tmp.25 159 12 18 ];
+        %tmp.25 = getm $.Toybox.System;
+        symbol [ println %tmp.26 159 19 26 ];
+        %tmp.26 = getv function %tmp.25 :println;
+        %tmp.27 = "Error: Invalid Meshtastic stream header.";
+        invoke %tmp.25 %tmp.26(%tmp.27);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 160 12 ]
+        %tmp.28 = null;
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_66_161_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_158_8_161_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 163 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_153_77_170_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_153_77_170_4_stop" ]
+        %len.1 = local;
+        symbol [ len %len.1 163 12 15 ];
+        %tmp.29 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.29 163 19 30 ];
+        %tmp.30 = 2;
+        %tmp.31 = agetv %tmp.29 %tmp.30;
+        %tmp.32 = 8;
+        %tmp.33 = shl %tmp.31 %tmp.32;
+        %tmp.34 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.34 163 42 53 ];
+        %tmp.35 = 3;
+        %tmp.36 = agetv %tmp.34 %tmp.35;
+        %tmp.37 = bitor %tmp.33 %tmp.36;
+        lputv %len.1 %tmp.37;
+        symbol [ len %len.1 163 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 164 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_8_167_8_if_stmt:
+        %tmp.38 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.38 164 12 23 ];
+        symbol [ size %tmp.39 164 24 28 ];
+        %tmp.39 = getv function %tmp.38 :size;
+        %tmp.40 = invoke %tmp.38 %tmp.39();
+        %tmp.41 = 4;
+        %tmp.42 = lgetv %len.1;
+        symbol [ len %tmp.42 164 37 40 ];
+        %tmp.43 = add %tmp.41 %tmp.42;
+        %tmp.44 = lt %tmp.40 %tmp.43;
+        bf %tmp.44 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_8_167_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_8_167_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_42_167_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 165 12 ]
+        symbol [ System %tmp.45 165 12 18 ];
+        %tmp.45 = getm $.Toybox.System;
+        symbol [ println %tmp.46 165 19 26 ];
+        %tmp.46 = getv function %tmp.45 :println;
+        %tmp.47 = "Error: Incomplete packet. Expected ";
+        %tmp.48 = lgetv %len.1;
+        symbol [ len %tmp.48 165 67 70 ];
+        %tmp.49 = add %tmp.47 %tmp.48;
+        %tmp.50 = " bytes, got ";
+        %tmp.51 = add %tmp.49 %tmp.50;
+        %tmp.52 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.52 165 91 102 ];
+        symbol [ size %tmp.53 165 103 107 ];
+        %tmp.53 = getv function %tmp.52 :size;
+        %tmp.54 = invoke %tmp.52 %tmp.53();
+        %tmp.55 = 4;
+        %tmp.56 = sub %tmp.54 %tmp.55;
+        %tmp.57 = add %tmp.51 %tmp.56;
+        invoke %tmp.45 %tmp.46(%tmp.57);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 166 12 ]
+        %tmp.58 = null;
+        ret %tmp.58;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_42_167_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_8_167_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_164_8_167_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc" 169 8 ]
+        %tmp.59 = lgetv %streamBytes;
+        symbol [ streamBytes %tmp.59 169 15 26 ];
+        symbol [ slice %tmp.60 169 27 32 ];
+        %tmp.60 = getv function %tmp.59 :slice;
+        %tmp.61 = 4;
+        %tmp.62 = 4;
+        %tmp.63 = lgetv %len.1;
+        symbol [ len %tmp.63 169 40 43 ];
+        %tmp.64 = add %tmp.62 %tmp.63;
+        %tmp.65 = invoke %tmp.59 %tmp.60(%tmp.61, %tmp.64);
+        ret %tmp.65;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ProtoBuf_mc_153_77_170_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ProtoBuf.mc"; @line = 7; ]
+<init> {
+}

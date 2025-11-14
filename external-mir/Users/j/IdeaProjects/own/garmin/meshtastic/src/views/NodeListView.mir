@@ -1,0 +1,1306 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [WatchUi,5,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Graphics,6,13,21]; ]
+using Toybox.Graphics;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Lang,7,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [System,8,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 10; @symbol_classdef = [NodeListView,10,6,18]; @symbol_extends<0> = [WatchUi,10,27,34]; @symbol_extends<1> = [View,10,35,39]; ]
+class NodeListView extends WatchUi.View {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 10; ]
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 15 16 ]
+        %tmp.1 = newa 0;
+        putv self :_nodeList %tmp.1;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 10; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 11; @position = 16; @symbol_vardef = [_messageHandler,11,16,31]; ]
+    private
+    var _messageHandler;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 12; @position = 16; @symbol_vardef = [_viewManager,12,16,28]; ]
+    private
+    var _viewManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 13; @position = 16; @symbol_vardef = [_scrollIndex,13,16,28]; ]
+    private
+    var _scrollIndex = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 14; @position = 16; @symbol_vardef = [_itemsPerPage,14,16,29]; ]
+    private
+    var _itemsPerPage = 3;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 15; @position = 16; @symbol_vardef = [_nodeList,15,16,25]; ]
+    private
+    var _nodeList;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 17; @symbol_functiondef = [initialize,17,13,23]; @symbol_param<0> = [messageHandler,17,24,38]; @symbol_param<1> = [viewManager,17,40,51]; ]
+    function initialize(messageHandler, viewManager) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_17_53_22_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 18 8 ]
+        symbol [ View %tmp.2 18 8 12 ];
+        %tmp.2 = getv ? :View;
+        symbol [ initialize %tmp.3 18 13 23 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 19 8 ]
+        %tmp.4 = lgetv %messageHandler;
+        symbol [ messageHandler %tmp.4 19 26 40 ];
+        symbol [ _messageHandler ? 19 8 23 ];
+        putv self :_messageHandler %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 20 8 ]
+        %tmp.5 = lgetv %viewManager;
+        symbol [ viewManager %tmp.5 20 23 34 ];
+        symbol [ _viewManager ? 20 8 20 ];
+        putv self :_viewManager %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 21 8 ]
+        %tmp.6 = self;
+        symbol [ buildNodeList %tmp.7 21 8 21 ];
+        %tmp.7 = getv function %tmp.6 :buildNodeList;
+        invoke %tmp.6 %tmp.7();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_17_53_22_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 24; @symbol_functiondef = [buildNodeList,24,13,26]; ]
+    function buildNodeList() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 26 8 ]
+        %tmp.1 = newa 0;
+        symbol [ _nodeList ? 26 8 17 ];
+        putv self :_nodeList %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 27 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_stop" ]
+        %nodes.1 = local;
+        symbol [ nodes %nodes.1 27 12 17 ];
+        symbol [ _messageHandler %tmp.3 27 20 35 ];
+        %tmp.3 = getv ? :_messageHandler;
+        symbol [ getNodes %tmp.4 27 36 44 ];
+        %tmp.4 = getv function %tmp.3 :getNodes;
+        %tmp.5 = invoke %tmp.3 %tmp.4();
+        lputv %nodes.1 %tmp.5;
+        symbol [ nodes %nodes.1 27 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 28 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_stop" ]
+        %keys.2 = local;
+        symbol [ keys %keys.2 28 12 16 ];
+        %tmp.6 = lgetv %nodes.1;
+        symbol [ nodes %tmp.6 28 19 24 ];
+        symbol [ keys %tmp.7 28 25 29 ];
+        %tmp.7 = getv function %tmp.6 :keys;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        lputv %keys.2 %tmp.8;
+        symbol [ keys %keys.2 28 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 30 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_end" ]
+        %i.3 = local;
+        symbol [ i %i.3 30 17 18 ];
+        %tmp.9 = 0;
+        lputv %i.3 %tmp.9;
+        symbol [ i %i.3 30 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_test:
+        %tmp.10 = lgetv %i.3;
+        symbol [ i %tmp.10 30 24 25 ];
+        %tmp.11 = lgetv %keys.2;
+        symbol [ keys %tmp.11 30 28 32 ];
+        symbol [ size %tmp.12 30 33 37 ];
+        %tmp.12 = getv function %tmp.11 :size;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = lt %tmp.10 %tmp.13;
+        bf %tmp.14 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 31 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_stop" ]
+        %nodeNum.4 = local;
+        symbol [ nodeNum %nodeNum.4 31 16 23 ];
+        %tmp.15 = lgetv %keys.2;
+        symbol [ keys %tmp.15 31 26 30 ];
+        %tmp.16 = lgetv %i.3;
+        symbol [ i %tmp.16 31 31 32 ];
+        %tmp.17 = agetv %tmp.15 %tmp.16;
+        lputv %nodeNum.4 %tmp.17;
+        symbol [ nodeNum %nodeNum.4 31 16 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 32 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_stop" ]
+        %nodeInfo.5 = local;
+        symbol [ nodeInfo %nodeInfo.5 32 16 24 ];
+        %tmp.18 = lgetv %nodes.1;
+        symbol [ nodes %tmp.18 32 27 32 ];
+        %tmp.19 = lgetv %nodeNum.4;
+        symbol [ nodeNum %tmp.19 32 33 40 ];
+        %tmp.20 = agetv %tmp.18 %tmp.19;
+        lputv %nodeInfo.5 %tmp.20;
+        symbol [ nodeInfo %nodeInfo.5 32 16 24 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 33 12 ]
+        symbol [ _nodeList %tmp.22 33 12 21 ];
+        %tmp.22 = getv ? :_nodeList;
+        symbol [ add %tmp.23 33 22 25 ];
+        %tmp.23 = getv function %tmp.22 :add;
+        %tmp.24 = lgetv %nodeInfo.5;
+        symbol [ nodeInfo %tmp.24 33 26 34 ];
+        invoke %tmp.22 %tmp.23(%tmp.24);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_46_34_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 30 ]
+        %tmp.27 = lgetv %i.3;
+        symbol [ i %tmp.27 30 41 42 ];
+        %tmp.28 = add %tmp.27 1;
+        lputv %i.3 %tmp.28;
+        symbol [ i %i.3 30 41 42 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_30_8_34_8_for_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_24_29_35_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 37; @symbol_functiondef = [onUpdate,37,13,21]; @symbol_param<0> = [dc,37,22,24]; @symbol_param<0>_type<0> = [Graphics,37,28,36]; @symbol_param<0>_type<1> = [Dc,37,37,39]; ]
+    function onUpdate(dc as Graphics.Dc) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 38 8 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 38 8 10 ];
+        symbol [ setColor %tmp.2 38 11 19 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ Graphics %tmp.3 38 20 28 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.4 38 29 40 ];
+        %tmp.4 = getv %tmp.3 :COLOR_WHITE;
+        symbol [ Graphics %tmp.5 38 42 50 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.6 38 51 62 ];
+        %tmp.6 = getv %tmp.5 :COLOR_BLACK;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 39 8 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 39 8 10 ];
+        symbol [ clear %tmp.8 39 11 16 ];
+        %tmp.8 = getv function %tmp.7 :clear;
+        invoke %tmp.7 %tmp.8();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 41 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_stop" ]
+        %width.1 = local;
+        symbol [ width %width.1 41 12 17 ];
+        %tmp.9 = lgetv %dc;
+        symbol [ dc %tmp.9 41 20 22 ];
+        symbol [ getWidth %tmp.10 41 23 31 ];
+        %tmp.10 = getv function %tmp.9 :getWidth;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %width.1 %tmp.11;
+        symbol [ width %width.1 41 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 42 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_stop" ]
+        %centerX.2 = local;
+        symbol [ centerX %centerX.2 42 12 19 ];
+        %tmp.12 = lgetv %width.1;
+        symbol [ width %tmp.12 42 22 27 ];
+        %tmp.13 = 2;
+        %tmp.14 = div %tmp.12 %tmp.13;
+        lputv %centerX.2 %tmp.14;
+        symbol [ centerX %centerX.2 42 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 45 8 ]
+        %tmp.15 = lgetv %dc;
+        symbol [ dc %tmp.15 45 8 10 ];
+        symbol [ setColor %tmp.16 45 11 19 ];
+        %tmp.16 = getv function %tmp.15 :setColor;
+        symbol [ Graphics %tmp.17 45 20 28 ];
+        %tmp.17 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.18 45 29 42 ];
+        %tmp.18 = getv %tmp.17 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.19 45 44 52 ];
+        %tmp.19 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.20 45 53 70 ];
+        %tmp.20 = getv %tmp.19 :COLOR_TRANSPARENT;
+        invoke %tmp.15 %tmp.16(%tmp.18, %tmp.20);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 46 8 ]
+        %tmp.21 = lgetv %dc;
+        symbol [ dc %tmp.21 46 8 10 ];
+        symbol [ drawText %tmp.22 46 11 19 ];
+        %tmp.22 = getv function %tmp.21 :drawText;
+        %tmp.23 = lgetv %centerX.2;
+        symbol [ centerX %tmp.23 46 20 27 ];
+        %tmp.24 = 10;
+        symbol [ Graphics %tmp.25 46 33 41 ];
+        %tmp.25 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.26 46 42 52 ];
+        %tmp.26 = getv %tmp.25 :FONT_SMALL;
+        %tmp.27 = "Nodes";
+        symbol [ Graphics %tmp.28 46 63 71 ];
+        %tmp.28 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.29 46 72 91 ];
+        %tmp.29 = getv %tmp.28 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.21 %tmp.22(%tmp.23, %tmp.24, %tmp.26, %tmp.27, %tmp.29);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 48 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_stop" ]
+        %nodeCount.3 = local;
+        symbol [ nodeCount %nodeCount.3 48 12 21 ];
+        symbol [ _nodeList %tmp.31 48 24 33 ];
+        %tmp.31 = getv ? :_nodeList;
+        symbol [ size %tmp.32 48 34 38 ];
+        %tmp.32 = getv function %tmp.31 :size;
+        %tmp.33 = invoke %tmp.31 %tmp.32();
+        lputv %nodeCount.3 %tmp.33;
+        symbol [ nodeCount %nodeCount.3 48 12 21 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 50 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_stmt:
+        %tmp.34 = lgetv %nodeCount.3;
+        symbol [ nodeCount %tmp.34 50 12 21 ];
+        %tmp.35 = 0;
+        %tmp.36 = eq %tmp.34 %tmp.35;
+        bf %tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_28_57_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 52 12 ]
+        %tmp.37 = lgetv %dc;
+        symbol [ dc %tmp.37 52 12 14 ];
+        symbol [ setColor %tmp.38 52 15 23 ];
+        %tmp.38 = getv function %tmp.37 :setColor;
+        symbol [ Graphics %tmp.39 52 24 32 ];
+        %tmp.39 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.40 52 33 46 ];
+        %tmp.40 = getv %tmp.39 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.41 52 48 56 ];
+        %tmp.41 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.42 52 57 74 ];
+        %tmp.42 = getv %tmp.41 :COLOR_TRANSPARENT;
+        invoke %tmp.37 %tmp.38(%tmp.40, %tmp.42);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 53 12 ]
+        %tmp.43 = lgetv %dc;
+        symbol [ dc %tmp.43 53 12 14 ];
+        symbol [ drawText %tmp.44 53 15 23 ];
+        %tmp.44 = getv function %tmp.43 :drawText;
+        %tmp.45 = lgetv %centerX.2;
+        symbol [ centerX %tmp.45 53 24 31 ];
+        %tmp.46 = lgetv %dc;
+        symbol [ dc %tmp.46 53 33 35 ];
+        symbol [ getHeight %tmp.47 53 36 45 ];
+        %tmp.47 = getv function %tmp.46 :getHeight;
+        %tmp.48 = invoke %tmp.46 %tmp.47();
+        %tmp.49 = 2;
+        %tmp.50 = div %tmp.48 %tmp.49;
+        symbol [ Graphics %tmp.51 53 53 61 ];
+        %tmp.51 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.52 53 62 72 ];
+        %tmp.52 = getv %tmp.51 :FONT_SMALL;
+        %tmp.53 = "No nodes yet";
+        symbol [ Graphics %tmp.54 54 39 47 ];
+        %tmp.54 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.55 54 48 67 ];
+        %tmp.55 = getv %tmp.54 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.43 %tmp.44(%tmp.45, %tmp.50, %tmp.52, %tmp.53, %tmp.55);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 55 12 ]
+        %tmp.56 = lgetv %dc;
+        symbol [ dc %tmp.56 55 12 14 ];
+        symbol [ drawText %tmp.57 55 15 23 ];
+        %tmp.57 = getv function %tmp.56 :drawText;
+        %tmp.58 = lgetv %centerX.2;
+        symbol [ centerX %tmp.58 55 24 31 ];
+        %tmp.59 = lgetv %dc;
+        symbol [ dc %tmp.59 55 33 35 ];
+        symbol [ getHeight %tmp.60 55 36 45 ];
+        %tmp.60 = getv function %tmp.59 :getHeight;
+        %tmp.61 = invoke %tmp.59 %tmp.60();
+        %tmp.62 = 2;
+        %tmp.63 = div %tmp.61 %tmp.62;
+        %tmp.64 = 25;
+        %tmp.65 = add %tmp.63 %tmp.64;
+        symbol [ Graphics %tmp.66 55 58 66 ];
+        %tmp.66 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.67 55 67 76 ];
+        %tmp.67 = getv %tmp.66 :FONT_TINY;
+        %tmp.68 = "Connect to sync";
+        symbol [ Graphics %tmp.69 56 42 50 ];
+        %tmp.69 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.70 56 51 70 ];
+        %tmp.70 = getv %tmp.69 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.56 %tmp.57(%tmp.58, %tmp.65, %tmp.67, %tmp.68, %tmp.70);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_28_57_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 59 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_stop" ]
+        %y.4 = local;
+        symbol [ y %y.4 59 16 17 ];
+        %tmp.71 = 45;
+        lputv %y.4 %tmp.71;
+        symbol [ y %y.4 59 16 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 60 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_stop" ]
+        %lineHeight.5 = local;
+        symbol [ lineHeight %lineHeight.5 60 16 26 ];
+        %tmp.72 = 60;
+        lputv %lineHeight.5 %tmp.72;
+        symbol [ lineHeight %lineHeight.5 60 16 26 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 63 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_stop" ]
+        %startIdx.6 = local;
+        symbol [ startIdx %startIdx.6 63 16 24 ];
+        symbol [ _scrollIndex %tmp.74 63 27 39 ];
+        %tmp.74 = getv ? :_scrollIndex;
+        lputv %startIdx.6 %tmp.74;
+        symbol [ startIdx %startIdx.6 63 16 24 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 64 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_stop" ]
+        %endIdx.7 = local;
+        symbol [ endIdx %endIdx.7 64 16 22 ];
+        %tmp.75 = lgetv %startIdx.6;
+        symbol [ startIdx %tmp.75 64 25 33 ];
+        symbol [ _itemsPerPage %tmp.77 64 36 49 ];
+        %tmp.77 = getv ? :_itemsPerPage;
+        %tmp.78 = add %tmp.75 %tmp.77;
+        lputv %endIdx.7 %tmp.78;
+        symbol [ endIdx %endIdx.7 64 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 65 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_12_67_12_if_stmt:
+        %tmp.79 = lgetv %endIdx.7;
+        symbol [ endIdx %tmp.79 65 16 22 ];
+        %tmp.80 = lgetv %nodeCount.3;
+        symbol [ nodeCount %tmp.80 65 25 34 ];
+        %tmp.81 = gt %tmp.79 %tmp.80;
+        bf %tmp.81 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_12_67_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_12_67_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_36_67_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 66 16 ]
+        %tmp.82 = lgetv %nodeCount.3;
+        symbol [ nodeCount %tmp.82 66 25 34 ];
+        lputv %endIdx.7 %tmp.82;
+        symbol [ endIdx %endIdx.7 66 16 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_36_67_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_12_67_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_65_12_67_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 69 12 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_end" ]
+        %i.8 = local;
+        symbol [ i %i.8 69 21 22 ];
+        %tmp.83 = lgetv %startIdx.6;
+        symbol [ startIdx %tmp.83 69 25 33 ];
+        lputv %i.8 %tmp.83;
+        symbol [ i %i.8 69 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_test:
+        %tmp.84 = lgetv %i.8;
+        symbol [ i %tmp.84 69 35 36 ];
+        %tmp.85 = lgetv %endIdx.7;
+        symbol [ endIdx %tmp.85 69 39 45 ];
+        %tmp.86 = lt %tmp.84 %tmp.85;
+        bf %tmp.86 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_52_73_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 70 16 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_52_73_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_52_73_12_stop" ]
+        %nodeInfo.9 = local;
+        symbol [ nodeInfo %nodeInfo.9 70 20 28 ];
+        symbol [ _nodeList %tmp.88 70 31 40 ];
+        %tmp.88 = getv ? :_nodeList;
+        %tmp.89 = lgetv %i.8;
+        symbol [ i %tmp.89 70 41 42 ];
+        %tmp.90 = agetv %tmp.88 %tmp.89;
+        lputv %nodeInfo.9 %tmp.90;
+        symbol [ nodeInfo %nodeInfo.9 70 20 28 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 71 16 ]
+        %tmp.91 = self;
+        symbol [ drawNode %tmp.92 71 16 24 ];
+        %tmp.92 = getv function %tmp.91 :drawNode;
+        %tmp.93 = lgetv %dc;
+        symbol [ dc %tmp.93 71 25 27 ];
+        %tmp.94 = lgetv %nodeInfo.9;
+        symbol [ nodeInfo %tmp.94 71 29 37 ];
+        %tmp.95 = lgetv %y.4;
+        symbol [ y %tmp.95 71 39 40 ];
+        %tmp.96 = lgetv %i.8;
+        symbol [ i %tmp.96 71 42 43 ];
+        symbol [ _scrollIndex %tmp.98 71 47 59 ];
+        %tmp.98 = getv ? :_scrollIndex;
+        %tmp.99 = eq %tmp.96 %tmp.98;
+        invoke %tmp.91 %tmp.92(%tmp.93, %tmp.94, %tmp.95, %tmp.99);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 72 16 ]
+        %tmp.100 = lgetv %y.4;
+        symbol [ y %tmp.100 72 16 17 ];
+        %tmp.101 = lgetv %lineHeight.5;
+        symbol [ lineHeight %tmp.101 72 21 31 ];
+        %tmp.102 = add %tmp.100 %tmp.101;
+        lputv %y.4 %tmp.102;
+        symbol [ y %y.4 72 16 17 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_52_73_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 69 ]
+        %tmp.105 = lgetv %i.8;
+        symbol [ i %tmp.105 69 47 48 ];
+        %tmp.106 = add %tmp.105 1;
+        lputv %i.8 %tmp.106;
+        symbol [ i %i.8 69 47 48 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_69_12_73_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 76 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_12_81_12_if_stmt:
+        %tmp.107 = lgetv %nodeCount.3;
+        symbol [ nodeCount %tmp.107 76 16 25 ];
+        symbol [ _itemsPerPage %tmp.109 76 28 41 ];
+        %tmp.109 = getv ? :_itemsPerPage;
+        %tmp.110 = gt %tmp.107 %tmp.109;
+        bf %tmp.110 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_12_81_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_12_81_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_43_81_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 77 16 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_43_81_12_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_43_81_12_stop" ]
+        %scrollText.10 = local;
+        symbol [ scrollText %scrollText.10 77 20 30 ];
+        symbol [ _scrollIndex %tmp.112 77 34 46 ];
+        %tmp.112 = getv ? :_scrollIndex;
+        %tmp.113 = 1;
+        %tmp.114 = add %tmp.112 %tmp.113;
+        %tmp.115 = "/";
+        %tmp.116 = add %tmp.114 %tmp.115;
+        %tmp.117 = lgetv %nodeCount.3;
+        symbol [ nodeCount %tmp.117 77 60 69 ];
+        %tmp.118 = add %tmp.116 %tmp.117;
+        lputv %scrollText.10 %tmp.118;
+        symbol [ scrollText %scrollText.10 77 20 30 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 78 16 ]
+        %tmp.119 = lgetv %dc;
+        symbol [ dc %tmp.119 78 16 18 ];
+        symbol [ setColor %tmp.120 78 19 27 ];
+        %tmp.120 = getv function %tmp.119 :setColor;
+        symbol [ Graphics %tmp.121 78 28 36 ];
+        %tmp.121 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.122 78 37 50 ];
+        %tmp.122 = getv %tmp.121 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.123 78 52 60 ];
+        %tmp.123 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.124 78 61 78 ];
+        %tmp.124 = getv %tmp.123 :COLOR_TRANSPARENT;
+        invoke %tmp.119 %tmp.120(%tmp.122, %tmp.124);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 79 16 ]
+        %tmp.125 = lgetv %dc;
+        symbol [ dc %tmp.125 79 16 18 ];
+        symbol [ drawText %tmp.126 79 19 27 ];
+        %tmp.126 = getv function %tmp.125 :drawText;
+        %tmp.127 = lgetv %centerX.2;
+        symbol [ centerX %tmp.127 79 28 35 ];
+        %tmp.128 = lgetv %dc;
+        symbol [ dc %tmp.128 79 37 39 ];
+        symbol [ getHeight %tmp.129 79 40 49 ];
+        %tmp.129 = getv function %tmp.128 :getHeight;
+        %tmp.130 = invoke %tmp.128 %tmp.129();
+        %tmp.131 = 40;
+        %tmp.132 = sub %tmp.130 %tmp.131;
+        symbol [ Graphics %tmp.133 79 58 66 ];
+        %tmp.133 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.134 79 67 76 ];
+        %tmp.134 = getv %tmp.133 :FONT_TINY;
+        %tmp.135 = lgetv %scrollText.10;
+        symbol [ scrollText %tmp.135 80 27 37 ];
+        symbol [ Graphics %tmp.136 80 39 47 ];
+        %tmp.136 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.137 80 48 67 ];
+        %tmp.137 = getv %tmp.136 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.125 %tmp.126(%tmp.127, %tmp.132, %tmp.134, %tmp.135, %tmp.137);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_43_81_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_12_81_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_76_12_81_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_57_15_82_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_50_8_82_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 85 8 ]
+        %tmp.138 = lgetv %dc;
+        symbol [ dc %tmp.138 85 8 10 ];
+        symbol [ setColor %tmp.139 85 11 19 ];
+        %tmp.139 = getv function %tmp.138 :setColor;
+        symbol [ Graphics %tmp.140 85 20 28 ];
+        %tmp.140 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.141 85 29 42 ];
+        %tmp.141 = getv %tmp.140 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.142 85 44 52 ];
+        %tmp.142 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.143 85 53 70 ];
+        %tmp.143 = getv %tmp.142 :COLOR_TRANSPARENT;
+        invoke %tmp.138 %tmp.139(%tmp.141, %tmp.143);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 86 8 ]
+        %tmp.144 = lgetv %dc;
+        symbol [ dc %tmp.144 86 8 10 ];
+        symbol [ drawText %tmp.145 86 11 19 ];
+        %tmp.145 = getv function %tmp.144 :drawText;
+        %tmp.146 = lgetv %centerX.2;
+        symbol [ centerX %tmp.146 86 20 27 ];
+        %tmp.147 = lgetv %dc;
+        symbol [ dc %tmp.147 86 29 31 ];
+        symbol [ getHeight %tmp.148 86 32 41 ];
+        %tmp.148 = getv function %tmp.147 :getHeight;
+        %tmp.149 = invoke %tmp.147 %tmp.148();
+        %tmp.150 = 20;
+        %tmp.151 = sub %tmp.149 %tmp.150;
+        symbol [ Graphics %tmp.152 86 50 58 ];
+        %tmp.152 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.153 86 59 68 ];
+        %tmp.153 = getv %tmp.152 :FONT_TINY;
+        %tmp.154 = "UP/DOWN: Scroll | BACK: Return";
+        symbol [ Graphics %tmp.155 87 53 61 ];
+        %tmp.155 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.156 87 62 81 ];
+        %tmp.156 = getv %tmp.155 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.144 %tmp.145(%tmp.146, %tmp.151, %tmp.153, %tmp.154, %tmp.156);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_37_49_88_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 90; @symbol_functiondef = [drawNode,90,21,29]; @symbol_param<0> = [dc,90,30,32]; @symbol_param<1> = [nodeInfo,90,34,42]; @symbol_param<2> = [y,90,44,45]; @symbol_param<3> = [isSelected,90,47,57]; ]
+    private
+    function drawNode(dc, nodeInfo, y, isSelected) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 91 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_stop" ]
+        %centerX.1 = local;
+        symbol [ centerX %centerX.1 91 12 19 ];
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 91 22 24 ];
+        symbol [ getWidth %tmp.2 91 25 33 ];
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = 2;
+        %tmp.5 = div %tmp.3 %tmp.4;
+        lputv %centerX.1 %tmp.5;
+        symbol [ centerX %centerX.1 91 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 94 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_8_97_8_if_stmt:
+        %tmp.6 = lgetv %isSelected;
+        symbol [ isSelected %tmp.6 94 12 22 ];
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_8_97_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_8_97_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_24_97_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 95 12 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 95 12 14 ];
+        symbol [ setColor %tmp.8 95 15 23 ];
+        %tmp.8 = getv function %tmp.7 :setColor;
+        symbol [ Graphics %tmp.9 95 24 32 ];
+        %tmp.9 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.10 95 33 46 ];
+        %tmp.10 = getv %tmp.9 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.11 95 48 56 ];
+        %tmp.11 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.12 95 57 70 ];
+        %tmp.12 = getv %tmp.11 :COLOR_DK_GRAY;
+        invoke %tmp.7 %tmp.8(%tmp.10, %tmp.12);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 96 12 ]
+        %tmp.13 = lgetv %dc;
+        symbol [ dc %tmp.13 96 12 14 ];
+        symbol [ fillRectangle %tmp.14 96 15 28 ];
+        %tmp.14 = getv function %tmp.13 :fillRectangle;
+        %tmp.15 = 5;
+        %tmp.16 = lgetv %y;
+        symbol [ y %tmp.16 96 32 33 ];
+        %tmp.17 = 5;
+        %tmp.18 = sub %tmp.16 %tmp.17;
+        %tmp.19 = lgetv %dc;
+        symbol [ dc %tmp.19 96 39 41 ];
+        symbol [ getWidth %tmp.20 96 42 50 ];
+        %tmp.20 = getv function %tmp.19 :getWidth;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.22 = 10;
+        %tmp.23 = sub %tmp.21 %tmp.22;
+        %tmp.24 = 50;
+        invoke %tmp.13 %tmp.14(%tmp.15, %tmp.18, %tmp.23, %tmp.24);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_24_97_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_8_97_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_94_8_97_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 100 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_stop" ]
+        %nodeNum.2 = local;
+        symbol [ nodeNum %nodeNum.2 100 12 19 ];
+        %tmp.25 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.25 100 22 30 ];
+        %tmp.27 = const :num;
+        symbol [ num %tmp.27 100 32 35 const ];
+        %tmp.28 = agetv %tmp.25 %tmp.27;
+        lputv %nodeNum.2 %tmp.28;
+        symbol [ nodeNum %nodeNum.2 100 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 101 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_stop" ]
+        %nodeNumText.3 = local;
+        symbol [ nodeNumText %nodeNumText.3 101 12 23 ];
+        %tmp.29 = lgetv %nodeNum.2;
+        symbol [ nodeNum %tmp.29 101 26 33 ];
+        symbol [ format %tmp.30 101 34 40 ];
+        %tmp.30 = getv function %tmp.29 :format;
+        %tmp.31 = "%08X";
+        %tmp.32 = invoke %tmp.29 %tmp.30(%tmp.31);
+        lputv %nodeNumText.3 %tmp.32;
+        symbol [ nodeNumText %nodeNumText.3 101 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 104 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_stop" ]
+        %nodeName.4 = local;
+        symbol [ nodeName %nodeName.4 104 12 20 ];
+        %tmp.33 = "Unknown";
+        lputv %nodeName.4 %tmp.33;
+        symbol [ nodeName %nodeName.4 104 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 105 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_8_110_8_if_stmt:
+        %tmp.34 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.34 105 12 20 ];
+        symbol [ hasKey %tmp.35 105 21 27 ];
+        %tmp.35 = getv function %tmp.34 :hasKey;
+        %tmp.37 = const :user;
+        symbol [ user %tmp.37 105 29 33 const ];
+        %tmp.38 = invoke %tmp.34 %tmp.35(%tmp.37);
+        bf %tmp.38 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_8_110_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_8_110_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_36_110_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 106 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_36_110_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_36_110_8_stop" ]
+        %user.5 = local;
+        symbol [ user %user.5 106 16 20 ];
+        %tmp.39 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.39 106 23 31 ];
+        %tmp.41 = const :user;
+        symbol [ user %tmp.41 106 33 37 const ];
+        %tmp.42 = agetv %tmp.39 %tmp.41;
+        lputv %user.5 %tmp.42;
+        symbol [ user %user.5 106 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 107 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_16_107_73_begin:
+        %tmp.43 = lgetv %user.5;
+        symbol [ user %tmp.43 107 16 20 ];
+        symbol [ Lang %tmp.44 107 32 36 ];
+        %tmp.44 = getm $.Toybox.Lang;
+        symbol [ Dictionary %tmp.45 107 37 47 ];
+        %tmp.45 = getv %tmp.44 :Dictionary;
+        %tmp.46 = isa %tmp.43 %tmp.45;
+        bf %tmp.46 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_51_107_73_true:
+        %tmp.47 = lgetv %user.5;
+        symbol [ user %tmp.47 107 51 55 ];
+        %tmp.48 = as %tmp.47 { (Lang.Dictionary) };
+        symbol [ hasKey %tmp.49 107 56 62 ];
+        %tmp.49 = getv function %tmp.48 :hasKey;
+        %tmp.51 = const :long_name;
+        symbol [ long_name %tmp.51 107 64 73 const ];
+        %tmp.52 = invoke %tmp.48 %tmp.49(%tmp.51);
+        push %tmp.52;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_51_107_73_end:
+        %tmp.53 = phi [%tmp.46 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_16_107_73_begin] [%tmp.52 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_51_107_73_true] [%tmp.53 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_51_107_73_end];
+        bf %tmp.53 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_76_109_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 108 16 ]
+        %tmp.54 = self;
+        symbol [ bytesToString %tmp.55 108 27 40 ];
+        %tmp.55 = getv function %tmp.54 :bytesToString;
+        %tmp.56 = lgetv %user.5;
+        symbol [ user %tmp.56 108 41 45 ];
+        %tmp.57 = as %tmp.56 { (Lang.Dictionary) };
+        %tmp.59 = const :long_name;
+        symbol [ long_name %tmp.59 108 47 56 const ];
+        %tmp.60 = agetv %tmp.57 %tmp.59;
+        %tmp.61 = invoke %tmp.54 %tmp.55(%tmp.60);
+        lputv %nodeName.4 %tmp.61;
+        symbol [ nodeName %nodeName.4 108 16 24 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_76_109_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_107_12_109_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_36_110_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_8_110_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_105_8_110_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 113 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_8_115_8_if_stmt:
+        %tmp.62 = lgetv %nodeName.4;
+        symbol [ nodeName %tmp.62 113 12 20 ];
+        symbol [ length %tmp.63 113 21 27 ];
+        %tmp.63 = getv function %tmp.62 :length;
+        %tmp.64 = invoke %tmp.62 %tmp.63();
+        %tmp.65 = 20;
+        %tmp.66 = gt %tmp.64 %tmp.65;
+        bf %tmp.66 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_8_115_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_8_115_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_36_115_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 114 12 ]
+        %tmp.67 = lgetv %nodeName.4;
+        symbol [ nodeName %tmp.67 114 23 31 ];
+        symbol [ substring %tmp.68 114 32 41 ];
+        %tmp.68 = getv function %tmp.67 :substring;
+        %tmp.69 = 0;
+        %tmp.70 = 17;
+        %tmp.71 = invoke %tmp.67 %tmp.68(%tmp.69, %tmp.70);
+        %tmp.72 = "...";
+        %tmp.73 = add %tmp.71 %tmp.72;
+        lputv %nodeName.4 %tmp.73;
+        symbol [ nodeName %nodeName.4 114 12 20 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_36_115_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_8_115_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_113_8_115_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 118 8 ]
+        %tmp.74 = lgetv %dc;
+        symbol [ dc %tmp.74 118 8 10 ];
+        symbol [ setColor %tmp.75 118 11 19 ];
+        %tmp.75 = getv function %tmp.74 :setColor;
+        symbol [ Graphics %tmp.76 118 20 28 ];
+        %tmp.76 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.77 118 29 40 ];
+        %tmp.77 = getv %tmp.76 :COLOR_GREEN;
+        symbol [ Graphics %tmp.78 118 42 50 ];
+        %tmp.78 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.79 118 51 68 ];
+        %tmp.79 = getv %tmp.78 :COLOR_TRANSPARENT;
+        invoke %tmp.74 %tmp.75(%tmp.77, %tmp.79);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 119 8 ]
+        %tmp.80 = lgetv %dc;
+        symbol [ dc %tmp.80 119 8 10 ];
+        symbol [ drawText %tmp.81 119 11 19 ];
+        %tmp.81 = getv function %tmp.80 :drawText;
+        %tmp.82 = lgetv %centerX.1;
+        symbol [ centerX %tmp.82 119 20 27 ];
+        %tmp.83 = lgetv %y;
+        symbol [ y %tmp.83 119 29 30 ];
+        symbol [ Graphics %tmp.84 119 32 40 ];
+        %tmp.84 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.85 119 41 51 ];
+        %tmp.85 = getv %tmp.84 :FONT_SMALL;
+        %tmp.86 = lgetv %nodeName.4;
+        symbol [ nodeName %tmp.86 119 53 61 ];
+        symbol [ Graphics %tmp.87 119 63 71 ];
+        %tmp.87 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.88 119 72 91 ];
+        %tmp.88 = getv %tmp.87 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.80 %tmp.81(%tmp.82, %tmp.83, %tmp.85, %tmp.86, %tmp.88);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 122 8 ]
+        %tmp.89 = lgetv %dc;
+        symbol [ dc %tmp.89 122 8 10 ];
+        symbol [ setColor %tmp.90 122 11 19 ];
+        %tmp.90 = getv function %tmp.89 :setColor;
+        symbol [ Graphics %tmp.91 122 20 28 ];
+        %tmp.91 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.92 122 29 42 ];
+        %tmp.92 = getv %tmp.91 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.93 122 44 52 ];
+        %tmp.93 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.94 122 53 70 ];
+        %tmp.94 = getv %tmp.93 :COLOR_TRANSPARENT;
+        invoke %tmp.89 %tmp.90(%tmp.92, %tmp.94);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 123 8 ]
+        %tmp.95 = lgetv %dc;
+        symbol [ dc %tmp.95 123 8 10 ];
+        symbol [ drawText %tmp.96 123 11 19 ];
+        %tmp.96 = getv function %tmp.95 :drawText;
+        %tmp.97 = lgetv %centerX.1;
+        symbol [ centerX %tmp.97 123 20 27 ];
+        %tmp.98 = lgetv %y;
+        symbol [ y %tmp.98 123 29 30 ];
+        %tmp.99 = 20;
+        %tmp.100 = add %tmp.98 %tmp.99;
+        symbol [ Graphics %tmp.101 123 37 45 ];
+        %tmp.101 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.102 123 46 55 ];
+        %tmp.102 = getv %tmp.101 :FONT_TINY;
+        %tmp.103 = lgetv %nodeNumText.3;
+        symbol [ nodeNumText %tmp.103 123 57 68 ];
+        symbol [ Graphics %tmp.104 123 70 78 ];
+        %tmp.104 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.105 123 79 98 ];
+        %tmp.105 = getv %tmp.104 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.95 %tmp.96(%tmp.97, %tmp.100, %tmp.102, %tmp.103, %tmp.105);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 126 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_8_131_8_if_stmt:
+        %tmp.106 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.106 126 12 20 ];
+        symbol [ hasKey %tmp.107 126 21 27 ];
+        %tmp.107 = getv function %tmp.106 :hasKey;
+        %tmp.109 = const :last_heard;
+        symbol [ last_heard %tmp.109 126 29 39 const ];
+        %tmp.110 = invoke %tmp.106 %tmp.107(%tmp.109);
+        bf %tmp.110 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_8_131_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_8_131_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 127 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_stop" ]
+        %lastHeard.6 = local;
+        symbol [ lastHeard %lastHeard.6 127 16 25 ];
+        %tmp.111 = lgetv %nodeInfo;
+        symbol [ nodeInfo %tmp.111 127 28 36 ];
+        %tmp.113 = const :last_heard;
+        symbol [ last_heard %tmp.113 127 38 48 const ];
+        %tmp.114 = agetv %tmp.111 %tmp.113;
+        lputv %lastHeard.6 %tmp.114;
+        symbol [ lastHeard %lastHeard.6 127 16 25 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 128 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_stop" ]
+        %lastHeardText.7 = local;
+        symbol [ lastHeardText %lastHeardText.7 128 16 29 ];
+        %tmp.115 = self;
+        symbol [ formatLastHeard %tmp.116 128 32 47 ];
+        %tmp.116 = getv function %tmp.115 :formatLastHeard;
+        %tmp.117 = lgetv %lastHeard.6;
+        symbol [ lastHeard %tmp.117 128 48 57 ];
+        %tmp.118 = invoke %tmp.115 %tmp.116(%tmp.117);
+        lputv %lastHeardText.7 %tmp.118;
+        symbol [ lastHeardText %lastHeardText.7 128 16 29 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 129 12 ]
+        %tmp.119 = lgetv %dc;
+        symbol [ dc %tmp.119 129 12 14 ];
+        symbol [ setColor %tmp.120 129 15 23 ];
+        %tmp.120 = getv function %tmp.119 :setColor;
+        symbol [ Graphics %tmp.121 129 24 32 ];
+        %tmp.121 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.122 129 33 46 ];
+        %tmp.122 = getv %tmp.121 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.123 129 48 56 ];
+        %tmp.123 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.124 129 57 74 ];
+        %tmp.124 = getv %tmp.123 :COLOR_TRANSPARENT;
+        invoke %tmp.119 %tmp.120(%tmp.122, %tmp.124);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 130 12 ]
+        %tmp.125 = lgetv %dc;
+        symbol [ dc %tmp.125 130 12 14 ];
+        symbol [ drawText %tmp.126 130 15 23 ];
+        %tmp.126 = getv function %tmp.125 :drawText;
+        %tmp.127 = lgetv %centerX.1;
+        symbol [ centerX %tmp.127 130 24 31 ];
+        %tmp.128 = lgetv %y;
+        symbol [ y %tmp.128 130 33 34 ];
+        %tmp.129 = 35;
+        %tmp.130 = add %tmp.128 %tmp.129;
+        symbol [ Graphics %tmp.131 130 41 49 ];
+        %tmp.131 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.132 130 50 60 ];
+        %tmp.132 = getv %tmp.131 :FONT_XTINY;
+        %tmp.133 = lgetv %lastHeardText.7;
+        symbol [ lastHeardText %tmp.133 130 62 75 ];
+        symbol [ Graphics %tmp.134 130 77 85 ];
+        %tmp.134 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.135 130 86 105 ];
+        %tmp.135 = getv %tmp.134 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.125 %tmp.126(%tmp.127, %tmp.130, %tmp.132, %tmp.133, %tmp.135);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_42_131_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_8_131_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_126_8_131_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_90_59_132_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 134; @symbol_functiondef = [bytesToString,134,21,34]; @symbol_param<0> = [bytes,134,35,40]; ]
+    private
+    function bytesToString(bytes) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_134_42_156_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 135 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_8_137_8_if_stmt:
+        %tmp.1 = lgetv %bytes;
+        symbol [ bytes %tmp.1 135 12 17 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_8_137_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_8_137_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_27_137_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 136 12 ]
+        %tmp.4 = "";
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_27_137_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_8_137_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_135_8_137_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 139 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_8_141_8_if_stmt:
+        %tmp.5 = lgetv %bytes;
+        symbol [ bytes %tmp.5 139 12 17 ];
+        symbol [ Lang %tmp.6 139 29 33 ];
+        %tmp.6 = getm $.Toybox.Lang;
+        symbol [ String %tmp.7 139 34 40 ];
+        %tmp.7 = getv %tmp.6 :String;
+        %tmp.8 = isa %tmp.5 %tmp.7;
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_8_141_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_8_141_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_42_141_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 140 12 ]
+        %tmp.9 = lgetv %bytes;
+        symbol [ bytes %tmp.9 140 19 24 ];
+        %tmp.10 = as %tmp.9 { (Lang.String) };
+        ret %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_42_141_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_8_141_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_139_8_141_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 143 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_8_145_8_if_stmt:
+        %tmp.11 = lgetv %bytes;
+        symbol [ bytes %tmp.11 143 14 19 ];
+        symbol [ Lang %tmp.12 143 31 35 ];
+        %tmp.12 = getm $.Toybox.Lang;
+        symbol [ ByteArray %tmp.13 143 36 45 ];
+        %tmp.13 = getv %tmp.12 :ByteArray;
+        %tmp.14 = isa %tmp.11 %tmp.13;
+        %tmp.15 = not %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_8_145_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_8_145_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_48_145_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 144 12 ]
+        %tmp.16 = "";
+        ret %tmp.16;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_48_145_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_8_145_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_143_8_145_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 147 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_134_42_156_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_134_42_156_4_stop" ]
+        %str.1 = local;
+        symbol [ str %str.1 147 12 15 ];
+        %tmp.17 = "";
+        lputv %str.1 %tmp.17;
+        symbol [ str %str.1 147 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 148 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_end" ]
+        %i.2 = local;
+        symbol [ i %i.2 148 17 18 ];
+        %tmp.18 = 0;
+        lputv %i.2 %tmp.18;
+        symbol [ i %i.2 148 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_test:
+        %tmp.19 = lgetv %i.2;
+        symbol [ i %tmp.19 148 24 25 ];
+        %tmp.20 = lgetv %bytes;
+        symbol [ bytes %tmp.20 148 28 33 ];
+        symbol [ size %tmp.21 148 34 38 ];
+        %tmp.21 = getv function %tmp.20 :size;
+        %tmp.22 = invoke %tmp.20 %tmp.21();
+        %tmp.23 = lt %tmp.19 %tmp.22;
+        bf %tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_47_154_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 149 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_47_154_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_47_154_8_stop" ]
+        %byte.3 = local;
+        symbol [ byte %byte.3 149 16 20 ];
+        %tmp.24 = lgetv %bytes;
+        symbol [ bytes %tmp.24 149 23 28 ];
+        %tmp.25 = lgetv %i.2;
+        symbol [ i %tmp.25 149 29 30 ];
+        %tmp.26 = agetv %tmp.24 %tmp.25;
+        lputv %byte.3 %tmp.26;
+        symbol [ byte %byte.3 149 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 150 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_12_152_12_if_stmt:
+        %tmp.27 = lgetv %byte.3;
+        symbol [ byte %tmp.27 150 16 20 ];
+        %tmp.28 = 0;
+        %tmp.29 = eq %tmp.27 %tmp.28;
+        bf %tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_12_152_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_12_152_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_27_152_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 151 16 ]
+        goto break @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_27_152_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_12_152_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_150_12_152_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 153 12 ]
+        %tmp.30 = lgetv %str.1;
+        symbol [ str %tmp.30 153 12 15 ];
+        %tmp.31 = lgetv %byte.3;
+        symbol [ byte %tmp.31 153 19 23 ];
+        symbol [ toChar %tmp.32 153 24 30 ];
+        %tmp.32 = getv function %tmp.31 :toChar;
+        %tmp.33 = invoke %tmp.31 %tmp.32();
+        %tmp.34 = add %tmp.30 %tmp.33;
+        lputv %str.1 %tmp.34;
+        symbol [ str %str.1 153 12 15 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_47_154_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 148 ]
+        %tmp.37 = lgetv %i.2;
+        symbol [ i %tmp.37 148 42 43 ];
+        %tmp.38 = add %tmp.37 1;
+        lputv %i.2 %tmp.38;
+        symbol [ i %i.2 148 42 43 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_148_8_154_8_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 155 8 ]
+        %tmp.39 = lgetv %str.1;
+        symbol [ str %tmp.39 155 15 18 ];
+        ret %tmp.39;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_134_42_156_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 158; @symbol_functiondef = [formatLastHeard,158,21,36]; @symbol_param<0> = [timestamp,158,37,46]; ]
+    private
+    function formatLastHeard(timestamp) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 159 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_stop" ]
+        %now.1 = local;
+        symbol [ now %now.1 159 12 15 ];
+        symbol [ System %tmp.1 159 18 24 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.2 159 25 33 ];
+        %tmp.2 = getv function %tmp.1 :getTimer;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = 1000;
+        %tmp.5 = div %tmp.3 %tmp.4;
+        lputv %now.1 %tmp.5;
+        symbol [ now %now.1 159 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 160 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_stop" ]
+        %diff.2 = local;
+        symbol [ diff %diff.2 160 12 16 ];
+        %tmp.6 = lgetv %now.1;
+        symbol [ now %tmp.6 160 19 22 ];
+        %tmp.7 = lgetv %timestamp;
+        symbol [ timestamp %tmp.7 160 25 34 ];
+        %tmp.8 = sub %tmp.6 %tmp.7;
+        lputv %diff.2 %tmp.8;
+        symbol [ diff %diff.2 160 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 162 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_stmt:
+        %tmp.9 = lgetv %diff.2;
+        symbol [ diff %tmp.9 162 12 16 ];
+        %tmp.10 = 60;
+        %tmp.11 = lt %tmp.9 %tmp.10;
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_23_164_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 163 12 ]
+        %tmp.12 = "Just now";
+        ret %tmp.12;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_23_164_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 164 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_stmt:
+        %tmp.13 = lgetv %diff.2;
+        symbol [ diff %tmp.13 164 19 23 ];
+        %tmp.14 = 3600;
+        %tmp.15 = lt %tmp.13 %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_32_166_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 165 12 ]
+        %tmp.16 = lgetv %diff.2;
+        symbol [ diff %tmp.16 165 20 24 ];
+        %tmp.17 = 60;
+        %tmp.18 = div %tmp.16 %tmp.17;
+        %tmp.19 = "m ago";
+        %tmp.20 = add %tmp.18 %tmp.19;
+        ret %tmp.20;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_32_166_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 166 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_stmt:
+        %tmp.21 = lgetv %diff.2;
+        symbol [ diff %tmp.21 166 19 23 ];
+        %tmp.22 = 86400;
+        %tmp.23 = lt %tmp.21 %tmp.22;
+        bf %tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_33_168_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 167 12 ]
+        %tmp.24 = lgetv %diff.2;
+        symbol [ diff %tmp.24 167 20 24 ];
+        %tmp.25 = 3600;
+        %tmp.26 = div %tmp.24 %tmp.25;
+        %tmp.27 = "h ago";
+        %tmp.28 = add %tmp.26 %tmp.27;
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_33_168_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_168_15_170_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 169 12 ]
+        %tmp.29 = lgetv %diff.2;
+        symbol [ diff %tmp.29 169 20 24 ];
+        %tmp.30 = 86400;
+        %tmp.31 = div %tmp.29 %tmp.30;
+        %tmp.32 = "d ago";
+        %tmp.33 = add %tmp.31 %tmp.32;
+        ret %tmp.33;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_168_15_170_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_166_15_170_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_164_15_170_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_162_8_170_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_158_48_171_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 173; @symbol_functiondef = [scrollUp,173,13,21]; ]
+    function scrollUp() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_173_24_178_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 174 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_8_177_8_if_stmt:
+        symbol [ _scrollIndex %tmp.2 174 12 24 ];
+        %tmp.2 = getv ? :_scrollIndex;
+        %tmp.3 = 0;
+        %tmp.4 = gt %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_8_177_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_8_177_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_30_177_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 175 12 ]
+        symbol [ _scrollIndex %tmp.7 175 12 24 ];
+        %tmp.7 = getv ? :_scrollIndex;
+        %tmp.8 = sub %tmp.7 1;
+        symbol [ _scrollIndex ? 175 12 24 ];
+        putv self :_scrollIndex dup %tmp.8;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 176 12 ]
+        symbol [ WatchUi %tmp.9 176 12 19 ];
+        %tmp.9 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.10 176 20 33 ];
+        %tmp.10 = getv function %tmp.9 :requestUpdate;
+        invoke %tmp.9 %tmp.10();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_30_177_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_8_177_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_174_8_177_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_173_24_178_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 180; @symbol_functiondef = [scrollDown,180,13,23]; ]
+    function scrollDown() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_180_26_185_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 181 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_8_184_8_if_stmt:
+        symbol [ _scrollIndex %tmp.2 181 12 24 ];
+        %tmp.2 = getv ? :_scrollIndex;
+        symbol [ _nodeList %tmp.4 181 27 36 ];
+        %tmp.4 = getv ? :_nodeList;
+        symbol [ size %tmp.5 181 37 41 ];
+        %tmp.5 = getv function %tmp.4 :size;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        %tmp.7 = 1;
+        %tmp.8 = sub %tmp.6 %tmp.7;
+        %tmp.9 = lt %tmp.2 %tmp.8;
+        bf %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_8_184_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_8_184_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_49_184_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 182 12 ]
+        symbol [ _scrollIndex %tmp.12 182 12 24 ];
+        %tmp.12 = getv ? :_scrollIndex;
+        %tmp.13 = add %tmp.12 1;
+        symbol [ _scrollIndex ? 182 12 24 ];
+        putv self :_scrollIndex dup %tmp.13;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 183 12 ]
+        symbol [ WatchUi %tmp.14 183 12 19 ];
+        %tmp.14 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.15 183 20 33 ];
+        %tmp.15 = getv function %tmp.14 :requestUpdate;
+        invoke %tmp.14 %tmp.15();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_49_184_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_8_184_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_181_8_184_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_180_26_185_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 188; @symbol_classdef = [NodeListViewDelegate,188,6,26]; @symbol_extends<0> = [WatchUi,188,35,42]; @symbol_extends<1> = [BehaviorDelegate,188,43,59]; ]
+class NodeListViewDelegate extends WatchUi.BehaviorDelegate {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 188; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 188; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 189; @position = 16; @symbol_vardef = [_view,189,16,21]; ]
+    private
+    var _view;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 190; @position = 16; @symbol_vardef = [_viewManager,190,16,28]; ]
+    private
+    var _viewManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 192; @symbol_functiondef = [initialize,192,13,23]; @symbol_param<0> = [view,192,24,28]; @symbol_param<1> = [viewManager,192,30,41]; ]
+    function initialize(view, viewManager) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_192_43_196_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 193 8 ]
+        symbol [ BehaviorDelegate %tmp.2 193 8 24 ];
+        %tmp.2 = getv ? :BehaviorDelegate;
+        symbol [ initialize %tmp.3 193 25 35 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 194 8 ]
+        %tmp.4 = lgetv %view;
+        symbol [ view %tmp.4 194 16 20 ];
+        symbol [ _view ? 194 8 13 ];
+        putv self :_view %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 195 8 ]
+        %tmp.5 = lgetv %viewManager;
+        symbol [ viewManager %tmp.5 195 23 34 ];
+        symbol [ _viewManager ? 195 8 20 ];
+        putv self :_viewManager %tmp.5;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_192_43_196_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 198; @symbol_functiondef = [onKey,198,13,18]; @symbol_param<0> = [keyEvent,198,19,27]; ]
+    function onKey(keyEvent) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_198_29_213_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 199 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_198_29_213_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_198_29_213_4_stop" ]
+        %key.1 = local;
+        symbol [ key %key.1 199 12 15 ];
+        %tmp.1 = lgetv %keyEvent;
+        symbol [ keyEvent %tmp.1 199 18 26 ];
+        symbol [ getKey %tmp.2 199 27 33 ];
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+        symbol [ key %key.1 199 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 201 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_stmt:
+        %tmp.4 = lgetv %key.1;
+        symbol [ key %tmp.4 201 12 15 ];
+        symbol [ WatchUi %tmp.5 201 19 26 ];
+        %tmp.5 = getm $.Toybox.WatchUi;
+        symbol [ KEY_UP %tmp.6 201 27 33 ];
+        %tmp.6 = getv %tmp.5 :KEY_UP;
+        %tmp.7 = eq %tmp.4 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_35_204_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 202 12 ]
+        symbol [ _view %tmp.9 202 12 17 ];
+        %tmp.9 = getv ? :_view;
+        symbol [ scrollUp %tmp.10 202 18 26 ];
+        %tmp.10 = getv function %tmp.9 :scrollUp;
+        invoke %tmp.9 %tmp.10();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 203 12 ]
+        %tmp.11 = true;
+        ret %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_35_204_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 204 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_stmt:
+        %tmp.12 = lgetv %key.1;
+        symbol [ key %tmp.12 204 19 22 ];
+        symbol [ WatchUi %tmp.13 204 26 33 ];
+        %tmp.13 = getm $.Toybox.WatchUi;
+        symbol [ KEY_DOWN %tmp.14 204 34 42 ];
+        %tmp.14 = getv %tmp.13 :KEY_DOWN;
+        %tmp.15 = eq %tmp.12 %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_44_207_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 205 12 ]
+        symbol [ _view %tmp.17 205 12 17 ];
+        %tmp.17 = getv ? :_view;
+        symbol [ scrollDown %tmp.18 205 18 28 ];
+        %tmp.18 = getv function %tmp.17 :scrollDown;
+        invoke %tmp.17 %tmp.18();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 206 12 ]
+        %tmp.19 = true;
+        ret %tmp.19;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_44_207_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 207 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_15_210_8_if_stmt:
+        %tmp.20 = lgetv %key.1;
+        symbol [ key %tmp.20 207 19 22 ];
+        symbol [ WatchUi %tmp.21 207 26 33 ];
+        %tmp.21 = getm $.Toybox.WatchUi;
+        symbol [ KEY_ESC %tmp.22 207 34 41 ];
+        %tmp.22 = getv %tmp.21 :KEY_ESC;
+        %tmp.23 = eq %tmp.20 %tmp.22;
+        bf %tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_15_210_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_15_210_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_43_210_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 208 12 ]
+        symbol [ _viewManager %tmp.25 208 12 24 ];
+        %tmp.25 = getv ? :_viewManager;
+        symbol [ goBack %tmp.26 208 25 31 ];
+        %tmp.26 = getv function %tmp.25 :goBack;
+        invoke %tmp.25 %tmp.26();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 209 12 ]
+        %tmp.27 = true;
+        ret %tmp.27;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_43_210_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_15_210_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_207_15_210_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_204_15_210_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_201_8_210_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc" 212 8 ]
+        %tmp.28 = false;
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_NodeListView_mc_198_29_213_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/NodeListView.mc"; @line = 5; ]
+<init> {
+}

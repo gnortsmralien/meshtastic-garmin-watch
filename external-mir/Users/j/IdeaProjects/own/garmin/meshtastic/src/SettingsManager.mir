@@ -1,0 +1,392 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Application,5,13,24]; @symbol_usingdef<2> = [Storage,5,25,32]; ]
+using Toybox.Application.Storage;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [System,7,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 8; @symbol_usingdef<0> = [Config,8,6,12]; ]
+using Config;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 10; @symbol_classdef = [SettingsManager,10,6,21]; ]
+class SettingsManager {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 10; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 10; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 12; @position = 18; @symbol_constdef = [KEY_BLE_PIN,12,18,29]; ]
+    private
+    const KEY_BLE_PIN = "ble_pin";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 13; @position = 18; @symbol_constdef = [KEY_AUTO_RECONNECT,13,18,36]; ]
+    private
+    const KEY_AUTO_RECONNECT = "auto_reconnect";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 14; @position = 18; @symbol_constdef = [KEY_AUTO_RETRY,14,18,32]; ]
+    private
+    const KEY_AUTO_RETRY = "auto_retry";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 16; @symbol_functiondef = [initialize,16,13,23]; ]
+    function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_16_26_27_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 18 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_8_20_8_if_stmt:
+        symbol [ Storage %tmp.1 18 12 19 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.2 18 20 28 ];
+        %tmp.2 = getv function %tmp.1 :getValue;
+        symbol [ KEY_BLE_PIN %tmp.4 18 29 40 ];
+        %tmp.4 = getv ? :KEY_BLE_PIN;
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        %tmp.6 = null;
+        %tmp.7 = eq %tmp.5 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_8_20_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_8_20_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_51_20_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 19 12 ]
+        symbol [ Storage %tmp.8 19 12 19 ];
+        %tmp.8 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.9 19 20 28 ];
+        %tmp.9 = getv function %tmp.8 :setValue;
+        symbol [ KEY_BLE_PIN %tmp.11 19 29 40 ];
+        %tmp.11 = getv ? :KEY_BLE_PIN;
+        symbol [ Config %tmp.12 19 42 48 ];
+        %tmp.12 = getm $.Config;
+        symbol [ DEFAULT_MESHTASTIC_PIN %tmp.13 19 49 71 ];
+        %tmp.13 = getv %tmp.12 :DEFAULT_MESHTASTIC_PIN;
+        invoke %tmp.8 %tmp.9(%tmp.11, %tmp.13);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_51_20_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_8_20_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_18_8_20_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 21 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_8_23_8_if_stmt:
+        symbol [ Storage %tmp.14 21 12 19 ];
+        %tmp.14 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.15 21 20 28 ];
+        %tmp.15 = getv function %tmp.14 :getValue;
+        symbol [ KEY_AUTO_RECONNECT %tmp.17 21 29 47 ];
+        %tmp.17 = getv ? :KEY_AUTO_RECONNECT;
+        %tmp.18 = invoke %tmp.14 %tmp.15(%tmp.17);
+        %tmp.19 = null;
+        %tmp.20 = eq %tmp.18 %tmp.19;
+        bf %tmp.20 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_8_23_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_8_23_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_58_23_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 22 12 ]
+        symbol [ Storage %tmp.21 22 12 19 ];
+        %tmp.21 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.22 22 20 28 ];
+        %tmp.22 = getv function %tmp.21 :setValue;
+        symbol [ KEY_AUTO_RECONNECT %tmp.24 22 29 47 ];
+        %tmp.24 = getv ? :KEY_AUTO_RECONNECT;
+        %tmp.25 = true;
+        invoke %tmp.21 %tmp.22(%tmp.24, %tmp.25);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_58_23_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_8_23_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_21_8_23_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 24 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_8_26_8_if_stmt:
+        symbol [ Storage %tmp.26 24 12 19 ];
+        %tmp.26 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.27 24 20 28 ];
+        %tmp.27 = getv function %tmp.26 :getValue;
+        symbol [ KEY_AUTO_RETRY %tmp.29 24 29 43 ];
+        %tmp.29 = getv ? :KEY_AUTO_RETRY;
+        %tmp.30 = invoke %tmp.26 %tmp.27(%tmp.29);
+        %tmp.31 = null;
+        %tmp.32 = eq %tmp.30 %tmp.31;
+        bf %tmp.32 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_8_26_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_8_26_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_54_26_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 25 12 ]
+        symbol [ Storage %tmp.33 25 12 19 ];
+        %tmp.33 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.34 25 20 28 ];
+        %tmp.34 = getv function %tmp.33 :setValue;
+        symbol [ KEY_AUTO_RETRY %tmp.36 25 29 43 ];
+        %tmp.36 = getv ? :KEY_AUTO_RETRY;
+        %tmp.37 = true;
+        invoke %tmp.33 %tmp.34(%tmp.36, %tmp.37);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_54_26_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_8_26_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_24_8_26_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_16_26_27_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 33; @symbol_functiondef = [getBlePin,33,13,22]; ]
+    function getBlePin() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_33_25_40_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 34 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_33_25_40_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_33_25_40_4_stop" ]
+        %pin.1 = local;
+        symbol [ pin %pin.1 34 12 15 ];
+        symbol [ Storage %tmp.1 34 18 25 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.2 34 26 34 ];
+        %tmp.2 = getv function %tmp.1 :getValue;
+        symbol [ KEY_BLE_PIN %tmp.4 34 35 46 ];
+        %tmp.4 = getv ? :KEY_BLE_PIN;
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        lputv %pin.1 %tmp.5;
+        symbol [ pin %pin.1 34 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 35 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_8_38_8_if_stmt:
+        %tmp.6 = lgetv %pin.1;
+        symbol [ pin %tmp.6 35 12 15 ];
+        %tmp.7 = null;
+        %tmp.8 = eq %tmp.6 %tmp.7;
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_8_38_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_8_38_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_25_38_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 36 12 ]
+        symbol [ Config %tmp.9 36 18 24 ];
+        %tmp.9 = getm $.Config;
+        symbol [ DEFAULT_MESHTASTIC_PIN %tmp.10 36 25 47 ];
+        %tmp.10 = getv %tmp.9 :DEFAULT_MESHTASTIC_PIN;
+        lputv %pin.1 %tmp.10;
+        symbol [ pin %pin.1 36 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 37 12 ]
+        symbol [ Storage %tmp.11 37 12 19 ];
+        %tmp.11 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.12 37 20 28 ];
+        %tmp.12 = getv function %tmp.11 :setValue;
+        symbol [ KEY_BLE_PIN %tmp.14 37 29 40 ];
+        %tmp.14 = getv ? :KEY_BLE_PIN;
+        %tmp.15 = lgetv %pin.1;
+        symbol [ pin %tmp.15 37 42 45 ];
+        invoke %tmp.11 %tmp.12(%tmp.14, %tmp.15);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_25_38_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_8_38_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_35_8_38_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 39 8 ]
+        %tmp.16 = lgetv %pin.1;
+        symbol [ pin %tmp.16 39 15 18 ];
+        ret %tmp.16;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_33_25_40_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 42; @symbol_functiondef = [setBlePin,42,13,22]; @symbol_param<0> = [pin,42,23,26]; ]
+    function setBlePin(pin) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_42_28_49_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 43 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_12_43_42_begin:
+        %tmp.1 = lgetv %pin;
+        symbol [ pin %tmp.1 43 12 15 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_27_43_42_true:
+        %tmp.4 = lgetv %pin;
+        symbol [ pin %tmp.4 43 27 30 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        symbol [ length %tmp.6 43 31 37 ];
+        %tmp.6 = getv function %tmp.5 :length;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = 0;
+        %tmp.9 = gt %tmp.7 %tmp.8;
+        push %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_27_43_42_end:
+        %tmp.10 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_12_43_42_begin] [%tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_27_43_42_true] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_27_43_42_end];
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_45_47_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 44 12 ]
+        symbol [ Storage %tmp.11 44 12 19 ];
+        %tmp.11 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.12 44 20 28 ];
+        %tmp.12 = getv function %tmp.11 :setValue;
+        symbol [ KEY_BLE_PIN %tmp.14 44 29 40 ];
+        %tmp.14 = getv ? :KEY_BLE_PIN;
+        %tmp.15 = lgetv %pin;
+        symbol [ pin %tmp.15 44 42 45 ];
+        %tmp.16 = as %tmp.15 { (!Null) };
+        invoke %tmp.11 %tmp.12(%tmp.14, %tmp.16);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 45 12 ]
+        symbol [ System %tmp.17 45 12 18 ];
+        %tmp.17 = getm $.Toybox.System;
+        symbol [ println %tmp.18 45 19 26 ];
+        %tmp.18 = getv function %tmp.17 :println;
+        %tmp.19 = "BLE PIN saved: ";
+        %tmp.20 = lgetv %pin;
+        symbol [ pin %tmp.20 45 47 50 ];
+        %tmp.21 = as %tmp.20 { (!Null) };
+        %tmp.22 = add %tmp.19 %tmp.21;
+        invoke %tmp.17 %tmp.18(%tmp.22);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 46 12 ]
+        %tmp.23 = true;
+        ret %tmp.23;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_45_47_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_43_8_47_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 48 8 ]
+        %tmp.24 = false;
+        ret %tmp.24;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_42_28_49_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 55; @symbol_functiondef = [getAutoReconnect,55,13,29]; ]
+    function getAutoReconnect() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_55_32_58_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 56 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_55_32_58_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_55_32_58_4_stop" ]
+        %value.1 = local;
+        symbol [ value %value.1 56 12 17 ];
+        symbol [ Storage %tmp.1 56 20 27 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.2 56 28 36 ];
+        %tmp.2 = getv function %tmp.1 :getValue;
+        symbol [ KEY_AUTO_RECONNECT %tmp.4 56 37 55 ];
+        %tmp.4 = getv ? :KEY_AUTO_RECONNECT;
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        lputv %value.1 %tmp.5;
+        symbol [ value %value.1 56 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 57 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_begin:
+        %tmp.6 = lgetv %value.1;
+        symbol [ value %tmp.6 57 15 20 ];
+        %tmp.7 = null;
+        %tmp.8 = ne %tmp.6 %tmp.7;
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_true:
+        %tmp.9 = lgetv %value.1;
+        symbol [ value %tmp.9 57 31 36 ];
+        %tmp.10 = as %tmp.9 { (!Null) };
+        push %tmp.10;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_else_false:
+        %tmp.11 = true;
+        push %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_end:
+        %tmp.12 = phi [%tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_begin] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_true] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_else_false] [%tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_57_15_57_39_end];
+        ret %tmp.12;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_55_32_58_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 60; @symbol_functiondef = [setAutoReconnect,60,13,29]; @symbol_param<0> = [enabled,60,30,37]; ]
+    function setAutoReconnect(enabled) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_60_39_63_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 61 8 ]
+        symbol [ Storage %tmp.1 61 8 15 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.2 61 16 24 ];
+        %tmp.2 = getv function %tmp.1 :setValue;
+        symbol [ KEY_AUTO_RECONNECT %tmp.4 61 25 43 ];
+        %tmp.4 = getv ? :KEY_AUTO_RECONNECT;
+        %tmp.5 = lgetv %enabled;
+        symbol [ enabled %tmp.5 61 45 52 ];
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.5);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 62 8 ]
+        symbol [ System %tmp.6 62 8 14 ];
+        %tmp.6 = getm $.Toybox.System;
+        symbol [ println %tmp.7 62 15 22 ];
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "Auto-reconnect: ";
+        %tmp.9 = lgetv %enabled;
+        symbol [ enabled %tmp.9 62 44 51 ];
+        %tmp.10 = add %tmp.8 %tmp.9;
+        invoke %tmp.6 %tmp.7(%tmp.10);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_60_39_63_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 69; @symbol_functiondef = [getAutoRetry,69,13,25]; ]
+    function getAutoRetry() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_69_28_72_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 70 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_69_28_72_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_69_28_72_4_stop" ]
+        %value.1 = local;
+        symbol [ value %value.1 70 12 17 ];
+        symbol [ Storage %tmp.1 70 20 27 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.2 70 28 36 ];
+        %tmp.2 = getv function %tmp.1 :getValue;
+        symbol [ KEY_AUTO_RETRY %tmp.4 70 37 51 ];
+        %tmp.4 = getv ? :KEY_AUTO_RETRY;
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        lputv %value.1 %tmp.5;
+        symbol [ value %value.1 70 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 71 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_begin:
+        %tmp.6 = lgetv %value.1;
+        symbol [ value %tmp.6 71 15 20 ];
+        %tmp.7 = null;
+        %tmp.8 = ne %tmp.6 %tmp.7;
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_true:
+        %tmp.9 = lgetv %value.1;
+        symbol [ value %tmp.9 71 31 36 ];
+        %tmp.10 = as %tmp.9 { (!Null) };
+        push %tmp.10;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_else_false:
+        %tmp.11 = true;
+        push %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_end:
+        %tmp.12 = phi [%tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_begin] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_true] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_else_false] [%tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_71_15_71_39_end];
+        ret %tmp.12;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_69_28_72_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 74; @symbol_functiondef = [setAutoRetry,74,13,25]; @symbol_param<0> = [enabled,74,26,33]; ]
+    function setAutoRetry(enabled) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_74_35_77_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 75 8 ]
+        symbol [ Storage %tmp.1 75 8 15 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.2 75 16 24 ];
+        %tmp.2 = getv function %tmp.1 :setValue;
+        symbol [ KEY_AUTO_RETRY %tmp.4 75 25 39 ];
+        %tmp.4 = getv ? :KEY_AUTO_RETRY;
+        %tmp.5 = lgetv %enabled;
+        symbol [ enabled %tmp.5 75 41 48 ];
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.5);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 76 8 ]
+        symbol [ System %tmp.6 76 8 14 ];
+        %tmp.6 = getm $.Toybox.System;
+        symbol [ println %tmp.7 76 15 22 ];
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "Auto-retry wrong device: ";
+        %tmp.9 = lgetv %enabled;
+        symbol [ enabled %tmp.9 76 53 60 ];
+        %tmp.10 = add %tmp.8 %tmp.9;
+        invoke %tmp.6 %tmp.7(%tmp.10);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_74_35_77_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 83; @symbol_functiondef = [resetToDefaults,83,13,28]; ]
+    function resetToDefaults() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_83_31_88_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 84 8 ]
+        symbol [ Storage %tmp.1 84 8 15 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.2 84 16 24 ];
+        %tmp.2 = getv function %tmp.1 :setValue;
+        symbol [ KEY_BLE_PIN %tmp.4 84 25 36 ];
+        %tmp.4 = getv ? :KEY_BLE_PIN;
+        symbol [ Config %tmp.5 84 38 44 ];
+        %tmp.5 = getm $.Config;
+        symbol [ DEFAULT_MESHTASTIC_PIN %tmp.6 84 45 67 ];
+        %tmp.6 = getv %tmp.5 :DEFAULT_MESHTASTIC_PIN;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 85 8 ]
+        symbol [ Storage %tmp.7 85 8 15 ];
+        %tmp.7 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.8 85 16 24 ];
+        %tmp.8 = getv function %tmp.7 :setValue;
+        symbol [ KEY_AUTO_RECONNECT %tmp.10 85 25 43 ];
+        %tmp.10 = getv ? :KEY_AUTO_RECONNECT;
+        %tmp.11 = true;
+        invoke %tmp.7 %tmp.8(%tmp.10, %tmp.11);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 86 8 ]
+        symbol [ Storage %tmp.12 86 8 15 ];
+        %tmp.12 = getm $.Toybox.Application.Storage;
+        symbol [ setValue %tmp.13 86 16 24 ];
+        %tmp.13 = getv function %tmp.12 :setValue;
+        symbol [ KEY_AUTO_RETRY %tmp.15 86 25 39 ];
+        %tmp.15 = getv ? :KEY_AUTO_RETRY;
+        %tmp.16 = true;
+        invoke %tmp.12 %tmp.13(%tmp.15, %tmp.16);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc" 87 8 ]
+        symbol [ System %tmp.17 87 8 14 ];
+        %tmp.17 = getm $.Toybox.System;
+        symbol [ println %tmp.18 87 15 22 ];
+        %tmp.18 = getv function %tmp.17 :println;
+        %tmp.19 = "Settings reset to defaults";
+        invoke %tmp.17 %tmp.18(%tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SettingsManager_mc_83_31_88_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SettingsManager.mc"; @line = 5; ]
+<init> {
+}

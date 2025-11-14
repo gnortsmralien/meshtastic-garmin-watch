@@ -1,0 +1,2290 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [BluetoothLowEnergy,6,13,31]; @symbol_usingAlias = [Ble,6,35,38]; ]
+using Toybox.BluetoothLowEnergy as :Ble;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Lang,7,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [System,8,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 9; @symbol_usingdef<0> = [Toybox,9,6,12]; @symbol_usingdef<1> = [Timer,9,13,18]; ]
+using Toybox.Timer;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 10; @symbol_usingdef<0> = [Config,10,6,12]; ]
+using Config;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 12; @symbol_classdef = [BleManager,12,6,16]; ]
+class BleManager {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 12; ]
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 31 16 ]
+        symbol [ STATE_DISCONNECTED %tmp.2 31 35 53 ];
+        %tmp.2 = getv ? :STATE_DISCONNECTED;
+        putv self :_connectionState %tmp.2;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 42 16 ]
+        %tmp.3 = newa 0;
+        putv self :_scanResults %tmp.3;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 12; ]
+    static
+    <init> {
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 14 17 ]
+        symbol [ Ble %tmp.4 14 37 40 ];
+        %tmp.4 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ stringToUuid %tmp.5 14 41 53 ];
+        %tmp.5 = getv function %tmp.4 :stringToUuid;
+        %tmp.6 = "6ba1b218-15a8-461f-9fa8-5dcae273eafd";
+        %tmp.7 = invoke %tmp.4 %tmp.5(%tmp.6);
+        putv self :MESH_SERVICE_UUID %tmp.7;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 15 17 ]
+        symbol [ Ble %tmp.8 15 33 36 ];
+        %tmp.8 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ stringToUuid %tmp.9 15 37 49 ];
+        %tmp.9 = getv function %tmp.8 :stringToUuid;
+        %tmp.10 = "f75c76d2-82c7-455b-9721-6b7538f49493";
+        %tmp.11 = invoke %tmp.8 %tmp.9(%tmp.10);
+        putv self :TO_RADIO_UUID %tmp.11;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 16 17 ]
+        symbol [ Ble %tmp.12 16 35 38 ];
+        %tmp.12 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ stringToUuid %tmp.13 16 39 51 ];
+        %tmp.13 = getv function %tmp.12 :stringToUuid;
+        %tmp.14 = "26432193-4482-4648-b425-4c07c409e0e5";
+        %tmp.15 = invoke %tmp.12 %tmp.13(%tmp.14);
+        putv self :FROM_RADIO_UUID %tmp.15;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 17 17 ]
+        symbol [ Ble %tmp.16 17 33 36 ];
+        %tmp.16 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ stringToUuid %tmp.17 17 37 49 ];
+        %tmp.17 = getv function %tmp.16 :stringToUuid;
+        %tmp.18 = "18cd4359-5506-4560-8d81-1b038a838e00";
+        %tmp.19 = invoke %tmp.16 %tmp.17(%tmp.18);
+        putv self :FROM_NUM_UUID %tmp.19;
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 14; @position = 17; @symbol_constdef = [MESH_SERVICE_UUID,14,17,34]; ]
+    static
+    const MESH_SERVICE_UUID;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 15; @position = 17; @symbol_constdef = [TO_RADIO_UUID,15,17,30]; ]
+    static
+    const TO_RADIO_UUID;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 16; @position = 17; @symbol_constdef = [FROM_RADIO_UUID,16,17,32]; ]
+    static
+    const FROM_RADIO_UUID;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 17; @position = 17; @symbol_constdef = [FROM_NUM_UUID,17,17,30]; ]
+    static
+    const FROM_NUM_UUID;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 20; @symbol_enumdef = [ConnectionState,20,9,24]; ]
+    static
+    enum ConnectionState {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 21; @position = 8; @symbol_enumdec = [STATE_DISCONNECTED,21,8,26]; ]
+        STATE_DISCONNECTED,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 22; @position = 8; @symbol_enumdec = [STATE_SCANNING,22,8,22]; ]
+        STATE_SCANNING,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 23; @position = 8; @symbol_enumdec = [STATE_CONNECTING,23,8,24]; ]
+        STATE_CONNECTING,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 24; @position = 8; @symbol_enumdec = [STATE_CONNECTED,24,8,23]; ]
+        STATE_CONNECTED,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 25; @position = 8; @symbol_enumdec = [STATE_SYNCING,25,8,21]; ]
+        STATE_SYNCING,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 26; @position = 8; @symbol_enumdec = [STATE_READY,26,8,19]; ]
+        STATE_READY
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 29; @position = 16; @symbol_vardef = [_delegate,29,16,25]; ]
+    private
+    var _delegate;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 30; @position = 16; @symbol_vardef = [_profileRegistered,30,16,34]; ]
+    private
+    var _profileRegistered = false;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 31; @position = 16; @symbol_vardef = [_connectionState,31,16,32]; ]
+    private
+    var _connectionState;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 32; @position = 16; @symbol_vardef = [_connectedDevice,32,16,32]; ]
+    private
+    var _connectedDevice = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 33; @position = 16; @symbol_vardef = [_meshtasticService,33,16,34]; ]
+    private
+    var _meshtasticService = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 34; @position = 16; @symbol_vardef = [_toRadioChar,34,16,28]; ]
+    private
+    var _toRadioChar = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 35; @position = 16; @symbol_vardef = [_fromRadioChar,35,16,30]; ]
+    private
+    var _fromRadioChar = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 36; @position = 16; @symbol_vardef = [_fromNumChar,36,16,28]; ]
+    private
+    var _fromNumChar = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 37; @position = 16; @symbol_vardef = [_scanTimer,37,16,26]; ]
+    private
+    var _scanTimer = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 38; @position = 16; @symbol_vardef = [_connectionCallback,38,16,35]; ]
+    private
+    var _connectionCallback = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 39; @position = 16; @symbol_vardef = [_dataCallback,39,16,29]; ]
+    private
+    var _dataCallback = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 40; @position = 16; @symbol_vardef = [_pinCallback,40,16,28]; ]
+    private
+    var _pinCallback = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 41; @position = 16; @symbol_vardef = [_settingsManager,41,16,32]; ]
+    private
+    var _settingsManager = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 42; @position = 16; @symbol_vardef = [_scanResults,42,16,28]; ]
+    private
+    var _scanResults;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 43; @position = 16; @symbol_vardef = [_autoRetryOnWrongDevice,43,16,39]; ]
+    private
+    var _autoRetryOnWrongDevice = true;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 45; @symbol_functiondef = [initialize,45,13,23]; @symbol_param<0> = [settingsManager,45,24,39]; ]
+    function initialize(settingsManager) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_45_41_49_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 46 8 ]
+        %tmp.1 = lgetv %settingsManager;
+        symbol [ settingsManager %tmp.1 46 27 42 ];
+        symbol [ _settingsManager ? 46 8 24 ];
+        putv self :_settingsManager %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 47 8 ]
+        symbol [ BleManagerDelegate %tmp.5 47 24 42 ];
+        %tmp.5 = getv ? :BleManagerDelegate;
+        %tmp.6 = self;
+        symbol [ self %tmp.6 47 43 47 ];
+        %tmp.2 = newc %tmp.5 (%tmp.6);
+        symbol [ _delegate ? 47 8 17 ];
+        putv self :_delegate %tmp.2;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 48 8 ]
+        symbol [ Ble %tmp.7 48 8 11 ];
+        %tmp.7 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ setDelegate %tmp.8 48 12 23 ];
+        %tmp.8 = getv function %tmp.7 :setDelegate;
+        symbol [ _delegate %tmp.10 48 24 33 ];
+        %tmp.10 = getv ? :_delegate;
+        invoke %tmp.7 %tmp.8(%tmp.10);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_45_41_49_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 52; @symbol_functiondef = [getCurrentPin,52,21,34]; ]
+    private
+    function getCurrentPin() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_52_37_57_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 53 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_8_55_8_if_stmt:
+        symbol [ _settingsManager %tmp.2 53 12 28 ];
+        %tmp.2 = getv ? :_settingsManager;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_8_55_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_8_55_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_38_55_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 54 12 ]
+        symbol [ _settingsManager %tmp.6 54 19 35 ];
+        %tmp.6 = getv ? :_settingsManager;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ getBlePin %tmp.8 54 36 45 ];
+        %tmp.8 = getv function %tmp.7 :getBlePin;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        ret %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_38_55_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_8_55_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_53_8_55_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 56 8 ]
+        symbol [ Config %tmp.10 56 15 21 ];
+        %tmp.10 = getm $.Config;
+        symbol [ DEFAULT_MESHTASTIC_PIN %tmp.11 56 22 44 ];
+        %tmp.11 = getv %tmp.10 :DEFAULT_MESHTASTIC_PIN;
+        ret %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_52_37_57_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 59; @symbol_functiondef = [setPinCallback,59,13,27]; @symbol_param<0> = [callback,59,28,36]; ]
+    function setPinCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_59_38_61_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 60 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 60 23 31 ];
+        symbol [ _pinCallback ? 60 8 20 ];
+        putv self :_pinCallback %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_59_38_61_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 63; @symbol_functiondef = [registerProfile,63,13,28]; ]
+    function registerProfile() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_63_31_94_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 64 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_8_66_8_if_stmt:
+        symbol [ _profileRegistered %tmp.2 64 12 30 ];
+        %tmp.2 = getv ? :_profileRegistered;
+        bf %tmp.2 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_8_66_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_8_66_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_32_66_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 65 12 ]
+        %tmp.3 = true;
+        ret %tmp.3;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_32_66_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_8_66_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_64_8_66_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 68 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_63_31_94_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_63_31_94_4_stop" ]
+        %profile.1 = local;
+        symbol [ profile %profile.1 68 12 19 ];
+        %tmp.4 = newd 2;
+        %tmp.6 = const :uuid;
+        symbol [ uuid %tmp.6 69 13 17 const ];
+        symbol [ MESH_SERVICE_UUID %tmp.8 69 21 38 ];
+        %tmp.8 = getv ? :MESH_SERVICE_UUID;
+        %tmp.9 = dup %tmp.4;
+        %tmp.10 = aputv %tmp.9 %tmp.6 %tmp.8;
+        %tmp.12 = const :characteristics;
+        symbol [ characteristics %tmp.12 70 13 28 const ];
+        %tmp.13 = newa 3;
+        %tmp.14 = newd 1;
+        %tmp.16 = const :uuid;
+        symbol [ uuid %tmp.16 72 21 25 const ];
+        symbol [ TO_RADIO_UUID %tmp.18 72 29 42 ];
+        %tmp.18 = getv ? :TO_RADIO_UUID;
+        %tmp.19 = dup %tmp.14;
+        %tmp.20 = aputv %tmp.19 %tmp.16 %tmp.18;
+        %tmp.21 = dup %tmp.13;
+        %tmp.22 = aputv %tmp.21 0 %tmp.20;
+        %tmp.23 = newd 2;
+        %tmp.25 = const :uuid;
+        symbol [ uuid %tmp.25 75 21 25 const ];
+        symbol [ FROM_RADIO_UUID %tmp.27 75 29 44 ];
+        %tmp.27 = getv ? :FROM_RADIO_UUID;
+        %tmp.28 = dup %tmp.23;
+        %tmp.29 = aputv %tmp.28 %tmp.25 %tmp.27;
+        %tmp.31 = const :descriptors;
+        symbol [ descriptors %tmp.31 76 21 32 const ];
+        %tmp.32 = newa 1;
+        symbol [ Ble %tmp.33 76 37 40 ];
+        %tmp.33 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ cccdUuid %tmp.34 76 41 49 ];
+        %tmp.34 = getv function %tmp.33 :cccdUuid;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        %tmp.36 = dup %tmp.32;
+        %tmp.37 = aputv %tmp.36 0 %tmp.35;
+        %tmp.38 = dup %tmp.29;
+        %tmp.39 = aputv %tmp.38 %tmp.31 %tmp.37;
+        %tmp.40 = dup %tmp.22;
+        %tmp.41 = aputv %tmp.40 1 %tmp.39;
+        %tmp.42 = newd 2;
+        %tmp.44 = const :uuid;
+        symbol [ uuid %tmp.44 79 21 25 const ];
+        symbol [ FROM_NUM_UUID %tmp.46 79 29 42 ];
+        %tmp.46 = getv ? :FROM_NUM_UUID;
+        %tmp.47 = dup %tmp.42;
+        %tmp.48 = aputv %tmp.47 %tmp.44 %tmp.46;
+        %tmp.50 = const :descriptors;
+        symbol [ descriptors %tmp.50 80 21 32 const ];
+        %tmp.51 = newa 1;
+        symbol [ Ble %tmp.52 80 37 40 ];
+        %tmp.52 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ cccdUuid %tmp.53 80 41 49 ];
+        %tmp.53 = getv function %tmp.52 :cccdUuid;
+        %tmp.54 = invoke %tmp.52 %tmp.53();
+        %tmp.55 = dup %tmp.51;
+        %tmp.56 = aputv %tmp.55 0 %tmp.54;
+        %tmp.57 = dup %tmp.48;
+        %tmp.58 = aputv %tmp.57 %tmp.50 %tmp.56;
+        %tmp.59 = dup %tmp.41;
+        %tmp.60 = aputv %tmp.59 2 %tmp.58;
+        %tmp.61 = dup %tmp.10;
+        %tmp.62 = aputv %tmp.61 %tmp.12 %tmp.60;
+        lputv %profile.1 %tmp.62;
+        symbol [ profile %profile.1 68 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 85 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_12_90_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 86 12 ]
+        symbol [ Ble %tmp.63 86 12 15 ];
+        %tmp.63 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ registerProfile %tmp.64 86 16 31 ];
+        %tmp.64 = getv function %tmp.63 :registerProfile;
+        %tmp.65 = lgetv %profile.1;
+        symbol [ profile %tmp.65 86 32 39 ];
+        invoke %tmp.63 %tmp.64(%tmp.65);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 87 12 ]
+        %tmp.66 = true;
+        symbol [ _profileRegistered ? 87 12 30 ];
+        putv self :_profileRegistered %tmp.66;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 88 12 ]
+        symbol [ System %tmp.67 88 12 18 ];
+        %tmp.67 = getm $.Toybox.System;
+        symbol [ println %tmp.68 88 19 26 ];
+        %tmp.68 = getv function %tmp.67 :println;
+        %tmp.69 = "BLE profile registered successfully";
+        invoke %tmp.67 %tmp.68(%tmp.69);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 89 12 ]
+        %tmp.70 = true;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        ret %tmp.70;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_12_90_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_catch:
+        %tmp.71 = exception;
+        push %tmp.71;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 90 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_10_93_8_end" ]
+        %exception.2 = local;
+        symbol [ exception %exception.2 90 17 26 ];
+        %tmp.72 = dup %tmp.71;
+        lputv %exception.2 %tmp.72;
+        symbol [ exception %exception.2 90 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_28_93_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 91 12 ]
+        symbol [ System %tmp.73 91 12 18 ];
+        %tmp.73 = getm $.Toybox.System;
+        symbol [ println %tmp.74 91 19 26 ];
+        %tmp.74 = getv function %tmp.73 :println;
+        %tmp.75 = "Failed to register BLE profile: ";
+        %tmp.76 = lgetv %exception.2;
+        symbol [ exception %tmp.76 91 64 73 ];
+        symbol [ getErrorMessage %tmp.77 91 74 89 ];
+        %tmp.77 = getv function %tmp.76 :getErrorMessage;
+        %tmp.78 = invoke %tmp.76 %tmp.77();
+        %tmp.79 = add %tmp.75 %tmp.78;
+        invoke %tmp.73 %tmp.74(%tmp.79);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 92 12 ]
+        pop;
+        %tmp.80 = false;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        ret %tmp.80;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_28_93_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_10_93_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_10_93_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_90_10_93_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally;
+        throw %tmp.71;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_85_8_93_8_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_63_31_94_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 96; @symbol_functiondef = [startScan,96,13,22]; @symbol_param<0> = [callback,96,23,31]; ]
+    function startScan(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_96_33_124_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 97 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_8_100_8_if_stmt:
+        symbol [ _connectionState %tmp.2 97 12 28 ];
+        %tmp.2 = getv ? :_connectionState;
+        symbol [ STATE_DISCONNECTED %tmp.4 97 32 50 ];
+        %tmp.4 = getv ? :STATE_DISCONNECTED;
+        %tmp.5 = ne %tmp.2 %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_8_100_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_8_100_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_52_100_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 98 12 ]
+        symbol [ System %tmp.6 98 12 18 ];
+        %tmp.6 = getm $.Toybox.System;
+        symbol [ println %tmp.7 98 19 26 ];
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "Cannot scan while not disconnected";
+        invoke %tmp.6 %tmp.7(%tmp.8);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 99 12 ]
+        %tmp.9 = false;
+        ret %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_52_100_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_8_100_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_97_8_100_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 102 8 ]
+        %tmp.10 = lgetv %callback;
+        symbol [ callback %tmp.10 102 30 38 ];
+        symbol [ _connectionCallback ? 102 8 27 ];
+        putv self :_connectionCallback %tmp.10;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 103 8 ]
+        symbol [ STATE_SCANNING %tmp.12 103 27 41 ];
+        %tmp.12 = getv ? :STATE_SCANNING;
+        symbol [ _connectionState ? 103 8 24 ];
+        putv self :_connectionState %tmp.12;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 104 8 ]
+        %tmp.13 = newa 0;
+        symbol [ _scanResults ? 104 8 20 ];
+        putv self :_scanResults %tmp.13;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 106 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_12_119_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 107 12 ]
+        symbol [ Ble %tmp.14 107 12 15 ];
+        %tmp.14 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ setScanState %tmp.15 107 16 28 ];
+        %tmp.15 = getv function %tmp.14 :setScanState;
+        symbol [ Ble %tmp.16 107 29 32 ];
+        %tmp.16 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ SCAN_STATE_SCANNING %tmp.17 107 33 52 ];
+        %tmp.17 = getv %tmp.16 :SCAN_STATE_SCANNING;
+        invoke %tmp.14 %tmp.15(%tmp.17);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 108 12 ]
+        symbol [ System %tmp.18 108 12 18 ];
+        %tmp.18 = getm $.Toybox.System;
+        symbol [ println %tmp.19 108 19 26 ];
+        %tmp.19 = getv function %tmp.18 :println;
+        %tmp.20 = "BLE scan started - collecting devices...";
+        invoke %tmp.18 %tmp.19(%tmp.20);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 112 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_12_114_12_if_stmt:
+        symbol [ _scanTimer %tmp.22 112 16 26 ];
+        %tmp.22 = getv ? :_scanTimer;
+        %tmp.23 = null;
+        %tmp.24 = ne %tmp.22 %tmp.23;
+        bf %tmp.24 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_12_114_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_12_114_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_36_114_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 113 16 ]
+        symbol [ _scanTimer %tmp.26 113 16 26 ];
+        %tmp.26 = getv ? :_scanTimer;
+        %tmp.27 = as %tmp.26 { (!Null) };
+        symbol [ stop %tmp.28 113 27 31 ];
+        %tmp.28 = getv function %tmp.27 :stop;
+        invoke %tmp.27 %tmp.28();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_36_114_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_12_114_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_112_12_114_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 115 12 ]
+        symbol [ Timer %tmp.31 115 29 34 ];
+        %tmp.31 = getm $.Toybox.Timer;
+        symbol [ Timer %tmp.32 115 35 40 ];
+        %tmp.32 = getv function ? %tmp.31 :Timer;
+        %tmp.29 = newc %tmp.32 ();
+        symbol [ _scanTimer ? 115 12 22 ];
+        putv self :_scanTimer %tmp.29;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 116 12 ]
+        symbol [ _scanTimer %tmp.34 116 12 22 ];
+        %tmp.34 = getv ? :_scanTimer;
+        symbol [ start %tmp.35 116 23 28 ];
+        %tmp.35 = getv function %tmp.34 :start;
+        %tmp.36 = self;
+        symbol [ method %tmp.37 116 29 35 ];
+        %tmp.37 = getv function %tmp.36 :method;
+        %tmp.39 = const :scanTimeout;
+        symbol [ scanTimeout %tmp.39 116 37 48 const ];
+        %tmp.40 = invoke %tmp.36 %tmp.37(%tmp.39);
+        %tmp.41 = 10000;
+        %tmp.42 = false;
+        invoke %tmp.34 %tmp.35(%tmp.40, %tmp.41, %tmp.42);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 118 12 ]
+        %tmp.43 = true;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        ret %tmp.43;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_12_119_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_catch:
+        %tmp.44 = exception;
+        push %tmp.44;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 119 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_10_123_8_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 119 17 26 ];
+        %tmp.45 = dup %tmp.44;
+        lputv %exception.1 %tmp.45;
+        symbol [ exception %exception.1 119 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_28_123_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 120 12 ]
+        symbol [ System %tmp.46 120 12 18 ];
+        %tmp.46 = getm $.Toybox.System;
+        symbol [ println %tmp.47 120 19 26 ];
+        %tmp.47 = getv function %tmp.46 :println;
+        %tmp.48 = "Failed to start scan: ";
+        %tmp.49 = lgetv %exception.1;
+        symbol [ exception %tmp.49 120 54 63 ];
+        symbol [ getErrorMessage %tmp.50 120 64 79 ];
+        %tmp.50 = getv function %tmp.49 :getErrorMessage;
+        %tmp.51 = invoke %tmp.49 %tmp.50();
+        %tmp.52 = add %tmp.48 %tmp.51;
+        invoke %tmp.46 %tmp.47(%tmp.52);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 121 12 ]
+        symbol [ STATE_DISCONNECTED %tmp.54 121 31 49 ];
+        %tmp.54 = getv ? :STATE_DISCONNECTED;
+        symbol [ _connectionState ? 121 12 28 ];
+        putv self :_connectionState %tmp.54;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 122 12 ]
+        pop;
+        %tmp.55 = false;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        ret %tmp.55;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_28_123_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_10_123_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_10_123_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_119_10_123_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally;
+        throw %tmp.44;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_106_8_123_8_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_96_33_124_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 126; @symbol_functiondef = [stopScan,126,13,21]; ]
+    function stopScan() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_126_24_142_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 127 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_8_130_8_if_stmt:
+        symbol [ _scanTimer %tmp.2 127 12 22 ];
+        %tmp.2 = getv ? :_scanTimer;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_8_130_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_8_130_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_32_130_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 128 12 ]
+        symbol [ _scanTimer %tmp.6 128 12 22 ];
+        %tmp.6 = getv ? :_scanTimer;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ stop %tmp.8 128 23 27 ];
+        %tmp.8 = getv function %tmp.7 :stop;
+        invoke %tmp.7 %tmp.8();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 129 12 ]
+        %tmp.9 = null;
+        symbol [ _scanTimer ? 129 12 22 ];
+        putv self :_scanTimer %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_32_130_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_8_130_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_127_8_130_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 132 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_12_135_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 133 12 ]
+        symbol [ Ble %tmp.10 133 12 15 ];
+        %tmp.10 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ setScanState %tmp.11 133 16 28 ];
+        %tmp.11 = getv function %tmp.10 :setScanState;
+        symbol [ Ble %tmp.12 133 29 32 ];
+        %tmp.12 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ SCAN_STATE_OFF %tmp.13 133 33 47 ];
+        %tmp.13 = getv %tmp.12 :SCAN_STATE_OFF;
+        invoke %tmp.10 %tmp.11(%tmp.13);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 134 12 ]
+        symbol [ System %tmp.14 134 12 18 ];
+        %tmp.14 = getm $.Toybox.System;
+        symbol [ println %tmp.15 134 19 26 ];
+        %tmp.15 = getv function %tmp.14 :println;
+        %tmp.16 = "BLE scan stopped";
+        invoke %tmp.14 %tmp.15(%tmp.16);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_12_135_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_catch:
+        %tmp.17 = exception;
+        push %tmp.17;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 135 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_10_137_8_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 135 17 26 ];
+        %tmp.18 = dup %tmp.17;
+        lputv %exception.1 %tmp.18;
+        symbol [ exception %exception.1 135 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_28_137_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 136 12 ]
+        symbol [ System %tmp.19 136 12 18 ];
+        %tmp.19 = getm $.Toybox.System;
+        symbol [ println %tmp.20 136 19 26 ];
+        %tmp.20 = getv function %tmp.19 :println;
+        %tmp.21 = "Failed to stop scan: ";
+        %tmp.22 = lgetv %exception.1;
+        symbol [ exception %tmp.22 136 53 62 ];
+        symbol [ getErrorMessage %tmp.23 136 63 78 ];
+        %tmp.23 = getv function %tmp.22 :getErrorMessage;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        %tmp.25 = add %tmp.21 %tmp.24;
+        invoke %tmp.19 %tmp.20(%tmp.25);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_28_137_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_10_137_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_10_137_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_135_10_137_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally;
+        throw %tmp.17;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_132_8_137_8_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 139 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_8_141_8_if_stmt:
+        symbol [ _connectionState %tmp.27 139 12 28 ];
+        %tmp.27 = getv ? :_connectionState;
+        symbol [ STATE_SCANNING %tmp.29 139 32 46 ];
+        %tmp.29 = getv ? :STATE_SCANNING;
+        %tmp.30 = eq %tmp.27 %tmp.29;
+        bf %tmp.30 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_8_141_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_8_141_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_48_141_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 140 12 ]
+        symbol [ STATE_DISCONNECTED %tmp.32 140 31 49 ];
+        %tmp.32 = getv ? :STATE_DISCONNECTED;
+        symbol [ _connectionState ? 140 12 28 ];
+        putv self :_connectionState %tmp.32;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_48_141_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_8_141_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_139_8_141_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_126_24_142_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 144; @symbol_functiondef = [scanTimeout,144,13,24]; ]
+    function scanTimeout() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_144_35_159_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 145 8 ]
+        symbol [ System %tmp.1 145 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 145 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Scan window complete - found ";
+        symbol [ _scanResults %tmp.5 145 57 69 ];
+        %tmp.5 = getv ? :_scanResults;
+        symbol [ size %tmp.6 145 70 74 ];
+        %tmp.6 = getv function %tmp.5 :size;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        %tmp.8 = add %tmp.3 %tmp.7;
+        %tmp.9 = " devices";
+        %tmp.10 = add %tmp.8 %tmp.9;
+        invoke %tmp.1 %tmp.2(%tmp.10);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 146 8 ]
+        %tmp.11 = self;
+        symbol [ stopScan %tmp.12 146 8 16 ];
+        %tmp.12 = getv function %tmp.11 :stopScan;
+        invoke %tmp.11 %tmp.12();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 148 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_stmt:
+        symbol [ _scanResults %tmp.14 148 12 24 ];
+        %tmp.14 = getv ? :_scanResults;
+        symbol [ size %tmp.15 148 25 29 ];
+        %tmp.15 = getv function %tmp.14 :size;
+        %tmp.16 = invoke %tmp.14 %tmp.15();
+        %tmp.17 = 0;
+        %tmp.18 = gt %tmp.16 %tmp.17;
+        bf %tmp.18 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_37_153_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 151 12 ]
+        symbol [ System %tmp.19 151 12 18 ];
+        %tmp.19 = getm $.Toybox.System;
+        symbol [ println %tmp.20 151 19 26 ];
+        %tmp.20 = getv function %tmp.19 :println;
+        %tmp.21 = "Attempting connection to first discovered device";
+        invoke %tmp.19 %tmp.20(%tmp.21);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 152 12 ]
+        %tmp.22 = self;
+        symbol [ connectToDevice %tmp.23 152 12 27 ];
+        %tmp.23 = getv function %tmp.22 :connectToDevice;
+        symbol [ _scanResults %tmp.25 152 28 40 ];
+        %tmp.25 = getv ? :_scanResults;
+        %tmp.26 = 0;
+        %tmp.27 = agetv %tmp.25 %tmp.26;
+        invoke %tmp.22 %tmp.23(%tmp.27);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_37_153_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_153_15_158_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 154 12 ]
+        symbol [ System %tmp.28 154 12 18 ];
+        %tmp.28 = getm $.Toybox.System;
+        symbol [ println %tmp.29 154 19 26 ];
+        %tmp.29 = getv function %tmp.28 :println;
+        %tmp.30 = "No BLE devices found";
+        invoke %tmp.28 %tmp.29(%tmp.30);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 155 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_12_157_12_if_stmt:
+        symbol [ _connectionCallback %tmp.32 155 16 35 ];
+        %tmp.32 = getv ? :_connectionCallback;
+        %tmp.33 = null;
+        %tmp.34 = ne %tmp.32 %tmp.33;
+        bf %tmp.34 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_12_157_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_12_157_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_45_157_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 156 16 ]
+        symbol [ _connectionCallback %tmp.36 156 16 35 ];
+        %tmp.36 = getv ? :_connectionCallback;
+        %tmp.37 = as %tmp.36 { (!Null) };
+        symbol [ invoke %tmp.38 156 36 42 ];
+        %tmp.38 = getv function %tmp.37 :invoke;
+        %tmp.39 = false;
+        %tmp.40 = "No BLE devices found";
+        invoke %tmp.37 %tmp.38(%tmp.39, %tmp.40);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_45_157_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_12_157_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_155_12_157_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_153_15_158_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_148_8_158_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_144_35_159_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 161; @symbol_functiondef = [connectToDevice,161,13,28]; @symbol_param<0> = [device,161,29,35]; ]
+    function connectToDevice(device) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_161_37_182_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 162 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_12_162_70_begin:
+        symbol [ _connectionState %tmp.2 162 12 28 ];
+        %tmp.2 = getv ? :_connectionState;
+        symbol [ STATE_SCANNING %tmp.4 162 32 46 ];
+        %tmp.4 = getv ? :STATE_SCANNING;
+        %tmp.5 = ne %tmp.2 %tmp.4;
+        bf %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_50_162_70_true:
+        symbol [ _connectionState %tmp.7 162 50 66 ];
+        %tmp.7 = getv ? :_connectionState;
+        symbol [ STATE_DISCONNECTED %tmp.9 162 70 88 ];
+        %tmp.9 = getv ? :STATE_DISCONNECTED;
+        %tmp.10 = ne %tmp.7 %tmp.9;
+        push %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_50_162_70_end:
+        %tmp.11 = phi [%tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_12_162_70_begin] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_50_162_70_true] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_50_162_70_end];
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_90_165_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 163 12 ]
+        symbol [ System %tmp.12 163 12 18 ];
+        %tmp.12 = getm $.Toybox.System;
+        symbol [ println %tmp.13 163 19 26 ];
+        %tmp.13 = getv function %tmp.12 :println;
+        %tmp.14 = "Invalid state for connection";
+        invoke %tmp.12 %tmp.13(%tmp.14);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 164 12 ]
+        %tmp.15 = false;
+        ret %tmp.15;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_90_165_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_162_8_165_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 167 8 ]
+        %tmp.16 = self;
+        symbol [ stopScan %tmp.17 167 8 16 ];
+        %tmp.17 = getv function %tmp.16 :stopScan;
+        invoke %tmp.16 %tmp.17();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 168 8 ]
+        symbol [ STATE_CONNECTING %tmp.19 168 27 43 ];
+        %tmp.19 = getv ? :STATE_CONNECTING;
+        symbol [ _connectionState ? 168 8 24 ];
+        putv self :_connectionState %tmp.19;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 169 8 ]
+        %tmp.20 = lgetv %device;
+        symbol [ device %tmp.20 169 27 33 ];
+        symbol [ _connectedDevice ? 169 8 24 ];
+        putv self :_connectedDevice %tmp.20;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 171 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_12_176_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 173 12 ]
+        symbol [ Ble %tmp.21 173 12 15 ];
+        %tmp.21 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ pairDevice %tmp.22 173 16 26 ];
+        %tmp.22 = getv function %tmp.21 :pairDevice;
+        %tmp.23 = lgetv %device;
+        symbol [ device %tmp.23 173 27 33 ];
+        invoke %tmp.21 %tmp.22(%tmp.23);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 174 12 ]
+        symbol [ System %tmp.24 174 12 18 ];
+        %tmp.24 = getm $.Toybox.System;
+        symbol [ println %tmp.25 174 19 26 ];
+        %tmp.25 = getv function %tmp.24 :println;
+        %tmp.26 = "Pairing initiated with device";
+        invoke %tmp.24 %tmp.25(%tmp.26);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 175 12 ]
+        %tmp.27 = true;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        ret %tmp.27;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_12_176_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_catch:
+        %tmp.28 = exception;
+        push %tmp.28;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 176 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_10_181_8_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 176 17 26 ];
+        %tmp.29 = dup %tmp.28;
+        lputv %exception.1 %tmp.29;
+        symbol [ exception %exception.1 176 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_28_181_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 177 12 ]
+        symbol [ System %tmp.30 177 12 18 ];
+        %tmp.30 = getm $.Toybox.System;
+        symbol [ println %tmp.31 177 19 26 ];
+        %tmp.31 = getv function %tmp.30 :println;
+        %tmp.32 = "Failed to pair device: ";
+        %tmp.33 = lgetv %exception.1;
+        symbol [ exception %tmp.33 177 55 64 ];
+        symbol [ getErrorMessage %tmp.34 177 65 80 ];
+        %tmp.34 = getv function %tmp.33 :getErrorMessage;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        %tmp.36 = add %tmp.32 %tmp.35;
+        invoke %tmp.30 %tmp.31(%tmp.36);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 178 12 ]
+        symbol [ STATE_DISCONNECTED %tmp.38 178 31 49 ];
+        %tmp.38 = getv ? :STATE_DISCONNECTED;
+        symbol [ _connectionState ? 178 12 28 ];
+        putv self :_connectionState %tmp.38;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 179 12 ]
+        %tmp.39 = null;
+        symbol [ _connectedDevice ? 179 12 28 ];
+        putv self :_connectedDevice %tmp.39;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 180 12 ]
+        pop;
+        %tmp.40 = false;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        ret %tmp.40;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_28_181_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_10_181_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_10_181_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_176_10_181_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally;
+        throw %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_171_8_181_8_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_161_37_182_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 185; @symbol_functiondef = [onPinRequested,185,13,27]; @symbol_param<0> = [device,185,28,34]; ]
+    function onPinRequested(device) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_185_36_198_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 186 8 ]
+        symbol [ System %tmp.1 186 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 186 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "PIN requested for device";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 188 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_185_36_198_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_185_36_198_4_stop" ]
+        %savedPin.1 = local;
+        symbol [ savedPin %savedPin.1 188 12 20 ];
+        %tmp.4 = self;
+        symbol [ getCurrentPin %tmp.5 188 23 36 ];
+        %tmp.5 = getv function %tmp.4 :getCurrentPin;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %savedPin.1 %tmp.6;
+        symbol [ savedPin %savedPin.1 188 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 190 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_stmt:
+        symbol [ _pinCallback %tmp.8 190 12 24 ];
+        %tmp.8 = getv ? :_pinCallback;
+        %tmp.9 = null;
+        %tmp.10 = ne %tmp.8 %tmp.9;
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_34_193_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 192 12 ]
+        symbol [ _pinCallback %tmp.12 192 12 24 ];
+        %tmp.12 = getv ? :_pinCallback;
+        %tmp.13 = as %tmp.12 { (!Null) };
+        symbol [ invoke %tmp.14 192 25 31 ];
+        %tmp.14 = getv function %tmp.13 :invoke;
+        %tmp.15 = lgetv %device;
+        symbol [ device %tmp.15 192 32 38 ];
+        %tmp.16 = self;
+        symbol [ method %tmp.17 192 40 46 ];
+        %tmp.17 = getv function %tmp.16 :method;
+        %tmp.19 = const :onPinProvided;
+        symbol [ onPinProvided %tmp.19 192 48 61 const ];
+        %tmp.20 = invoke %tmp.16 %tmp.17(%tmp.19);
+        invoke %tmp.13 %tmp.14(%tmp.15, %tmp.20);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_34_193_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_193_15_197_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 195 12 ]
+        symbol [ System %tmp.21 195 12 18 ];
+        %tmp.21 = getm $.Toybox.System;
+        symbol [ println %tmp.22 195 19 26 ];
+        %tmp.22 = getv function %tmp.21 :println;
+        %tmp.23 = "Using saved PIN: ";
+        %tmp.24 = lgetv %savedPin.1;
+        symbol [ savedPin %tmp.24 195 49 57 ];
+        %tmp.25 = add %tmp.23 %tmp.24;
+        invoke %tmp.21 %tmp.22(%tmp.25);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 196 12 ]
+        %tmp.26 = self;
+        symbol [ onPinProvided %tmp.27 196 12 25 ];
+        %tmp.27 = getv function %tmp.26 :onPinProvided;
+        %tmp.28 = lgetv %savedPin.1;
+        symbol [ savedPin %tmp.28 196 26 34 ];
+        invoke %tmp.26 %tmp.27(%tmp.28);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_193_15_197_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_190_8_197_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_185_36_198_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 200; @symbol_functiondef = [onPinProvided,200,13,26]; @symbol_param<0> = [pin,200,27,30]; ]
+    function onPinProvided(pin) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_200_32_212_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 201 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_12_201_47_begin:
+        %tmp.1 = lgetv %pin;
+        symbol [ pin %tmp.1 201 12 15 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_27_201_47_true:
+        symbol [ _connectedDevice %tmp.5 201 27 43 ];
+        %tmp.5 = getv ? :_connectedDevice;
+        %tmp.6 = null;
+        %tmp.7 = ne %tmp.5 %tmp.6;
+        push %tmp.7;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_27_201_47_end:
+        %tmp.8 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_12_201_47_begin] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_27_201_47_true] [%tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_27_201_47_end];
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_53_205_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 204 12 ]
+        symbol [ System %tmp.9 204 12 18 ];
+        %tmp.9 = getm $.Toybox.System;
+        symbol [ println %tmp.10 204 19 26 ];
+        %tmp.10 = getv function %tmp.9 :println;
+        %tmp.11 = "PIN provided (system will handle pairing): ";
+        %tmp.12 = lgetv %pin;
+        symbol [ pin %tmp.12 204 75 78 ];
+        %tmp.13 = as %tmp.12 { (!Null) };
+        %tmp.14 = add %tmp.11 %tmp.13;
+        invoke %tmp.9 %tmp.10(%tmp.14);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_53_205_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_205_15_211_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 206 12 ]
+        symbol [ System %tmp.15 206 12 18 ];
+        %tmp.15 = getm $.Toybox.System;
+        symbol [ println %tmp.16 206 19 26 ];
+        %tmp.16 = getv function %tmp.15 :println;
+        %tmp.17 = "PIN entry cancelled or device not found";
+        invoke %tmp.15 %tmp.16(%tmp.17);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 207 12 ]
+        %tmp.18 = self;
+        symbol [ disconnect %tmp.19 207 12 22 ];
+        %tmp.19 = getv function %tmp.18 :disconnect;
+        invoke %tmp.18 %tmp.19();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 208 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_12_210_12_if_stmt:
+        symbol [ _connectionCallback %tmp.21 208 16 35 ];
+        %tmp.21 = getv ? :_connectionCallback;
+        %tmp.22 = null;
+        %tmp.23 = ne %tmp.21 %tmp.22;
+        bf %tmp.23 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_12_210_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_12_210_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_45_210_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 209 16 ]
+        symbol [ _connectionCallback %tmp.25 209 16 35 ];
+        %tmp.25 = getv ? :_connectionCallback;
+        %tmp.26 = as %tmp.25 { (!Null) };
+        symbol [ invoke %tmp.27 209 36 42 ];
+        %tmp.27 = getv function %tmp.26 :invoke;
+        %tmp.28 = false;
+        %tmp.29 = "PIN entry cancelled";
+        invoke %tmp.26 %tmp.27(%tmp.28, %tmp.29);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_45_210_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_12_210_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_208_12_210_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_205_15_211_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_201_8_211_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_200_32_212_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 214; @symbol_functiondef = [disconnect,214,13,23]; ]
+    function disconnect() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_214_26_229_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 215 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_8_221_8_if_stmt:
+        symbol [ _connectedDevice %tmp.2 215 12 28 ];
+        %tmp.2 = getv ? :_connectedDevice;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_8_221_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_8_221_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_38_221_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 216 12 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_16_218_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 217 16 ]
+        symbol [ Ble %tmp.5 217 16 19 ];
+        %tmp.5 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ unpairDevice %tmp.6 217 20 32 ];
+        %tmp.6 = getv function %tmp.5 :unpairDevice;
+        symbol [ _connectedDevice %tmp.8 217 33 49 ];
+        %tmp.8 = getv ? :_connectedDevice;
+        %tmp.9 = as %tmp.8 { (!Null) };
+        invoke %tmp.5 %tmp.6(%tmp.9);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_16_218_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_catch:
+        %tmp.10 = exception;
+        push %tmp.10;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 218 14 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_14_220_12_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 218 21 30 ];
+        %tmp.11 = dup %tmp.10;
+        lputv %exception.1 %tmp.11;
+        symbol [ exception %exception.1 218 21 30 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_32_220_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 219 16 ]
+        symbol [ System %tmp.12 219 16 22 ];
+        %tmp.12 = getm $.Toybox.System;
+        symbol [ println %tmp.13 219 23 30 ];
+        %tmp.13 = getv function %tmp.12 :println;
+        %tmp.14 = "Error during disconnect: ";
+        %tmp.15 = lgetv %exception.1;
+        symbol [ exception %tmp.15 219 61 70 ];
+        symbol [ getErrorMessage %tmp.16 219 71 86 ];
+        %tmp.16 = getv function %tmp.15 :getErrorMessage;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        %tmp.18 = add %tmp.14 %tmp.17;
+        invoke %tmp.12 %tmp.13(%tmp.18);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_32_220_12_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_14_220_12_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_14_220_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_218_14_220_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally;
+        throw %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_216_12_220_12_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_38_221_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_8_221_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_215_8_221_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 223 8 ]
+        symbol [ STATE_DISCONNECTED %tmp.20 223 27 45 ];
+        %tmp.20 = getv ? :STATE_DISCONNECTED;
+        symbol [ _connectionState ? 223 8 24 ];
+        putv self :_connectionState %tmp.20;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 224 8 ]
+        %tmp.21 = null;
+        symbol [ _connectedDevice ? 224 8 24 ];
+        putv self :_connectedDevice %tmp.21;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 225 8 ]
+        %tmp.22 = null;
+        symbol [ _meshtasticService ? 225 8 26 ];
+        putv self :_meshtasticService %tmp.22;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 226 8 ]
+        %tmp.23 = null;
+        symbol [ _toRadioChar ? 226 8 20 ];
+        putv self :_toRadioChar %tmp.23;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 227 8 ]
+        %tmp.24 = null;
+        symbol [ _fromRadioChar ? 227 8 22 ];
+        putv self :_fromRadioChar %tmp.24;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 228 8 ]
+        %tmp.25 = null;
+        symbol [ _fromNumChar ? 228 8 20 ];
+        putv self :_fromNumChar %tmp.25;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_214_26_229_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 231; @symbol_functiondef = [sendData,231,13,21]; @symbol_param<0> = [data,231,22,26]; @symbol_param<1> = [callback,231,28,36]; ]
+    function sendData(data, callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_231_38_253_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 232 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_12_232_63_begin:
+        symbol [ _connectionState %tmp.2 232 12 28 ];
+        %tmp.2 = getv ? :_connectionState;
+        symbol [ STATE_READY %tmp.4 232 32 43 ];
+        %tmp.4 = getv ? :STATE_READY;
+        %tmp.5 = ne %tmp.2 %tmp.4;
+        bt %tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_47_232_63_false:
+        symbol [ _toRadioChar %tmp.7 232 47 59 ];
+        %tmp.7 = getv ? :_toRadioChar;
+        %tmp.8 = null;
+        %tmp.9 = eq %tmp.7 %tmp.8;
+        push %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_47_232_63_end:
+        %tmp.10 = phi [%tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_12_232_63_begin] [%tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_47_232_63_false] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_47_232_63_end];
+        bf %tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_69_238_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 233 12 ]
+        symbol [ System %tmp.11 233 12 18 ];
+        %tmp.11 = getm $.Toybox.System;
+        symbol [ println %tmp.12 233 19 26 ];
+        %tmp.12 = getv function %tmp.11 :println;
+        %tmp.13 = "Not ready to send data";
+        invoke %tmp.11 %tmp.12(%tmp.13);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 234 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_12_236_12_if_stmt:
+        %tmp.14 = lgetv %callback;
+        symbol [ callback %tmp.14 234 16 24 ];
+        %tmp.15 = null;
+        %tmp.16 = ne %tmp.14 %tmp.15;
+        bf %tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_12_236_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_12_236_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_34_236_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 235 16 ]
+        %tmp.17 = lgetv %callback;
+        symbol [ callback %tmp.17 235 16 24 ];
+        %tmp.18 = as %tmp.17 { (!Null) };
+        symbol [ invoke %tmp.19 235 25 31 ];
+        %tmp.19 = getv function %tmp.18 :invoke;
+        %tmp.20 = false;
+        %tmp.21 = "Not connected";
+        invoke %tmp.18 %tmp.19(%tmp.20, %tmp.21);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_34_236_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_12_236_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_234_12_236_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 237 12 ]
+        %tmp.22 = false;
+        ret %tmp.22;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_69_238_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_232_8_238_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 240 8 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_12_246_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 241 12 ]
+        symbol [ _toRadioChar %tmp.24 241 12 24 ];
+        %tmp.24 = getv ? :_toRadioChar;
+        symbol [ requestWrite %tmp.25 241 25 37 ];
+        %tmp.25 = getv function %tmp.24 :requestWrite;
+        %tmp.26 = lgetv %data;
+        symbol [ data %tmp.26 241 38 42 ];
+        %tmp.27 = newd 1;
+        %tmp.29 = const :writeType;
+        symbol [ writeType %tmp.29 241 46 55 const ];
+        symbol [ Ble %tmp.30 241 59 62 ];
+        %tmp.30 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ WRITE_TYPE_DEFAULT %tmp.31 241 63 81 ];
+        %tmp.31 = getv %tmp.30 :WRITE_TYPE_DEFAULT;
+        %tmp.32 = dup %tmp.27;
+        %tmp.33 = aputv %tmp.32 %tmp.29 %tmp.31;
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.33);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 242 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_12_244_12_if_stmt:
+        %tmp.34 = lgetv %callback;
+        symbol [ callback %tmp.34 242 16 24 ];
+        %tmp.35 = null;
+        %tmp.36 = ne %tmp.34 %tmp.35;
+        bf %tmp.36 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_12_244_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_12_244_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_34_244_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 243 16 ]
+        %tmp.37 = lgetv %callback;
+        symbol [ callback %tmp.37 243 16 24 ];
+        %tmp.38 = as %tmp.37 { (!Null) };
+        symbol [ invoke %tmp.39 243 25 31 ];
+        %tmp.39 = getv function %tmp.38 :invoke;
+        %tmp.40 = true;
+        %tmp.41 = null;
+        invoke %tmp.38 %tmp.39(%tmp.40, %tmp.41);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_34_244_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_12_244_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_242_12_244_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 245 12 ]
+        %tmp.42 = true;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        ret %tmp.42;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_12_246_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_catch:
+        %tmp.43 = exception;
+        push %tmp.43;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 246 10 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_10_252_8_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 246 17 26 ];
+        %tmp.44 = dup %tmp.43;
+        lputv %exception.1 %tmp.44;
+        symbol [ exception %exception.1 246 17 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_28_252_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 247 12 ]
+        symbol [ System %tmp.45 247 12 18 ];
+        %tmp.45 = getm $.Toybox.System;
+        symbol [ println %tmp.46 247 19 26 ];
+        %tmp.46 = getv function %tmp.45 :println;
+        %tmp.47 = "Failed to send data: ";
+        %tmp.48 = lgetv %exception.1;
+        symbol [ exception %tmp.48 247 53 62 ];
+        symbol [ getErrorMessage %tmp.49 247 63 78 ];
+        %tmp.49 = getv function %tmp.48 :getErrorMessage;
+        %tmp.50 = invoke %tmp.48 %tmp.49();
+        %tmp.51 = add %tmp.47 %tmp.50;
+        invoke %tmp.45 %tmp.46(%tmp.51);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 248 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_12_250_12_if_stmt:
+        %tmp.52 = lgetv %callback;
+        symbol [ callback %tmp.52 248 16 24 ];
+        %tmp.53 = null;
+        %tmp.54 = ne %tmp.52 %tmp.53;
+        bf %tmp.54 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_12_250_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_12_250_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_34_250_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 249 16 ]
+        %tmp.55 = lgetv %callback;
+        symbol [ callback %tmp.55 249 16 24 ];
+        %tmp.56 = as %tmp.55 { (!Null) };
+        symbol [ invoke %tmp.57 249 25 31 ];
+        %tmp.57 = getv function %tmp.56 :invoke;
+        %tmp.58 = false;
+        %tmp.59 = lgetv %exception.1;
+        symbol [ exception %tmp.59 249 39 48 ];
+        symbol [ getErrorMessage %tmp.60 249 49 64 ];
+        %tmp.60 = getv function %tmp.59 :getErrorMessage;
+        %tmp.61 = invoke %tmp.59 %tmp.60();
+        invoke %tmp.56 %tmp.57(%tmp.58, %tmp.61);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_34_250_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_12_250_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_248_12_250_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 251 12 ]
+        pop;
+        %tmp.62 = false;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        ret %tmp.62;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_28_252_8_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_10_252_8_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_10_252_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_246_10_252_8_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally;
+        throw %tmp.43;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_240_8_252_8_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_231_38_253_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 255; @symbol_functiondef = [setDataCallback,255,13,28]; @symbol_param<0> = [callback,255,29,37]; ]
+    function setDataCallback(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_255_39_257_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 256 8 ]
+        %tmp.1 = lgetv %callback;
+        symbol [ callback %tmp.1 256 24 32 ];
+        symbol [ _dataCallback ? 256 8 21 ];
+        putv self :_dataCallback %tmp.1;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_255_39_257_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 259; @symbol_functiondef = [getConnectionState,259,13,31]; ]
+    function getConnectionState() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_259_34_261_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 260 8 ]
+        symbol [ _connectionState %tmp.2 260 15 31 ];
+        %tmp.2 = getv ? :_connectionState;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_259_34_261_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 263; @symbol_functiondef = [isConnected,263,13,24]; ]
+    function isConnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_263_27_265_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 264 8 ]
+        symbol [ _connectionState %tmp.2 264 15 31 ];
+        %tmp.2 = getv ? :_connectionState;
+        symbol [ STATE_READY %tmp.4 264 35 46 ];
+        %tmp.4 = getv ? :STATE_READY;
+        %tmp.5 = eq %tmp.2 %tmp.4;
+        ret %tmp.5;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_263_27_265_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 268; @symbol_functiondef = [addScanResult,268,13,26]; @symbol_param<0> = [device,268,27,33]; ]
+    function addScanResult(device) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_268_35_279_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 270 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_end" ]
+        %i.1 = local;
+        symbol [ i %i.1 270 17 18 ];
+        %tmp.1 = 0;
+        lputv %i.1 %tmp.1;
+        symbol [ i %i.1 270 17 18 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_test:
+        %tmp.2 = lgetv %i.1;
+        symbol [ i %tmp.2 270 24 25 ];
+        symbol [ _scanResults %tmp.4 270 28 40 ];
+        %tmp.4 = getv ? :_scanResults;
+        symbol [ size %tmp.5 270 41 45 ];
+        %tmp.5 = getv function %tmp.4 :size;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        %tmp.7 = lt %tmp.2 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_54_274_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 271 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_12_273_12_if_stmt:
+        symbol [ _scanResults %tmp.9 271 16 28 ];
+        %tmp.9 = getv ? :_scanResults;
+        %tmp.10 = lgetv %i.1;
+        symbol [ i %tmp.10 271 29 30 ];
+        %tmp.11 = agetv %tmp.9 %tmp.10;
+        %tmp.12 = lgetv %device;
+        symbol [ device %tmp.12 271 35 41 ];
+        %tmp.13 = eq %tmp.11 %tmp.12;
+        bf %tmp.13 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_12_273_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_12_273_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_43_273_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 272 16 ]
+        %tmp.14 = false;
+        ret %tmp.14;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_43_273_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_12_273_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_271_12_273_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_54_274_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 270 ]
+        %tmp.17 = lgetv %i.1;
+        symbol [ i %tmp.17 270 49 50 ];
+        %tmp.18 = add %tmp.17 1;
+        lputv %i.1 %tmp.18;
+        symbol [ i %i.1 270 49 50 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_270_8_274_8_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 276 8 ]
+        symbol [ _scanResults %tmp.20 276 8 20 ];
+        %tmp.20 = getv ? :_scanResults;
+        symbol [ add %tmp.21 276 21 24 ];
+        %tmp.21 = getv function %tmp.20 :add;
+        %tmp.22 = lgetv %device;
+        symbol [ device %tmp.22 276 25 31 ];
+        invoke %tmp.20 %tmp.21(%tmp.22);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 277 8 ]
+        symbol [ System %tmp.23 277 8 14 ];
+        %tmp.23 = getm $.Toybox.System;
+        symbol [ println %tmp.24 277 15 22 ];
+        %tmp.24 = getv function %tmp.23 :println;
+        %tmp.25 = "Discovered BLE device #";
+        symbol [ _scanResults %tmp.27 277 51 63 ];
+        %tmp.27 = getv ? :_scanResults;
+        symbol [ size %tmp.28 277 64 68 ];
+        %tmp.28 = getv function %tmp.27 :size;
+        %tmp.29 = invoke %tmp.27 %tmp.28();
+        %tmp.30 = add %tmp.25 %tmp.29;
+        invoke %tmp.23 %tmp.24(%tmp.30);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 278 8 ]
+        %tmp.31 = true;
+        ret %tmp.31;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_268_35_279_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 282; @symbol_functiondef = [onDeviceConnected,282,13,30]; @symbol_param<0> = [device,282,31,37]; ]
+    function onDeviceConnected(device) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_282_39_330_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 283 8 ]
+        symbol [ System %tmp.1 283 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 283 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Device connected, validating Meshtastic service...";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 284 8 ]
+        symbol [ STATE_CONNECTED %tmp.5 284 27 42 ];
+        %tmp.5 = getv ? :STATE_CONNECTED;
+        symbol [ _connectionState ? 284 8 24 ];
+        putv self :_connectionState %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 285 8 ]
+        %tmp.6 = lgetv %device;
+        symbol [ device %tmp.6 285 27 33 ];
+        symbol [ _connectedDevice ? 285 8 24 ];
+        putv self :_connectedDevice %tmp.6;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 289 8 ]
+        %tmp.7 = lgetv %device;
+        symbol [ device %tmp.7 289 29 35 ];
+        symbol [ getService %tmp.8 289 36 46 ];
+        %tmp.8 = getv function %tmp.7 :getService;
+        symbol [ MESH_SERVICE_UUID %tmp.10 289 47 64 ];
+        %tmp.10 = getv ? :MESH_SERVICE_UUID;
+        %tmp.11 = invoke %tmp.7 %tmp.8(%tmp.10);
+        symbol [ _meshtasticService ? 289 8 26 ];
+        putv self :_meshtasticService %tmp.11;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 290 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_8_305_8_if_stmt:
+        symbol [ _meshtasticService %tmp.13 290 12 30 ];
+        %tmp.13 = getv ? :_meshtasticService;
+        %tmp.14 = null;
+        %tmp.15 = eq %tmp.13 %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_8_305_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_8_305_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_40_305_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 291 12 ]
+        symbol [ System %tmp.16 291 12 18 ];
+        %tmp.16 = getm $.Toybox.System;
+        symbol [ println %tmp.17 291 19 26 ];
+        %tmp.17 = getv function %tmp.16 :println;
+        %tmp.18 = "ERROR: Not a Meshtastic device - service UUID not found";
+        invoke %tmp.16 %tmp.17(%tmp.18);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 292 12 ]
+        %tmp.19 = self;
+        symbol [ disconnect %tmp.20 292 12 22 ];
+        %tmp.20 = getv function %tmp.19 :disconnect;
+        invoke %tmp.19 %tmp.20();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 295 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_16_295_65_begin:
+        symbol [ _autoRetryOnWrongDevice %tmp.22 295 16 39 ];
+        %tmp.22 = getv ? :_autoRetryOnWrongDevice;
+        bf %tmp.22 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_43_295_65_true:
+        symbol [ _scanResults %tmp.24 295 43 55 ];
+        %tmp.24 = getv ? :_scanResults;
+        symbol [ size %tmp.25 295 56 60 ];
+        %tmp.25 = getv function %tmp.24 :size;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = 1;
+        %tmp.28 = gt %tmp.26 %tmp.27;
+        push %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_43_295_65_end:
+        %tmp.29 = phi [%tmp.22 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_16_295_65_begin] [%tmp.28 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_43_295_65_true] [%tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_43_295_65_end];
+        bf %tmp.29 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_68_299_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 296 16 ]
+        symbol [ System %tmp.30 296 16 22 ];
+        %tmp.30 = getm $.Toybox.System;
+        symbol [ println %tmp.31 296 23 30 ];
+        %tmp.31 = getv function %tmp.30 :println;
+        %tmp.32 = "Trying next device from scan results...";
+        invoke %tmp.30 %tmp.31(%tmp.32);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 297 16 ]
+        symbol [ _scanResults %tmp.34 297 31 43 ];
+        %tmp.34 = getv ? :_scanResults;
+        symbol [ slice %tmp.35 297 44 49 ];
+        %tmp.35 = getv function %tmp.34 :slice;
+        %tmp.36 = 1;
+        symbol [ _scanResults %tmp.38 297 53 65 ];
+        %tmp.38 = getv ? :_scanResults;
+        symbol [ size %tmp.39 297 66 70 ];
+        %tmp.39 = getv function %tmp.38 :size;
+        %tmp.40 = invoke %tmp.38 %tmp.39();
+        %tmp.41 = invoke %tmp.34 %tmp.35(%tmp.36, %tmp.40);
+        symbol [ _scanResults ? 297 16 28 ];
+        putv self :_scanResults %tmp.41;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 298 16 ]
+        %tmp.42 = self;
+        symbol [ connectToDevice %tmp.43 298 16 31 ];
+        %tmp.43 = getv function %tmp.42 :connectToDevice;
+        symbol [ _scanResults %tmp.45 298 32 44 ];
+        %tmp.45 = getv ? :_scanResults;
+        %tmp.46 = 0;
+        %tmp.47 = agetv %tmp.45 %tmp.46;
+        invoke %tmp.42 %tmp.43(%tmp.47);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_68_299_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_299_19_303_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 300 16 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_16_302_16_if_stmt:
+        symbol [ _connectionCallback %tmp.49 300 20 39 ];
+        %tmp.49 = getv ? :_connectionCallback;
+        %tmp.50 = null;
+        %tmp.51 = ne %tmp.49 %tmp.50;
+        bf %tmp.51 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_16_302_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_16_302_16_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_49_302_16_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 301 20 ]
+        symbol [ _connectionCallback %tmp.53 301 20 39 ];
+        %tmp.53 = getv ? :_connectionCallback;
+        %tmp.54 = as %tmp.53 { (!Null) };
+        symbol [ invoke %tmp.55 301 40 46 ];
+        %tmp.55 = getv function %tmp.54 :invoke;
+        %tmp.56 = false;
+        %tmp.57 = "Not a Meshtastic device";
+        invoke %tmp.54 %tmp.55(%tmp.56, %tmp.57);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_49_302_16_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_16_302_16_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_300_16_302_16_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_299_19_303_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_295_12_303_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 304 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_40_305_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_8_305_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_290_8_305_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 307 8 ]
+        symbol [ System %tmp.58 307 8 14 ];
+        %tmp.58 = getm $.Toybox.System;
+        symbol [ println %tmp.59 307 15 22 ];
+        %tmp.59 = getv function %tmp.58 :println;
+        %tmp.60 = "✓ Meshtastic service found!";
+        invoke %tmp.58 %tmp.59(%tmp.60);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 310 8 ]
+        symbol [ _meshtasticService %tmp.62 310 23 41 ];
+        %tmp.62 = getv ? :_meshtasticService;
+        symbol [ getCharacteristic %tmp.63 310 42 59 ];
+        %tmp.63 = getv function %tmp.62 :getCharacteristic;
+        symbol [ TO_RADIO_UUID %tmp.65 310 60 73 ];
+        %tmp.65 = getv ? :TO_RADIO_UUID;
+        %tmp.66 = invoke %tmp.62 %tmp.63(%tmp.65);
+        symbol [ _toRadioChar ? 310 8 20 ];
+        putv self :_toRadioChar %tmp.66;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 311 8 ]
+        symbol [ _meshtasticService %tmp.68 311 25 43 ];
+        %tmp.68 = getv ? :_meshtasticService;
+        symbol [ getCharacteristic %tmp.69 311 44 61 ];
+        %tmp.69 = getv function %tmp.68 :getCharacteristic;
+        symbol [ FROM_RADIO_UUID %tmp.71 311 62 77 ];
+        %tmp.71 = getv ? :FROM_RADIO_UUID;
+        %tmp.72 = invoke %tmp.68 %tmp.69(%tmp.71);
+        symbol [ _fromRadioChar ? 311 8 22 ];
+        putv self :_fromRadioChar %tmp.72;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 312 8 ]
+        symbol [ _meshtasticService %tmp.74 312 23 41 ];
+        %tmp.74 = getv ? :_meshtasticService;
+        symbol [ getCharacteristic %tmp.75 312 42 59 ];
+        %tmp.75 = getv function %tmp.74 :getCharacteristic;
+        symbol [ FROM_NUM_UUID %tmp.77 312 60 73 ];
+        %tmp.77 = getv ? :FROM_NUM_UUID;
+        %tmp.78 = invoke %tmp.74 %tmp.75(%tmp.77);
+        symbol [ _fromNumChar ? 312 8 20 ];
+        putv self :_fromNumChar %tmp.78;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 314 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_12_314_78_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_12_314_54_begin:
+        symbol [ _toRadioChar %tmp.80 314 12 24 ];
+        %tmp.80 = getv ? :_toRadioChar;
+        %tmp.81 = null;
+        %tmp.82 = eq %tmp.80 %tmp.81;
+        bt %tmp.82 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_36_314_54_false:
+        symbol [ _fromRadioChar %tmp.84 314 36 50 ];
+        %tmp.84 = getv ? :_fromRadioChar;
+        %tmp.85 = null;
+        %tmp.86 = eq %tmp.84 %tmp.85;
+        push %tmp.86;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_36_314_54_end:
+        %tmp.87 = phi [%tmp.82 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_12_314_54_begin] [%tmp.86 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_36_314_54_false] [%tmp.87 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_36_314_54_end];
+        bt %tmp.87 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_true;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_62_314_78_false:
+        symbol [ _fromNumChar %tmp.89 314 62 74 ];
+        %tmp.89 = getv ? :_fromNumChar;
+        %tmp.90 = null;
+        %tmp.91 = eq %tmp.89 %tmp.90;
+        push %tmp.91;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_62_314_78_end:
+        %tmp.92 = phi [%tmp.87 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_12_314_78_begin] [%tmp.91 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_62_314_78_false] [%tmp.92 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_62_314_78_end];
+        bf %tmp.92 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_84_324_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 315 12 ]
+        symbol [ System %tmp.93 315 12 18 ];
+        %tmp.93 = getm $.Toybox.System;
+        symbol [ println %tmp.94 315 19 26 ];
+        %tmp.94 = getv function %tmp.93 :println;
+        %tmp.95 = "ERROR: Required characteristics not found";
+        invoke %tmp.93 %tmp.94(%tmp.95);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 316 12 ]
+        symbol [ System %tmp.96 316 12 18 ];
+        %tmp.96 = getm $.Toybox.System;
+        symbol [ println %tmp.97 316 19 26 ];
+        %tmp.97 = getv function %tmp.96 :println;
+        %tmp.98 = "  ToRadio: ";
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_begin:
+        symbol [ _toRadioChar %tmp.100 316 44 56 ];
+        %tmp.100 = getv ? :_toRadioChar;
+        %tmp.101 = null;
+        %tmp.102 = ne %tmp.100 %tmp.101;
+        bf %tmp.102 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_true:
+        %tmp.103 = "✓";
+        push %tmp.103;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_else_false:
+        %tmp.104 = "✗";
+        push %tmp.104;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_end:
+        %tmp.105 = phi [%tmp.102 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_begin] [%tmp.103 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_true] [%tmp.104 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_else_false] [%tmp.105 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_316_44_316_73_end];
+        %tmp.106 = add %tmp.98 %tmp.105;
+        invoke %tmp.96 %tmp.97(%tmp.106);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 317 12 ]
+        symbol [ System %tmp.107 317 12 18 ];
+        %tmp.107 = getm $.Toybox.System;
+        symbol [ println %tmp.108 317 19 26 ];
+        %tmp.108 = getv function %tmp.107 :println;
+        %tmp.109 = "  FromRadio: ";
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_begin:
+        symbol [ _fromRadioChar %tmp.111 317 46 60 ];
+        %tmp.111 = getv ? :_fromRadioChar;
+        %tmp.112 = null;
+        %tmp.113 = ne %tmp.111 %tmp.112;
+        bf %tmp.113 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_true:
+        %tmp.114 = "✓";
+        push %tmp.114;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_else_false:
+        %tmp.115 = "✗";
+        push %tmp.115;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_end:
+        %tmp.116 = phi [%tmp.113 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_begin] [%tmp.114 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_true] [%tmp.115 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_else_false] [%tmp.116 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_317_46_317_77_end];
+        %tmp.117 = add %tmp.109 %tmp.116;
+        invoke %tmp.107 %tmp.108(%tmp.117);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 318 12 ]
+        symbol [ System %tmp.118 318 12 18 ];
+        %tmp.118 = getm $.Toybox.System;
+        symbol [ println %tmp.119 318 19 26 ];
+        %tmp.119 = getv function %tmp.118 :println;
+        %tmp.120 = "  FromNum: ";
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_begin:
+        symbol [ _fromNumChar %tmp.122 318 44 56 ];
+        %tmp.122 = getv ? :_fromNumChar;
+        %tmp.123 = null;
+        %tmp.124 = ne %tmp.122 %tmp.123;
+        bf %tmp.124 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_true:
+        %tmp.125 = "✓";
+        push %tmp.125;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_else_false:
+        %tmp.126 = "✗";
+        push %tmp.126;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_end:
+        %tmp.127 = phi [%tmp.124 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_begin] [%tmp.125 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_true] [%tmp.126 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_else_false] [%tmp.127 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_318_44_318_73_end];
+        %tmp.128 = add %tmp.120 %tmp.127;
+        invoke %tmp.118 %tmp.119(%tmp.128);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 319 12 ]
+        %tmp.129 = self;
+        symbol [ disconnect %tmp.130 319 12 22 ];
+        %tmp.130 = getv function %tmp.129 :disconnect;
+        invoke %tmp.129 %tmp.130();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 320 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_12_322_12_if_stmt:
+        symbol [ _connectionCallback %tmp.132 320 16 35 ];
+        %tmp.132 = getv ? :_connectionCallback;
+        %tmp.133 = null;
+        %tmp.134 = ne %tmp.132 %tmp.133;
+        bf %tmp.134 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_12_322_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_12_322_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_45_322_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 321 16 ]
+        symbol [ _connectionCallback %tmp.136 321 16 35 ];
+        %tmp.136 = getv ? :_connectionCallback;
+        %tmp.137 = as %tmp.136 { (!Null) };
+        symbol [ invoke %tmp.138 321 36 42 ];
+        %tmp.138 = getv function %tmp.137 :invoke;
+        %tmp.139 = false;
+        %tmp.140 = "Missing required characteristics";
+        invoke %tmp.137 %tmp.138(%tmp.139, %tmp.140);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_45_322_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_12_322_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_320_12_322_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 323 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_84_324_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_314_8_324_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 326 8 ]
+        symbol [ System %tmp.141 326 8 14 ];
+        %tmp.141 = getm $.Toybox.System;
+        symbol [ println %tmp.142 326 15 22 ];
+        %tmp.142 = getv function %tmp.141 :println;
+        %tmp.143 = "✓ All required characteristics found";
+        invoke %tmp.141 %tmp.142(%tmp.143);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 329 8 ]
+        %tmp.144 = self;
+        symbol [ enableNotifications %tmp.145 329 8 27 ];
+        %tmp.145 = getv function %tmp.144 :enableNotifications;
+        invoke %tmp.144 %tmp.145();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_282_39_330_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 332; @symbol_functiondef = [enableNotifications,332,13,32]; ]
+    function enableNotifications() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 333 8 ]
+        symbol [ System %tmp.1 333 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 333 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Enabling notifications";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 334 8 ]
+        symbol [ STATE_SYNCING %tmp.5 334 27 40 ];
+        %tmp.5 = getv ? :STATE_SYNCING;
+        symbol [ _connectionState ? 334 8 24 ];
+        putv self :_connectionState %tmp.5;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 337 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_stop" ]
+        %fromRadioCccd.1 = local;
+        symbol [ fromRadioCccd %fromRadioCccd.1 337 12 25 ];
+        symbol [ _fromRadioChar %tmp.7 337 28 42 ];
+        %tmp.7 = getv ? :_fromRadioChar;
+        symbol [ getDescriptor %tmp.8 337 43 56 ];
+        %tmp.8 = getv function %tmp.7 :getDescriptor;
+        symbol [ Ble %tmp.9 337 57 60 ];
+        %tmp.9 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ cccdUuid %tmp.10 337 61 69 ];
+        %tmp.10 = getv function %tmp.9 :cccdUuid;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        %tmp.12 = invoke %tmp.7 %tmp.8(%tmp.11);
+        lputv %fromRadioCccd.1 %tmp.12;
+        symbol [ fromRadioCccd %fromRadioCccd.1 337 12 25 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 338 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_8_340_8_if_stmt:
+        %tmp.13 = lgetv %fromRadioCccd.1;
+        symbol [ fromRadioCccd %tmp.13 338 12 25 ];
+        %tmp.14 = null;
+        %tmp.15 = ne %tmp.13 %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_8_340_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_8_340_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_35_340_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 339 12 ]
+        %tmp.16 = lgetv %fromRadioCccd.1;
+        symbol [ fromRadioCccd %tmp.16 339 12 25 ];
+        %tmp.17 = as %tmp.16 { (!Null) };
+        symbol [ requestWrite %tmp.18 339 26 38 ];
+        %tmp.18 = getv function %tmp.17 :requestWrite;
+        %tmp.19 = newba 2;
+        %tmp.20 = 0x01;
+        %tmp.21 = dup %tmp.19;
+        %tmp.22 = aputv %tmp.21 0 %tmp.20;
+        %tmp.23 = 0x00;
+        %tmp.24 = dup %tmp.22;
+        %tmp.25 = aputv %tmp.24 1 %tmp.23;
+        invoke %tmp.17 %tmp.18(%tmp.25);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_35_340_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_8_340_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_338_8_340_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 343 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_stop" ]
+        %fromNumCccd.2 = local;
+        symbol [ fromNumCccd %fromNumCccd.2 343 12 23 ];
+        symbol [ _fromNumChar %tmp.27 343 26 38 ];
+        %tmp.27 = getv ? :_fromNumChar;
+        symbol [ getDescriptor %tmp.28 343 39 52 ];
+        %tmp.28 = getv function %tmp.27 :getDescriptor;
+        symbol [ Ble %tmp.29 343 53 56 ];
+        %tmp.29 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ cccdUuid %tmp.30 343 57 65 ];
+        %tmp.30 = getv function %tmp.29 :cccdUuid;
+        %tmp.31 = invoke %tmp.29 %tmp.30();
+        %tmp.32 = invoke %tmp.27 %tmp.28(%tmp.31);
+        lputv %fromNumCccd.2 %tmp.32;
+        symbol [ fromNumCccd %fromNumCccd.2 343 12 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 344 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_8_346_8_if_stmt:
+        %tmp.33 = lgetv %fromNumCccd.2;
+        symbol [ fromNumCccd %tmp.33 344 12 23 ];
+        %tmp.34 = null;
+        %tmp.35 = ne %tmp.33 %tmp.34;
+        bf %tmp.35 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_8_346_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_8_346_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_33_346_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 345 12 ]
+        %tmp.36 = lgetv %fromNumCccd.2;
+        symbol [ fromNumCccd %tmp.36 345 12 23 ];
+        %tmp.37 = as %tmp.36 { (!Null) };
+        symbol [ requestWrite %tmp.38 345 24 36 ];
+        %tmp.38 = getv function %tmp.37 :requestWrite;
+        %tmp.39 = newba 2;
+        %tmp.40 = 0x01;
+        %tmp.41 = dup %tmp.39;
+        %tmp.42 = aputv %tmp.41 0 %tmp.40;
+        %tmp.43 = 0x00;
+        %tmp.44 = dup %tmp.42;
+        %tmp.45 = aputv %tmp.44 1 %tmp.43;
+        invoke %tmp.37 %tmp.38(%tmp.45);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_33_346_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_8_346_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_344_8_346_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 350 8 ]
+        symbol [ STATE_READY %tmp.47 350 27 38 ];
+        %tmp.47 = getv ? :STATE_READY;
+        symbol [ _connectionState ? 350 8 24 ];
+        putv self :_connectionState %tmp.47;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 352 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_8_355_8_if_stmt:
+        symbol [ _connectionCallback %tmp.49 352 12 31 ];
+        %tmp.49 = getv ? :_connectionCallback;
+        %tmp.50 = null;
+        %tmp.51 = ne %tmp.49 %tmp.50;
+        bf %tmp.51 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_8_355_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_8_355_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_41_355_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 353 12 ]
+        symbol [ _connectionCallback %tmp.53 353 12 31 ];
+        %tmp.53 = getv ? :_connectionCallback;
+        %tmp.54 = as %tmp.53 { (!Null) };
+        symbol [ invoke %tmp.55 353 32 38 ];
+        %tmp.55 = getv function %tmp.54 :invoke;
+        %tmp.56 = true;
+        %tmp.57 = null;
+        invoke %tmp.54 %tmp.55(%tmp.56, %tmp.57);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 354 12 ]
+        %tmp.58 = null;
+        symbol [ _connectionCallback ? 354 12 31 ];
+        putv self :_connectionCallback %tmp.58;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_41_355_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_8_355_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_352_8_355_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_332_35_356_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 359; @symbol_functiondef = [onDeviceDisconnected,359,13,33]; ]
+    function onDeviceDisconnected() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_359_36_373_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 360 8 ]
+        symbol [ System %tmp.1 360 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 360 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Device disconnected";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 361 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_359_36_373_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_359_36_373_4_stop" ]
+        %wasConnected.1 = local;
+        symbol [ wasConnected %wasConnected.1 361 12 24 ];
+        symbol [ _connectionState %tmp.5 361 28 44 ];
+        %tmp.5 = getv ? :_connectionState;
+        symbol [ STATE_READY %tmp.7 361 48 59 ];
+        %tmp.7 = getv ? :STATE_READY;
+        %tmp.8 = eq %tmp.5 %tmp.7;
+        lputv %wasConnected.1 %tmp.8;
+        symbol [ wasConnected %wasConnected.1 361 12 24 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 363 8 ]
+        symbol [ STATE_DISCONNECTED %tmp.10 363 27 45 ];
+        %tmp.10 = getv ? :STATE_DISCONNECTED;
+        symbol [ _connectionState ? 363 8 24 ];
+        putv self :_connectionState %tmp.10;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 364 8 ]
+        %tmp.11 = null;
+        symbol [ _connectedDevice ? 364 8 24 ];
+        putv self :_connectedDevice %tmp.11;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 365 8 ]
+        %tmp.12 = null;
+        symbol [ _meshtasticService ? 365 8 26 ];
+        putv self :_meshtasticService %tmp.12;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 366 8 ]
+        %tmp.13 = null;
+        symbol [ _toRadioChar ? 366 8 20 ];
+        putv self :_toRadioChar %tmp.13;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 367 8 ]
+        %tmp.14 = null;
+        symbol [ _fromRadioChar ? 367 8 22 ];
+        putv self :_fromRadioChar %tmp.14;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 368 8 ]
+        %tmp.15 = null;
+        symbol [ _fromNumChar ? 368 8 20 ];
+        putv self :_fromNumChar %tmp.15;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 370 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_12_370_45_begin:
+        %tmp.16 = lgetv %wasConnected.1;
+        symbol [ wasConnected %tmp.16 370 12 24 ];
+        bf %tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_28_370_45_true:
+        symbol [ _dataCallback %tmp.18 370 28 41 ];
+        %tmp.18 = getv ? :_dataCallback;
+        %tmp.19 = null;
+        %tmp.20 = ne %tmp.18 %tmp.19;
+        push %tmp.20;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_28_370_45_end:
+        %tmp.21 = phi [%tmp.16 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_12_370_45_begin] [%tmp.20 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_28_370_45_true] [%tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_28_370_45_end];
+        bf %tmp.21 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_51_372_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 371 12 ]
+        symbol [ _dataCallback %tmp.23 371 12 25 ];
+        %tmp.23 = getv ? :_dataCallback;
+        %tmp.24 = as %tmp.23 { (!Null) };
+        symbol [ invoke %tmp.25 371 26 32 ];
+        %tmp.25 = getv function %tmp.24 :invoke;
+        %tmp.26 = null;
+        %tmp.27 = "Device disconnected";
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.27);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_51_372_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_370_8_372_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_359_36_373_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 376; @symbol_functiondef = [onDataReceived,376,13,27]; @symbol_param<0> = [characteristic,376,28,42]; @symbol_param<1> = [data,376,44,48]; ]
+    function onDataReceived(characteristic, data) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_376_50_380_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 377 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_12_377_45_begin:
+        symbol [ _dataCallback %tmp.2 377 12 25 ];
+        %tmp.2 = getv ? :_dataCallback;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_37_377_45_true:
+        %tmp.5 = lgetv %data;
+        symbol [ data %tmp.5 377 37 41 ];
+        %tmp.6 = null;
+        %tmp.7 = ne %tmp.5 %tmp.6;
+        push %tmp.7;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_37_377_45_end:
+        %tmp.8 = phi [%tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_12_377_45_begin] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_37_377_45_true] [%tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_37_377_45_end];
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_51_379_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 378 12 ]
+        symbol [ _dataCallback %tmp.10 378 12 25 ];
+        %tmp.10 = getv ? :_dataCallback;
+        %tmp.11 = as %tmp.10 { (!Null) };
+        symbol [ invoke %tmp.12 378 26 32 ];
+        %tmp.12 = getv function %tmp.11 :invoke;
+        %tmp.13 = lgetv %data;
+        symbol [ data %tmp.13 378 33 37 ];
+        %tmp.14 = as %tmp.13 { (!Null) };
+        %tmp.15 = null;
+        invoke %tmp.11 %tmp.12(%tmp.14, %tmp.15);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_51_379_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_377_8_379_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_376_50_380_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 384; @symbol_classdef = [BleManagerDelegate,384,6,24]; @symbol_extends<0> = [Ble,384,33,36]; @symbol_extends<1> = [BleDelegate,384,37,48]; ]
+class BleManagerDelegate extends Ble.BleDelegate {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 384; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 384; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 385; @position = 16; @symbol_vardef = [_manager,385,16,24]; ]
+    private
+    var _manager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 387; @symbol_functiondef = [initialize,387,13,23]; @symbol_param<0> = [manager,387,24,31]; ]
+    function initialize(manager) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_387_33_390_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 388 8 ]
+        symbol [ BleDelegate %tmp.2 388 8 19 ];
+        %tmp.2 = getv ? :BleDelegate;
+        symbol [ initialize %tmp.3 388 20 30 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 389 8 ]
+        %tmp.4 = lgetv %manager;
+        symbol [ manager %tmp.4 389 19 26 ];
+        symbol [ _manager ? 389 8 16 ];
+        putv self :_manager %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_387_33_390_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 392; @symbol_functiondef = [onScanResults,392,13,26]; @symbol_param<0> = [scanResults,392,27,38]; ]
+    function onScanResults(scanResults) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_392_40_408_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 393 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_8_395_8_if_stmt:
+        %tmp.1 = lgetv %scanResults;
+        symbol [ scanResults %tmp.1 393 12 23 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_8_395_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_8_395_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_33_395_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 394 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_33_395_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_8_395_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_393_8_395_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 402 8 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_end" ]
+        %result.1 = local;
+        symbol [ result %result.1 402 17 23 ];
+        %tmp.4 = lgetv %scanResults;
+        symbol [ scanResults %tmp.4 402 26 37 ];
+        symbol [ next %tmp.5 402 38 42 ];
+        %tmp.5 = getv function %tmp.4 :next;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %result.1 %tmp.6;
+        symbol [ result %result.1 402 17 23 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_test:
+        %tmp.7 = lgetv %result.1;
+        symbol [ result %tmp.7 402 46 52 ];
+        %tmp.8 = null;
+        %tmp.9 = ne %tmp.7 %tmp.8;
+        bf %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_91_404_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 403 12 ]
+        symbol [ _manager %tmp.11 403 12 20 ];
+        %tmp.11 = getv ? :_manager;
+        symbol [ addScanResult %tmp.12 403 21 34 ];
+        %tmp.12 = getv function %tmp.11 :addScanResult;
+        %tmp.13 = lgetv %result.1;
+        symbol [ result %tmp.13 403 35 41 ];
+        %tmp.14 = as %tmp.13 { (!Null) };
+        invoke %tmp.11 %tmp.12(%tmp.14);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_91_404_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 402 ]
+        %tmp.15 = lgetv %scanResults;
+        symbol [ scanResults %tmp.15 402 71 82 ];
+        symbol [ next %tmp.16 402 83 87 ];
+        %tmp.16 = getv function %tmp.15 :next;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        lputv %result.1 %tmp.17;
+        symbol [ result %result.1 402 62 68 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_402_8_404_8_for_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_392_40_408_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 410; @symbol_functiondef = [onConnectedStateChanged,410,13,36]; @symbol_param<0> = [device,410,37,43]; @symbol_param<1> = [state,410,45,50]; ]
+    function onConnectedStateChanged(device, state) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_410_52_418_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 411 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_stmt:
+        %tmp.1 = lgetv %state;
+        symbol [ state %tmp.1 411 12 17 ];
+        symbol [ Ble %tmp.2 411 21 24 ];
+        %tmp.2 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ CONNECTION_STATE_CONNECTED %tmp.3 411 25 51 ];
+        %tmp.3 = getv %tmp.2 :CONNECTION_STATE_CONNECTED;
+        %tmp.4 = eq %tmp.1 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_53_414_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 412 12 ]
+        symbol [ System %tmp.5 412 12 18 ];
+        %tmp.5 = getm $.Toybox.System;
+        symbol [ println %tmp.6 412 19 26 ];
+        %tmp.6 = getv function %tmp.5 :println;
+        %tmp.7 = "BLE connection established";
+        invoke %tmp.5 %tmp.6(%tmp.7);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 413 12 ]
+        symbol [ _manager %tmp.9 413 12 20 ];
+        %tmp.9 = getv ? :_manager;
+        symbol [ onDeviceConnected %tmp.10 413 21 38 ];
+        %tmp.10 = getv function %tmp.9 :onDeviceConnected;
+        %tmp.11 = lgetv %device;
+        symbol [ device %tmp.11 413 39 45 ];
+        invoke %tmp.9 %tmp.10(%tmp.11);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_53_414_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 414 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_15_417_8_if_stmt:
+        %tmp.12 = lgetv %state;
+        symbol [ state %tmp.12 414 19 24 ];
+        symbol [ Ble %tmp.13 414 28 31 ];
+        %tmp.13 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ CONNECTION_STATE_DISCONNECTED %tmp.14 414 32 61 ];
+        %tmp.14 = getv %tmp.13 :CONNECTION_STATE_DISCONNECTED;
+        %tmp.15 = eq %tmp.12 %tmp.14;
+        bf %tmp.15 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_15_417_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_15_417_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_63_417_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 415 12 ]
+        symbol [ System %tmp.16 415 12 18 ];
+        %tmp.16 = getm $.Toybox.System;
+        symbol [ println %tmp.17 415 19 26 ];
+        %tmp.17 = getv function %tmp.16 :println;
+        %tmp.18 = "BLE connection lost";
+        invoke %tmp.16 %tmp.17(%tmp.18);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 416 12 ]
+        symbol [ _manager %tmp.20 416 12 20 ];
+        %tmp.20 = getv ? :_manager;
+        symbol [ onDeviceDisconnected %tmp.21 416 21 41 ];
+        %tmp.21 = getv function %tmp.20 :onDeviceDisconnected;
+        invoke %tmp.20 %tmp.21();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_63_417_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_15_417_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_414_15_417_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_411_8_417_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_410_52_418_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 420; @symbol_functiondef = [onCharacteristicChanged,420,13,36]; @symbol_param<0> = [characteristic,420,37,51]; @symbol_param<1> = [value,420,53,58]; ]
+    function onCharacteristicChanged(characteristic, value) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_420_60_426_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 421 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_12_421_47_begin:
+        %tmp.1 = lgetv %characteristic;
+        symbol [ characteristic %tmp.1 421 12 26 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_38_421_47_true:
+        %tmp.4 = lgetv %value;
+        symbol [ value %tmp.4 421 38 43 ];
+        %tmp.5 = null;
+        %tmp.6 = ne %tmp.4 %tmp.5;
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_38_421_47_end:
+        %tmp.7 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_12_421_47_begin] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_38_421_47_true] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_38_421_47_end];
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_53_425_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 422 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_53_425_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_53_425_8_stop" ]
+        %uuid.1 = local;
+        symbol [ uuid %uuid.1 422 16 20 ];
+        %tmp.8 = lgetv %characteristic;
+        symbol [ characteristic %tmp.8 422 23 37 ];
+        %tmp.9 = as %tmp.8 { (!Null) };
+        symbol [ getUuid %tmp.10 422 38 45 ];
+        %tmp.10 = getv function %tmp.9 :getUuid;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %uuid.1 %tmp.11;
+        symbol [ uuid %uuid.1 422 16 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 423 12 ]
+        symbol [ System %tmp.12 423 12 18 ];
+        %tmp.12 = getm $.Toybox.System;
+        symbol [ println %tmp.13 423 19 26 ];
+        %tmp.13 = getv function %tmp.12 :println;
+        %tmp.14 = "Characteristic changed: ";
+        %tmp.15 = lgetv %uuid.1;
+        symbol [ uuid %tmp.15 423 56 60 ];
+        symbol [ toString %tmp.16 423 61 69 ];
+        %tmp.16 = getv function %tmp.15 :toString;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        %tmp.18 = add %tmp.14 %tmp.17;
+        invoke %tmp.12 %tmp.13(%tmp.18);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 424 12 ]
+        symbol [ _manager %tmp.20 424 12 20 ];
+        %tmp.20 = getv ? :_manager;
+        symbol [ onDataReceived %tmp.21 424 21 35 ];
+        %tmp.21 = getv function %tmp.20 :onDataReceived;
+        %tmp.22 = lgetv %characteristic;
+        symbol [ characteristic %tmp.22 424 36 50 ];
+        %tmp.23 = as %tmp.22 { (!Null) };
+        %tmp.24 = lgetv %value;
+        symbol [ value %tmp.24 424 52 57 ];
+        %tmp.25 = as %tmp.24 { (!Null) };
+        invoke %tmp.20 %tmp.21(%tmp.23, %tmp.25);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_53_425_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_421_8_425_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_420_60_426_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 428; @symbol_functiondef = [onCharacteristicRead,428,13,33]; @symbol_param<0> = [characteristic,428,34,48]; @symbol_param<1> = [status,428,50,56]; @symbol_param<2> = [value,428,58,63]; ]
+    function onCharacteristicRead(characteristic, status, value) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_428_65_432_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 429 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_12_429_53_begin:
+        %tmp.1 = lgetv %status;
+        symbol [ status %tmp.1 429 12 18 ];
+        symbol [ Ble %tmp.2 429 22 25 ];
+        %tmp.2 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ STATUS_SUCCESS %tmp.3 429 26 40 ];
+        %tmp.3 = getv %tmp.2 :STATUS_SUCCESS;
+        %tmp.4 = eq %tmp.1 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_44_429_53_true:
+        %tmp.5 = lgetv %value;
+        symbol [ value %tmp.5 429 44 49 ];
+        %tmp.6 = null;
+        %tmp.7 = ne %tmp.5 %tmp.6;
+        push %tmp.7;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_44_429_53_end:
+        %tmp.8 = phi [%tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_12_429_53_begin] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_44_429_53_true] [%tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_44_429_53_end];
+        bf %tmp.8 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_59_431_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 430 12 ]
+        symbol [ _manager %tmp.10 430 12 20 ];
+        %tmp.10 = getv ? :_manager;
+        symbol [ onDataReceived %tmp.11 430 21 35 ];
+        %tmp.11 = getv function %tmp.10 :onDataReceived;
+        %tmp.12 = lgetv %characteristic;
+        symbol [ characteristic %tmp.12 430 36 50 ];
+        %tmp.13 = lgetv %value;
+        symbol [ value %tmp.13 430 52 57 ];
+        %tmp.14 = as %tmp.13 { (!Null) };
+        invoke %tmp.10 %tmp.11(%tmp.12, %tmp.14);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_59_431_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_429_8_431_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_428_65_432_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 434; @symbol_functiondef = [onCharacteristicWrite,434,13,34]; @symbol_param<0> = [characteristic,434,35,49]; @symbol_param<1> = [status,434,51,57]; ]
+    function onCharacteristicWrite(characteristic, status) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_434_59_440_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 435 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_stmt:
+        %tmp.1 = lgetv %status;
+        symbol [ status %tmp.1 435 12 18 ];
+        symbol [ Ble %tmp.2 435 22 25 ];
+        %tmp.2 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ STATUS_SUCCESS %tmp.3 435 26 40 ];
+        %tmp.3 = getv %tmp.2 :STATUS_SUCCESS;
+        %tmp.4 = eq %tmp.1 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_42_437_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 436 12 ]
+        symbol [ System %tmp.5 436 12 18 ];
+        %tmp.5 = getm $.Toybox.System;
+        symbol [ println %tmp.6 436 19 26 ];
+        %tmp.6 = getv function %tmp.5 :println;
+        %tmp.7 = "Characteristic write successful";
+        invoke %tmp.5 %tmp.6(%tmp.7);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_42_437_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_437_15_439_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 438 12 ]
+        symbol [ System %tmp.8 438 12 18 ];
+        %tmp.8 = getm $.Toybox.System;
+        symbol [ println %tmp.9 438 19 26 ];
+        %tmp.9 = getv function %tmp.8 :println;
+        %tmp.10 = "Characteristic write failed with status: ";
+        %tmp.11 = lgetv %status;
+        symbol [ status %tmp.11 438 73 79 ];
+        %tmp.12 = add %tmp.10 %tmp.11;
+        invoke %tmp.8 %tmp.9(%tmp.12);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_437_15_439_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_435_8_439_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_434_59_440_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 442; @symbol_functiondef = [onDescriptorWrite,442,13,30]; @symbol_param<0> = [descriptor,442,31,41]; @symbol_param<1> = [status,442,43,49]; ]
+    function onDescriptorWrite(descriptor, status) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_442_51_448_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 443 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_stmt:
+        %tmp.1 = lgetv %status;
+        symbol [ status %tmp.1 443 12 18 ];
+        symbol [ Ble %tmp.2 443 22 25 ];
+        %tmp.2 = getm $.Toybox.BluetoothLowEnergy;
+        symbol [ STATUS_SUCCESS %tmp.3 443 26 40 ];
+        %tmp.3 = getv %tmp.2 :STATUS_SUCCESS;
+        %tmp.4 = eq %tmp.1 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_42_445_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 444 12 ]
+        symbol [ System %tmp.5 444 12 18 ];
+        %tmp.5 = getm $.Toybox.System;
+        symbol [ println %tmp.6 444 19 26 ];
+        %tmp.6 = getv function %tmp.5 :println;
+        %tmp.7 = "Descriptor write successful";
+        invoke %tmp.5 %tmp.6(%tmp.7);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_42_445_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_445_15_447_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 446 12 ]
+        symbol [ System %tmp.8 446 12 18 ];
+        %tmp.8 = getm $.Toybox.System;
+        symbol [ println %tmp.9 446 19 26 ];
+        %tmp.9 = getv function %tmp.8 :println;
+        %tmp.10 = "Descriptor write failed with status: ";
+        %tmp.11 = lgetv %status;
+        symbol [ status %tmp.11 446 69 75 ];
+        %tmp.12 = add %tmp.10 %tmp.11;
+        invoke %tmp.8 %tmp.9(%tmp.12);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_445_15_447_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_443_8_447_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_442_51_448_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 450; @symbol_functiondef = [onPairingRequest,450,13,29]; @symbol_param<0> = [device,450,30,36]; @symbol_param<1> = [pairingType,450,38,49]; ]
+    function onPairingRequest(device, pairingType) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_450_51_457_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 451 8 ]
+        symbol [ System %tmp.1 451 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 451 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Pairing request received, type: ";
+        %tmp.4 = lgetv %pairingType;
+        symbol [ pairingType %tmp.4 451 60 71 ];
+        %tmp.5 = add %tmp.3 %tmp.4;
+        invoke %tmp.1 %tmp.2(%tmp.5);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc" 456 8 ]
+        symbol [ _manager %tmp.7 456 8 16 ];
+        %tmp.7 = getv ? :_manager;
+        symbol [ onPinRequested %tmp.8 456 17 31 ];
+        %tmp.8 = getv function %tmp.7 :onPinRequested;
+        %tmp.9 = lgetv %device;
+        symbol [ device %tmp.9 456 32 38 ];
+        invoke %tmp.7 %tmp.8(%tmp.9);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_BleManager_mc_450_51_457_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/BleManager.mc"; @line = 6; ]
+<init> {
+}

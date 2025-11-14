@@ -140,16 +140,16 @@ class StatusView extends WatchUi.View {
                 dc.drawText(centerX, 130, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
             }
 
-            // Menu options - start much lower and use minimal spacing
+            // Menu options - compact and readable
             System.println(">>> Drawing menu options");
-            y = height - 70;
+            y = height - 45;
             dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
 
             System.println(">>> Drawing state-specific menu items");
             if (state == BleManager.STATE_DISCONNECTED) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msg DN:Nodes SEL:Compose", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "SELECT:Connect", Graphics.TEXT_JUSTIFY_CENTER);
             } else if (state == BleManager.STATE_READY) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msg DN:Nodes MENU:Disc", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "SELECT:Messages MENU:Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
             }
 
             System.println(">>> StatusView.onUpdate() COMPLETE");
@@ -188,34 +188,49 @@ class StatusViewDelegate extends WatchUi.BehaviorDelegate {
         _viewManager = viewManager;
     }
 
+    // Handle SELECT button (primary action)
+    function onSelect() {
+        var bleManager = _view.getBleManager();
+        var state = bleManager.getConnectionState();
+
+        if (state == BleManager.STATE_DISCONNECTED) {
+            // When disconnected, SELECT connects
+            _view.setStatusMessage("Scanning for devices...");
+            handleConnect();
+        } else if (state == BleManager.STATE_READY) {
+            // When connected, SELECT shows messages
+            _viewManager.showMessageListView();
+        }
+        return true;
+    }
+
+    // Handle MENU button
+    function onMenu() {
+        var bleManager = _view.getBleManager();
+        if (bleManager.isConnected()) {
+            handleDisconnect();
+        } else {
+            _viewManager.showSettingsView();
+        }
+        return true;
+    }
+
+    // Handle BACK button
+    function onBack() {
+        // Exit app or return to watch face
+        return false;
+    }
+
+    // Legacy key handler for compatibility
     function onKey(keyEvent) {
         var key = keyEvent.getKey();
 
-        if (key == WatchUi.KEY_UP) {
-            // Show message list
-            _viewManager.showMessageListView();
-            return true;
-        } else if (key == WatchUi.KEY_DOWN) {
-            // Show node list
-            _viewManager.showNodeListView();
-            return true;
-        } else if (key == WatchUi.KEY_ENTER) {
-            // Show compose view
-            _viewManager.showComposeView();
-            return true;
-        } else if (key == WatchUi.KEY_START) {
-            // Connect/scan
-            handleConnect();
-            return true;
+        if (key == WatchUi.KEY_ENTER) {
+            return onSelect();
         } else if (key == WatchUi.KEY_MENU) {
-            // Settings when disconnected, Disconnect when connected
-            var bleManager = _view.getBleManager();
-            if (bleManager.isConnected()) {
-                handleDisconnect();
-            } else {
-                _viewManager.showSettingsView();
-            }
-            return true;
+            return onMenu();
+        } else if (key == WatchUi.KEY_ESC) {
+            return onBack();
         }
 
         return false;

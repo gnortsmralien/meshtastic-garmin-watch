@@ -1,0 +1,699 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [WatchUi,6,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Graphics,7,13,21]; ]
+using Toybox.Graphics;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [Lang,8,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 9; @symbol_usingdef<0> = [Toybox,9,6,12]; @symbol_usingdef<1> = [System,9,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 11; @symbol_classdef = [PinEntryView,11,6,18]; @symbol_extends<0> = [WatchUi,11,27,34]; @symbol_extends<1> = [View,11,35,39]; ]
+class PinEntryView extends WatchUi.View {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 11; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 11; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 12; @position = 16; @symbol_vardef = [_pin,12,16,20]; ]
+    private
+    var _pin = "";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 13; @position = 16; @symbol_vardef = [_callback,13,16,25]; ]
+    private
+    var _callback = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 14; @position = 16; @symbol_vardef = [_message,14,16,24]; ]
+    private
+    var _message = "Enter Device PIN";
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 16; @symbol_functiondef = [initialize,16,13,23]; @symbol_param<0> = [callback,16,24,32]; ]
+    function initialize(callback) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_16_34_19_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 17 8 ]
+        symbol [ View %tmp.2 17 8 12 ];
+        %tmp.2 = getv ? :View;
+        symbol [ initialize %tmp.3 17 13 23 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 18 8 ]
+        %tmp.4 = lgetv %callback;
+        symbol [ callback %tmp.4 18 20 28 ];
+        symbol [ _callback ? 18 8 17 ];
+        putv self :_callback %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_16_34_19_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 21; @symbol_functiondef = [onUpdate,21,13,21]; @symbol_param<0> = [dc,21,22,24]; @symbol_param<0>_type<0> = [Graphics,21,28,36]; @symbol_param<0>_type<1> = [Dc,21,37,39]; ]
+    function onUpdate(dc as Graphics.Dc) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 22 8 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 22 8 10 ];
+        symbol [ setColor %tmp.2 22 11 19 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ Graphics %tmp.3 22 20 28 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.4 22 29 40 ];
+        %tmp.4 = getv %tmp.3 :COLOR_WHITE;
+        symbol [ Graphics %tmp.5 22 42 50 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.6 22 51 62 ];
+        %tmp.6 = getv %tmp.5 :COLOR_BLACK;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 23 8 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 23 8 10 ];
+        symbol [ clear %tmp.8 23 11 16 ];
+        %tmp.8 = getv function %tmp.7 :clear;
+        invoke %tmp.7 %tmp.8();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 25 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_stop" ]
+        %width.1 = local;
+        symbol [ width %width.1 25 12 17 ];
+        %tmp.9 = lgetv %dc;
+        symbol [ dc %tmp.9 25 20 22 ];
+        symbol [ getWidth %tmp.10 25 23 31 ];
+        %tmp.10 = getv function %tmp.9 :getWidth;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %width.1 %tmp.11;
+        symbol [ width %width.1 25 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 26 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_stop" ]
+        %height.2 = local;
+        symbol [ height %height.2 26 12 18 ];
+        %tmp.12 = lgetv %dc;
+        symbol [ dc %tmp.12 26 21 23 ];
+        symbol [ getHeight %tmp.13 26 24 33 ];
+        %tmp.13 = getv function %tmp.12 :getHeight;
+        %tmp.14 = invoke %tmp.12 %tmp.13();
+        lputv %height.2 %tmp.14;
+        symbol [ height %height.2 26 12 18 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 27 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_stop" ]
+        %centerX.3 = local;
+        symbol [ centerX %centerX.3 27 12 19 ];
+        %tmp.15 = lgetv %width.1;
+        symbol [ width %tmp.15 27 22 27 ];
+        %tmp.16 = 2;
+        %tmp.17 = div %tmp.15 %tmp.16;
+        lputv %centerX.3 %tmp.17;
+        symbol [ centerX %centerX.3 27 12 19 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 30 8 ]
+        %tmp.18 = lgetv %dc;
+        symbol [ dc %tmp.18 30 8 10 ];
+        symbol [ setColor %tmp.19 30 11 19 ];
+        %tmp.19 = getv function %tmp.18 :setColor;
+        symbol [ Graphics %tmp.20 30 20 28 ];
+        %tmp.20 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.21 30 29 42 ];
+        %tmp.21 = getv %tmp.20 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.22 30 44 52 ];
+        %tmp.22 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.23 30 53 70 ];
+        %tmp.23 = getv %tmp.22 :COLOR_TRANSPARENT;
+        invoke %tmp.18 %tmp.19(%tmp.21, %tmp.23);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 31 8 ]
+        %tmp.24 = lgetv %dc;
+        symbol [ dc %tmp.24 31 8 10 ];
+        symbol [ drawText %tmp.25 31 11 19 ];
+        %tmp.25 = getv function %tmp.24 :drawText;
+        %tmp.26 = lgetv %centerX.3;
+        symbol [ centerX %tmp.26 31 20 27 ];
+        %tmp.27 = lgetv %height.2;
+        symbol [ height %tmp.27 31 29 35 ];
+        %tmp.28 = 2;
+        %tmp.29 = div %tmp.27 %tmp.28;
+        %tmp.30 = 60;
+        %tmp.31 = sub %tmp.29 %tmp.30;
+        symbol [ Graphics %tmp.32 31 46 54 ];
+        %tmp.32 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.33 31 55 65 ];
+        %tmp.33 = getv %tmp.32 :FONT_SMALL;
+        symbol [ _message %tmp.35 31 67 75 ];
+        %tmp.35 = getv ? :_message;
+        symbol [ Graphics %tmp.36 31 77 85 ];
+        %tmp.36 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.37 31 86 105 ];
+        %tmp.37 = getv %tmp.36 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.31, %tmp.33, %tmp.35, %tmp.37);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 34 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_stmt:
+        symbol [ _pin %tmp.39 34 12 16 ];
+        %tmp.39 = getv ? :_pin;
+        symbol [ length %tmp.40 34 17 23 ];
+        %tmp.40 = getv function %tmp.39 :length;
+        %tmp.41 = invoke %tmp.39 %tmp.40();
+        %tmp.42 = 0;
+        %tmp.43 = gt %tmp.41 %tmp.42;
+        bf %tmp.43 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_31_47_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 36 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_31_47_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_31_47_8_stop" ]
+        %displayPin.4 = local;
+        symbol [ displayPin %displayPin.4 36 16 26 ];
+        %tmp.44 = "";
+        lputv %displayPin.4 %tmp.44;
+        symbol [ displayPin %displayPin.4 36 16 26 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 37 12 ]
+        for @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_test @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_incr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_init:
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_begin" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_end" ]
+        %i.5 = local;
+        symbol [ i %i.5 37 21 22 ];
+        %tmp.45 = 0;
+        lputv %i.5 %tmp.45;
+        symbol [ i %i.5 37 21 22 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_test:
+        %tmp.46 = lgetv %i.5;
+        symbol [ i %tmp.46 37 28 29 ];
+        symbol [ _pin %tmp.48 37 32 36 ];
+        %tmp.48 = getv ? :_pin;
+        symbol [ length %tmp.49 37 37 43 ];
+        %tmp.49 = getv function %tmp.48 :length;
+        %tmp.50 = invoke %tmp.48 %tmp.49();
+        %tmp.51 = lt %tmp.46 %tmp.50;
+        bf %tmp.51 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_begin:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_52_39_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 38 16 ]
+        %tmp.52 = lgetv %displayPin.4;
+        symbol [ displayPin %tmp.52 38 16 26 ];
+        %tmp.53 = "*";
+        %tmp.54 = add %tmp.52 %tmp.53;
+        lputv %displayPin.4 %tmp.54;
+        symbol [ displayPin %displayPin.4 38 16 26 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_52_39_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_incr:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 37 ]
+        %tmp.57 = lgetv %i.5;
+        symbol [ i %tmp.57 37 47 48 ];
+        %tmp.58 = add %tmp.57 1;
+        lputv %i.5 %tmp.58;
+        symbol [ i %i.5 37 47 48 ];
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_test;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_37_12_39_12_for_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 41 12 ]
+        %tmp.59 = lgetv %dc;
+        symbol [ dc %tmp.59 41 12 14 ];
+        symbol [ setColor %tmp.60 41 15 23 ];
+        %tmp.60 = getv function %tmp.59 :setColor;
+        symbol [ Graphics %tmp.61 41 24 32 ];
+        %tmp.61 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.62 41 33 44 ];
+        %tmp.62 = getv %tmp.61 :COLOR_WHITE;
+        symbol [ Graphics %tmp.63 41 46 54 ];
+        %tmp.63 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.64 41 55 72 ];
+        %tmp.64 = getv %tmp.63 :COLOR_TRANSPARENT;
+        invoke %tmp.59 %tmp.60(%tmp.62, %tmp.64);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 42 12 ]
+        %tmp.65 = lgetv %dc;
+        symbol [ dc %tmp.65 42 12 14 ];
+        symbol [ drawText %tmp.66 42 15 23 ];
+        %tmp.66 = getv function %tmp.65 :drawText;
+        %tmp.67 = lgetv %centerX.3;
+        symbol [ centerX %tmp.67 42 24 31 ];
+        %tmp.68 = lgetv %height.2;
+        symbol [ height %tmp.68 42 33 39 ];
+        %tmp.69 = 2;
+        %tmp.70 = div %tmp.68 %tmp.69;
+        %tmp.71 = 20;
+        %tmp.72 = sub %tmp.70 %tmp.71;
+        symbol [ Graphics %tmp.73 42 50 58 ];
+        %tmp.73 = getm $.Toybox.Graphics;
+        symbol [ FONT_LARGE %tmp.74 42 59 69 ];
+        %tmp.74 = getv %tmp.73 :FONT_LARGE;
+        %tmp.75 = lgetv %displayPin.4;
+        symbol [ displayPin %tmp.75 42 71 81 ];
+        symbol [ Graphics %tmp.76 42 83 91 ];
+        %tmp.76 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.77 42 92 111 ];
+        %tmp.77 = getv %tmp.76 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.65 %tmp.66(%tmp.67, %tmp.72, %tmp.74, %tmp.75, %tmp.77);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 45 12 ]
+        %tmp.78 = lgetv %dc;
+        symbol [ dc %tmp.78 45 12 14 ];
+        symbol [ setColor %tmp.79 45 15 23 ];
+        %tmp.79 = getv function %tmp.78 :setColor;
+        symbol [ Graphics %tmp.80 45 24 32 ];
+        %tmp.80 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLUE %tmp.81 45 33 43 ];
+        %tmp.81 = getv %tmp.80 :COLOR_BLUE;
+        symbol [ Graphics %tmp.82 45 45 53 ];
+        %tmp.82 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.83 45 54 71 ];
+        %tmp.83 = getv %tmp.82 :COLOR_TRANSPARENT;
+        invoke %tmp.78 %tmp.79(%tmp.81, %tmp.83);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 46 12 ]
+        %tmp.84 = lgetv %dc;
+        symbol [ dc %tmp.84 46 12 14 ];
+        symbol [ drawText %tmp.85 46 15 23 ];
+        %tmp.85 = getv function %tmp.84 :drawText;
+        %tmp.86 = lgetv %centerX.3;
+        symbol [ centerX %tmp.86 46 24 31 ];
+        %tmp.87 = lgetv %height.2;
+        symbol [ height %tmp.87 46 33 39 ];
+        %tmp.88 = 2;
+        %tmp.89 = div %tmp.87 %tmp.88;
+        %tmp.90 = 15;
+        %tmp.91 = add %tmp.89 %tmp.90;
+        symbol [ Graphics %tmp.92 46 50 58 ];
+        %tmp.92 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.93 46 59 69 ];
+        %tmp.93 = getv %tmp.92 :FONT_SMALL;
+        symbol [ _pin %tmp.95 46 71 75 ];
+        %tmp.95 = getv ? :_pin;
+        symbol [ Graphics %tmp.96 46 77 85 ];
+        %tmp.96 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.97 46 86 105 ];
+        %tmp.97 = getv %tmp.96 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.84 %tmp.85(%tmp.86, %tmp.91, %tmp.93, %tmp.95, %tmp.97);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_31_47_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_47_15_50_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 48 12 ]
+        %tmp.98 = lgetv %dc;
+        symbol [ dc %tmp.98 48 12 14 ];
+        symbol [ setColor %tmp.99 48 15 23 ];
+        %tmp.99 = getv function %tmp.98 :setColor;
+        symbol [ Graphics %tmp.100 48 24 32 ];
+        %tmp.100 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.101 48 33 46 ];
+        %tmp.101 = getv %tmp.100 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.102 48 48 56 ];
+        %tmp.102 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.103 48 57 74 ];
+        %tmp.103 = getv %tmp.102 :COLOR_TRANSPARENT;
+        invoke %tmp.98 %tmp.99(%tmp.101, %tmp.103);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 49 12 ]
+        %tmp.104 = lgetv %dc;
+        symbol [ dc %tmp.104 49 12 14 ];
+        symbol [ drawText %tmp.105 49 15 23 ];
+        %tmp.105 = getv function %tmp.104 :drawText;
+        %tmp.106 = lgetv %centerX.3;
+        symbol [ centerX %tmp.106 49 24 31 ];
+        %tmp.107 = lgetv %height.2;
+        symbol [ height %tmp.107 49 33 39 ];
+        %tmp.108 = 2;
+        %tmp.109 = div %tmp.107 %tmp.108;
+        symbol [ Graphics %tmp.110 49 45 53 ];
+        %tmp.110 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.111 49 54 65 ];
+        %tmp.111 = getv %tmp.110 :FONT_MEDIUM;
+        %tmp.112 = "(empty)";
+        symbol [ Graphics %tmp.113 49 78 86 ];
+        %tmp.113 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.114 49 87 106 ];
+        %tmp.114 = getv %tmp.113 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.104 %tmp.105(%tmp.106, %tmp.109, %tmp.111, %tmp.112, %tmp.114);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_47_15_50_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_34_8_50_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 53 8 ]
+        %tmp.115 = lgetv %dc;
+        symbol [ dc %tmp.115 53 8 10 ];
+        symbol [ setColor %tmp.116 53 11 19 ];
+        %tmp.116 = getv function %tmp.115 :setColor;
+        symbol [ Graphics %tmp.117 53 20 28 ];
+        %tmp.117 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.118 53 29 42 ];
+        %tmp.118 = getv %tmp.117 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.119 53 44 52 ];
+        %tmp.119 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.120 53 53 70 ];
+        %tmp.120 = getv %tmp.119 :COLOR_TRANSPARENT;
+        invoke %tmp.115 %tmp.116(%tmp.118, %tmp.120);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 54 8 ]
+        %tmp.121 = lgetv %dc;
+        symbol [ dc %tmp.121 54 8 10 ];
+        symbol [ drawText %tmp.122 54 11 19 ];
+        %tmp.122 = getv function %tmp.121 :drawText;
+        %tmp.123 = lgetv %centerX.3;
+        symbol [ centerX %tmp.123 54 20 27 ];
+        %tmp.124 = lgetv %height.2;
+        symbol [ height %tmp.124 54 29 35 ];
+        %tmp.125 = 50;
+        %tmp.126 = sub %tmp.124 %tmp.125;
+        symbol [ Graphics %tmp.127 54 42 50 ];
+        %tmp.127 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.128 54 51 60 ];
+        %tmp.128 = getv %tmp.127 :FONT_TINY;
+        %tmp.129 = "SELECT: Enter PIN";
+        symbol [ Graphics %tmp.130 55 40 48 ];
+        %tmp.130 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.131 55 49 68 ];
+        %tmp.131 = getv %tmp.130 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.121 %tmp.122(%tmp.123, %tmp.126, %tmp.128, %tmp.129, %tmp.131);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 56 8 ]
+        %tmp.132 = lgetv %dc;
+        symbol [ dc %tmp.132 56 8 10 ];
+        symbol [ drawText %tmp.133 56 11 19 ];
+        %tmp.133 = getv function %tmp.132 :drawText;
+        %tmp.134 = lgetv %centerX.3;
+        symbol [ centerX %tmp.134 56 20 27 ];
+        %tmp.135 = lgetv %height.2;
+        symbol [ height %tmp.135 56 29 35 ];
+        %tmp.136 = 35;
+        %tmp.137 = sub %tmp.135 %tmp.136;
+        symbol [ Graphics %tmp.138 56 42 50 ];
+        %tmp.138 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.139 56 51 60 ];
+        %tmp.139 = getv %tmp.138 :FONT_TINY;
+        %tmp.140 = "ENTER: Submit | BACK: Cancel";
+        symbol [ Graphics %tmp.141 57 51 59 ];
+        %tmp.141 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.142 57 60 79 ];
+        %tmp.142 = getv %tmp.141 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.132 %tmp.133(%tmp.134, %tmp.137, %tmp.139, %tmp.140, %tmp.142);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_21_49_58_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 60; @symbol_functiondef = [setPin,60,13,19]; @symbol_param<0> = [pin,60,20,23]; ]
+    function setPin(pin) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_60_25_63_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 61 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_begin:
+        %tmp.1 = lgetv %pin;
+        symbol [ pin %tmp.1 61 15 18 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_true:
+        %tmp.4 = lgetv %pin;
+        symbol [ pin %tmp.4 61 29 32 ];
+        %tmp.5 = as %tmp.4 { (!Null) };
+        push %tmp.5;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_else_false:
+        %tmp.6 = "";
+        push %tmp.6;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_end:
+        %tmp.7 = phi [%tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_begin] [%tmp.5 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_true] [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_else_false] [%tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_61_15_61_35_end];
+        symbol [ _pin ? 61 8 12 ];
+        putv self :_pin %tmp.7;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 62 8 ]
+        symbol [ WatchUi %tmp.8 62 8 15 ];
+        %tmp.8 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.9 62 16 29 ];
+        %tmp.9 = getv function %tmp.8 :requestUpdate;
+        invoke %tmp.8 %tmp.9();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_60_25_63_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 65; @symbol_functiondef = [getPin,65,13,19]; ]
+    function getPin() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_65_22_67_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 66 8 ]
+        symbol [ _pin %tmp.2 66 15 19 ];
+        %tmp.2 = getv ? :_pin;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_65_22_67_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 69; @symbol_functiondef = [submit,69,13,19]; ]
+    function submit() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_69_22_73_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 70 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_12_70_46_begin:
+        symbol [ _pin %tmp.2 70 12 16 ];
+        %tmp.2 = getv ? :_pin;
+        symbol [ length %tmp.3 70 17 23 ];
+        %tmp.3 = getv function %tmp.2 :length;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.5 = 0;
+        %tmp.6 = gt %tmp.4 %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_33_70_46_true:
+        symbol [ _callback %tmp.8 70 33 42 ];
+        %tmp.8 = getv ? :_callback;
+        %tmp.9 = null;
+        %tmp.10 = ne %tmp.8 %tmp.9;
+        push %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_33_70_46_end:
+        %tmp.11 = phi [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_12_70_46_begin] [%tmp.10 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_33_70_46_true] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_33_70_46_end];
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_52_72_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 71 12 ]
+        symbol [ _callback %tmp.13 71 12 21 ];
+        %tmp.13 = getv ? :_callback;
+        %tmp.14 = as %tmp.13 { (!Null) };
+        symbol [ invoke %tmp.15 71 22 28 ];
+        %tmp.15 = getv function %tmp.14 :invoke;
+        symbol [ _pin %tmp.17 71 29 33 ];
+        %tmp.17 = getv ? :_pin;
+        invoke %tmp.14 %tmp.15(%tmp.17);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_52_72_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_70_8_72_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_69_22_73_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 75; @symbol_functiondef = [cancel,75,13,19]; ]
+    function cancel() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_75_22_79_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 76 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_8_78_8_if_stmt:
+        symbol [ _callback %tmp.2 76 12 21 ];
+        %tmp.2 = getv ? :_callback;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_8_78_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_31_78_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 77 12 ]
+        symbol [ _callback %tmp.6 77 12 21 ];
+        %tmp.6 = getv ? :_callback;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ invoke %tmp.8 77 22 28 ];
+        %tmp.8 = getv function %tmp.7 :invoke;
+        %tmp.9 = null;
+        invoke %tmp.7 %tmp.8(%tmp.9);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_31_78_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_8_78_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_76_8_78_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_75_22_79_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 82; @symbol_classdef = [PinEntryViewDelegate,82,6,26]; @symbol_extends<0> = [WatchUi,82,35,42]; @symbol_extends<1> = [BehaviorDelegate,82,43,59]; ]
+class PinEntryViewDelegate extends WatchUi.BehaviorDelegate {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 82; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 82; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 83; @position = 16; @symbol_vardef = [_view,83,16,21]; ]
+    private
+    var _view;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 85; @symbol_functiondef = [initialize,85,13,23]; @symbol_param<0> = [view,85,24,28]; ]
+    function initialize(view) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_85_30_88_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 86 8 ]
+        symbol [ BehaviorDelegate %tmp.2 86 8 24 ];
+        %tmp.2 = getv ? :BehaviorDelegate;
+        symbol [ initialize %tmp.3 86 25 35 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 87 8 ]
+        %tmp.4 = lgetv %view;
+        symbol [ view %tmp.4 87 16 20 ];
+        symbol [ _view ? 87 8 13 ];
+        putv self :_view %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_85_30_88_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 90; @symbol_functiondef = [onKey,90,13,18]; @symbol_param<0> = [keyEvent,90,19,27]; ]
+    function onKey(keyEvent) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_90_29_106_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 91 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_90_29_106_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_90_29_106_4_stop" ]
+        %key.1 = local;
+        symbol [ key %key.1 91 12 15 ];
+        %tmp.1 = lgetv %keyEvent;
+        symbol [ keyEvent %tmp.1 91 18 26 ];
+        symbol [ getKey %tmp.2 91 27 33 ];
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+        symbol [ key %key.1 91 12 15 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 93 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_stmt:
+        %tmp.4 = lgetv %key.1;
+        symbol [ key %tmp.4 93 12 15 ];
+        symbol [ WatchUi %tmp.5 93 19 26 ];
+        %tmp.5 = getm $.Toybox.WatchUi;
+        symbol [ KEY_ENTER %tmp.6 93 27 36 ];
+        %tmp.6 = getv %tmp.5 :KEY_ENTER;
+        %tmp.7 = eq %tmp.4 %tmp.6;
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_38_98_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 95 12 ]
+        symbol [ _view %tmp.9 95 12 17 ];
+        %tmp.9 = getv ? :_view;
+        symbol [ submit %tmp.10 95 18 24 ];
+        %tmp.10 = getv function %tmp.9 :submit;
+        invoke %tmp.9 %tmp.10();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 96 12 ]
+        symbol [ WatchUi %tmp.11 96 12 19 ];
+        %tmp.11 = getm $.Toybox.WatchUi;
+        symbol [ popView %tmp.12 96 20 27 ];
+        %tmp.12 = getv function %tmp.11 :popView;
+        symbol [ WatchUi %tmp.13 96 28 35 ];
+        %tmp.13 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.14 96 36 46 ];
+        %tmp.14 = getv %tmp.13 :SLIDE_DOWN;
+        invoke %tmp.11 %tmp.12(%tmp.14);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 97 12 ]
+        %tmp.15 = true;
+        ret %tmp.15;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_38_98_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 98 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_15_103_8_if_stmt:
+        %tmp.16 = lgetv %key.1;
+        symbol [ key %tmp.16 98 19 22 ];
+        symbol [ WatchUi %tmp.17 98 26 33 ];
+        %tmp.17 = getm $.Toybox.WatchUi;
+        symbol [ KEY_ESC %tmp.18 98 34 41 ];
+        %tmp.18 = getv %tmp.17 :KEY_ESC;
+        %tmp.19 = eq %tmp.16 %tmp.18;
+        bf %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_15_103_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_15_103_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_43_103_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 100 12 ]
+        symbol [ _view %tmp.21 100 12 17 ];
+        %tmp.21 = getv ? :_view;
+        symbol [ cancel %tmp.22 100 18 24 ];
+        %tmp.22 = getv function %tmp.21 :cancel;
+        invoke %tmp.21 %tmp.22();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 101 12 ]
+        symbol [ WatchUi %tmp.23 101 12 19 ];
+        %tmp.23 = getm $.Toybox.WatchUi;
+        symbol [ popView %tmp.24 101 20 27 ];
+        %tmp.24 = getv function %tmp.23 :popView;
+        symbol [ WatchUi %tmp.25 101 28 35 ];
+        %tmp.25 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.26 101 36 46 ];
+        %tmp.26 = getv %tmp.25 :SLIDE_DOWN;
+        invoke %tmp.23 %tmp.24(%tmp.26);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 102 12 ]
+        %tmp.27 = true;
+        ret %tmp.27;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_43_103_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_15_103_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_98_15_103_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_93_8_103_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 105 8 ]
+        %tmp.28 = false;
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_90_29_106_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 108; @symbol_functiondef = [onSelect,108,13,21]; ]
+    function onSelect() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 110 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_stop" ]
+        %textPicker.1 = local;
+        symbol [ textPicker %textPicker.1 110 12 22 ];
+        symbol [ WatchUi %tmp.3 110 29 36 ];
+        %tmp.3 = getm $.Toybox.WatchUi;
+        symbol [ TextPicker %tmp.4 110 37 47 ];
+        %tmp.4 = getv function ? %tmp.3 :TextPicker;
+        symbol [ _view %tmp.6 110 48 53 ];
+        %tmp.6 = getv ? :_view;
+        symbol [ getPin %tmp.7 110 54 60 ];
+        %tmp.7 = getv function %tmp.6 :getPin;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        %tmp.1 = newc %tmp.4 (%tmp.8);
+        lputv %textPicker.1 %tmp.1;
+        symbol [ textPicker %textPicker.1 110 12 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 111 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 111 12 20 ];
+        symbol [ PinTextPickerDelegate %tmp.12 111 27 48 ];
+        %tmp.12 = getv ? :PinTextPickerDelegate;
+        symbol [ _view %tmp.14 111 49 54 ];
+        %tmp.14 = getv ? :_view;
+        %tmp.9 = newc %tmp.12 (%tmp.14);
+        lputv %delegate.2 %tmp.9;
+        symbol [ delegate %delegate.2 111 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 112 8 ]
+        symbol [ WatchUi %tmp.15 112 8 15 ];
+        %tmp.15 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.16 112 16 24 ];
+        %tmp.16 = getv function %tmp.15 :pushView;
+        %tmp.17 = lgetv %textPicker.1;
+        symbol [ textPicker %tmp.17 112 25 35 ];
+        %tmp.18 = lgetv %delegate.2;
+        symbol [ delegate %tmp.18 112 37 45 ];
+        symbol [ WatchUi %tmp.19 112 47 54 ];
+        %tmp.19 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_UP %tmp.20 112 55 63 ];
+        %tmp.20 = getv %tmp.19 :SLIDE_UP;
+        invoke %tmp.15 %tmp.16(%tmp.17, %tmp.18, %tmp.20);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 113 8 ]
+        %tmp.21 = true;
+        ret %tmp.21;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_108_24_114_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 118; @symbol_classdef = [PinTextPickerDelegate,118,6,27]; @symbol_extends<0> = [WatchUi,118,36,43]; @symbol_extends<1> = [TextPickerDelegate,118,44,62]; ]
+class PinTextPickerDelegate extends WatchUi.TextPickerDelegate {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 118; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 118; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 119; @position = 16; @symbol_vardef = [_view,119,16,21]; ]
+    private
+    var _view;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 121; @symbol_functiondef = [initialize,121,13,23]; @symbol_param<0> = [view,121,24,28]; ]
+    function initialize(view) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_121_30_124_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 122 8 ]
+        symbol [ TextPickerDelegate %tmp.2 122 8 26 ];
+        %tmp.2 = getv ? :TextPickerDelegate;
+        symbol [ initialize %tmp.3 122 27 37 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 123 8 ]
+        %tmp.4 = lgetv %view;
+        symbol [ view %tmp.4 123 16 20 ];
+        symbol [ _view ? 123 8 13 ];
+        putv self :_view %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_121_30_124_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 126; @symbol_functiondef = [onTextEntered,126,13,26]; @symbol_param<0> = [text,126,27,31]; @symbol_param<1> = [changed,126,33,40]; ]
+    function onTextEntered(text, changed) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_126_42_131_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 127 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_8_129_8_if_stmt:
+        %tmp.1 = lgetv %text;
+        symbol [ text %tmp.1 127 12 16 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_8_129_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_8_129_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_26_129_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 128 12 ]
+        symbol [ _view %tmp.5 128 12 17 ];
+        %tmp.5 = getv ? :_view;
+        symbol [ setPin %tmp.6 128 18 24 ];
+        %tmp.6 = getv function %tmp.5 :setPin;
+        %tmp.7 = lgetv %text;
+        symbol [ text %tmp.7 128 25 29 ];
+        %tmp.8 = as %tmp.7 { (!Null) };
+        invoke %tmp.5 %tmp.6(%tmp.8);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_26_129_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_8_129_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_127_8_129_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc" 130 8 ]
+        %tmp.9 = true;
+        ret %tmp.9;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_views_PinEntryView_mc_126_42_131_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/views/PinEntryView.mc"; @line = 6; ]
+<init> {
+}

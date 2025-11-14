@@ -1,0 +1,433 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Lang,6,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [WatchUi,7,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [System,8,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 10; @symbol_classdef = [ViewManager,10,6,17]; ]
+class ViewManager {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 10; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 10; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 11; @symbol_enumdef = [ViewType,11,9,17]; ]
+    static
+    enum ViewType {
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 12; @position = 8; @symbol_enumdec = [VIEW_STATUS,12,8,19]; ]
+        VIEW_STATUS,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 13; @position = 8; @symbol_enumdec = [VIEW_MESSAGE_LIST,13,8,25]; ]
+        VIEW_MESSAGE_LIST,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 14; @position = 8; @symbol_enumdec = [VIEW_NODE_LIST,14,8,22]; ]
+        VIEW_NODE_LIST,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 15; @position = 8; @symbol_enumdec = [VIEW_COMPOSE,15,8,20]; ]
+        VIEW_COMPOSE,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 16; @position = 8; @symbol_enumdec = [VIEW_CUSTOM_MESSAGE,16,8,27]; ]
+        VIEW_CUSTOM_MESSAGE,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 17; @position = 8; @symbol_enumdec = [VIEW_PIN_ENTRY,17,8,22]; ]
+        VIEW_PIN_ENTRY,
+        [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 18; @position = 8; @symbol_enumdec = [VIEW_MESSAGE_DETAIL,18,8,27]; ]
+        VIEW_MESSAGE_DETAIL
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 21; @position = 16; @symbol_vardef = [_currentView,21,16,28]; ]
+    private
+    var _currentView = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 22; @position = 16; @symbol_vardef = [_currentDelegate,22,16,32]; ]
+    private
+    var _currentDelegate = null;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 23; @position = 16; @symbol_vardef = [_bleManager,23,16,27]; ]
+    private
+    var _bleManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 24; @position = 16; @symbol_vardef = [_messageHandler,24,16,31]; ]
+    private
+    var _messageHandler;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 25; @position = 16; @symbol_vardef = [_systemMonitor,25,16,30]; ]
+    private
+    var _systemMonitor;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 26; @position = 16; @symbol_vardef = [_reconnectManager,26,16,33]; ]
+    private
+    var _reconnectManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 27; @position = 16; @symbol_vardef = [_settingsManager,27,16,32]; ]
+    private
+    var _settingsManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 29; @symbol_functiondef = [initialize,29,13,23]; @symbol_param<0> = [bleManager,29,24,34]; @symbol_param<1> = [messageHandler,29,36,50]; @symbol_param<2> = [systemMonitor,29,52,65]; @symbol_param<3> = [reconnectManager,29,67,83]; @symbol_param<4> = [settingsManager,29,85,100]; ]
+    function initialize(bleManager, messageHandler, systemMonitor, reconnectManager, settingsManager) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_29_102_35_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 30 8 ]
+        %tmp.1 = lgetv %bleManager;
+        symbol [ bleManager %tmp.1 30 22 32 ];
+        symbol [ _bleManager ? 30 8 19 ];
+        putv self :_bleManager %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 31 8 ]
+        %tmp.2 = lgetv %messageHandler;
+        symbol [ messageHandler %tmp.2 31 26 40 ];
+        symbol [ _messageHandler ? 31 8 23 ];
+        putv self :_messageHandler %tmp.2;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 32 8 ]
+        %tmp.3 = lgetv %systemMonitor;
+        symbol [ systemMonitor %tmp.3 32 25 38 ];
+        symbol [ _systemMonitor ? 32 8 22 ];
+        putv self :_systemMonitor %tmp.3;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 33 8 ]
+        %tmp.4 = lgetv %reconnectManager;
+        symbol [ reconnectManager %tmp.4 33 28 44 ];
+        symbol [ _reconnectManager ? 33 8 25 ];
+        putv self :_reconnectManager %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 34 8 ]
+        %tmp.5 = lgetv %settingsManager;
+        symbol [ settingsManager %tmp.5 34 27 42 ];
+        symbol [ _settingsManager ? 34 8 24 ];
+        putv self :_settingsManager %tmp.5;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_29_102_35_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 38; @symbol_functiondef = [showStatusView,38,13,27]; ]
+    function showStatusView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 39 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 39 12 16 ];
+        symbol [ StatusView %tmp.4 39 23 33 ];
+        %tmp.4 = getv ? :StatusView;
+        symbol [ _bleManager %tmp.6 39 34 45 ];
+        %tmp.6 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.8 39 47 62 ];
+        %tmp.8 = getv ? :_messageHandler;
+        %tmp.9 = self;
+        symbol [ self %tmp.9 39 64 68 ];
+        symbol [ _systemMonitor %tmp.11 39 70 84 ];
+        %tmp.11 = getv ? :_systemMonitor;
+        symbol [ _reconnectManager %tmp.13 39 86 103 ];
+        %tmp.13 = getv ? :_reconnectManager;
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.8, %tmp.9, %tmp.11, %tmp.13);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 39 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 40 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 40 12 20 ];
+        symbol [ StatusViewDelegate %tmp.17 40 27 45 ];
+        %tmp.17 = getv ? :StatusViewDelegate;
+        %tmp.18 = lgetv %view.1;
+        symbol [ view %tmp.18 40 46 50 ];
+        %tmp.19 = self;
+        symbol [ self %tmp.19 40 52 56 ];
+        %tmp.14 = newc %tmp.17 (%tmp.18, %tmp.19);
+        lputv %delegate.2 %tmp.14;
+        symbol [ delegate %delegate.2 40 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 41 8 ]
+        %tmp.20 = self;
+        symbol [ pushView %tmp.21 41 8 16 ];
+        %tmp.21 = getv function %tmp.20 :pushView;
+        %tmp.22 = lgetv %view.1;
+        symbol [ view %tmp.22 41 17 21 ];
+        %tmp.23 = lgetv %delegate.2;
+        symbol [ delegate %tmp.23 41 23 31 ];
+        invoke %tmp.20 %tmp.21(%tmp.22, %tmp.23);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_38_30_42_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 45; @symbol_functiondef = [showMessageListView,45,13,32]; ]
+    function showMessageListView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 46 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 46 12 16 ];
+        symbol [ MessageListView %tmp.4 46 23 38 ];
+        %tmp.4 = getv ? :MessageListView;
+        symbol [ _messageHandler %tmp.6 46 39 54 ];
+        %tmp.6 = getv ? :_messageHandler;
+        %tmp.7 = self;
+        symbol [ self %tmp.7 46 56 60 ];
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.7);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 46 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 47 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 47 12 20 ];
+        symbol [ MessageListViewDelegate %tmp.11 47 27 50 ];
+        %tmp.11 = getv ? :MessageListViewDelegate;
+        %tmp.12 = lgetv %view.1;
+        symbol [ view %tmp.12 47 51 55 ];
+        %tmp.13 = self;
+        symbol [ self %tmp.13 47 57 61 ];
+        %tmp.8 = newc %tmp.11 (%tmp.12, %tmp.13);
+        lputv %delegate.2 %tmp.8;
+        symbol [ delegate %delegate.2 47 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 48 8 ]
+        %tmp.14 = self;
+        symbol [ pushView %tmp.15 48 8 16 ];
+        %tmp.15 = getv function %tmp.14 :pushView;
+        %tmp.16 = lgetv %view.1;
+        symbol [ view %tmp.16 48 17 21 ];
+        %tmp.17 = lgetv %delegate.2;
+        symbol [ delegate %tmp.17 48 23 31 ];
+        invoke %tmp.14 %tmp.15(%tmp.16, %tmp.17);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_45_35_49_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 52; @symbol_functiondef = [showNodeListView,52,13,29]; ]
+    function showNodeListView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 53 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 53 12 16 ];
+        symbol [ NodeListView %tmp.4 53 23 35 ];
+        %tmp.4 = getv ? :NodeListView;
+        symbol [ _messageHandler %tmp.6 53 36 51 ];
+        %tmp.6 = getv ? :_messageHandler;
+        %tmp.7 = self;
+        symbol [ self %tmp.7 53 53 57 ];
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.7);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 53 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 54 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 54 12 20 ];
+        symbol [ NodeListViewDelegate %tmp.11 54 27 47 ];
+        %tmp.11 = getv ? :NodeListViewDelegate;
+        %tmp.12 = lgetv %view.1;
+        symbol [ view %tmp.12 54 48 52 ];
+        %tmp.13 = self;
+        symbol [ self %tmp.13 54 54 58 ];
+        %tmp.8 = newc %tmp.11 (%tmp.12, %tmp.13);
+        lputv %delegate.2 %tmp.8;
+        symbol [ delegate %delegate.2 54 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 55 8 ]
+        %tmp.14 = self;
+        symbol [ pushView %tmp.15 55 8 16 ];
+        %tmp.15 = getv function %tmp.14 :pushView;
+        %tmp.16 = lgetv %view.1;
+        symbol [ view %tmp.16 55 17 21 ];
+        %tmp.17 = lgetv %delegate.2;
+        symbol [ delegate %tmp.17 55 23 31 ];
+        invoke %tmp.14 %tmp.15(%tmp.16, %tmp.17);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_52_32_56_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 59; @symbol_functiondef = [showComposeView,59,13,28]; ]
+    function showComposeView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 60 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 60 12 16 ];
+        symbol [ ComposeView %tmp.4 60 23 34 ];
+        %tmp.4 = getv ? :ComposeView;
+        symbol [ _bleManager %tmp.6 60 35 46 ];
+        %tmp.6 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.8 60 48 63 ];
+        %tmp.8 = getv ? :_messageHandler;
+        %tmp.9 = self;
+        symbol [ self %tmp.9 60 65 69 ];
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.8, %tmp.9);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 60 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 61 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 61 12 20 ];
+        symbol [ ComposeViewDelegate %tmp.13 61 27 46 ];
+        %tmp.13 = getv ? :ComposeViewDelegate;
+        %tmp.14 = lgetv %view.1;
+        symbol [ view %tmp.14 61 47 51 ];
+        %tmp.15 = self;
+        symbol [ self %tmp.15 61 53 57 ];
+        %tmp.10 = newc %tmp.13 (%tmp.14, %tmp.15);
+        lputv %delegate.2 %tmp.10;
+        symbol [ delegate %delegate.2 61 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 62 8 ]
+        %tmp.16 = self;
+        symbol [ pushView %tmp.17 62 8 16 ];
+        %tmp.17 = getv function %tmp.16 :pushView;
+        %tmp.18 = lgetv %view.1;
+        symbol [ view %tmp.18 62 17 21 ];
+        %tmp.19 = lgetv %delegate.2;
+        symbol [ delegate %tmp.19 62 23 31 ];
+        invoke %tmp.16 %tmp.17(%tmp.18, %tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_59_31_63_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 66; @symbol_functiondef = [showCustomMessageView,66,13,34]; ]
+    function showCustomMessageView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 67 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 67 12 16 ];
+        symbol [ CustomMessageView %tmp.4 67 23 40 ];
+        %tmp.4 = getv ? :CustomMessageView;
+        symbol [ _bleManager %tmp.6 67 41 52 ];
+        %tmp.6 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.8 67 54 69 ];
+        %tmp.8 = getv ? :_messageHandler;
+        %tmp.9 = self;
+        symbol [ self %tmp.9 67 71 75 ];
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.8, %tmp.9);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 67 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 68 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 68 12 20 ];
+        symbol [ CustomMessageViewDelegate %tmp.13 68 27 52 ];
+        %tmp.13 = getv ? :CustomMessageViewDelegate;
+        %tmp.14 = lgetv %view.1;
+        symbol [ view %tmp.14 68 53 57 ];
+        %tmp.15 = self;
+        symbol [ self %tmp.15 68 59 63 ];
+        %tmp.10 = newc %tmp.13 (%tmp.14, %tmp.15);
+        lputv %delegate.2 %tmp.10;
+        symbol [ delegate %delegate.2 68 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 69 8 ]
+        %tmp.16 = self;
+        symbol [ pushView %tmp.17 69 8 16 ];
+        %tmp.17 = getv function %tmp.16 :pushView;
+        %tmp.18 = lgetv %view.1;
+        symbol [ view %tmp.18 69 17 21 ];
+        %tmp.19 = lgetv %delegate.2;
+        symbol [ delegate %tmp.19 69 23 31 ];
+        invoke %tmp.16 %tmp.17(%tmp.18, %tmp.19);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_66_37_70_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 73; @symbol_functiondef = [showPinEntryView,73,13,29]; @symbol_param<0> = [callback,73,30,38]; ]
+    function showPinEntryView(callback) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 74 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 74 12 16 ];
+        symbol [ PinEntryView %tmp.4 74 23 35 ];
+        %tmp.4 = getv ? :PinEntryView;
+        %tmp.5 = lgetv %callback;
+        symbol [ callback %tmp.5 74 36 44 ];
+        %tmp.1 = newc %tmp.4 (%tmp.5);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 74 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 75 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 75 12 20 ];
+        symbol [ PinEntryViewDelegate %tmp.9 75 27 47 ];
+        %tmp.9 = getv ? :PinEntryViewDelegate;
+        %tmp.10 = lgetv %view.1;
+        symbol [ view %tmp.10 75 48 52 ];
+        %tmp.6 = newc %tmp.9 (%tmp.10);
+        lputv %delegate.2 %tmp.6;
+        symbol [ delegate %delegate.2 75 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 76 8 ]
+        symbol [ WatchUi %tmp.11 76 8 15 ];
+        %tmp.11 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.12 76 16 24 ];
+        %tmp.12 = getv function %tmp.11 :pushView;
+        %tmp.13 = lgetv %view.1;
+        symbol [ view %tmp.13 76 25 29 ];
+        %tmp.14 = lgetv %delegate.2;
+        symbol [ delegate %tmp.14 76 31 39 ];
+        symbol [ WatchUi %tmp.15 76 41 48 ];
+        %tmp.15 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_UP %tmp.16 76 49 57 ];
+        %tmp.16 = getv %tmp.15 :SLIDE_UP;
+        invoke %tmp.11 %tmp.12(%tmp.13, %tmp.14, %tmp.16);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_73_40_77_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 80; @symbol_functiondef = [showSettingsView,80,13,29]; ]
+    function showSettingsView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 81 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 81 12 16 ];
+        symbol [ SettingsView %tmp.4 81 23 35 ];
+        %tmp.4 = getv ? :SettingsView;
+        symbol [ _settingsManager %tmp.6 81 36 52 ];
+        %tmp.6 = getv ? :_settingsManager;
+        %tmp.7 = self;
+        symbol [ self %tmp.7 81 54 58 ];
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.7);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 81 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 82 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 82 12 20 ];
+        symbol [ SettingsViewDelegate %tmp.11 82 27 47 ];
+        %tmp.11 = getv ? :SettingsViewDelegate;
+        %tmp.12 = lgetv %view.1;
+        symbol [ view %tmp.12 82 48 52 ];
+        %tmp.13 = self;
+        symbol [ self %tmp.13 82 54 58 ];
+        %tmp.8 = newc %tmp.11 (%tmp.12, %tmp.13);
+        lputv %delegate.2 %tmp.8;
+        symbol [ delegate %delegate.2 82 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 83 8 ]
+        %tmp.14 = self;
+        symbol [ pushView %tmp.15 83 8 16 ];
+        %tmp.15 = getv function %tmp.14 :pushView;
+        %tmp.16 = lgetv %view.1;
+        symbol [ view %tmp.16 83 17 21 ];
+        %tmp.17 = lgetv %delegate.2;
+        symbol [ delegate %tmp.17 83 23 31 ];
+        invoke %tmp.14 %tmp.15(%tmp.16, %tmp.17);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_80_32_84_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 87; @symbol_functiondef = [goBack,87,13,19]; ]
+    function goBack() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_87_22_89_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 88 8 ]
+        symbol [ WatchUi %tmp.1 88 8 15 ];
+        %tmp.1 = getm $.Toybox.WatchUi;
+        symbol [ popView %tmp.2 88 16 23 ];
+        %tmp.2 = getv function %tmp.1 :popView;
+        symbol [ WatchUi %tmp.3 88 24 31 ];
+        %tmp.3 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_RIGHT %tmp.4 88 32 43 ];
+        %tmp.4 = getv %tmp.3 :SLIDE_RIGHT;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_87_22_89_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 92; @symbol_functiondef = [pushView,92,21,29]; @symbol_param<0> = [view,92,30,34]; @symbol_param<1> = [delegate,92,36,44]; ]
+    private
+    function pushView(view, delegate) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_92_46_96_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 93 8 ]
+        %tmp.1 = lgetv %view;
+        symbol [ view %tmp.1 93 23 27 ];
+        symbol [ _currentView ? 93 8 20 ];
+        putv self :_currentView %tmp.1;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 94 8 ]
+        %tmp.2 = lgetv %delegate;
+        symbol [ delegate %tmp.2 94 27 35 ];
+        symbol [ _currentDelegate ? 94 8 24 ];
+        putv self :_currentDelegate %tmp.2;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 95 8 ]
+        symbol [ WatchUi %tmp.3 95 8 15 ];
+        %tmp.3 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.4 95 16 24 ];
+        %tmp.4 = getv function %tmp.3 :pushView;
+        %tmp.5 = lgetv %view;
+        symbol [ view %tmp.5 95 25 29 ];
+        %tmp.6 = lgetv %delegate;
+        symbol [ delegate %tmp.6 95 31 39 ];
+        symbol [ WatchUi %tmp.7 95 41 48 ];
+        %tmp.7 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_LEFT %tmp.8 95 49 59 ];
+        %tmp.8 = getv %tmp.7 :SLIDE_LEFT;
+        invoke %tmp.3 %tmp.4(%tmp.5, %tmp.6, %tmp.8);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_92_46_96_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 99; @symbol_functiondef = [getCurrentView,99,13,27]; ]
+    function getCurrentView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_99_30_101_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc" 100 8 ]
+        symbol [ _currentView %tmp.2 100 15 27 ];
+        %tmp.2 = getv ? :_currentView;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_ViewManager_mc_99_30_101_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/ViewManager.mc"; @line = 6; ]
+<init> {
+}

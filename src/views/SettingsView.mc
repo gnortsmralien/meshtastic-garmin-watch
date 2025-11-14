@@ -157,26 +157,43 @@ class SettingsViewDelegate extends WatchUi.BehaviorDelegate {
         _viewManager = viewManager;
     }
 
+    // Handle UP button for navigation (Fenix 8)
+    function onPreviousPage() {
+        _view.moveUp();
+        return true;
+    }
+
+    // Handle DOWN button for navigation (Fenix 8)
+    function onNextPage() {
+        _view.moveDown();
+        return true;
+    }
+
+    // Handle SELECT button
+    function onSelect() {
+        _view.selectItem();
+        return true;
+    }
+
+    // Handle BACK button
+    function onBack() {
+        _viewManager.goBack();
+        return true;
+    }
+
+    // Legacy key handler for simulator compatibility
     function onKey(keyEvent) {
         var key = keyEvent.getKey();
 
         if (key == WatchUi.KEY_UP) {
-            _view.moveUp();
-            return true;
+            return onPreviousPage();
         } else if (key == WatchUi.KEY_DOWN) {
-            _view.moveDown();
-            return true;
+            return onNextPage();
         } else if (key == WatchUi.KEY_ESC) {
-            _viewManager.goBack();
-            return true;
+            return onBack();
         }
 
         return false;
-    }
-
-    function onSelect() {
-        _view.selectItem();
-        return true;
     }
 }
 

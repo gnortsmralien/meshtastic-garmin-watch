@@ -1,0 +1,534 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Application,6,13,24]; ]
+using Toybox.Application;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Lang,7,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 8; @symbol_usingdef<0> = [Toybox,8,6,12]; @symbol_usingdef<1> = [WatchUi,8,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 9; @symbol_usingdef<0> = [Toybox,9,6,12]; @symbol_usingdef<1> = [System,9,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 10; @symbol_usingdef<0> = [Toybox,10,6,12]; @symbol_usingdef<1> = [Graphics,10,13,21]; ]
+using Toybox.Graphics;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 11; @symbol_usingdef<0> = [ProtoBuf,11,6,14]; ]
+using ProtoBuf;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 13; @symbol_classdef = [MeshtasticApp,13,6,19]; @symbol_extends<0> = [Application,13,28,39]; @symbol_extends<1> = [AppBase,13,40,47]; ]
+class MeshtasticApp extends Application.AppBase {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 13; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 13; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 14; @position = 16; @symbol_vardef = [_bleManager,14,16,27]; ]
+    private
+    var _bleManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 15; @position = 16; @symbol_vardef = [_messageHandler,15,16,31]; ]
+    private
+    var _messageHandler;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 16; @position = 16; @symbol_vardef = [_viewManager,16,16,28]; ]
+    private
+    var _viewManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 17; @position = 16; @symbol_vardef = [_notificationManager,17,16,36]; ]
+    private
+    var _notificationManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 18; @position = 16; @symbol_vardef = [_systemMonitor,18,16,30]; ]
+    private
+    var _systemMonitor;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 19; @position = 16; @symbol_vardef = [_reconnectManager,19,16,33]; ]
+    private
+    var _reconnectManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 20; @position = 16; @symbol_vardef = [_settingsManager,20,16,32]; ]
+    private
+    var _settingsManager;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 22; @symbol_functiondef = [initialize,22,13,23]; ]
+    function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_22_26_31_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 23 8 ]
+        symbol [ AppBase %tmp.2 23 8 15 ];
+        %tmp.2 = getv ? :AppBase;
+        symbol [ initialize %tmp.3 23 16 26 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 24 8 ]
+        symbol [ SettingsManager %tmp.7 24 31 46 ];
+        %tmp.7 = getv ? :SettingsManager;
+        %tmp.4 = newc %tmp.7 ();
+        symbol [ _settingsManager ? 24 8 24 ];
+        putv self :_settingsManager %tmp.4;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 25 8 ]
+        symbol [ BleManager %tmp.11 25 26 36 ];
+        %tmp.11 = getv ? :BleManager;
+        symbol [ _settingsManager %tmp.13 25 37 53 ];
+        %tmp.13 = getv ? :_settingsManager;
+        %tmp.8 = newc %tmp.11 (%tmp.13);
+        symbol [ _bleManager ? 25 8 19 ];
+        putv self :_bleManager %tmp.8;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 26 8 ]
+        symbol [ MessageHandler %tmp.17 26 30 44 ];
+        %tmp.17 = getv ? :MessageHandler;
+        %tmp.14 = newc %tmp.17 ();
+        symbol [ _messageHandler ? 26 8 23 ];
+        putv self :_messageHandler %tmp.14;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 27 8 ]
+        symbol [ SystemMonitor %tmp.21 27 29 42 ];
+        %tmp.21 = getv ? :SystemMonitor;
+        %tmp.18 = newc %tmp.21 ();
+        symbol [ _systemMonitor ? 27 8 22 ];
+        putv self :_systemMonitor %tmp.18;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 28 8 ]
+        symbol [ ReconnectManager %tmp.25 28 32 48 ];
+        %tmp.25 = getv ? :ReconnectManager;
+        symbol [ _bleManager %tmp.27 28 49 60 ];
+        %tmp.27 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.29 28 62 77 ];
+        %tmp.29 = getv ? :_messageHandler;
+        %tmp.22 = newc %tmp.25 (%tmp.27, %tmp.29);
+        symbol [ _reconnectManager ? 28 8 25 ];
+        putv self :_reconnectManager %tmp.22;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 29 8 ]
+        symbol [ ViewManager %tmp.33 29 27 38 ];
+        %tmp.33 = getv ? :ViewManager;
+        symbol [ _bleManager %tmp.35 29 39 50 ];
+        %tmp.35 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.37 29 52 67 ];
+        %tmp.37 = getv ? :_messageHandler;
+        symbol [ _systemMonitor %tmp.39 29 69 83 ];
+        %tmp.39 = getv ? :_systemMonitor;
+        symbol [ _reconnectManager %tmp.41 29 85 102 ];
+        %tmp.41 = getv ? :_reconnectManager;
+        symbol [ _settingsManager %tmp.43 29 104 120 ];
+        %tmp.43 = getv ? :_settingsManager;
+        %tmp.30 = newc %tmp.33 (%tmp.35, %tmp.37, %tmp.39, %tmp.41, %tmp.43);
+        symbol [ _viewManager ? 29 8 20 ];
+        putv self :_viewManager %tmp.30;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 30 8 ]
+        symbol [ NotificationManager %tmp.47 30 35 54 ];
+        %tmp.47 = getv ? :NotificationManager;
+        %tmp.44 = newc %tmp.47 ();
+        symbol [ _notificationManager ? 30 8 28 ];
+        putv self :_notificationManager %tmp.44;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_22_26_31_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 33; @symbol_functiondef = [onStart,33,13,20]; @symbol_param<0> = [state,33,21,26]; @symbol_param<0>_type<0> = [Lang,33,30,34]; @symbol_param<0>_type<1> = [Dictionary,33,35,45]; ]
+    function onStart(state as Lang.Dictionary or Null) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_33_56_55_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 34 8 ]
+        symbol [ System %tmp.1 34 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 34 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "=== Meshtastic App Starting ===";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 37 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_stmt:
+        symbol [ _bleManager %tmp.5 37 12 23 ];
+        %tmp.5 = getv ? :_bleManager;
+        symbol [ registerProfile %tmp.6 37 24 39 ];
+        %tmp.6 = getv function %tmp.5 :registerProfile;
+        %tmp.7 = invoke %tmp.5 %tmp.6();
+        bf %tmp.7 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_43_39_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 38 12 ]
+        symbol [ System %tmp.8 38 12 18 ];
+        %tmp.8 = getm $.Toybox.System;
+        symbol [ println %tmp.9 38 19 26 ];
+        %tmp.9 = getv function %tmp.8 :println;
+        %tmp.10 = "BLE profile registered successfully";
+        invoke %tmp.8 %tmp.9(%tmp.10);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_43_39_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_39_15_41_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 40 12 ]
+        symbol [ System %tmp.11 40 12 18 ];
+        %tmp.11 = getm $.Toybox.System;
+        symbol [ println %tmp.12 40 19 26 ];
+        %tmp.12 = getv function %tmp.11 :println;
+        %tmp.13 = "Failed to register BLE profile";
+        invoke %tmp.11 %tmp.12(%tmp.13);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_39_15_41_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_37_8_41_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 44 8 ]
+        symbol [ _messageHandler %tmp.15 44 8 23 ];
+        %tmp.15 = getv ? :_messageHandler;
+        symbol [ setMessageCallback %tmp.16 44 24 42 ];
+        %tmp.16 = getv function %tmp.15 :setMessageCallback;
+        %tmp.17 = self;
+        symbol [ method %tmp.18 44 43 49 ];
+        %tmp.18 = getv function %tmp.17 :method;
+        %tmp.20 = const :onMessageReceived;
+        symbol [ onMessageReceived %tmp.20 44 51 68 const ];
+        %tmp.21 = invoke %tmp.17 %tmp.18(%tmp.20);
+        invoke %tmp.15 %tmp.16(%tmp.21);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 45 8 ]
+        symbol [ _messageHandler %tmp.23 45 8 23 ];
+        %tmp.23 = getv ? :_messageHandler;
+        symbol [ setConfigCompleteCallback %tmp.24 45 24 49 ];
+        %tmp.24 = getv function %tmp.23 :setConfigCompleteCallback;
+        %tmp.25 = self;
+        symbol [ method %tmp.26 45 50 56 ];
+        %tmp.26 = getv function %tmp.25 :method;
+        %tmp.28 = const :onConfigComplete;
+        symbol [ onConfigComplete %tmp.28 45 58 74 const ];
+        %tmp.29 = invoke %tmp.25 %tmp.26(%tmp.28);
+        invoke %tmp.23 %tmp.24(%tmp.29);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 48 8 ]
+        symbol [ _bleManager %tmp.31 48 8 19 ];
+        %tmp.31 = getv ? :_bleManager;
+        symbol [ setDataCallback %tmp.32 48 20 35 ];
+        %tmp.32 = getv function %tmp.31 :setDataCallback;
+        %tmp.33 = self;
+        symbol [ method %tmp.34 48 36 42 ];
+        %tmp.34 = getv function %tmp.33 :method;
+        %tmp.36 = const :onDataReceived;
+        symbol [ onDataReceived %tmp.36 48 44 58 const ];
+        %tmp.37 = invoke %tmp.33 %tmp.34(%tmp.36);
+        invoke %tmp.31 %tmp.32(%tmp.37);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 51 8 ]
+        symbol [ _reconnectManager %tmp.39 51 8 25 ];
+        %tmp.39 = getv ? :_reconnectManager;
+        symbol [ setCallback %tmp.40 51 26 37 ];
+        %tmp.40 = getv function %tmp.39 :setCallback;
+        %tmp.41 = self;
+        symbol [ method %tmp.42 51 38 44 ];
+        %tmp.42 = getv function %tmp.41 :method;
+        %tmp.44 = const :onReconnectStatus;
+        symbol [ onReconnectStatus %tmp.44 51 46 63 const ];
+        %tmp.45 = invoke %tmp.41 %tmp.42(%tmp.44);
+        invoke %tmp.39 %tmp.40(%tmp.45);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 54 8 ]
+        symbol [ _systemMonitor %tmp.47 54 8 22 ];
+        %tmp.47 = getv ? :_systemMonitor;
+        symbol [ update %tmp.48 54 23 29 ];
+        %tmp.48 = getv function %tmp.47 :update;
+        invoke %tmp.47 %tmp.48();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_33_56_55_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 57; @symbol_functiondef = [onStop,57,13,19]; @symbol_param<0> = [state,57,20,25]; @symbol_param<0>_type<0> = [Lang,57,29,33]; @symbol_param<0>_type<1> = [Dictionary,57,34,44]; ]
+    function onStop(state as Lang.Dictionary or Null) as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_57_55_61_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 58 8 ]
+        symbol [ System %tmp.1 58 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 58 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "=== Meshtastic App Stopping ===";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 59 8 ]
+        symbol [ _reconnectManager %tmp.5 59 8 25 ];
+        %tmp.5 = getv ? :_reconnectManager;
+        symbol [ cancel %tmp.6 59 26 32 ];
+        %tmp.6 = getv function %tmp.5 :cancel;
+        invoke %tmp.5 %tmp.6();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 60 8 ]
+        symbol [ _bleManager %tmp.8 60 8 19 ];
+        %tmp.8 = getv ? :_bleManager;
+        symbol [ disconnect %tmp.9 60 20 30 ];
+        %tmp.9 = getv function %tmp.8 :disconnect;
+        invoke %tmp.8 %tmp.9();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_57_55_61_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 63; @symbol_functiondef = [getInitialView,63,13,27]; ]
+    function getInitialView() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 65 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_stop" ]
+        %view.1 = local;
+        symbol [ view %view.1 65 12 16 ];
+        symbol [ StatusView %tmp.4 65 23 33 ];
+        %tmp.4 = getv ? :StatusView;
+        symbol [ _bleManager %tmp.6 65 34 45 ];
+        %tmp.6 = getv ? :_bleManager;
+        symbol [ _messageHandler %tmp.8 65 47 62 ];
+        %tmp.8 = getv ? :_messageHandler;
+        symbol [ _viewManager %tmp.10 65 64 76 ];
+        %tmp.10 = getv ? :_viewManager;
+        symbol [ _systemMonitor %tmp.12 65 78 92 ];
+        %tmp.12 = getv ? :_systemMonitor;
+        symbol [ _reconnectManager %tmp.14 65 94 111 ];
+        %tmp.14 = getv ? :_reconnectManager;
+        %tmp.1 = newc %tmp.4 (%tmp.6, %tmp.8, %tmp.10, %tmp.12, %tmp.14);
+        lputv %view.1 %tmp.1;
+        symbol [ view %view.1 65 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 66 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_stop" ]
+        %delegate.2 = local;
+        symbol [ delegate %delegate.2 66 12 20 ];
+        symbol [ StatusViewDelegate %tmp.18 66 27 45 ];
+        %tmp.18 = getv ? :StatusViewDelegate;
+        %tmp.19 = lgetv %view.1;
+        symbol [ view %tmp.19 66 46 50 ];
+        symbol [ _viewManager %tmp.21 66 52 64 ];
+        %tmp.21 = getv ? :_viewManager;
+        %tmp.15 = newc %tmp.18 (%tmp.19, %tmp.21);
+        lputv %delegate.2 %tmp.15;
+        symbol [ delegate %delegate.2 66 12 20 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 67 8 ]
+        %tmp.22 = newa 2;
+        %tmp.23 = lgetv %view.1;
+        symbol [ view %tmp.23 67 17 21 ];
+        %tmp.24 = dup %tmp.22;
+        %tmp.25 = aputv %tmp.24 0 %tmp.23;
+        %tmp.26 = lgetv %delegate.2;
+        symbol [ delegate %tmp.26 67 23 31 ];
+        %tmp.27 = dup %tmp.25;
+        %tmp.28 = aputv %tmp.27 1 %tmp.26;
+        ret %tmp.28;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_63_30_68_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 70; @symbol_functiondef = [onDataReceived,70,13,27]; @symbol_param<0> = [data,70,28,32]; @symbol_param<1> = [error,70,34,39]; ]
+    function onDataReceived(data, error) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_70_41_88_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 71 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_8_74_8_if_stmt:
+        %tmp.1 = lgetv %error;
+        symbol [ error %tmp.1 71 12 17 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        bf %tmp.3 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_8_74_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_8_74_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_27_74_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 72 12 ]
+        symbol [ System %tmp.4 72 12 18 ];
+        %tmp.4 = getm $.Toybox.System;
+        symbol [ println %tmp.5 72 19 26 ];
+        %tmp.5 = getv function %tmp.4 :println;
+        %tmp.6 = "Data receive error: ";
+        %tmp.7 = lgetv %error;
+        symbol [ error %tmp.7 72 52 57 ];
+        %tmp.8 = as %tmp.7 { (!Null) };
+        %tmp.9 = add %tmp.6 %tmp.8;
+        invoke %tmp.4 %tmp.5(%tmp.9);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 73 12 ]
+        ret ?;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_27_74_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_8_74_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_71_8_74_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 76 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_8_87_8_if_stmt:
+        %tmp.10 = lgetv %data;
+        symbol [ data %tmp.10 76 12 16 ];
+        %tmp.11 = null;
+        %tmp.12 = ne %tmp.10 %tmp.11;
+        bf %tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_8_87_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_8_87_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_26_87_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 77 12 ]
+        symbol [ System %tmp.13 77 12 18 ];
+        %tmp.13 = getm $.Toybox.System;
+        symbol [ println %tmp.14 77 19 26 ];
+        %tmp.14 = getv function %tmp.13 :println;
+        %tmp.15 = "Received data: ";
+        %tmp.16 = lgetv %data;
+        symbol [ data %tmp.16 77 47 51 ];
+        %tmp.17 = as %tmp.16 { (!Null) };
+        symbol [ size %tmp.18 77 52 56 ];
+        %tmp.18 = getv function %tmp.17 :size;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        %tmp.20 = add %tmp.15 %tmp.19;
+        %tmp.21 = " bytes";
+        %tmp.22 = add %tmp.20 %tmp.21;
+        invoke %tmp.13 %tmp.14(%tmp.22);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 80 12 ]
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_beginTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_endTry @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_beginTry:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_16_84_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 81 16 ]
+        symbol [ _messageHandler %tmp.24 81 16 31 ];
+        %tmp.24 = getv ? :_messageHandler;
+        symbol [ processReceivedData %tmp.25 81 32 51 ];
+        %tmp.25 = getv function %tmp.24 :processReceivedData;
+        %tmp.26 = lgetv %data;
+        symbol [ data %tmp.26 81 52 56 ];
+        %tmp.27 = as %tmp.26 { (!Null) };
+        invoke %tmp.24 %tmp.25(%tmp.27);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 83 16 ]
+        symbol [ WatchUi %tmp.28 83 16 23 ];
+        %tmp.28 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.29 83 24 37 ];
+        %tmp.29 = getv function %tmp.28 :requestUpdate;
+        invoke %tmp.28 %tmp.29();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_16_84_12_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_endTry:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_catch:
+        %tmp.30 = exception;
+        push %tmp.30;
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 84 14 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_catch" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_14_86_12_end" ]
+        %exception.1 = local;
+        symbol [ exception %exception.1 84 21 30 ];
+        %tmp.31 = dup %tmp.30;
+        lputv %exception.1 %tmp.31;
+        symbol [ exception %exception.1 84 21 30 ];
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_32_86_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 85 16 ]
+        symbol [ System %tmp.32 85 16 22 ];
+        %tmp.32 = getm $.Toybox.System;
+        symbol [ println %tmp.33 85 23 30 ];
+        %tmp.33 = getv function %tmp.32 :println;
+        %tmp.34 = "Error processing received data: ";
+        %tmp.35 = lgetv %exception.1;
+        symbol [ exception %tmp.35 85 68 77 ];
+        symbol [ getErrorMessage %tmp.36 85 78 93 ];
+        %tmp.36 = getv function %tmp.35 :getErrorMessage;
+        %tmp.37 = invoke %tmp.35 %tmp.36();
+        %tmp.38 = add %tmp.34 %tmp.37;
+        invoke %tmp.32 %tmp.33(%tmp.38);
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_32_86_12_stop:
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally;
+        pop;
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_14_86_12_end:
+        try @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_catch @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_14_86_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_84_14_86_12_end @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally;
+        jsr @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally;
+        throw %tmp.30;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_finally:
+        jsrret;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_80_12_86_12_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_26_87_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_8_87_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_76_8_87_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_70_41_88_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 90; @symbol_functiondef = [onMessageReceived,90,13,30]; @symbol_param<0> = [message,90,31,38]; ]
+    function onMessageReceived(message) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_90_40_98_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 91 8 ]
+        symbol [ System %tmp.1 91 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 91 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "App: New message from ";
+        %tmp.4 = lgetv %message;
+        symbol [ message %tmp.4 91 50 57 ];
+        %tmp.6 = const :from;
+        symbol [ from %tmp.6 91 59 63 const ];
+        %tmp.7 = agetv %tmp.4 %tmp.6;
+        symbol [ format %tmp.8 91 65 71 ];
+        %tmp.8 = getv function %tmp.7 :format;
+        %tmp.9 = "%08X";
+        %tmp.10 = invoke %tmp.7 %tmp.8(%tmp.9);
+        %tmp.11 = add %tmp.3 %tmp.10;
+        %tmp.12 = ": ";
+        %tmp.13 = add %tmp.11 %tmp.12;
+        %tmp.14 = lgetv %message;
+        symbol [ message %tmp.14 91 89 96 ];
+        %tmp.16 = const :text;
+        symbol [ text %tmp.16 91 98 102 const ];
+        %tmp.17 = agetv %tmp.14 %tmp.16;
+        %tmp.18 = add %tmp.13 %tmp.17;
+        invoke %tmp.1 %tmp.2(%tmp.18);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 94 8 ]
+        symbol [ _notificationManager %tmp.20 94 8 28 ];
+        %tmp.20 = getv ? :_notificationManager;
+        symbol [ notifyNewMessage %tmp.21 94 29 45 ];
+        %tmp.21 = getv function %tmp.20 :notifyNewMessage;
+        invoke %tmp.20 %tmp.21();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 97 8 ]
+        symbol [ WatchUi %tmp.22 97 8 15 ];
+        %tmp.22 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.23 97 16 29 ];
+        %tmp.23 = getv function %tmp.22 :requestUpdate;
+        invoke %tmp.22 %tmp.23();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_90_40_98_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 100; @symbol_functiondef = [onConfigComplete,100,13,29]; ]
+    function onConfigComplete() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_100_32_110_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 101 8 ]
+        symbol [ System %tmp.1 101 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 101 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "App: Config sync complete, ready to send messages";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 102 8 ]
+        symbol [ System %tmp.4 102 8 14 ];
+        %tmp.4 = getm $.Toybox.System;
+        symbol [ println %tmp.5 102 15 22 ];
+        %tmp.5 = getv function %tmp.4 :println;
+        %tmp.6 = "Loaded ";
+        symbol [ _messageHandler %tmp.8 102 35 50 ];
+        %tmp.8 = getv ? :_messageHandler;
+        symbol [ getNodeCount %tmp.9 102 51 63 ];
+        %tmp.9 = getv function %tmp.8 :getNodeCount;
+        %tmp.10 = invoke %tmp.8 %tmp.9();
+        %tmp.11 = add %tmp.6 %tmp.10;
+        %tmp.12 = " nodes";
+        %tmp.13 = add %tmp.11 %tmp.12;
+        invoke %tmp.4 %tmp.5(%tmp.13);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 105 8 ]
+        symbol [ _notificationManager %tmp.15 105 8 28 ];
+        %tmp.15 = getv ? :_notificationManager;
+        symbol [ notifyConnected %tmp.16 105 29 44 ];
+        %tmp.16 = getv function %tmp.15 :notifyConnected;
+        invoke %tmp.15 %tmp.16();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 106 8 ]
+        symbol [ _reconnectManager %tmp.18 106 8 25 ];
+        %tmp.18 = getv ? :_reconnectManager;
+        symbol [ onConnected %tmp.19 106 26 37 ];
+        %tmp.19 = getv function %tmp.18 :onConnected;
+        invoke %tmp.18 %tmp.19();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 109 8 ]
+        symbol [ WatchUi %tmp.20 109 8 15 ];
+        %tmp.20 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.21 109 16 29 ];
+        %tmp.21 = getv function %tmp.20 :requestUpdate;
+        invoke %tmp.20 %tmp.21();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_100_32_110_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 112; @symbol_functiondef = [onReconnectStatus,112,13,30]; @symbol_param<0> = [success,112,31,38]; @symbol_param<1> = [message,112,40,47]; ]
+    function onReconnectStatus(success, message) {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_112_49_115_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 113 8 ]
+        symbol [ System %tmp.1 113 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ println %tmp.2 113 15 22 ];
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Reconnect status: ";
+        %tmp.4 = lgetv %message;
+        symbol [ message %tmp.4 113 46 53 ];
+        %tmp.5 = add %tmp.3 %tmp.4;
+        invoke %tmp.1 %tmp.2(%tmp.5);
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 114 8 ]
+        symbol [ WatchUi %tmp.6 114 8 15 ];
+        %tmp.6 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.7 114 16 29 ];
+        %tmp.7 = getv function %tmp.6 :requestUpdate;
+        invoke %tmp.6 %tmp.7();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_112_49_115_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 118; @symbol_functiondef = [getNotificationManager,118,13,35]; ]
+    function getNotificationManager() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_118_38_120_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 119 8 ]
+        symbol [ _notificationManager %tmp.2 119 15 35 ];
+        %tmp.2 = getv ? :_notificationManager;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_118_38_120_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 122; @symbol_functiondef = [getSystemMonitor,122,13,29]; ]
+    function getSystemMonitor() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_122_32_124_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 123 8 ]
+        symbol [ _systemMonitor %tmp.2 123 15 29 ];
+        %tmp.2 = getv ? :_systemMonitor;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_122_32_124_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 126; @symbol_functiondef = [getReconnectManager,126,13,32]; ]
+    function getReconnectManager() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_126_35_128_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc" 127 8 ]
+        symbol [ _reconnectManager %tmp.2 127 15 32 ];
+        %tmp.2 = getv ? :_reconnectManager;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_MeshtasticApp_mc_126_35_128_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/MeshtasticApp.mc"; @line = 6; ]
+<init> {
+}

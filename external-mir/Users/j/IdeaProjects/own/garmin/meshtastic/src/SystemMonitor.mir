@@ -1,0 +1,455 @@
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Lang,5,13,17]; ]
+using Toybox.Lang;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [System,6,13,19]; ]
+using Toybox.System;
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 8; @symbol_classdef = [SystemMonitor,8,6,19]; ]
+class SystemMonitor {
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 9; @position = 16; @symbol_vardef = [_batteryLevel,9,16,29]; ]
+    private
+    var _batteryLevel = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 10; @position = 16; @symbol_vardef = [_memoryUsed,10,16,27]; ]
+    private
+    var _memoryUsed = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 11; @position = 16; @symbol_vardef = [_memoryTotal,11,16,28]; ]
+    private
+    var _memoryTotal = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 12; @position = 16; @symbol_vardef = [_memoryPercent,12,16,30]; ]
+    private
+    var _memoryPercent = 0;
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 14; @symbol_functiondef = [initialize,14,13,23]; ]
+    function initialize() as Void {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_14_26_16_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 15 8 ]
+        %tmp.1 = self;
+        symbol [ update %tmp.2 15 8 14 ];
+        %tmp.2 = getv function %tmp.1 :update;
+        invoke %tmp.1 %tmp.2();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_14_26_16_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 19; @symbol_functiondef = [update,19,13,19]; ]
+    function update() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_19_22_22_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 20 8 ]
+        %tmp.1 = self;
+        symbol [ updateBattery %tmp.2 20 8 21 ];
+        %tmp.2 = getv function %tmp.1 :updateBattery;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 21 8 ]
+        %tmp.3 = self;
+        symbol [ updateMemory %tmp.4 21 8 20 ];
+        %tmp.4 = getv function %tmp.3 :updateMemory;
+        invoke %tmp.3 %tmp.4();
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_19_22_22_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 24; @symbol_functiondef = [updateBattery,24,21,34]; ]
+    private
+    function updateBattery() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_24_37_31_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 25 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_24_37_31_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_24_37_31_4_stop" ]
+        %stats.1 = local;
+        symbol [ stats %stats.1 25 12 17 ];
+        symbol [ System %tmp.1 25 20 26 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getSystemStats %tmp.2 25 27 41 ];
+        %tmp.2 = getv function %tmp.1 :getSystemStats;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %stats.1 %tmp.3;
+        symbol [ stats %stats.1 25 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 26 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_stmt:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_12_26_40_begin:
+        %tmp.4 = lgetv %stats.1;
+        symbol [ stats %tmp.4 26 12 17 ];
+        %tmp.5 = null;
+        %tmp.6 = ne %tmp.4 %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_29_26_40_true:
+        %tmp.7 = lgetv %stats.1;
+        symbol [ stats %tmp.7 26 29 34 ];
+        %tmp.8 = as %tmp.7 { (!Null) };
+        %tmp.10 = const :battery;
+        symbol [ battery %tmp.10 26 40 47 const ];
+        %tmp.11 = canhazplz %tmp.8 %tmp.10;
+        push %tmp.11;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_29_26_40_end:
+        %tmp.12 = phi [%tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_12_26_40_begin] [%tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_29_26_40_true] [%tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_29_26_40_end];
+        bf %tmp.12 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_49_28_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 27 12 ]
+        %tmp.13 = lgetv %stats.1;
+        symbol [ stats %tmp.13 27 28 33 ];
+        %tmp.14 = as %tmp.13 { (interface { var battery; }) && (!Null) };
+        symbol [ battery %tmp.15 27 34 41 ];
+        %tmp.15 = getv %tmp.14 :battery;
+        symbol [ toNumber %tmp.16 27 42 50 ];
+        %tmp.16 = getv function %tmp.15 :toNumber;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        symbol [ _batteryLevel ? 27 12 25 ];
+        putv self :_batteryLevel %tmp.17;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_49_28_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_28_15_30_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 29 12 ]
+        %tmp.18 = 100;
+        symbol [ _batteryLevel ? 29 12 25 ];
+        putv self :_batteryLevel %tmp.18;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_28_15_30_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_26_8_30_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_24_37_31_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 33; @symbol_functiondef = [updateMemory,33,21,33]; ]
+    private
+    function updateMemory() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_33_36_47_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 34 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_33_36_47_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_33_36_47_4_stop" ]
+        %stats.1 = local;
+        symbol [ stats %stats.1 34 12 17 ];
+        symbol [ System %tmp.1 34 20 26 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getSystemStats %tmp.2 34 27 41 ];
+        %tmp.2 = getv function %tmp.1 :getSystemStats;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %stats.1 %tmp.3;
+        symbol [ stats %stats.1 34 12 17 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 35 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_8_46_8_if_stmt:
+        %tmp.4 = lgetv %stats.1;
+        symbol [ stats %tmp.4 35 12 17 ];
+        %tmp.5 = null;
+        %tmp.6 = ne %tmp.4 %tmp.5;
+        bf %tmp.6 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_8_46_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_8_46_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_27_46_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 36 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_12_38_12_if_stmt:
+        %tmp.7 = lgetv %stats.1;
+        symbol [ stats %tmp.7 36 16 21 ];
+        %tmp.8 = as %tmp.7 { (!Null) };
+        %tmp.10 = const :usedMemory;
+        symbol [ usedMemory %tmp.10 36 27 37 const ];
+        %tmp.11 = canhazplz %tmp.8 %tmp.10;
+        bf %tmp.11 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_12_38_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_12_38_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_39_38_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 37 16 ]
+        %tmp.12 = lgetv %stats.1;
+        symbol [ stats %tmp.12 37 30 35 ];
+        %tmp.13 = as %tmp.12 { (interface { var usedMemory; }) && (!Null) };
+        symbol [ usedMemory %tmp.14 37 36 46 ];
+        %tmp.14 = getv %tmp.13 :usedMemory;
+        symbol [ _memoryUsed ? 37 16 27 ];
+        putv self :_memoryUsed %tmp.14;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_39_38_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_12_38_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_36_12_38_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 39 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_12_41_12_if_stmt:
+        %tmp.15 = lgetv %stats.1;
+        symbol [ stats %tmp.15 39 16 21 ];
+        %tmp.16 = as %tmp.15 { (!Null) };
+        %tmp.18 = const :totalMemory;
+        symbol [ totalMemory %tmp.18 39 27 38 const ];
+        %tmp.19 = canhazplz %tmp.16 %tmp.18;
+        bf %tmp.19 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_12_41_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_12_41_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_40_41_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 40 16 ]
+        %tmp.20 = lgetv %stats.1;
+        symbol [ stats %tmp.20 40 31 36 ];
+        %tmp.21 = as %tmp.20 { (interface { var totalMemory; }) && (!Null) };
+        symbol [ totalMemory %tmp.22 40 37 48 ];
+        %tmp.22 = getv %tmp.21 :totalMemory;
+        symbol [ _memoryTotal ? 40 16 28 ];
+        putv self :_memoryTotal %tmp.22;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_40_41_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_12_41_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_39_12_41_12_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 43 12 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_12_45_12_if_stmt:
+        symbol [ _memoryTotal %tmp.24 43 16 28 ];
+        %tmp.24 = getv ? :_memoryTotal;
+        %tmp.25 = 0;
+        %tmp.26 = gt %tmp.24 %tmp.25;
+        bf %tmp.26 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_12_45_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_12_45_12_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_34_45_12_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 44 16 ]
+        symbol [ _memoryUsed %tmp.28 44 34 45 ];
+        %tmp.28 = getv ? :_memoryUsed;
+        %tmp.29 = 100;
+        %tmp.30 = mul %tmp.28 %tmp.29;
+        symbol [ _memoryTotal %tmp.32 44 55 67 ];
+        %tmp.32 = getv ? :_memoryTotal;
+        %tmp.33 = div %tmp.30 %tmp.32;
+        symbol [ _memoryPercent ? 44 16 30 ];
+        putv self :_memoryPercent %tmp.33;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_34_45_12_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_12_45_12_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_43_12_45_12_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_27_46_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_8_46_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_35_8_46_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_33_36_47_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 50; @symbol_functiondef = [getBatteryLevel,50,13,28]; ]
+    function getBatteryLevel() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_50_31_52_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 51 8 ]
+        symbol [ _batteryLevel %tmp.2 51 15 28 ];
+        %tmp.2 = getv ? :_batteryLevel;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_50_31_52_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 55; @symbol_functiondef = [getBatteryStatus,55,13,29]; ]
+    function getBatteryStatus() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_55_32_65_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 56 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_stmt:
+        symbol [ _batteryLevel %tmp.2 56 12 25 ];
+        %tmp.2 = getv ? :_batteryLevel;
+        %tmp.3 = 80;
+        %tmp.4 = gte %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_33_58_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 57 12 ]
+        %tmp.5 = "Full";
+        ret %tmp.5;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_33_58_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 58 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_stmt:
+        symbol [ _batteryLevel %tmp.7 58 19 32 ];
+        %tmp.7 = getv ? :_batteryLevel;
+        %tmp.8 = 50;
+        %tmp.9 = gte %tmp.7 %tmp.8;
+        bf %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_40_60_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 59 12 ]
+        %tmp.10 = "Good";
+        ret %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_40_60_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 60 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_stmt:
+        symbol [ _batteryLevel %tmp.12 60 19 32 ];
+        %tmp.12 = getv ? :_batteryLevel;
+        %tmp.13 = 20;
+        %tmp.14 = gte %tmp.12 %tmp.13;
+        bf %tmp.14 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_40_62_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 61 12 ]
+        %tmp.15 = "Low";
+        ret %tmp.15;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_40_62_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_62_15_64_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 63 12 ]
+        %tmp.16 = "Critical";
+        ret %tmp.16;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_62_15_64_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_60_15_64_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_58_15_64_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_56_8_64_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_55_32_65_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 68; @symbol_functiondef = [getBatteryIcon,68,13,27]; ]
+    function getBatteryIcon() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_68_30_78_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 69 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_stmt:
+        symbol [ _batteryLevel %tmp.2 69 12 25 ];
+        %tmp.2 = getv ? :_batteryLevel;
+        %tmp.3 = 80;
+        %tmp.4 = gte %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_33_71_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 70 12 ]
+        %tmp.5 = "■";
+        ret %tmp.5;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_33_71_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 71 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_stmt:
+        symbol [ _batteryLevel %tmp.7 71 19 32 ];
+        %tmp.7 = getv ? :_batteryLevel;
+        %tmp.8 = 50;
+        %tmp.9 = gte %tmp.7 %tmp.8;
+        bf %tmp.9 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_40_73_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 72 12 ]
+        %tmp.10 = "▣";
+        ret %tmp.10;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_40_73_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_false:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 73 15 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_stmt:
+        symbol [ _batteryLevel %tmp.12 73 19 32 ];
+        %tmp.12 = getv ? :_batteryLevel;
+        %tmp.13 = 20;
+        %tmp.14 = gte %tmp.12 %tmp.13;
+        bf %tmp.14 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_else_false;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_40_75_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 74 12 ]
+        %tmp.15 = "▢";
+        ret %tmp.15;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_40_75_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_else_false:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_75_15_77_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 76 12 ]
+        %tmp.16 = "▱";
+        ret %tmp.16;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_75_15_77_8_stop:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_73_15_77_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_71_15_77_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_69_8_77_8_if_end:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_68_30_78_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 81; @symbol_functiondef = [isBatteryLow,81,13,25]; ]
+    function isBatteryLow() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_81_28_83_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 82 8 ]
+        symbol [ _batteryLevel %tmp.2 82 15 28 ];
+        %tmp.2 = getv ? :_batteryLevel;
+        %tmp.3 = 20;
+        %tmp.4 = lt %tmp.2 %tmp.3;
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_81_28_83_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 86; @symbol_functiondef = [getMemoryUsagePercent,86,13,34]; ]
+    function getMemoryUsagePercent() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_86_37_88_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 87 8 ]
+        symbol [ _memoryPercent %tmp.2 87 15 29 ];
+        %tmp.2 = getv ? :_memoryPercent;
+        ret %tmp.2;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_86_37_88_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 91; @symbol_functiondef = [getMemoryStatus,91,13,28]; ]
+    function getMemoryStatus() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_91_31_98_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 92 8 ]
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_8_96_8_if_stmt:
+        symbol [ _memoryTotal %tmp.2 92 12 24 ];
+        %tmp.2 = getv ? :_memoryTotal;
+        %tmp.3 = 0;
+        %tmp.4 = gt %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_8_96_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_8_96_8_if_true:
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 93 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_stop" ]
+        %usedKB.1 = local;
+        symbol [ usedKB %usedKB.1 93 16 22 ];
+        symbol [ _memoryUsed %tmp.6 93 25 36 ];
+        %tmp.6 = getv ? :_memoryUsed;
+        %tmp.7 = 1024;
+        %tmp.8 = div %tmp.6 %tmp.7;
+        lputv %usedKB.1 %tmp.8;
+        symbol [ usedKB %usedKB.1 93 16 22 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 94 12 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_stop" ]
+        %totalKB.2 = local;
+        symbol [ totalKB %totalKB.2 94 16 23 ];
+        symbol [ _memoryTotal %tmp.10 94 26 38 ];
+        %tmp.10 = getv ? :_memoryTotal;
+        %tmp.11 = 1024;
+        %tmp.12 = div %tmp.10 %tmp.11;
+        lputv %totalKB.2 %tmp.12;
+        symbol [ totalKB %totalKB.2 94 16 23 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 95 12 ]
+        %tmp.13 = lgetv %usedKB.1;
+        symbol [ usedKB %tmp.13 95 19 25 ];
+        %tmp.14 = "/";
+        %tmp.15 = add %tmp.13 %tmp.14;
+        %tmp.16 = lgetv %totalKB.2;
+        symbol [ totalKB %tmp.16 95 34 41 ];
+        %tmp.17 = add %tmp.15 %tmp.16;
+        %tmp.18 = " KB";
+        %tmp.19 = add %tmp.17 %tmp.18;
+        ret %tmp.19;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_30_96_8_stop:
+        goto @_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_8_96_8_if_end;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_92_8_96_8_if_end:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 97 8 ]
+        %tmp.20 = "Unknown";
+        ret %tmp.20;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_91_31_98_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 101; @symbol_functiondef = [isMemoryLow,101,13,24]; ]
+    function isMemoryLow() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_101_27_103_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 102 8 ]
+        symbol [ _memoryPercent %tmp.2 102 15 29 ];
+        %tmp.2 = getv ? :_memoryPercent;
+        %tmp.3 = 80;
+        %tmp.4 = gt %tmp.2 %tmp.3;
+        ret %tmp.4;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_101_27_103_4_stop:
+    }
+    [ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 106; @symbol_functiondef = [getSystemInfo,106,13,26]; ]
+    function getSystemInfo() {
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_106_29_110_4_start:
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 107 8 ]
+        [ "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_106_29_110_4_start" "_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_106_29_110_4_stop" ]
+        %info.1 = local;
+        symbol [ info %info.1 107 12 16 ];
+        %tmp.1 = "Battery: ";
+        symbol [ _batteryLevel %tmp.3 107 33 46 ];
+        %tmp.3 = getv ? :_batteryLevel;
+        %tmp.4 = add %tmp.1 %tmp.3;
+        %tmp.5 = "% (";
+        %tmp.6 = add %tmp.4 %tmp.5;
+        %tmp.7 = self;
+        symbol [ getBatteryStatus %tmp.8 107 57 73 ];
+        %tmp.8 = getv function %tmp.7 :getBatteryStatus;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        %tmp.10 = add %tmp.6 %tmp.9;
+        %tmp.11 = ")\n";
+        %tmp.12 = add %tmp.10 %tmp.11;
+        lputv %info.1 %tmp.12;
+        symbol [ info %info.1 107 12 16 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 108 8 ]
+        %tmp.13 = lgetv %info.1;
+        symbol [ info %tmp.13 108 8 12 ];
+        %tmp.14 = "Memory: ";
+        %tmp.15 = self;
+        symbol [ getMemoryStatus %tmp.16 108 29 44 ];
+        %tmp.16 = getv function %tmp.15 :getMemoryStatus;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        %tmp.18 = add %tmp.14 %tmp.17;
+        %tmp.19 = add %tmp.13 %tmp.18;
+        lputv %info.1 %tmp.19;
+        symbol [ info %info.1 108 8 12 ];
+[ "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc" 109 8 ]
+        %tmp.20 = lgetv %info.1;
+        symbol [ info %tmp.20 109 15 19 ];
+        ret %tmp.20;
+_Users_j_IdeaProjects_own_garmin_meshtastic_src_SystemMonitor_mc_106_29_110_4_stop:
+    }
+}
+[ @file = "/Users/j/IdeaProjects/own/garmin/meshtastic/src/SystemMonitor.mc"; @line = 5; ]
+<init> {
+}

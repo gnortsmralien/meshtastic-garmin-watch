@@ -156,12 +156,12 @@ class BleManager {
         if (_scanResults.size() > 0) {
             // Try connecting to the first device found
             // After connection, we'll validate it has Meshtastic service
-            System.println("Attempting connection to first discovered device");
+            System.println("Attempting connection to device 1/" + _scanResults.size());
             connectToDevice(_scanResults[0]);
         } else {
-            System.println("No BLE devices found");
+            System.println("No BLE devices found - is Meshtastic device nearby and BLE enabled?");
             if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "No BLE devices found");
+                _connectionCallback.invoke(false, "No devices found");
             }
         }
     }

@@ -144,18 +144,34 @@ class MessageListViewDelegate extends WatchUi.BehaviorDelegate {
         _viewManager = viewManager;
     }
 
+    // Handle UP button for scrolling (Fenix 8)
+    function onPreviousPage() {
+        _view.scrollUp();
+        return true;
+    }
+
+    // Handle DOWN button for scrolling (Fenix 8)
+    function onNextPage() {
+        _view.scrollDown();
+        return true;
+    }
+
+    // Handle BACK button
+    function onBack() {
+        _viewManager.goBack();
+        return true;
+    }
+
+    // Legacy key handler for simulator compatibility
     function onKey(keyEvent) {
         var key = keyEvent.getKey();
 
         if (key == WatchUi.KEY_UP) {
-            _view.scrollUp();
-            return true;
+            return onPreviousPage();
         } else if (key == WatchUi.KEY_DOWN) {
-            _view.scrollDown();
-            return true;
+            return onNextPage();
         } else if (key == WatchUi.KEY_ESC) {
-            _viewManager.goBack();
-            return true;
+            return onBack();
         }
 
         return false;
