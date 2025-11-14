@@ -48,23 +48,15 @@ jobs:
         which monkeyc
         monkeyc --version
 
-    - name: Install SDK Manager CLI and Download Devices
+    - name: Setup Device Files
       run: |
-        echo "Installing connect-iq-sdk-manager-cli..."
-        curl -sL https://raw.githubusercontent.com/lindell/connect-iq-sdk-manager-cli/master/install.sh | sh
-
-        # Add to PATH for this step
-        export PATH="$HOME/.local/bin:$PATH"
-
-        echo "Downloading devices from manifest..."
-        # Download devices specified in manifest.xml
-        connect-iq-sdk-manager device download --manifest=manifest.xml || echo "Device download completed with warnings"
-
-        # Copy bundled device files to SDK location
-        echo "Copying bundled fenix8solar51mm device files to SDK..."
-        mkdir -p $HOME/Devices
-        cp -r .connectiq/Devices/fenix8solar51mm $HOME/Devices/
-        ls -la $HOME/Devices/fenix8solar51mm/
+        # Copy bundled device files to SDK's expected location
+        # On Linux, the SDK looks for devices in ~/.Garmin/ConnectIQ/Devices/
+        echo "Setting up fenix8solar51mm device files..."
+        mkdir -p $HOME/.Garmin/ConnectIQ/Devices
+        cp -r .connectiq/Devices/fenix8solar51mm $HOME/.Garmin/ConnectIQ/Devices/
+        echo "Device files installed:"
+        ls -la $HOME/.Garmin/ConnectIQ/Devices/fenix8solar51mm/
 
     - name: Build Main Application
       run: |
