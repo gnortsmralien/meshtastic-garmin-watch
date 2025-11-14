@@ -59,7 +59,7 @@ monkeydo build/prototest.prg fenix8solar51mm
 
 ## Deploy to Device
 
-### Method 1: USB Copy (Recommended)
+### Method 1: Direct USB Copy (Sideloading - Recommended for Development)
 
 1. Build the app for your device:
    ```bash
@@ -70,38 +70,55 @@ monkeydo build/prototest.prg fenix8solar51mm
 
 3. The watch will appear as a USB storage device (e.g., `/Volumes/GARMIN`)
 
-4. Copy the `.prg` file to the watch:
+4. Copy the `.prg` file to the APPS folder on the watch:
    ```bash
    cp build/meshtastic.prg /Volumes/GARMIN/GARMIN/APPS/
    ```
 
 5. Safely eject the watch from your computer
 
-6. On the watch, navigate to the apps menu - "Meshtastic" will appear
+6. **Important:** On newer watches, the .prg file will disappear from the folder immediately after copying - this is normal! The watch has processed and installed it.
 
-### Method 2: Garmin Express
+7. On the watch, press the UP button to open the app menu and scroll to find "Meshtastic"
+
+### Method 2: Using Garmin Express (For Viewing/Managing)
+
+**Note:** Garmin Express cannot directly install custom .prg files, but it's useful for managing sideloaded apps.
 
 1. Install [Garmin Express](https://www.garmin.com/en-US/software/express/)
 
-2. Connect your watch via USB
+2. After sideloading via USB (Method 1), connect your watch to Garmin Express
 
-3. Use Garmin Express to sync and install the app
+3. Your sideloaded app will appear as a "development version" in Garmin Express
 
-### Method 3: Connect IQ Mobile App
+4. You can use Garmin Express to:
+   - View installed sideloaded apps
+   - Uninstall sideloaded apps (can't be done via the Connect IQ mobile app)
+   - Sync other device data
 
-1. Install the Connect IQ mobile app on your phone
+### Method 3: Connect IQ Store App on Watch (For Management)
 
-2. Build the app and transfer to your phone
+1. After sideloading, open the Connect IQ Store app on your watch
 
-3. Install via the Connect IQ app while your watch is paired
+2. Navigate to "Installed"
+
+3. Your app will appear with a "development version" label
+
+4. You can delete the app from here if needed
 
 ### Verify Installation
 
-After installation:
-1. Press the UP button on your watch to open the app menu
-2. Scroll to find "Meshtastic"
-3. Select it to launch the app
-4. You should see the status screen with "Disconnected" (if no Meshtastic device is nearby)
+After sideloading:
+1. The .prg file will disappear from /GARMIN/APPS/ (normal behavior on modern watches)
+2. Press the UP button on your watch to open the app menu
+3. Scroll to find "Meshtastic"
+4. Select it to launch the app
+5. You should see the status screen with "Disconnected" (if no Meshtastic device is nearby)
+
+If the app doesn't appear, try:
+- Restarting the watch
+- Checking the file was copied to `/GARMIN/APPS/` (not `/Garmin/Apps/` - case matters on some systems)
+- Verifying the .prg was built for the correct device model
 
 ## Project Structure
 
