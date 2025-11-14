@@ -6,7 +6,7 @@ A Meshtastic client implementation for Garmin wearables using Connect IQ SDK.
 
 - **Garmin Connect IQ SDK** 8.3.0 or higher
 - **Developer key** for signing builds
-- **Garmin device** with BLE support (Fenix 7/7S/7X or compatible) or simulator
+- **Garmin device** with BLE support (Fenix 8 Solar recommended) or simulator
 
 ## Setup
 
@@ -20,22 +20,22 @@ A Meshtastic client implementation for Garmin wearables using Connect IQ SDK.
 
 Build the main application:
 ```bash
-monkeyc -f monkey.jungle -d fenix7 -o build/meshtastic.prg -y developer_key
+monkeyc -f monkey.jungle -d fenix8solar51mm -o build/meshtastic.prg -y developer_key
 ```
 
 Build the interactive simulator test:
 ```bash
-monkeyc -f interactive-test.jungle -d fenix7 -o build/interactive-simulator.prg -y developer_key
+monkeyc -f interactive-test.jungle -d fenix8solar51mm -o build/interactive-simulator.prg -y developer_key
 ```
 
 Build the protobuf test:
 ```bash
-monkeyc -f proto-test.jungle -d fenix7 -o build/prototest.prg -y developer_key
+monkeyc -f proto-test.jungle -d fenix8solar51mm -o build/prototest.prg -y developer_key
 ```
 
 Build the comprehensive test:
 ```bash
-monkeyc -f comprehensive-test.jungle -d fenix7 -o build/comprehensive.prg -y developer_key
+monkeyc -f comprehensive-test.jungle -d fenix8solar51mm -o build/comprehensive.prg -y developer_key
 ```
 
 ## Run

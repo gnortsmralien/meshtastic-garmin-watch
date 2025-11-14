@@ -67,7 +67,8 @@ jobs:
         monkeyc \
           -o build/meshtastic.prg \
           -f monkey.jungle \
-          -d fenix7 \
+          -d fenix8solar51mm \
+          -u .connectiq/Devices \
           -w
 
     - name: Build Comprehensive Tests
@@ -76,7 +77,8 @@ jobs:
         monkeyc \
           -o build/comprehensive-test.prg \
           -f comprehensive-test.jungle \
-          -d fenix7 \
+          -d fenix8solar51mm \
+          -u .connectiq/Devices \
           -w
 
     - name: Run Tests in Simulator
