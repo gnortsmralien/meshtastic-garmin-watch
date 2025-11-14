@@ -16,7 +16,9 @@ class StatusView extends WatchUi.View {
     private var _statusMessage = "";
 
     function initialize(bleManager, messageHandler, viewManager, systemMonitor, reconnectManager) {
+        System.println(">>> StatusView.initialize() START");
         View.initialize();
+        System.println(">>> StatusView: Storing manager references...");
         _bleManager = bleManager;
         _messageHandler = messageHandler;
         _viewManager = viewManager;
@@ -24,7 +26,9 @@ class StatusView extends WatchUi.View {
         _reconnectManager = reconnectManager;
 
         // Set PIN callback on BLE manager
+        System.println(">>> StatusView: Setting PIN callback...");
         _bleManager.setPinCallback(method(:onPinRequested));
+        System.println(">>> StatusView.initialize() COMPLETE");
     }
 
     function onPinRequested(device, callback) {
@@ -33,6 +37,7 @@ class StatusView extends WatchUi.View {
     }
 
     function onUpdate(dc as Graphics.Dc) as Void {
+        System.println(">>> StatusView.onUpdate() called");
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.clear();
 

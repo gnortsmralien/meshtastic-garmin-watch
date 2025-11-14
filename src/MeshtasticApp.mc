@@ -20,20 +20,31 @@ class MeshtasticApp extends Application.AppBase {
     private var _settingsManager;
 
     function initialize() {
+        System.println(">>> MeshtasticApp.initialize() START");
         AppBase.initialize();
+        System.println(">>> Creating SettingsManager...");
         _settingsManager = new SettingsManager();
+        System.println(">>> Creating BleManager...");
         _bleManager = new BleManager(_settingsManager);
+        System.println(">>> Creating MessageHandler...");
         _messageHandler = new MessageHandler();
+        System.println(">>> Creating SystemMonitor...");
         _systemMonitor = new SystemMonitor();
+        System.println(">>> Creating ReconnectManager...");
         _reconnectManager = new ReconnectManager(_bleManager, _messageHandler);
+        System.println(">>> Creating ViewManager...");
         _viewManager = new ViewManager(_bleManager, _messageHandler, _systemMonitor, _reconnectManager, _settingsManager);
+        System.println(">>> Creating NotificationManager...");
         _notificationManager = new NotificationManager();
+        System.println(">>> MeshtasticApp.initialize() COMPLETE");
     }
 
     function onStart(state as Lang.Dictionary?) as Void {
+        System.println(">>> MeshtasticApp.onStart() START");
         System.println("=== Meshtastic App Starting ===");
 
         // Register BLE profile
+        System.println(">>> Registering BLE profile...");
         if (_bleManager.registerProfile()) {
             System.println("BLE profile registered successfully");
         } else {
@@ -41,6 +52,7 @@ class MeshtasticApp extends Application.AppBase {
         }
 
         // Set up message handler callbacks
+        System.println(">>> Setting up callbacks...");
         _messageHandler.setMessageCallback(method(:onMessageReceived));
         _messageHandler.setConfigCompleteCallback(method(:onConfigComplete));
 
@@ -51,19 +63,27 @@ class MeshtasticApp extends Application.AppBase {
         _reconnectManager.setCallback(method(:onReconnectStatus));
 
         // Update system monitor
+        System.println(">>> Updating system monitor...");
         _systemMonitor.update();
+        System.println(">>> MeshtasticApp.onStart() COMPLETE");
     }
 
     function onStop(state as Lang.Dictionary?) as Void {
+        System.println(">>> MeshtasticApp.onStop() START");
         System.println("=== Meshtastic App Stopping ===");
         _reconnectManager.cancel(); // Cancel any pending reconnect
         _bleManager.disconnect();
+        System.println(">>> MeshtasticApp.onStop() COMPLETE");
     }
 
     function getInitialView() {
+        System.println(">>> MeshtasticApp.getInitialView() START");
         // Return the status view as the initial view
+        System.println(">>> Creating StatusView...");
         var view = new StatusView(_bleManager, _messageHandler, _viewManager, _systemMonitor, _reconnectManager);
+        System.println(">>> Creating StatusViewDelegate...");
         var delegate = new StatusViewDelegate(view, _viewManager);
+        System.println(">>> MeshtasticApp.getInitialView() COMPLETE");
         return [ view, delegate ];
     }
     
