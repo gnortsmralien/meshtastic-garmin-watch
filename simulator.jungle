@@ -1,0 +1,6 @@
+project.manifest = manifest.xml
+
+# Simulator build - uses MockBleManager_Simulator (renamed to BleManager) to avoid BLE crashes
+# Note: MockBleManager_Simulator.mc contains a class named "BleManager" so app code works unchanged
+base.sourcePath = src/MeshtasticApp.mc;src/MockBleManager_Simulator.mc;src/BleCommandQueue.mc;src/MessageHandler.mc;src/ViewManager.mc;src/NotificationManager.mc;src/SystemMonitor.mc;src/ReconnectManager.mc;src/SettingsManager.mc;src/Config.mc;src/views/StatusView.mc;src/views/MessageListView.mc;src/views/NodeListView.mc;src/views/ComposeView.mc;src/views/CustomMessageView.mc;src/views/PinEntryView.mc;src/views/SettingsView.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.resourcePath = resources

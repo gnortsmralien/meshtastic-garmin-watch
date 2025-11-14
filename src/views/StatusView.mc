@@ -147,9 +147,9 @@ class StatusView extends WatchUi.View {
 
             System.println(">>> Drawing state-specific menu items");
             if (state == BleManager.STATE_DISCONNECTED) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "SELECT:Connect", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msgs DN:Nodes SELECT:Connect", Graphics.TEXT_JUSTIFY_CENTER);
             } else if (state == BleManager.STATE_READY) {
-                dc.drawText(centerX, y, Graphics.FONT_XTINY, "SELECT:Messages MENU:Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msgs DN:Nodes SELECT:Compose", Graphics.TEXT_JUSTIFY_CENTER);
             }
 
             System.println(">>> StatusView.onUpdate() COMPLETE");
@@ -188,6 +188,18 @@ class StatusViewDelegate extends WatchUi.BehaviorDelegate {
         _viewManager = viewManager;
     }
 
+    // Handle UP button - navigate to messages
+    function onPreviousPage() {
+        _viewManager.showMessageListView();
+        return true;
+    }
+
+    // Handle DOWN button - navigate to nodes
+    function onNextPage() {
+        _viewManager.showNodeListView();
+        return true;
+    }
+
     // Handle SELECT button (primary action)
     function onSelect() {
         var bleManager = _view.getBleManager();
@@ -198,8 +210,8 @@ class StatusViewDelegate extends WatchUi.BehaviorDelegate {
             _view.setStatusMessage("Scanning for devices...");
             handleConnect();
         } else if (state == BleManager.STATE_READY) {
-            // When connected, SELECT shows messages
-            _viewManager.showMessageListView();
+            // When connected, SELECT shows compose
+            _viewManager.showComposeView();
         }
         return true;
     }
@@ -225,7 +237,11 @@ class StatusViewDelegate extends WatchUi.BehaviorDelegate {
     function onKey(keyEvent) {
         var key = keyEvent.getKey();
 
-        if (key == WatchUi.KEY_ENTER) {
+        if (key == WatchUi.KEY_UP) {
+            return onPreviousPage();
+        } else if (key == WatchUi.KEY_DOWN) {
+            return onNextPage();
+        } else if (key == WatchUi.KEY_ENTER) {
             return onSelect();
         } else if (key == WatchUi.KEY_MENU) {
             return onMenu();

@@ -292,16 +292,30 @@ class BleManager {
         _connectionState = STATE_CONNECTED;
         _connectedDevice = device;
 
+        // Debug: List all services available on this device
+        System.println("Discovering services on device...");
+        var deviceServices = device.getServices();
+        if (deviceServices != null) {
+            System.println("Found " + deviceServices.size() + " services:");
+            for (var i = 0; i < deviceServices.size(); i++) {
+                var service = deviceServices[i];
+                System.println("  Service " + i + ": " + service.getUuid().toString());
+            }
+        } else {
+            System.println("No services found (device.getServices() returned null)");
+        }
+
         // CRITICAL: Validate this is a Meshtastic device
         // Get the Meshtastic service UUID
         _meshtasticService = device.getService(MESH_SERVICE_UUID);
         if (_meshtasticService == null) {
-            System.println("ERROR: Not a Meshtastic device - service UUID not found");
+            System.println("ERROR: Meshtastic service not found!");
+            System.println("Looking for: " + MESH_SERVICE_UUID.toString());
             disconnect();
 
             // Auto-retry with next device in scan results if available
             if (_autoRetryOnWrongDevice && _scanResults.size() > 1) {
-                System.println("Trying next device from scan results...");
+                System.println("Trying next device (" + _scanResults.size() + " remaining)...");
                 _scanResults = _scanResults.slice(1, _scanResults.size()); // Remove first device
                 connectToDevice(_scanResults[0]);
             } else {
@@ -321,12 +335,12 @@ class BleManager {
 
         if (_toRadioChar == null || _fromRadioChar == null || _fromNumChar == null) {
             System.println("ERROR: Required characteristics not found");
-            System.println("  ToRadio: " + (_toRadioChar != null ? "✓" : "✗"));
-            System.println("  FromRadio: " + (_fromRadioChar != null ? "✓" : "✗"));
-            System.println("  FromNum: " + (_fromNumChar != null ? "✓" : "✗"));
+            System.println("  ToRadio (" + TO_RADIO_UUID.toString() + "): " + (_toRadioChar != null ? "✓" : "✗"));
+            System.println("  FromRadio (" + FROM_RADIO_UUID.toString() + "): " + (_fromRadioChar != null ? "✓" : "✗"));
+            System.println("  FromNum (" + FROM_NUM_UUID.toString() + "): " + (_fromNumChar != null ? "✓" : "✗"));
             disconnect();
             if (_connectionCallback != null) {
-                _connectionCallback.invoke(false, "Missing required characteristics");
+                _connectionCallback.invoke(false, "Missing Meshtastic characteristics");
             }
             return;
         }

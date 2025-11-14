@@ -24,8 +24,11 @@ class MeshtasticApp extends Application.AppBase {
         AppBase.initialize();
         System.println(">>> Creating SettingsManager...");
         _settingsManager = new SettingsManager();
-        System.println(">>> Creating BleManager...");
+
+        // Create BLE manager - BleManager or MockBleManager depending on jungle file
+        System.println(">>> Creating BLE Manager...");
         _bleManager = new BleManager(_settingsManager);
+
         System.println(">>> Creating MessageHandler...");
         _messageHandler = new MessageHandler();
         System.println(">>> Creating SystemMonitor...");

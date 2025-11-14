@@ -1,13 +1,14 @@
-// MockBleManager.mc
+// MockBleManager_Simulator.mc
 //
 // Mock BLE manager for simulator testing - simulates BLE behavior without real hardware
+// This file provides a BleManager class for simulator builds to avoid crashes
 
 using Toybox.Lang;
 using Toybox.System;
 using Toybox.Timer;
 
-class MockBleManager {
-    // Connection states (same as BleManager)
+class BleManager {
+    // Connection states (same as real BleManager)
     enum ConnectionState {
         STATE_DISCONNECTED,
         STATE_SCANNING,
