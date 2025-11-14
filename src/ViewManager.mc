@@ -27,11 +27,13 @@ class ViewManager {
     private var _settingsManager;
 
     function initialize(bleManager, messageHandler, systemMonitor, reconnectManager, settingsManager) {
+        System.println(">>> ViewManager.initialize() START");
         _bleManager = bleManager;
         _messageHandler = messageHandler;
         _systemMonitor = systemMonitor;
         _reconnectManager = reconnectManager;
         _settingsManager = settingsManager;
+        System.println(">>> ViewManager.initialize() COMPLETE");
     }
 
     // Show the main status view

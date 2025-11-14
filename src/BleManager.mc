@@ -43,9 +43,13 @@ class BleManager {
     private var _autoRetryOnWrongDevice = true; // Auto-retry if connected to non-Meshtastic device
 
     function initialize(settingsManager) {
+        System.println(">>> BleManager.initialize() START");
         _settingsManager = settingsManager;
+        System.println(">>> Creating BleManagerDelegate...");
         _delegate = new BleManagerDelegate(self);
+        System.println(">>> Setting BLE delegate...");
         Ble.setDelegate(_delegate);
+        System.println(">>> BleManager.initialize() COMPLETE");
     }
 
     // Get current PIN from settings (or default)
@@ -61,28 +65,32 @@ class BleManager {
     }
     
     function registerProfile() {
-        if (_profileRegistered) { 
-            return true; 
+        System.println(">>> BleManager.registerProfile() called");
+        if (_profileRegistered) {
+            System.println(">>> Profile already registered, skipping");
+            return true;
         }
-        
+
+        System.println(">>> Creating Meshtastic BLE profile...");
         var profile = {
             :uuid => MESH_SERVICE_UUID,
             :characteristics => [
-                { 
+                {
                     :uuid => TO_RADIO_UUID
                 },
-                { 
+                {
                     :uuid => FROM_RADIO_UUID,
                     :descriptors => [Ble.cccdUuid()]
                 },
-                { 
+                {
                     :uuid => FROM_NUM_UUID,
                     :descriptors => [Ble.cccdUuid()]
                 }
             ]
         };
-        
+
         try {
+            System.println(">>> Calling Ble.registerProfile()...");
             Ble.registerProfile(profile);
             _profileRegistered = true;
             System.println("BLE profile registered successfully");

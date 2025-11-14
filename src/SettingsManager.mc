@@ -14,19 +14,30 @@ class SettingsManager {
     private const KEY_AUTO_RETRY = "auto_retry";
 
     function initialize() {
+        System.println(">>> SettingsManager.initialize() START");
         // Ensure default values are set on first run
         try {
+            System.println(">>> Checking BLE PIN in storage...");
             if (Storage.getValue(KEY_BLE_PIN) == null) {
+                System.println(">>> Setting default BLE PIN: " + Config.DEFAULT_MESHTASTIC_PIN);
                 Storage.setValue(KEY_BLE_PIN, Config.DEFAULT_MESHTASTIC_PIN);
+            } else {
+                System.println(">>> BLE PIN already exists in storage");
             }
+            System.println(">>> Checking Auto-Reconnect in storage...");
             if (Storage.getValue(KEY_AUTO_RECONNECT) == null) {
+                System.println(">>> Setting default Auto-Reconnect: true");
                 Storage.setValue(KEY_AUTO_RECONNECT, true);
             }
+            System.println(">>> Checking Auto-Retry in storage...");
             if (Storage.getValue(KEY_AUTO_RETRY) == null) {
+                System.println(">>> Setting default Auto-Retry: true");
                 Storage.setValue(KEY_AUTO_RETRY, true);
             }
+            System.println(">>> SettingsManager.initialize() COMPLETE");
         } catch (ex) {
-            System.println("SettingsManager: Storage initialization failed, using defaults");
+            System.println("!!! SettingsManager: Storage initialization FAILED - using defaults");
+            System.println("!!! Exception: " + ex);
         }
     }
 
@@ -35,19 +46,24 @@ class SettingsManager {
     // ============================================
 
     function getBlePin() {
+        System.println(">>> SettingsManager.getBlePin() called");
         try {
             var pin = Storage.getValue(KEY_BLE_PIN);
             if (pin == null) {
+                System.println(">>> PIN not in storage, using default: " + Config.DEFAULT_MESHTASTIC_PIN);
                 pin = Config.DEFAULT_MESHTASTIC_PIN;
                 try {
                     Storage.setValue(KEY_BLE_PIN, pin);
                 } catch (ex) {
-                    // Storage write failed, just return default
+                    System.println("!!! Failed to save default PIN to storage");
                 }
+            } else {
+                System.println(">>> Retrieved PIN from storage (length: " + pin.length() + ")");
             }
             return pin;
         } catch (ex) {
-            System.println("SettingsManager: Failed to get PIN, using default");
+            System.println("!!! SettingsManager: Failed to get PIN, using default");
+            System.println("!!! Exception: " + ex);
             return Config.DEFAULT_MESHTASTIC_PIN;
         }
     }

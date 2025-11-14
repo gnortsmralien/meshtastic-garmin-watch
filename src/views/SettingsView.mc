@@ -19,12 +19,15 @@ class SettingsView extends WatchUi.View {
     ];
 
     function initialize(settingsManager, viewManager) {
+        System.println(">>> SettingsView.initialize() START");
         View.initialize();
         _settingsManager = settingsManager;
         _viewManager = viewManager;
+        System.println(">>> SettingsView.initialize() COMPLETE");
     }
 
     function onUpdate(dc as Graphics.Dc) as Void {
+        System.println(">>> SettingsView.onUpdate() called");
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.clear();
 
