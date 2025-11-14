@@ -168,6 +168,10 @@ class CustomMessageView extends WatchUi.View {
     function getViewManager() {
         return _viewManager;
     }
+
+    function getMessageText() {
+        return _messageText;
+    }
 }
 
 class CustomMessageViewDelegate extends WatchUi.BehaviorDelegate {
@@ -187,10 +191,6 @@ class CustomMessageViewDelegate extends WatchUi.BehaviorDelegate {
             // Send the message
             _view.sendMessage();
             return true;
-        } else if (key == WatchUi.KEY_ENTER || key == WatchUi.KEY_DOWN_RIGHT) {
-            // Open text picker
-            showTextPicker();
-            return true;
         } else if (key == WatchUi.KEY_ESC) {
             _viewManager.goBack();
             return true;
@@ -200,15 +200,15 @@ class CustomMessageViewDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onSelect() {
-        // SELECT button opens text picker
-        showTextPicker();
+        // SELECT button opens text input
+        showTextInput();
         return true;
     }
 
-    function showTextPicker() {
-        // Use TextPicker for character-by-character input
-        var textPicker = new WatchUi.TextPicker("");
-        WatchUi.pushView(textPicker, new TextPickerDelegate(_view), WatchUi.SLIDE_UP);
+    function showTextInput() {
+        // Use TextPicker which provides a full keyboard on modern devices
+        var textPicker = new WatchUi.TextPicker(_view.getMessageText());
+        WatchUi.pushView(textPicker, new $.TextPickerDelegate(_view), WatchUi.SLIDE_UP);
     }
 }
 
