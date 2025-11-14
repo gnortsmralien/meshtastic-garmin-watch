@@ -31,7 +31,7 @@ class CustomMessageView extends WatchUi.View {
 
         // Title
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, 10, Graphics.FONT_SMALL, "Custom Message", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(centerX, 15, Graphics.FONT_SMALL, "Custom Message", Graphics.TEXT_JUSTIFY_CENTER);
 
         // Current message text
         if (_messageText.length() > 0) {
@@ -60,12 +60,12 @@ class CustomMessageView extends WatchUi.View {
             dc.drawText(centerX, height - 60, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
         }
 
-        // Instructions
+        // Instructions - split into multiple lines to fit screen
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(centerX, height - 40, Graphics.FONT_TINY,
+        dc.drawText(centerX, height - 50, Graphics.FONT_XTINY,
                    "SELECT: Edit Text", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(centerX, height - 20, Graphics.FONT_TINY,
-                   "ENTER: Send | BACK: Cancel", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(centerX, height - 35, Graphics.FONT_XTINY,
+                   "ENTER: Send", Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function wordWrap(text, maxChars) {
@@ -221,9 +221,15 @@ class TextPickerDelegate extends WatchUi.TextPickerDelegate {
     }
 
     function onTextEntered(text, changed) {
-        if (text != null && text.length() > 0) {
+        // Always save the text, even if empty (allows clearing)
+        if (text != null) {
             _view.setMessageText(text);
         }
+        return true;
+    }
+
+    function onCancel() {
+        // User cancelled - don't change the text
         return true;
     }
 }
