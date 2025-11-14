@@ -12,6 +12,7 @@ class PinEntryView extends WatchUi.View {
     private var _maxLength = 6;
     private var _callback = null;
     private var _message = "Enter Device PIN";
+    private var _currentDigit = 0; // For digit cycling
 
     function initialize(callback) {
         View.initialize();
@@ -44,23 +45,31 @@ class PinEntryView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX, height / 2 - 20, Graphics.FONT_LARGE, displayPin, Graphics.TEXT_JUSTIFY_CENTER);
 
-        // Current PIN (small text below)
+        // Current PIN and digit selector
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX, height / 2 + 20, Graphics.FONT_MEDIUM, _pin, Graphics.TEXT_JUSTIFY_CENTER);
+
+        // Show current digit being selected
+        if (_pin.length() < _maxLength) {
+            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(centerX, height / 2 + 50, Graphics.FONT_LARGE,
+                       "< " + _currentDigit + " >", Graphics.TEXT_JUSTIFY_CENTER);
+        }
 
         // Instructions
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX, height - 50, Graphics.FONT_TINY,
-                   "SELECT: Enter Digit", Graphics.TEXT_JUSTIFY_CENTER);
+                   "SELECT: Add | UP/DOWN: Cycle", Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(centerX, height - 35, Graphics.FONT_TINY,
-                   "UP: Delete | DOWN: Clear", Graphics.TEXT_JUSTIFY_CENTER);
+                   "MENU: Delete | BACK: Clear", Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(centerX, height - 20, Graphics.FONT_TINY,
-                   "ENTER: Submit | BACK: Cancel", Graphics.TEXT_JUSTIFY_CENTER);
+                   "ENTER: Submit", Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     function addDigit(digit) {
         if (_pin.length() < _maxLength) {
             _pin += digit.toString();
+            _currentDigit = 0; // Reset for next digit
             WatchUi.requestUpdate();
         }
     }
@@ -68,13 +77,24 @@ class PinEntryView extends WatchUi.View {
     function deleteDigit() {
         if (_pin.length() > 0) {
             _pin = _pin.substring(0, _pin.length() - 1);
+            _currentDigit = 0;
             WatchUi.requestUpdate();
         }
     }
 
     function clearPin() {
         _pin = "";
+        _currentDigit = 0;
         WatchUi.requestUpdate();
+    }
+
+    function cycleCurrentDigit() {
+        _currentDigit = (_currentDigit + 1) % 10;
+        WatchUi.requestUpdate();
+    }
+
+    function getCurrentDigit() {
+        return _currentDigit;
     }
 
     function submit() {
@@ -106,14 +126,16 @@ class PinEntryViewDelegate extends WatchUi.BehaviorDelegate {
             WatchUi.popView(WatchUi.SLIDE_DOWN);
             return true;
         } else if (key == WatchUi.KEY_ESC) {
-            _view.cancel();
-            WatchUi.popView(WatchUi.SLIDE_DOWN);
+            _view.clearPin();
             return true;
         } else if (key == WatchUi.KEY_UP) {
-            _view.deleteDigit();
+            _view.cycleCurrentDigit();
             return true;
         } else if (key == WatchUi.KEY_DOWN) {
-            _view.clearPin();
+            _view.cycleCurrentDigit();
+            return true;
+        } else if (key == WatchUi.KEY_MENU) {
+            _view.deleteDigit();
             return true;
         }
 
@@ -121,25 +143,8 @@ class PinEntryViewDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onSelect() {
-        // Show number picker for digit entry
-        var picker = new WatchUi.NumberPicker(WatchUi.NUMBER_PICKER_NUMBER);
-        WatchUi.pushView(picker, new NumberPickerDelegate(_view), WatchUi.SLIDE_UP);
-        return true;
-    }
-}
-
-class NumberPickerDelegate extends WatchUi.NumberPickerDelegate {
-    private var _view;
-
-    function initialize(view) {
-        NumberPickerDelegate.initialize();
-        _view = view;
-    }
-
-    function onNumberPicked(value) {
-        if (value != null) {
-            _view.addDigit(value);
-        }
+        // Add the current digit to the PIN
+        _view.addDigit(_view.getCurrentDigit());
         return true;
     }
 }
