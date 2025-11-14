@@ -58,12 +58,17 @@ class SettingsView extends WatchUi.View {
 
             // Show current value for settings
             if (i == 0) {  // BLE PIN
-                var pin = _settingsManager.getBlePin();
-                var displayPin = "";
-                for (var j = 0; j < pin.length(); j++) {
-                    displayPin += "*";
+                try {
+                    var pin = _settingsManager.getBlePin();
+                    if (pin != null) {
+                        var pinLen = pin.length();
+                        var asterisks = ["*", "**", "***", "****", "*****", "******", "*******", "********"];
+                        var displayPin = pinLen < asterisks.size() ? asterisks[pinLen] : "******";
+                        dc.drawText(width - 10, itemY, Graphics.FONT_TINY, displayPin, Graphics.TEXT_JUSTIFY_RIGHT);
+                    }
+                } catch (ex) {
+                    // Ignore rendering errors
                 }
-                dc.drawText(width - 10, itemY, Graphics.FONT_TINY, displayPin, Graphics.TEXT_JUSTIFY_RIGHT);
             } else if (i == 1) {  // Auto-Reconnect
                 var enabled = _settingsManager.getAutoReconnect();
                 dc.drawText(width - 10, itemY, Graphics.FONT_TINY,

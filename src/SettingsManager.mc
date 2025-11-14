@@ -15,14 +15,18 @@ class SettingsManager {
 
     function initialize() {
         // Ensure default values are set on first run
-        if (Storage.getValue(KEY_BLE_PIN) == null) {
-            Storage.setValue(KEY_BLE_PIN, Config.DEFAULT_MESHTASTIC_PIN);
-        }
-        if (Storage.getValue(KEY_AUTO_RECONNECT) == null) {
-            Storage.setValue(KEY_AUTO_RECONNECT, true);
-        }
-        if (Storage.getValue(KEY_AUTO_RETRY) == null) {
-            Storage.setValue(KEY_AUTO_RETRY, true);
+        try {
+            if (Storage.getValue(KEY_BLE_PIN) == null) {
+                Storage.setValue(KEY_BLE_PIN, Config.DEFAULT_MESHTASTIC_PIN);
+            }
+            if (Storage.getValue(KEY_AUTO_RECONNECT) == null) {
+                Storage.setValue(KEY_AUTO_RECONNECT, true);
+            }
+            if (Storage.getValue(KEY_AUTO_RETRY) == null) {
+                Storage.setValue(KEY_AUTO_RETRY, true);
+            }
+        } catch (ex) {
+            System.println("SettingsManager: Storage initialization failed, using defaults");
         }
     }
 
@@ -31,12 +35,21 @@ class SettingsManager {
     // ============================================
 
     function getBlePin() {
-        var pin = Storage.getValue(KEY_BLE_PIN);
-        if (pin == null) {
-            pin = Config.DEFAULT_MESHTASTIC_PIN;
-            Storage.setValue(KEY_BLE_PIN, pin);
+        try {
+            var pin = Storage.getValue(KEY_BLE_PIN);
+            if (pin == null) {
+                pin = Config.DEFAULT_MESHTASTIC_PIN;
+                try {
+                    Storage.setValue(KEY_BLE_PIN, pin);
+                } catch (ex) {
+                    // Storage write failed, just return default
+                }
+            }
+            return pin;
+        } catch (ex) {
+            System.println("SettingsManager: Failed to get PIN, using default");
+            return Config.DEFAULT_MESHTASTIC_PIN;
         }
-        return pin;
     }
 
     function setBlePin(pin) {
@@ -53,8 +66,12 @@ class SettingsManager {
     // ============================================
 
     function getAutoReconnect() {
-        var value = Storage.getValue(KEY_AUTO_RECONNECT);
-        return value != null ? value : true;
+        try {
+            var value = Storage.getValue(KEY_AUTO_RECONNECT);
+            return value != null ? value : true;
+        } catch (ex) {
+            return true;
+        }
     }
 
     function setAutoReconnect(enabled) {
@@ -67,8 +84,12 @@ class SettingsManager {
     // ============================================
 
     function getAutoRetry() {
-        var value = Storage.getValue(KEY_AUTO_RETRY);
-        return value != null ? value : true;
+        try {
+            var value = Storage.getValue(KEY_AUTO_RETRY);
+            return value != null ? value : true;
+        } catch (ex) {
+            return true;
+        }
     }
 
     function setAutoRetry(enabled) {
