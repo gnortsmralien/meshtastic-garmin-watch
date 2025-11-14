@@ -207,12 +207,6 @@ class CustomMessageViewDelegate extends WatchUi.BehaviorDelegate {
 
     function showTextPicker() {
         // Use TextPicker for character-by-character input
-        var options = {
-            :title => "Enter Message",
-            :confirmLabel => "OK",
-            :cancelLabel => "Cancel"
-        };
-
         var textPicker = new WatchUi.TextPicker("");
         WatchUi.pushView(textPicker, new TextPickerDelegate(_view), WatchUi.SLIDE_UP);
     }
