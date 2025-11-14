@@ -17,14 +17,16 @@ class MeshtasticApp extends Application.AppBase {
     private var _notificationManager;
     private var _systemMonitor;
     private var _reconnectManager;
+    private var _settingsManager;
 
     function initialize() {
         AppBase.initialize();
-        _bleManager = new BleManager();
+        _settingsManager = new SettingsManager();
+        _bleManager = new BleManager(_settingsManager);
         _messageHandler = new MessageHandler();
         _systemMonitor = new SystemMonitor();
         _reconnectManager = new ReconnectManager(_bleManager, _messageHandler);
-        _viewManager = new ViewManager(_bleManager, _messageHandler, _systemMonitor, _reconnectManager);
+        _viewManager = new ViewManager(_bleManager, _messageHandler, _systemMonitor, _reconnectManager, _settingsManager);
         _notificationManager = new NotificationManager();
     }
 

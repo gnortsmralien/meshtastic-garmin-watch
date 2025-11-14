@@ -24,12 +24,14 @@ class ViewManager {
     private var _messageHandler;
     private var _systemMonitor;
     private var _reconnectManager;
+    private var _settingsManager;
 
-    function initialize(bleManager, messageHandler, systemMonitor, reconnectManager) {
+    function initialize(bleManager, messageHandler, systemMonitor, reconnectManager, settingsManager) {
         _bleManager = bleManager;
         _messageHandler = messageHandler;
         _systemMonitor = systemMonitor;
         _reconnectManager = reconnectManager;
+        _settingsManager = settingsManager;
     }
 
     // Show the main status view
@@ -72,6 +74,13 @@ class ViewManager {
         var view = new PinEntryView(callback);
         var delegate = new PinEntryViewDelegate(view);
         WatchUi.pushView(view, delegate, WatchUi.SLIDE_UP);
+    }
+
+    // Show settings view
+    function showSettingsView() {
+        var view = new SettingsView(_settingsManager, self);
+        var delegate = new SettingsViewDelegate(view, self);
+        pushView(view, delegate);
     }
 
     // Go back to previous view

@@ -38,13 +38,22 @@ class BleManager {
     private var _connectionCallback = null;
     private var _dataCallback = null;
     private var _pinCallback = null;
-    private var _defaultPin = Config.DEFAULT_MESHTASTIC_PIN; // Configured in Config.mc
+    private var _settingsManager = null;
     private var _scanResults = []; // Store scan results before attempting connection
     private var _autoRetryOnWrongDevice = true; // Auto-retry if connected to non-Meshtastic device
 
-    function initialize() {
+    function initialize(settingsManager) {
+        _settingsManager = settingsManager;
         _delegate = new BleManagerDelegate(self);
         Ble.setDelegate(_delegate);
+    }
+
+    // Get current PIN from settings (or default)
+    private function getCurrentPin() {
+        if (_settingsManager != null) {
+            return _settingsManager.getBlePin();
+        }
+        return Config.DEFAULT_MESHTASTIC_PIN;
     }
 
     function setDefaultPin(pin) {
@@ -180,13 +189,15 @@ class BleManager {
     function onPinRequested(device) {
         System.println("PIN requested for device");
 
+        var savedPin = getCurrentPin();
+
         if (_pinCallback != null) {
-            // Ask user for PIN
+            // Ask user for PIN (but TextPicker will start with saved PIN)
             _pinCallback.invoke(device, method(:onPinProvided));
         } else {
-            // Use default PIN
-            System.println("Using default PIN: " + _defaultPin);
-            onPinProvided(_defaultPin);
+            // Use saved PIN automatically
+            System.println("Using saved PIN: " + savedPin);
+            onPinProvided(savedPin);
         }
     }
 
