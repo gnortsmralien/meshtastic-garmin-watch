@@ -38,26 +38,70 @@ Build the comprehensive test:
 monkeyc -f comprehensive-test.jungle -d fenix8solar51mm -o build/comprehensive.prg -y developer_key
 ```
 
-## Run
+## Run in Simulator
 
-Run in the simulator:
+**Note:** The simulator has a known crash issue with BLE on macOS. See [SIMULATOR_CRASH.md](SIMULATOR_CRASH.md) for details.
+
+Start the simulator:
 ```bash
-connectiq build/interactive-simulator.prg
+connectiq
+```
+
+Then load the app:
+```bash
+monkeydo build/meshtastic.prg fenix8solar51mm
 ```
 
 Run protobuf tests:
 ```bash
-connectiq build/prototest.prg
+monkeydo build/prototest.prg fenix8solar51mm
 ```
 
 ## Deploy to Device
 
-1. Connect your Garmin device via USB
-2. Copy the `.prg` file to your device using Garmin Express or the Connect IQ mobile app
-3. Or use the connectiq tool:
+### Method 1: USB Copy (Recommended)
+
+1. Build the app for your device:
    ```bash
-   connectiq -d [device_id] -i build/meshtastic.prg
+   monkeyc -f monkey.jungle -d fenix8solar51mm -o build/meshtastic.prg -y developer_key
    ```
+
+2. Connect your Garmin watch via USB cable
+
+3. The watch will appear as a USB storage device (e.g., `/Volumes/GARMIN`)
+
+4. Copy the `.prg` file to the watch:
+   ```bash
+   cp build/meshtastic.prg /Volumes/GARMIN/GARMIN/APPS/
+   ```
+
+5. Safely eject the watch from your computer
+
+6. On the watch, navigate to the apps menu - "Meshtastic" will appear
+
+### Method 2: Garmin Express
+
+1. Install [Garmin Express](https://www.garmin.com/en-US/software/express/)
+
+2. Connect your watch via USB
+
+3. Use Garmin Express to sync and install the app
+
+### Method 3: Connect IQ Mobile App
+
+1. Install the Connect IQ mobile app on your phone
+
+2. Build the app and transfer to your phone
+
+3. Install via the Connect IQ app while your watch is paired
+
+### Verify Installation
+
+After installation:
+1. Press the UP button on your watch to open the app menu
+2. Scroll to find "Meshtastic"
+3. Select it to launch the app
+4. You should see the status screen with "Disconnected" (if no Meshtastic device is nearby)
 
 ## Project Structure
 

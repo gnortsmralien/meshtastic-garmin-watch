@@ -140,22 +140,16 @@ class StatusView extends WatchUi.View {
                 dc.drawText(centerX, 130, Graphics.FONT_TINY, _statusMessage, Graphics.TEXT_JUSTIFY_CENTER);
             }
 
-            // Menu options
+            // Menu options - start much lower and use minimal spacing
             System.println(">>> Drawing menu options");
-            y = height - 110;
+            y = height - 70;
             dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y, Graphics.FONT_TINY, "UP: Messages | DOWN: Nodes", Graphics.TEXT_JUSTIFY_CENTER);
-            y += 18;
-            dc.drawText(centerX, y, Graphics.FONT_TINY, "SELECT: Compose", Graphics.TEXT_JUSTIFY_CENTER);
-            y += 18;
 
             System.println(">>> Drawing state-specific menu items");
             if (state == BleManager.STATE_DISCONNECTED) {
-                dc.drawText(centerX, y, Graphics.FONT_TINY, "START: Connect", Graphics.TEXT_JUSTIFY_CENTER);
-                y += 18;
-                dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Settings", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msg DN:Nodes SEL:Compose", Graphics.TEXT_JUSTIFY_CENTER);
             } else if (state == BleManager.STATE_READY) {
-                dc.drawText(centerX, y, Graphics.FONT_TINY, "MENU: Disconnect", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(centerX, y, Graphics.FONT_XTINY, "UP:Msg DN:Nodes MENU:Disc", Graphics.TEXT_JUSTIFY_CENTER);
             }
 
             System.println(">>> StatusView.onUpdate() COMPLETE");
