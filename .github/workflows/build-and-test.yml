@@ -2,7 +2,7 @@ name: Connect IQ Build and Test
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master, main, 'claude/**' ]
   pull_request:
     branches: [ master, main ]
 
