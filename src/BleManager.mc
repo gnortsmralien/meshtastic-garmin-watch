@@ -56,10 +56,6 @@ class BleManager {
         return Config.DEFAULT_MESHTASTIC_PIN;
     }
 
-    function setDefaultPin(pin) {
-        _defaultPin = pin;
-    }
-
     function setPinCallback(callback) {
         _pinCallback = callback;
     }

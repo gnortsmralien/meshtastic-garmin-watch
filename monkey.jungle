@@ -1,6 +1,6 @@
 project.manifest = manifest.xml
 
-base.sourcePath = src/MeshtasticApp.mc;src/BleManager.mc;src/BleCommandQueue.mc;src/MessageHandler.mc;src/ViewManager.mc;src/NotificationManager.mc;src/SystemMonitor.mc;src/ReconnectManager.mc;src/views/StatusView.mc;src/views/MessageListView.mc;src/views/NodeListView.mc;src/views/ComposeView.mc;src/views/CustomMessageView.mc;src/views/PinEntryView.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
+base.sourcePath = src/MeshtasticApp.mc;src/BleManager.mc;src/BleCommandQueue.mc;src/MessageHandler.mc;src/ViewManager.mc;src/NotificationManager.mc;src/SystemMonitor.mc;src/ReconnectManager.mc;src/SettingsManager.mc;src/Config.mc;src/views/StatusView.mc;src/views/MessageListView.mc;src/views/NodeListView.mc;src/views/ComposeView.mc;src/views/CustomMessageView.mc;src/views/PinEntryView.mc;src/views/SettingsView.mc;src/ProtoBuf.mc;src/Encoder.mc;src/Decoder.mc
 base.resourcePath = resources
 
 # Test configurations - just keep it simple for now
